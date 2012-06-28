@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<user>
+  <gast password='d4061b1486fe2da19dd578e8d970f7eb' full='Gast'/>
+
+	<admin password="9b84a825a73844106a5ebe0265c62436">
+		<admin />
+		<editor />
+		<publisher />
+	</admin>
+
+	<tom password="d842bb08921f5a196300cd38ed7f68a9" full='Thomas Winkler'>
+		<editor />
+		<publisher />
+	</tom>
+</user>

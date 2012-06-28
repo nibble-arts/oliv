@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<exclude>
+  <der />
+  <dessen />
+  <dem />
+  <den />
+  <die />
+  <das />
+  <ich />
+  <du />
+  <er />
+  <sie />
+  <es />
+  <am />
+  <im />
+  <in />
+  <um />
+  <auf />
+  <bei />
+  <beim />
+  <ein />
+  <eine />
+  <einer />
+  <eines />
+  <ist />
+  <für />
+  <von />
+  <vom />
+  <um />
+  <zu />
+  <auf />
+  <ab />
+  <nur />
+  <war />
+  <sehr />
+</exclude>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<template name='topmenu'>
+  <menu_background_index style='background-color:#dcdc78'>
+    <menu_item_index repeat='row' tag='span' />
+  </menu_background_index>
+</template>

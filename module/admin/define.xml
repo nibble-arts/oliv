@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>admin</name>
+  <version>1.0</version>
+  <author>Thomas Winkler</author>
+  <copyright>2012</copyright>
+    
+  <script>
+    <main>admin.php</main>
+    <template>template/</template>
+    <default_language>de-DE</default_language>
+  </script>
+</module>  

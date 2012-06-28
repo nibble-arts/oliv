@@ -1,0 +1,15 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# base path
+# RewriteBase /entwicklung/oliv
+
+# three parameters
+# RewriteCond %{REQUEST_URI} index.php/(.+)/(.+)/(.+)$
+RewriteRule ^index.php/(.*?)/(.*?)$ index.php?lang=$1&url=$2 [L]
+
+# suppres xml access
+# RewriteRule ^.*?.xml$ 404.html
+
+# suppres ini access
+RewriteRule ^.*?.ini$ 404.html
