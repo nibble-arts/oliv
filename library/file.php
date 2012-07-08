@@ -44,7 +44,7 @@ function olivis_dir($path)
 
 function session_path($file)
 {
-	return (OLIV_SESSION_PATH . $file);
+	return ($file);
 //	return (OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $file);
 }
 
@@ -64,9 +64,9 @@ function sessionis_dir($file)
 }
 
 
-function sessionparse_ini_file($file)
+function sessionparse_ini_file($file,$param)
 {
-	return (parse_ini_file(session_path($file)));
+	return (parse_ini_file(session_path($file),$param));
 }
 
 ?>

@@ -30,7 +30,7 @@
 defined('OLIVCORE') or die ("render.php - OLIVCore not present");
 defined('OLIVERROR') or die ("render.php - OLIVError not present");
 
-class standard
+class default
 {
   function img($param)
   {

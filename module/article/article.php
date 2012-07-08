@@ -31,17 +31,25 @@ defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
 defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
 defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
 
+
 $_ARTICLES;
 
 
-class article
+class article extends OLIVCore
 {
 	var $o = "";
   var $path;
   var $header;
+  var $editExclude;
+  var $command;
+  var $paramArray;
+  
+  var $editor;
   
   public function __construct($header)
   {
+    global $_argv;
+    
     $this->header = $header;
     $this->path = OLIV_MODULE_PATH . "article/";
     $this->scan();
@@ -55,6 +63,25 @@ class article
 
     OLIVText::load($langPath,$articleName);
 
+
+// parse for commands and parameters
+    if ($_argv[val])
+    {
+  // load editor
+      $this->loadScript("articleEdit.php",OLIV_MODULE_PATH . "article/");
+      $this->editor = new ArticleEditor();
+
+  // extract cmd and param
+      $this->paramArray = explode("/",cut_slash($_argv[val]));
+
+  // retranslate command
+      $this->command = OLIVText::getId($this->paramArray[0]);
+      array_shift($this->paramArray);
+    }
+
+// else render article
+
+// load content
     if (sessionfile_exists($contentPath . "$articleName.xml"))
     {
       $article = sessionxml_load_file($contentPath . "$articleName.xml");
@@ -78,6 +105,7 @@ class article
       $owner = $text->attributes()->owner;
       $ownerLang = $text->attributes()->lang;
 
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // area for write, edit, admin
@@ -95,8 +123,21 @@ class article
           )
         );
         $this->o .= OLIVRoute::intern(OLIVImage::img($flag->img),$options);
+
       }
       
+
+      $options = array(
+        'url' => $_argv[url],
+        'param' => array(
+          "title" => "edit",
+          "val" => $_argv[val]
+        )
+      );
+
+//      $editIcon = new simpleXmlElement("<edit><img src='oliv_edit' width='20px' float='right' margin_side='0.5em'/></edit>");
+//			$this->o .= OLIVRoute::intern(OLIVImage::img($editIcon->img),$options);
+
 //TODO
 //echoall("owner: $owner");
 
@@ -111,17 +152,16 @@ class article
   {
     global $_PLUGIN;
     global $_argv;
-    
+
     $indexTimeStamp = (string)$text->attributes()->index;
     $index = new OLIVIndex();
-    
+
     if ($text and count($text->children()))
     {
       foreach($text->children() as $entry)
       {
         $key = (string)$entry->getName();
         $value = (string)$entry;
-
 
 //------------------------------------------------------------------------------
 // get render plugin if registered
@@ -140,9 +180,6 @@ class article
         }
 
 //------------------------------------------------------------------------------
-
-
-
         switch($key)
         {
 // call render plugins
@@ -155,20 +192,53 @@ class article
 // insert text in index
 //            $index->insertText(OLIVText::_((string)$value),$_argv[url],$_argv[val]);
 
-            $o .= "<$key>"; // start tag
-            
-              // print language string if defined
-              if ($value)
-                $o .= OLIVText::_((string)$value);
+
+//------------------------------------------------------------------------------
+// insert edit field
+						$options = array(
+							'url' => $_argv[url],
+              'val' => OLIVText::_("edit") . "/$value",
+							'param' => array(
+								"title" => "edit",
+							)
+						);
+
+    // call editor
+            if ($this->paramArray[0] == $value)
+            {
+              switch ($this->command)
+              {
+                case edit:
+                  if ($this->paramArray[0] == $value)
+                    $o .= $this->editor->open($value,OLIVText::_((string)$value));
+                  break;
+                  
+                case save:
+                  $this->editor->save($value);
+                  break;
+              }
+            }
+
+//------------------------------------------------------------------------------
+// render text
+            else
+            {
+// output tag
+              $oTemp = "<$key name='$value'>"; // start tag
+                // print language string if defined
+                if ($value)
+                  $oTemp .= OLIVText::_((string)$value);
+    
+                // call recursive if children
+                if (count($entry->children())) // recursive call
+                  $oTemp .= $this->_parse($entry);
   
-              // call recursive if children
-              if (count($entry->children())) // recursive call
-                $o .= $this->_parse($entry);
-
-            $o .= "</$key>"; // end tag
-            break;
+              $oTemp .= "</$key>"; // end tag
+              
+              $o .= OLIVRoute::intern($oTemp,$options);
+            }
+          break;
         }
-
       }
     }
     $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $this->path;

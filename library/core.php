@@ -77,6 +77,7 @@ class OLIVCore
     defined ("OLIVTEXT") or die ("INIT: OLIVTEXT not found");
     OLIVText::load(OLIV_LANGUAGE_PATH,OLIV_CORE_TEXT);
 
+
 //------------------------------------------------------------------------------
 // initialice main components
 //------------------------------------------------------------------------------
@@ -135,6 +136,9 @@ class OLIVCore
   // start render engine
   public function render()
   {
+//global $_TEXT;
+//echoall($_TEXT);
+
     $this->render->page($this->template,$this->page,$this->processor);
   }
 
@@ -167,9 +171,24 @@ class OLIVCore
 
     if (file_exists($path . $file))
     {
+// check for filetype
+      $fileInfo = pathInfo($file);
+      
 //debug
 //print_r("load script " . $path . $file . "<br>");
-      include_once ($path . $file);
+      switch($fileInfo[extension])
+      {
+        case php:
+          include_once ($path . $file);
+          break;
+
+        case js:
+          echo "<script type='text/javascript' src='{$path}{$file}'></script >";
+          break;
+          
+        default:
+          OLIVError::fire("core::loadScript - script {$path}{$file} unknown filetype");
+      }
     }
     else
       OLIVError::fire("core::loadScript - script {$path}{$file} not found");

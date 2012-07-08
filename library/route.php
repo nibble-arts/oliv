@@ -77,7 +77,7 @@ class OLIVRoute extends OLIVCore
 // no site defined -> call OLIV_INDEX
     else
     {
-//    echoall("INDEX");
+//echoall("INDEX");
       $argv[url] = OLIV_INDEX_PAGE;
 			define (OLIV_PAGE,OLIV_SITE_NAME . " " . $this->getPageName(OLIV_LANG,$argv[url])); // set page title
     }
@@ -94,6 +94,7 @@ class OLIVRoute extends OLIVCore
   public function intern($text,$options="")
   {
     $url = strtolower($options[url]);
+    $val = $options[val];
     $param = $options[param];
     $class = $options["class"];
     $lang = $param["lang"]; // get link language
@@ -101,7 +102,10 @@ class OLIVRoute extends OLIVCore
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
     $path = OLIVRoute::makeUrl($lang,$url) . "/";
+    if ($val) $path .= $val . "/";
+    
     $param = OLIVRoute::makeParam($param);
+
     if ($class) $class = "class='{$class}'";
 
     // return href string
@@ -109,9 +113,29 @@ class OLIVRoute extends OLIVCore
   }
 
 
+//TODO make url basis for intern, extern, form, e.i.
+//------------------------------------------------------------------------------
+// create form url
+  public function url($text,$options="")
+  {
+    $url = strtolower($options[url]);
+    $val = $options[val];
+    $lang = $param["lang"]; // get link language
+
+    if (!$lang) $lang = OLIV_LANG; // if no language use current
+    
+    $path = OLIVRoute::makeUrl($lang,$url) . "/";
+    if ($val) $path .= $val . "/";
+
+    // return url string
+    return ($path);
+  }
+
+
+
 //------------------------------------------------------------------------------
 // return parameter string for link
-  private function makeUrl($lang,$url)
+  public function makeUrl($lang,$url)
   {
 // create absolute url
 // for correct Apache modrewrite
@@ -143,7 +167,6 @@ class OLIVRoute extends OLIVCore
         array_push($paramArray,"$key='$value'");
       }
     }
-    
     return (implode(" ",$paramArray));
   }
   
@@ -177,7 +200,7 @@ class OLIVRoute extends OLIVCore
     $paramArray = array();
     $tempArray = array();
     
-		$urlArray = explode("/",$url);
+		$urlArray = explode("/",cut_slash($url));
 
     // search for url matches
     foreach($urlArray as $entry)
@@ -194,5 +217,15 @@ class OLIVRoute extends OLIVCore
     $url = implode("/",$retArray); // update url
     return (implode("/",$paramArray)); // return parameters
   }
+}
+
+
+// removes slash from start and end of string
+function cut_slash($url)
+{
+  if ($url[0] == "/") $url = substr($url,1);
+  if ($url[strlen($url)-1] == "/") $url = substr($url,0,strlen($url)-1);
+
+  return ($url);
 }
 ?>

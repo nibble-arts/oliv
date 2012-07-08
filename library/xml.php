@@ -39,7 +39,7 @@ function olivxml_load_file($file)
 function sessionxml_load_file($file)
 {
 // local session directory
-  return (simplexml_load_file(OLIV_SESSION_PATH . $file));
+  return (simplexml_load_file($file));
 
 // oliv core session directory
 //  return (simplexml_load_file(OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $file));

@@ -82,13 +82,15 @@ class OLIVText extends OLIVCore
     {
 			// look in root nameSpace
       $retText = OLIVText::fetchText(strtoupper($text));
+      
 			if ($retText) return ($retText);
 
 			// look in namespaces
 			foreach($_TEXT as $key => $value)
 			{
 				if (is_array($value))
-				  if (($retText = OLIVText::fetchText(strtoupper($text),strtoupper($key)))) return ($retText);
+				  if (($retText = OLIVText::fetchText(strtoupper($text),strtoupper($key))))
+            return ($retText);
 			}
       return ($text); // return text value
 		}
@@ -123,6 +125,7 @@ class OLIVText extends OLIVCore
   }
 
 
+//-------------------------------------------------------------------------------------------
 // fetch text from array
   static private function fetchText($text,$nameSpace="")
   {
@@ -130,21 +133,58 @@ class OLIVText extends OLIVCore
 
     if ($nameSpace) // look in nameSpace
     {
-      if (isset($_TEXT[$nameSpace][$text]))
-				return($_TEXT[$nameSpace][$text]); // return string
+      if (isset($_TEXT[$nameSpace][$text][text]))
+				return ($_TEXT[$nameSpace][$text][text]); // return string
       else
         return false;
     }
+
     else // look in root
     {
-      if (isset($_TEXT[$text]) and !is_array($_TEXT[$text])) // text found and not namespace
-				return($_TEXT[$text]); // return string
+      if (isset($_TEXT[$text][text]) and !is_array($_TEXT[$text])) // text found and not namespace
+				return($_TEXT[$text][text]); // return string
       else return false;
     }
   }
 
 
+//-------------------------------------------------------------------------------------------
+// get text id
+  static public function getId($text)
+  {
+    global $_TEXT;
 
+    return (strtolower(OLIVText::_scanText($text,$_TEXT)));
+  }
+
+
+//-------------------------------------------------------------------------------------------
+// scan text array for text
+// return ID
+  private function _scanText($text,$textArray)
+  {
+    if (is_array($textArray))
+    {
+      foreach($textArray as $key => $value)
+      {
+        if (!$value[text]) // recursion
+        {
+          $retKey = OLIVText::_scanText($text,$value);
+          if ($retKey)
+            break;
+        }
+        else
+        {
+          if ($value[text] == $text)
+          {
+            $retKey = $key;
+            break;
+          }
+        }
+      }
+      return $retKey;
+    }
+  }
 
 
 //-------------------------------------------------------------------------------------------
@@ -164,9 +204,30 @@ class OLIVText extends OLIVCore
     if (sessionfile_exists($filePath))
     {
       $tempArray = sessionparse_ini_file($filePath,true);
-      return ($tempArray);
+
+      $langArray = OLIVText::_insertLang($tempArray,$lang);
+
+      return ($langArray);
     }
     return (false);
+  }
+
+
+
+//-------------------------------------------------------------------------------------------
+  private function _insertLang($textArray,$lang)
+  {
+    $retArray = array();
+    
+    foreach($textArray as $key => $value)
+    {
+      if (is_array($value)) // recursion
+        $retArray[$key] = OLIVText::_insertLang($value,$lang);
+
+      else
+        $retArray[$key] = array(lang => $lang,text => $value);
+    }
+    return $retArray;
   }
 
 
@@ -222,3 +283,4 @@ class OLIVText extends OLIVCore
   }
 }
 
+?>

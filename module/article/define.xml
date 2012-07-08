@@ -2,6 +2,7 @@
 
 <module>
   <name>article</name>
+  <access>system</access>
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
