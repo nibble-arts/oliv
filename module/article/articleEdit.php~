@@ -92,7 +92,7 @@ class ArticleEditor extends article
   
 
 
-  function saveSnippet($value)
+  function save($value)
   {
     global $_argv;
 

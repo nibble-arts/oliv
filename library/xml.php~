@@ -104,6 +104,6 @@ function olivxml_changeNode($node,$xml)
 // write simpleXmlElement to file
 function olivxml_writeFile($xml,$file)
 {
-	echoall("write " . (string)$xml . " to $file");
+	
 }
 ?>

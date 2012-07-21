@@ -120,7 +120,7 @@ input {
 }
 
 .oliv_not_translated {
-	background-color:yellow;
+	background-color:lightyellow;
 }
 
 /*----------------------------------------------------------------------------*/

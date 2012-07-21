@@ -60,8 +60,8 @@ class OLIVRoute extends OLIVCore
   {
     global $_ROUTE;
 
-		$val = $this->parseUrl($argv[url]); // extract values from url
-		$argv[val] .= $this->parseUrl($argv[url]); // add values to val-parameter
+		$val = $this->parseUrl($argv[url]);
+		$argv[val] .= $this->parseUrl($argv[url]);
 
     // routable url found
     if ($argv[url])

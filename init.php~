@@ -1,8 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <?PHP
 //
-// IG-CMS
+// OLIV
 //
 // This file is part of the OLIV Content Management System.
 //
@@ -24,24 +22,35 @@
 //
 
 //------------------------------------------------------------------------------
-// Main routine
+// create session environment
 //
 // Version 0.1
 //------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+// load session definitions
+//------------------------------------------------------------------------------
+
+if (file_exists("configure.xml"))
+	$sessionXml = simplexml_load_file("configure.xml");
+else
+	die ("session_init.php - session configure.xml not found");
+
+
+if ($sessionXml->system->children())
+{
+  foreach($sessionXml->system->children() as $key => $value)
+  {
+    define($key,$value);
+  }
+}
+else
+  die ("init.php - no session constant definitions found");
+
+
+// include system core
+include(OLIV_CORE_PATH . "library/core.php");
+
+
 ?>
-
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="template/default/default.css">
-    <link href="images/browser.ico" type="image/x-icon" rel="shortcut icon">
-  
-    <form method='post' action='md5.php'>
-      Passwort <input type="text" name="data" value=<?PHP echo $data; ?>>
-      <input type="submit" value="MD5">
-
-      <?PHP if (true) echo " <b>" . md5("gast"); ?></b>
-      
-    </form>
-      
-  </body>
-</html>

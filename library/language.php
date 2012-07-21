@@ -22,35 +22,23 @@
 //
 
 //------------------------------------------------------------------------------
-// create session environment
+// Article module
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------------
-// load session definitions
-//------------------------------------------------------------------------------
-
-if (file_exists("session.xml"))
-	$sessionXml = simplexml_load_file("session.xml");
-else
-	die ("session_init.php - session.xml not found");
+defined('OLIVCORE') or die ("language.php - OLIVCore not present");
 
 
-if ($sessionXml->system->children())
+class OLIVLang
 {
-  foreach($sessionXml->system->children() as $key => $value)
-  {
-    define($key,$value);
-  }
+
+
+// get the language family from a lang string
+	function family($lang)
+	{
+		return (substr($lang,0,2));
+	}
 }
-else
-  die ("init.php - no session constant definitions found");
-
-
-// include system core
-include(OLIV_CORE_PATH . "library/core.php");
-
 
 ?>

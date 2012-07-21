@@ -215,6 +215,10 @@ class article extends OLIVCore
 // get language code of text snippet and mark field if not translated
 						$lang = OLIVText::_($value,"lang");
 
+						if (($lang != OLIV_LANG) and $lang)
+							$class = "oliv_not_translated";
+						else
+							$class = "";								
 
 
 // call editor
@@ -241,15 +245,8 @@ class article extends OLIVCore
               $oTemp = "<$key name='$value' class='$class'>"; // start tag
                 // print language string if defined
                 if ($value)
-								{
-									if ($lang != OLIV_LANG)
-										$class = "oliv_not_translated";
-									else
-										$class = "";								
-
                   $oTemp .= OLIVText::_((string)$value);
-								}
-   
+    
                 // call recursive if children
                 if (count($entry->children())) // recursive call
                   $oTemp .= $this->_parse($entry);

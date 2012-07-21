@@ -1,10 +1,11 @@
 Options +FollowSymLinks
 RewriteEngine On
-RewriteLog /var/www/oliv/editor/rewrite.log
-RewriteLogLevel 5
 
 # convert parameters
-RewriteRule ^index.php/(.*?)/(.*?)$ index.php?lang=$1&url=$2 [L]
+#RewriteRule ^index.php/(.*?)/(.*?)$ index.php?lang=$1&url=$2 [L]
+
+RewriteRule ^rewrite.php$ index.php?lang=$1&url=$2 [L]
+
 
 # suppres xml access
 # RewriteRule ^.*?.xml$ 404.html

@@ -1,11 +1,9 @@
 Options +FollowSymLinks
 RewriteEngine On
+RewriteLog /var/www/oliv/editor/rewrite.log
+RewriteLogLevel 5
 
-# base path
-# RewriteBase /entwicklung/oliv
-
-# three parameters
-# RewriteCond %{REQUEST_URI} index.php/(.+)/(.+)/(.+)$
+# convert parameters
 RewriteRule ^index.php/(.*?)/(.*?)$ index.php?lang=$1&url=$2 [L]
 
 # suppres xml access
