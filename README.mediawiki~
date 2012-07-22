@@ -1,6 +1,5 @@
 = Welcome to the OLIV-CMS Project =
-﻿
-== Introduction ==
+﻿== Introduction ==
 OLIV is a slim but flexible content management system, especially designed for the support of different languages. The special tool manages the layout of articles and the multilingual content. If offers a messaging system for all translators about changes.
 == System Requirements ==
 OLIV don't use a database for the core functions. A database module offers the possibility to simply insert dynamic content into the page rendering.
