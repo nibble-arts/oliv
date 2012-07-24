@@ -34,25 +34,25 @@
 //------------------------------------------------------------------------------
 // set document root path
 $pathArray = explode("/",$_SERVER['SCRIPT_FILENAME']);
-define (OLIV_SCRIPT_NAME, array_pop($pathArray));
-define (OLIV_DOCUMENT_ROOT, implode("/",$pathArray) . "/");
+define ('OLIV_SCRIPT_NAME', array_pop($pathArray));
+define ('OLIV_DOCUMENT_ROOT', implode("/",$pathArray) . "/");
 
 $pathArray = explode("/",$_SERVER['SCRIPT_NAME']);
 
 array_pop($pathArray);
 if (!$pathArray[0]) array_shift($pathArray);
 
-define (OLIV_BASE, implode("/",$pathArray) . "/");
-define (OLIV_HOST, $_SERVER['HTTP_HOST'] . "/");
+define ('OLIV_BASE', implode("/",$pathArray) . "/");
+define ('OLIV_HOST', $_SERVER['HTTP_HOST'] . "/");
 
 
 
 //------------------------------------------------------------------------------
 // set http / https protocol
-if ($_SERVER['HTTPS'])
-	define (OLIV_PROTOCOL,"https://");
+if (isset($_SERVER['HTTPS']))
+	define ('OLIV_PROTOCOL',"https://");
 else
-	define (OLIV_PROTOCOL,"http://");
+	define ('OLIV_PROTOCOL',"http://");
 
 
 
@@ -76,7 +76,8 @@ if ($this->coreXml)
   {
     foreach($this->coreXml->system->children() as $key => $value)
     {
-      define($key,$value);
+      if (!defined($key))
+        define($key,$value);
     }
   }
   else
@@ -109,10 +110,11 @@ $_imgType = $this->coreXml->image;
 //------------------------------------------------------------------------------
 // set global argument array
 global $_argv;
-$_argv = array();
+$_argv = array("url" => "","val" => "");
 
 // decode friendly url to parameters
-$_argv = OLIVRoute::decode($_SERVER[PATH_INFO],array("lang","url","val"));
+if (isset($_SERVER['PATH_INFO']))
+  $_argv = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
 
 // insert GET POST messages in parameters
 foreach($_GET as $key => $value)
@@ -174,26 +176,29 @@ define('OLIVENV','alive');
 //------------------------------------------------------------------------------
 // login state
 //   define USER for session
-$user = $_SESSION["user"];
+$user = $_SESSION['user'];
 
 
 // change user login state    
-switch($_argv[action])
+if (isset($_argv['action']))
 {
-  case login:
-    if (OLIVUser::checkPassword($_argv[login],$_argv[password]))
-    {
-      $user = $_argv[login];
-    }
-    break;
-
-  case logout:
-    $user = "";
-    break;
+  switch($_argv['action'])
+  {
+    case login:
+      if (OLIVUser::checkPassword($_argv['login'],$_argv['password']))
+      {
+        $user = $_argv['login'];
+      }
+      break;
+  
+    case logout:
+      $user = "";
+      break;
+  }
 }
 
-$_SESSION["user"] = $user;
-define(OLIV_USER,$_SESSION["user"]);
+$_SESSION['user'] = $user;
+define('OLIV_USER',$_SESSION['user']);
 
 //echoall($_SESSION);
 
@@ -207,10 +212,10 @@ define(OLIV_USER,$_SESSION["user"]);
 
 
 //debug
-if ($_argv[lang])
-  define (OLIV_LANG, $_argv[lang]);
+if (isset($_argv['lang']))
+  define ('OLIV_LANG', $_argv['lang']);
 else
-  define (OLIV_LANG, OLIV_DEFAULT_LANG);
+  define ('OLIV_LANG', OLIV_DEFAULT_LANG);
 
 
 
@@ -224,24 +229,32 @@ function echoall($string)
     echo count($string) . " elements";
     echoarray($string);
   }
-    
-  switch ($string)
+
+  elseif (is_object($string))
   {
-    case NULL:
-      echo "*NULL";
-      break;
+    echoarray($string);
+  }
 
-    case "":
-      echo "*empty";
-      break;
-
-    case FALSE:
-      echo "*FALSE";
-      break;
-
-    default:
-      echo $string;
-      break;
+  else
+  {
+    switch ($string)
+    {
+      case 'NULL':
+        echo "*NULL";
+        break;
+  
+      case "":
+        echo "*empty";
+        break;
+  
+      case 'FALSE':
+        echo "*FALSE";
+        break;
+  
+      default:
+        echo $string;
+        break;
+    }
   }
   echo "<br>";
 //  echo "</span>";

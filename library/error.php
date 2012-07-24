@@ -37,7 +37,7 @@ $_warning = "";
 class OLIVError
 {
 //------------------------------------------------------------------------------
-  public function render($text)
+  static public function render($text)
   {
     $o = "<div id='oliv_error'>";
       $o .=  $text;
@@ -48,7 +48,7 @@ class OLIVError
   }
 
 
-  public function renderWarning()
+  static public function renderWarning()
   {
     global $_warning;
 
@@ -58,7 +58,7 @@ class OLIVError
   }
 
 
-  public function renderDebug()
+  static public function renderDebug()
   {
     global $_debug;
 
@@ -70,7 +70,7 @@ class OLIVError
 
 //------------------------------------------------------------------------------
 // fires message immediately  
-  public function fire($text)
+  static public function fire($text)
   {
     echo OLIVError::render($text);
   }
@@ -78,7 +78,7 @@ class OLIVError
 
 //------------------------------------------------------------------------------
 // writes warning to warning string
-  public function warning($text)
+  static public function warning($text)
   {
     global $_warning;
     
@@ -88,7 +88,7 @@ class OLIVError
 
 
 // writes debug text to debug string
-  public function debug($text)
+  static public function debug($text)
   {
     global $_debug;
     

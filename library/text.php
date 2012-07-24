@@ -77,6 +77,7 @@ class OLIVText extends OLIVCore
   static public function _($text,$option = "")
   {
     global $_TEXT;
+    $retText = "";
 
     if (is_array($_TEXT))
     {
@@ -133,7 +134,7 @@ class OLIVText extends OLIVCore
 
 		switch($option)
 		{
-			case lang:
+			case 'lang':
 				$part = "lang";
 				break;
 			default:
@@ -225,7 +226,7 @@ class OLIVText extends OLIVCore
 
 
 //-------------------------------------------------------------------------------------------
-  private function _insertLang($textArray,$lang)
+  static private function _insertLang($textArray,$lang)
   {
     $retArray = array();
     
@@ -235,7 +236,7 @@ class OLIVText extends OLIVCore
         $retArray[$key] = OLIVText::_insertLang($value,$lang);
 
       else
-        $retArray[$key] = array(lang => $lang,text => $value);
+        $retArray[$key] = array('lang' => $lang,'text' => $value);
     }
     return $retArray;
   }
@@ -252,11 +253,11 @@ class OLIVText extends OLIVCore
       {
         if (is_array($value))
         {
-           $a[$key] = OLIVText::mergeArray($a[$key],$value);
+           $a['$key'] = OLIVText::mergeArray($a['$key'],$value);
         }
         else
         {
-          $a[$key] = $value;
+          $a['$key'] = $value;
         }
       }
     }
