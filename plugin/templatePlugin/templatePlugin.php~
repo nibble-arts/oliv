@@ -60,7 +60,7 @@ class templatePlugin
       $value = (string)$entry;
       $paramString = "$key='$value' ";
     }
-
+echoall($tag);
     $o = "<$tag name='$value' $paramString>";
       $o .= "*$tag";
     $o .= "</$tag>";

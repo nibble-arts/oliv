@@ -294,10 +294,6 @@ echoall($element);*/
     				$o .= $outputObj->o;
           }
   			}
-
-
-
-
 //------------------------------------------------------------------------------
 // no module or script
 //   direct render of multilingual text
