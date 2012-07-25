@@ -85,9 +85,8 @@ class article extends OLIVCore
 
     if ($text)
     {
-      $text = $text->text;
-
-      $owner = $text->attributes()->owner;
+//      $onlyText = $text->text;
+/*      $owner = $text->attributes()->owner;
       $ownerLang = $text->attributes()->lang;
 
 
@@ -125,7 +124,7 @@ class article extends OLIVCore
 
 //TODO
 //echoall("owner: $owner");
-
+*/
 //------------------------------------------------------------------------------
       $this->o .= $this->_parse($text);
     }
@@ -141,8 +140,11 @@ class article extends OLIVCore
     $o = "";
     $class = "";
 
+    $access = $text->text;
+
     $indexTimeStamp = (string)$text->attributes()->index;
     $index = new OLIVIndex();
+
 
     if ($text and count($text->children()))
     {
@@ -163,15 +165,21 @@ class article extends OLIVCore
           $pluginFunc = (string)$plugin;
           $pluginScript = (string)$plugin->attributes()->script;
 
-          include_once (OLIV_CORE_PATH . OLIV_PLUGIN_PATH . $pluginScript . "/$pluginScript.php");
-
-          $o .= $pluginScript::$pluginFunc($value,$this->header);
+    // load plugin script
+          OLIVCore::loadScript("$pluginScript.php",OLIV_PLUGIN_PATH . $pluginScript . "/");
+          $o .= $pluginScript::$pluginFunc($entry,$this->header);
         }
         else
         {
     // ouput tag directly
           $o .= "<$key name='$value' class='$class'>"; // start tag
-            $o .= $value;
+
+          // call recursive if children
+          if (count($entry->children())) // recursive call
+            $o .= $this->_parse($entry);
+          else
+            $o .= "?($key) " . OLIVText::_($value);
+
           $o .= "</$key>";
         }
 

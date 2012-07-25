@@ -86,8 +86,10 @@ class OLIVImage extends OLIVCore
 
 //------------------------------------------------------------------------------
 // create html img string out of img xml
-  public function img($image,$lang="")
+  static public function img($image,$lang="")
   {
+    $o = "";
+
     $src = (string)$image->attributes()->src; // image name -> src path via OLIVImage
     $lang = (string)$image->attributes()->lang; // image language
     $alt = (string)$image->attributes()->alt; // alternative text
@@ -101,7 +103,7 @@ class OLIVImage extends OLIVCore
     $margin_top = (string)$image->attributes()->margin_top; // margin distance
     $margin_bottom = (string)$image->attributes()->margin_bottom; // margin distance
     $margin_side = (string)$image->attributes()->margin_side; // margin distance
-    
+
     $path = OLIVImage::_($src,$lang);
     
     $style = "";
@@ -115,10 +117,10 @@ class OLIVImage extends OLIVCore
       {
         switch ($float)
         {
-          case left:
+          case 'left':
             $style .= "margin-right:$margin_side";
             break;
-          case right:
+          case 'right':
             $style .= "margin-left:$margin_side";
             break;
         }

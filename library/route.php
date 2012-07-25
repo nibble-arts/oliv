@@ -70,7 +70,7 @@ class OLIVRoute extends OLIVCore
     {
       if ($newVal = OLIVRoute::getUrl($_argv['url']))
 			{
-				define (OLIV_PAGE,OLIV_SITE_NAME . " " . $_argv['url']); // set page title
+				define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $_argv['url']); // set page title
         $_argv['url'] = $newVal;
 			}
       else

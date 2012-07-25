@@ -36,32 +36,45 @@ class standard
   
 //------------------------------------------------------------------------------
 // render functions
-  static public function _img($value,$options = array())
+  static public function __callStatic($tag,$options)
   {
-    return ("<img>" . standard::getText($value,$options) . "</img>");
-  }
-  
-  static public function _p($value,$options = array())
-  {
-    return ("<p>" . standard::getText($value,$options) . "</p>");
-  }
+    $value = $options[0];
+    $header = $options[1];
 
-  static public function _h1($value,$options = array())
-  {
-    return ("<h1>" . standard::getText($value,$options) . "</h1>");
-  }
-
-  static public function _h2($value,$options = array())
-  {
-    return ("<h2>" . standard::getText($value,$options) . "</h2>");
-  }
-
-  static public function _h3($value,$options = array())
-  {
-    return ("<h3>" . standard::getText($value,$options) . "</h3>");
+    return (standard::tagString($tag,$value,$header));
   }
 
 
+
+
+
+
+//------------------------------------------------------------------------------
+// create tag string
+  static private function tagString($tag,$value,$header)
+  {
+		$class = "";								
+
+//echoall($header);
+// get language code of text snippet and mark field if not translated
+		$lang = OLIVText::_($value,"lang");
+    $ownerLang = $header->ownerLang;
+
+
+// check for permissions
+    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
+    {
+  // mark for no translation
+  		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
+  			$class = "oliv_not_translated";
+    }
+
+    $o = "<$tag name='$value' class='$class'>";
+      $o .= standard::getText($value,$header);
+    $o .= "</$tag>";
+
+    return ($o);
+  }
 
 
 //------------------------------------------------------------------------------
@@ -70,6 +83,7 @@ class standard
   static private function getText($value,$header)
   {
     global $_argv;
+    
     $o = "";
     $paramArray = array();
 
@@ -77,15 +91,13 @@ class standard
     $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $header->path;
     $langPath = $header->path . (string)$header->script->language;
 
-
-// get language code of text snippet and mark field if not translated
-		$lang = OLIVText::_($value,"lang");
+    $oTemp = OLIVText::_((string)$value);
 
 
 // parse for commands and parameters
     if ($_argv['val'])
     {
-  // load editor
+// load editor class
       OLIVCore::loadScript("articleEdit.php",OLIV_MODULE_PATH . "article/");
 
 			$article = array(
@@ -104,9 +116,6 @@ class standard
       array_shift($paramArray);
     }
 
-
-//echoall($options);
-    $oTemp = OLIVText::_((string)$value);
 
 
 
@@ -137,6 +146,7 @@ class standard
 			)
 		);
 
+// create link to open editor
     $o .= OLIVRoute::intern($oTemp,$options);
 
     return ($o);

@@ -3,11 +3,12 @@
 <plugin>
   <render>
     <func>
-      <img script='standard'>_img</img>
-      <p script='standard'>_p</p>
-      <h1 script='standard'>_h1</h1>
-      <h2 script='standard'>_h2</h2>
-      <h3 script='standard'>_h3</h3>
+      <img script='standard'>img</img>
+      <p script='standard'>p</p>
+      <h1 script='standard'>h1</h1>
+      <h2 script='standard'>h2</h2>
+      <h3 script='standard'>h3</h3>
+      <li script='standard'>li</li>
     </func>
   </render>
 </plugin>

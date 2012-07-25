@@ -90,15 +90,27 @@ class OLIVRight extends OLIVCore
 // returns false if no access
   private static function checkAccess($access)
   {
+    $owner = "";
+    $group = "";
+    $rights = "";
+    $ownRight = "";
+    $groupRight = "";
+    $allRight = "";
+    
 //------------------------------------------------------------------------------
 // get requested rights
-		$owner = (string)$access->attributes()->owner;
-		$group = (string)$access->attributes()->group;
-    // decode requested rights
-		$access = (string)$access->attributes()->access;
-    $ownRight = intval(substr($access,0,1));
-    $groupRight = intval(substr($access,1,1));
-    $allRight = intval(substr($access,2,1));
+
+    if ($access->attributes())
+    {
+  		$owner = (string)$access->attributes()->owner;
+      $group = (string)$access->attributes()->group;
+    
+      // decode requested rights
+  		$rights = (string)$access->attributes()->access;
+      $ownRight = intval(substr($rights,0,1));
+      $groupRight = intval(substr($rights,1,1));
+      $allRight = intval(substr($rights,2,1));
+    }
 
 //------------------------------------------------------------------------------
 // get user rights
@@ -106,9 +118,10 @@ class OLIVRight extends OLIVCore
     $userOwner = $userRight->getName();
     $userGroup = $userRight;
 
+
 //------------------------------------------------------------------------------
 // no rights requested
-    if (!$owner and !$group and !$access) return array("r" => 1,"w" => 1,"x" => 1);
+    if (!$owner and !$group and !$rights) return array("r" => 1,"w" => 1,"x" => 1);
 
 //print_r($userGroup->asXML());
 //------------------------------------------------------------------------------
