@@ -172,6 +172,10 @@ class article extends OLIVCore
         $key = (string)$entry->getName();
         $value = (string)$entry;
 
+
+
+
+
 //------------------------------------------------------------------------------
 // get render plugin if registered
         $plugin = $_PLUGIN->render->func->$key;
@@ -184,9 +188,10 @@ class article extends OLIVCore
 //echoall("call function $pluginFunc in plugin $pluginScript.php");
 
           include_once (OLIV_CORE_PATH . OLIV_PLUGIN_PATH . $pluginScript . "/$pluginScript.php");
-
-          
         }
+
+
+
 
 //------------------------------------------------------------------------------
 //TODO change all rendering to plugins
@@ -219,7 +224,6 @@ class article extends OLIVCore
 						$lang = OLIVText::_($value,"lang");
 
 
-
 // call editor
             if ($this->paramArray[0] == $value)
             {
@@ -245,7 +249,8 @@ class article extends OLIVCore
                 // print language string if defined
                 if ($value)
 								{
-									if ($lang != OLIV_LANG)
+      // mark for no translation
+									if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
 										$class = "oliv_not_translated";
 									else
 										$class = "";								

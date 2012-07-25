@@ -38,6 +38,7 @@ class OLIVImage extends OLIVCore
 	public static function _($image,$lang = "")
 	{
 		global $_MODULES;
+
     if ($image)
     {
 //------------------------------------------------------------------------------
@@ -164,8 +165,7 @@ class OLIVImage extends OLIVCore
 function img_exists($path,$image,$lang)
 {
   global $_imgType;
-  
-  $image = "";
+
   $imgType = "";
 
 // extract extension
@@ -175,7 +175,7 @@ function img_exists($path,$image,$lang)
    	$image = $parts[0];
   if (isset($parts[1]))
    	$imgType = $parts[1];
-  
+
 // extension found
 	if ($imgType)
 	{
