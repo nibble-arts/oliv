@@ -57,6 +57,11 @@ class OLIVRender extends OLIVCore
 
 
 
+// call template rendering
+  static public function template($template,$content="")
+  {
+    OLIVRender::_template($template,$content);
+  }
 
 
 //------------------------------------------------------------------------------
@@ -70,7 +75,7 @@ class OLIVRender extends OLIVCore
 //   link ... hyperlink on area
 //   title ... hyperlink-title
 //   script ... script in module to be executed
-  static public function template($template,$content="")
+  static private function _template($template,$content)
   {
     global $_PLUGIN;
 
@@ -120,7 +125,7 @@ class OLIVRender extends OLIVCore
 							$tempCont = new simpleXmlElement("<content></content>");
 							olivxml_insert($tempCont,$element); // insert template part
 
-              $o .= OLIVRender::template($tempTempl,$tempCont);
+              $o .= OLIVRender::_template($tempTempl,$tempCont);
               // print_r($entry);
             }
           }
@@ -226,7 +231,7 @@ class OLIVRender extends OLIVCore
 
           // call recursive if children
           if (count($entry->children())) // recursive call
-;//            $o .= $this->_parse($entry);
+;//            $o .= $this->_template($entry);
           else
             $o .= "?($areaTag) " . OLIVText::_($value);
 
@@ -304,7 +309,7 @@ echoall($element);*/
 
 // call recursion
         if (count($entry->children()))
-          $o .= OLIVRender::template($entry,$content);
+          $o .= OLIVRender::_template($entry,$content);
   
 
 // end of div tag
@@ -327,7 +332,7 @@ echoall($element);*/
     {
 //TODO render content only
       echoall($content);
-      return OLIVERROR::render ("render::template - no template to render");
+      return OLIVERROR::render ("render::_template - no template to render");
     }
   }
 

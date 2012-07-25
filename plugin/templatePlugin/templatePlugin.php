@@ -39,10 +39,9 @@ class templatePlugin
   static public function __callStatic($tag,$options)
   {
     $value = $options[0];
-    $header = $options[1];
+    $param = $options[1];
 
-echoall($tag);
-//    return (standard::tagString($tag,$value,$header));
+    return (templatePlugin::tagString($tag,$value,$param));
   }
 
 
@@ -52,26 +51,19 @@ echoall($tag);
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function tagString($tag,$value,$header)
+  static private function tagString($tag,$value,$param)
   {
-		$class = "";								
+    $paramString = "";
 
-//echoall($header);
-// get language code of text snippet and mark field if not translated
-		$lang = OLIVText::_($value,"lang");
-    $ownerLang = $header->ownerLang;
-
-
-// check for permissions
-    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
+    foreach ($param->attributes() as $entry)
     {
-  // mark for no translation
-  		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
-  			$class = "oliv_not_translated";
+      $key = (string)$entry->getName();
+      $value = (string)$entry;
+      $paramString = "$key='$value' ";
     }
 
-    $o = "<$tag name='$value' class='$class'>";
-      $o .= standard::getText($value,$header);
+    $o = "<$tag name='$value' $paramString>";
+//      $o .= 
     $o .= "</$tag>";
 
     return ($o);

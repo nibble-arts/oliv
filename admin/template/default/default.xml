@@ -27,7 +27,7 @@
 
 
 <template name='default'>
-  <div id='oliv_site' background_image='oliv_leaves'>
+  <div id='oliv_site' background-image='oliv_leaves'>
     <div id='oliv_page'>
       <div id='oliv_space' />
 
