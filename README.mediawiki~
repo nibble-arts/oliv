@@ -1,0 +1,19 @@
+= Welcome to the OLIV-CMS Project =
+﻿== Introduction ==
+OLIV is a slim but flexible content management system, especially designed for the support of different languages. The special tool manages the layout of articles and the multilingual content. If offers a messaging system for all translators about changes.
+== System Requirements ==
+OLIV don't use a database for the core functions. A database module offers the possibility to simply insert dynamic content into the page rendering.
+All configuration, template and content is stored in XML-Files, the language files are INI-Files, all editable with a simple text editor. This makes it eary to backup all the system by only copying some folders.
+== Extension Modules ==
+A simple but powerfull module and plugin system make the developement of extensions a simple task. Modules are used to organize the design of the pages. The use the central rendering engine, whitch converts the template and content data to valid html code.
+For flexibility some basic function are realised as modules:
+* Article
+* Header / Footer
+* Menu
+* Login
+* Administration
+* Database (to be developed)
+== Extensions and Plugins ==
+The Plugins are used to extend basic functions like the rendering or search engine. Plugins can be used stand alone or be part of a module.
+== Multisession ==
+The multisession capability of OLIV makes it easy to realise different sites on a server with only one OLIV installation. All global installed modules can be used by all sites, whereas the content and templates are stored in a single separate subdirectory.

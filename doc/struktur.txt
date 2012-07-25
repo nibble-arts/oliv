@@ -1,0 +1,171 @@
+//
+// IG-CMS
+//
+// This file is part of the IG Content Management System.
+//
+// Copyright(c) 2012 Thomas H Winkler
+// thomas.winkler@iggmp.net
+//
+// This file may be licensed under the terms of of the
+// GNU General Public License Version 3 (the ``GPL'').
+//
+// Software distributed under the License is distributed
+// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// express or implied. See the GPL for the specific language
+// governing rights and limitations.
+//
+// You should have received a copy of the GPL along with this
+// program. If not, go to http://www.gnu.org/licenses/gpl.html
+// or write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+//
+
+
+Global definitions => from site parameters
+------------------------------
+DOCUMENT_ROOT
+LANG (if not defindes -> try to fetch from USER_AGENT)
+argv
+
+Global definitions => loaded from core.xml
+------------------------------
+DEFAULT_LANG
+IG_INCLUDE_PATH
+IG_MODULE_PATH
+IG_TEMPLATE_PATH
+IG_IMAGES_PATH
+IG_LANGUAGE_PATH
+INCLUDES
+DABA_PARAM
+
+
+Static classes
+------------------------------
+IGText
+  global $staticText
+
+IGRoute
+
+
+Framework
+------------------------------
+
+IGCore 
+  private $database = new IGDatabase
+  private $event = new IGEvent
+
+  CONSTANT        |
+   root_path      |
+   language       ------- IGModule
+                  |         Module management: search for modules, load when neede 
+  VAR             |
+   arg            ------- IGEvent
+   daba           |         Event management: search
+                  |
+                  
+  METHODS         |
+                  |
+                  ------- IGSearch
+                  |         Search classes: article and plugin calls
+                  |
+                  ------- IGArticle
+                  |         Multilingual dynamic text management
+                  |
+                  ------- IGRender
+                  |         Page renderer
+                  |
+                  ------- IGRight
+                            Rights management
+
+
+Module
+------------------------------
+define.xml        definition der wichtigen komponenten
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<module>
+  <name>mod_name</name>
+  <version>module_version</version>
+  <main>script_name.php
+    <option id='main'>main_script_name</option>
+    <option id='search'>script_search_script</option>
+        ...
+  </main>
+</module>  
+    
+
+
+
+Seitendefinition
+------------------------------
+Joomla! macht es über Menüaufrufe -> Module werden Menüpunkten zugeordnet
+
+xml: Seite definiert mit modulen
+  <site name='site_title'>
+    <area name='top' mod='mod_title'></area>
+    <area name='left'>mod_nav</area>
+    <area name='left'>mod_login</area>
+    <area name='main' mod='mod_iggmp_db'>iggmp_db_id</area>
+    <area name='bottom' mod='mod_contact'></area>
+    
+
+Datenbank: iggmp_article(id,ref,mod,lang,text)
+  => leichte Suche
+
+
+
+Seitenablauf:
+------------------------------
+
+init core
+  set core start
+  define system variables
+  
+  $root
+  $language
+  
+  set core alive
+  
+load template
+load page (defines active modules)
+
+load language files
+
+page preprocessor
+
+render page
+
+page postprocessor
+
+
+
+Filestruktur:
+------------------------------
+
+[content]
+  [site] ???????
+    structure.xml ???
+
+[images]
+  system images
+  
+[language]
+  [lang-code]
+    lang-code.mod.ini
+    etc.
+    
+[lib]
+  language.php # class IGLanguage extends IGCore
+
+[modules]
+  [mod_name]
+    [images] # optional
+    [template]
+    view.php # script for display
+    define.xml
+    
+
+[templates]
+  [template name]
+    [css of template]
+    template data

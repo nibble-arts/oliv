@@ -1,0 +1,265 @@
+
+
+
+
+
+
+
+
+
+
+
+Dokumentation IG-CMS
+
+
+Version 0.1
+© Thomas.H.Winkler
+6. April 2012
+Core.xml
+Die Grundkonfiguration des Systems ist in der configure.xml abgelegt. Die Werte lassen sich durch die Systemeinstellungen des Administrators verändern.
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<core>
+	<system>
+		<IG_DEFAULT_LANG>language-code</IG_DEFAULT_LANG>
+		<IG_INCLUDE_PATH>library/</IG_INCLUDE_PATH>
+		<IG_MODULE_PATH>modules/</IG_MODULE_PATH>
+		<IG_CONTENT_PATH>content/</IG_CONTENT_PATH>
+		<IG_TEMPLATE_PATH>template/</IG_TEMPLATE_PATH>
+		<IG_TEMPLATE>default</IG_TEMPLATE>
+		<IG_IMAGES_PATH>images/</IG_IMAGES_PATH>
+		<IG_LANGUAGE_PATH>language/</IG_LANGUAGE_PATH>
+		<IG_CORE_TEXT>system</IG_CORE_TEXT>
+    
+		<IG_INDEX_PAGE>index</IG_INDEX_PAGE>
+    
+		<IG_EDIT>1</IG_EDIT>
+	</system>
+  
+	<includes>
+<!-- static classes -->
+		<file>text.php</file>
+		<file>error.php</file>
+
+<!-- basic dynamic system classes -->
+		<file>article.php</file>
+		<file>event.php</file>
+		<file>module.php</file>
+		<file>render.php</file>
+		<file>right.php</file>
+		<file>route.php</file>
+		<file>search.php</file>
+		<file>database.php</file>
+		<file>template.php</file>
+		<file>processor.php</file>
+		<file>page.php</file>
+	</includes>
+
+	<database>
+		<server>mysql_server</server>
+		<name>mysql_basename</name>
+		<user>mysql_username</user>
+		<password>mysql_password</password>
+		<prefix>table_prefix</prefix>
+	</database>
+</core>
+Globale Konstanten
+Die globalen Konstanten werden im init.php Script nach den Definitionen in der core.xml Systemdefinition gesetzt.
+IG_DEFAULT_LANG				default Language
+IG_INCLUDE_PATH				path for system includes
+IG_MODULE_PATH				path for modules
+IG_CONTENT_PATH				path for site content
+IG_TEMPLATE_PATH			path to system templates
+IG_TEMPLATE						current template
+IG_IMAGES_PATH				path to system images
+IG_LANGUAGE_PATH			path to system language files
+IG_CORE_TEXT					name of system text file
+IG_INDEX_PAGE					name of content file for site start
+
+IGENV = alive						wenn Environment aufgebaut
+IGCORE = alive					wenn Core initialisiert
+IGTEXT = alive						wenn Textengine initialisiert
+Globale Variablen
+$_argv								site call parameters
+$includes							included files
+
+class IGCore
+Path		/
+file		core.php
+Eigenschaften
+private dabaObj $daba		database object
+private modObj $module	module object
+private templObj $template	template object
+private pageObj $page		page object
+private renderObj $render	renderer engine
+Methoden
+public void __construct ( void )
+Die Methode erzeugt eine Instanz von Core und ruft die Initialisierung auf
+public void init ( void )
+Initialisert das Core-System
+1. Lädt und startet init.php (muß im root directory stehen) zur Initialisierung der Konstanten und der XML-Funktionalität
+2. Lädt die statischen Klassen
+1.     IGText in text.php
+2.     IGError in error.php
+3. Lädt die Scripte laut {core.includes.file} Liste der core.xml
+1. article.php
+2. event.php
+3. module.php
+4. render.php
+5. right.php
+6. route.php
+7. search.php
+8. database.php
+9. template.php
+10. processor.php
+11. page.php
+1. lädt die Texte aus IG_CORE_TEXT
+2. Erstellt Instanzen folgender Klassen
+1. IGModule ( void )
+2. IGTemplate ( void )
+3. IGPage ( void )
+4. IGProcessor ( void )
+5. IGRender ( void )
+
+public array argv ( void )
+Gibt ein assoziatives Array der Aufruf-Parameter der Seite zurück
+public void loadContent ( void )
+Lädt den Seiteninhalt in das pageObj.
+public void preProcessor ( void )
+Ruft den Preprozessor auf und übergibt dabei die lokalen
+page Obj page
+templObj template
+modObj module
+
+public void render ( void )
+Ruft die Rendering-Engine auf und übergit dabei die lokalen
+page Obj page
+templObj template
+
+public array getModuleHeader ( string moduleName )
+Gibt ein Array der Header-Metadaten aus dem lokalen modObj vom Modul  moduleName zurück.
+public void loadScript ( string $file [, string $path] )
+Lädt und startet das Script $file vom Pfad /$path.
+Seiteninhalt
+Die Definition des eigentlichen Seiteninhalts erfolgt in der Content-Definition. Für jede Seite wird im Verzeichnis IG_CONTENT_PATH ein eigenes Unterverzeichnis angelegt. Darin ist eine XML-Datei mit der Seitendefinition, sowie ein weiteres Verzeichnis für die Sprachdateien abgelegt.
+Filestruktur
+[pageName]
+	[language]
+		[lang-code]
+			lang-code.pageName.ini
+
+In der Datei pageName.xml wird die Zuordnung der Module zu den Bereichen des Templates vorgenommen.
+<?xml version='1.0' encoding='utf8'?>
+
+<content>
+  <option mod='header' area='ig_title'>startPage</option>
+  <option mod='menu' area='ig_top1'>topMenu</option>
+  <option mod='menu' area='ig_left1'>mainMenu</option>
+  <option mod='menu' area='ig_left2'>subMenu</option>
+  <option mod='_static' area='ig_right1'>{text|DISCLAIMER}</option>
+  <option mod='article' area='ig_content' id='val'>Willkommen_auf_der_Startseite</option>
+  <option mod='footer' area='ig_footer'></option>
+</content>
+In den einzelnen <option> Zeilen wird die Zuordnung der Bereiche des Templates (area='areaName') zu den Modulen (mod='moduleName') definiert. Im Rendering-Prozess werden dann nur jene Module geladen, die durch diese Definition auch benötigt werden.
+Als Value-Wert kann dem Modul ein Startparameter übergeben werden.
+Beispiel 1: Parameter: mainMenu für den Aufruf des Menu-Moduls.
+<option mod='menu' area='ig_left1'>mainMenu</option>
+
+Beispiel 2: Parameter Willkommen_auf_der_Startseite für den Abruf des entsprechenden Artikels aus einer Datenbank.
+<option mod='article' area='ig_content' id='val'>Willkommen_auf_der_Startseite</option>
+
+Ist als Modul '__static' angegeben, so wird der Inhalt direkt angegeben. Dabei werden für Texte IGText-Referenzen genutzt, um die Multilingualität zu gewährleisten.
+Beispiel 3: Ruft den Textinhalt mit dem Namen DISCLAIMER aus der entsprechenden Textdatei des Page-Definition ab.
+  <option mod='__static' area='ig_right1'>{_|DISCLAIMER}</option>
+
+Für die Anzeige von statischen Texten stehen verschiedene Funktionen zur Verfügung:
+{_|TEXT_DEFINITION}	Anzeige des Textinhalts aus der Sprachdatei	
+{text|Ich bin ein Fließtext}	direkte Ausgabe des Textes (nicht multilingual)
+{img|URL|FORMAT}	Anzeige eines Bildes
+	URL: Bildquelle ***TODO***
+	FORMAT:
+		width:xxx px;
+		height:xxx px;
+		align:left / right / center / float;
+		border:none / solid / dashed;
+		border-width:x px;
+{link|URL| {text} }	Anzeige eines Links
+	URL gibt das Sprungziel an
+	für text können die Funktionen _ und text
+	genutzt werden
+Module
+Das IG-CMS kann in seiner Funktionalität einfach erweitert werden, indem weitere Module geladen werden. Die Module werden im Unterverzeichnis IG_MODULE_PATH abgelegt und müssen eine bestimmte Grundstruktur erfüllen.
+Das Modul wird in einem Unterverzeichnis unter IG_MODULE_PATH abgelegt. Der Verzeichnisname muss gleich dem Modulnamen gewählt werden.
+Filestruktur
+Im Unterverzeichnis des Moduls müssen zwei Dateien existieren
+[modulname]
+    [templateDirectory]
+    [languageDirectory]
+    define.xml
+    modulScript.php
+    [searchScript.php]
+Die XML-Datei define enthält die nötigen Definitionen für den Aufruf des Moduls. Die Datei muss folgende Angaben enthalten:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>moduleName</name>
+  <version>version</version>
+  <author>Author name</author>
+  <copyright>Copyright</copyright>
+    
+  <script>
+    <main>moduleScript.php</main>
+    [<search>searchScript.php</search>]
+    <template>templateDirectory/</template>
+    <language>languageDirectory/</language>
+    <default_language>defaultLanguageCode</default_language>
+  </script>
+</module> 
+Im Unterbereich <script> sind die nötigen Informationen zum Aufruf des Moduls abgelegt. Dabei werden folgende Informationen übergeben:
+moduleScript.php	Name des Hauptscripts
+templateDirectory/	Name des Unterverzeichnises für templates
+
+languageDirectory/	Name des Unterverzeichnises für language-files
+defaultLanguageCode	Language-code für die Defaultsprache des Moduls
+	(kann von der Seiten-Defaultsprache abweichen)
+
+ searchScript.php	Name des Suchscripts, wenn das Modul eine
+	Suchfunktion anbietet.
+Weitere Unterverzeichnisse und Scripte können bei bedarf angelegt werden.
+Einbinden
+Die Module werden während der Core-Initialisierung im System registriert. Im Preprozessor wird der Seiteninhalt analysiert und die nötigen Modul-Klassen geladen. Während des Rendering-Prozesses werden Instanzen der benötigten Klassen für jeden Anzeigebereich erstellt. Ein Modul kann auf einer Seite dadurch mehrfach genutzt werden (z.B. ein Menü-Modul).
+
+Templates
+Templates sind das Mittel zur Seitengestaltung. Templates werden für den grundlegenden Seitenaufbau, aber auch für den Aufbau der Module genutzt. Dabei greifen alle Funktionen auf die gleichen Klassen zu. Durch die globale Definition des benutzten Templates kann das Seitenlayout einfach umgestellt werden.
+Bei der Seiteninitialisierung wird der Name der globalen Templates festgelegt und in IG_TEMPLATE allgemein zugänglich gemacht. Im Standardfall ist der Wert default. Das Unterverzeichnis default muss daher in allen Fällen vorhanden sein, da es auch als Rückfallebene dient, sollte ein anderes Template in einem Modul nicht realisiert sein.
+Verzeichnisstruktur
+Templates müssen in einer bestimmten Seitenstruktur untergebracht sein.
+[modules]
+	[modulName]
+		[template]
+			[globalTemplateName]
+				[images]	[optional]	Bildverzeichnis
+				default.xml		default Template (muss vorhanden sein)
+				localTemplateName.xml	[optional] lokale Sub-Templates
+				default.css		default CSS Klasse (muss vorhanden sein)
+
+Das Grundverzeichnis für die Templates (hier template) wird im Modul-Script-Header abgelegt und in ist in der jeweiligen define.xml des Moduls definiert.
+Unterhalb des Grundverzeichnises muss für jedes Template-Design ein dementsprechendes Verzeichnis mit dessen Name angelegt werden. Für die Grundeinstellung ist dies default.
+Unterhalb sind die allgemeinen Template-Definitionen in default.xml abgelegt. Die allgemeinen CSS-Klassen finden sich in default.css.
+Werden vom Template Bilder genutzt, so sind diese im images Verzeichnis abgelegt.
+Sub-Templates
+Innerhalb des templateName Verzeichnisses können neben dem Default-Template noch weitere Template-Varianten angelegt werden. Diese werden mit dem <template>templateName</template> Tag in der Contentdefinition angegeben.
+<ig_header mod='header'>
+    <template>railway</template>
+</ig_header>
+
+In diesem Fall wird für das Modul header statt default.xml das Sub-Template railway.xml genutzt. In jedem Fall aber im Haupt-Template-Verzeichnis globalTemplateName. Durch diese Technik ist es möglich, z.B. für unterschiedliche Seiten das Layout des Headers etwas anzupassen. Für jede globale Templateänderung werden dann die entsprechenden Sub-Templates aus dem globalen Template Verzeichnis genutzt.
+Sollte beim Aufruf eines Subtemplates, oder auch eines speziellen globalen Templates, dieses nicht gefunden werden, so wird das Default-Template statt dessen genutzt.
+Stylesheets
+Neben der Designberschreibung durch das Template-XML kann für jedes Template oder Sub-Template auch eine eigene CSS-Klassenbeschreibung angegeben werden. Diese muss sich im gleichen Verzeichnis befinden und den gleichen Namen wie die entsprechende Template-Datei besitzten, lediglich mit der Endung .css.
+Das Stylesheet wird beim Laden des Templates automatisch mit der Seite verlinkt.
+Methoden
+Das Seiten-Template wird während der Initialisierung des Core automatisch geladen. Für die Nutzung von Templates innerhalb der Module steht eine einfache Importfunktion zur Verfügung.
+IGRender::load_template
+TemplateXML = static IGRender::load_template ( headerXML )
+

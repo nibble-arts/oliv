@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- IG-CMS
+//
+// This file is part of the IG Content Management System.
+//
+// Copyright(c) 2012 Thomas H Winkler
+// thomas.winkler@iggmp.net
+//
+// This file may be licensed under the terms of of the
+// GNU General Public License Version 3 (the ``GPL'').
+//
+// Software distributed under the License is distributed
+// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// express or implied. See the GPL for the specific language
+// governing rights and limitations.
+//
+// You should have received a copy of the GPL along with this
+// program. If not, go to http://www.gnu.org/licenses/gpl.html
+// or write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+// IG-CMS template definition
+//
+// Version 0.1 -->
+
+
+<template name='default'>
+  <oliv_site background_image='oliv_leaves'>
+    <oliv_page>
+      <oliv_space />
+
+      <oliv_header>
+        <oliv_login />
+        <oliv_title />
+      </oliv_header>
+  
+      <oliv_space />
+
+      <oliv_top>
+        <oliv_search />
+      </oliv_top>
+      
+      <oliv_space />
+    
+      <oliv_main>
+        <oliv_left>
+          <oliv_left1 />
+          <oliv_left2 />
+          <oliv_left3 />
+        </oliv_left>
+
+        <oliv_center>
+          <oliv_content />
+        </oliv_center>
+
+      </oliv_main>
+      <oliv_footer />
+    </oliv_page>
+  </oliv_site>
+</template>
+

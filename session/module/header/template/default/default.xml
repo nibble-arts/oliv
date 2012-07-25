@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<template name='common'>
+<!--  <header_background background_image="green_line.png" />-->
+  <header_img background_image="oliv_logo.png" />
+</template>

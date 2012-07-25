@@ -1,0 +1,31 @@
+<h1>Template Format</h1>
+
+<p>Die Templates für das Seitenlayout sind als XML-Datei abgelegt. Die Zeichenkodierung muss dabei UTF-8 sein. Das File muss folgenden Richtlinien entsprechen:</p>
+
+<pre>
+<site>
+  <area>
+    <option id='name'>area_name</option> # Name des div bereichs
+    <option id='style'>style_string</option> # Styleangaben
+  * <option id='parameter'>value</option> # optionale weitere Parameter
+  *             .  # optionale weitere Parameter  
+  </area>
+</site>
+</pre>
+
+<p>Die area Bereiche können verschachtelt sein, wie es für den Aufbau der div-Tags nötig ist.</p>
+
+<pre>
+<site>
+  # main area
+  <area>
+    <option id =''></option>
+
+    # sub area
+    <area>
+      <option id =''></option>
+    </area>
+
+  </area>
+</site>
+</pre>

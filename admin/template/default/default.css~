@@ -1,0 +1,270 @@
+/*
+// IG-CMS
+//
+// This file is part of the IG Content Management System.
+//
+// Copyright(c) 2012 Thomas H Winkler
+// thomas.winkler@iggmp.net
+//
+// This file may be licensed under the terms of of the
+// GNU General Public License Version 3 (the ``GPL'').
+//
+// Software distributed under the License is distributed
+// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// express or implied. See the GPL for the specific language
+// governing rights and limitations.
+//
+// You should have received a copy of the GPL along with this
+// program. If not, go to http://www.gnu.org/licenses/gpl.html
+// or write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+//
+
+//------------------------------------------------------------------------------
+// Style sheet for OLIV Template
+//
+// Version 0.1
+//----------------------------------------------------------------------------*/
+
+/* global definitions */
+body {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+}
+
+/* links */
+a {
+  font-weight:normal;
+  text-decoration:none;
+}
+
+a:link {
+  color:black;
+}
+
+a:visited {
+  color:black;
+}
+
+a:hover {
+  color:blue;
+}
+
+/* */
+
+p {
+  line-height:1.2em;
+  font-size:0.9em;
+}
+
+h1 {
+  font-size:130%;
+  line-height:0em;
+}
+
+h2 {
+  font-size:120%;
+  line-height:0em;
+}
+
+h3 {
+  font-size:110%;
+  line-height:0em;
+}
+
+input {
+  font-family:serif;
+  font-style:italic;
+  font-size:60%;
+}
+
+/*----------------------------------------------------------------------------*/
+/* class definition */
+.oliv_button {
+  font-family:sans-serif;
+  font-weight:bold;
+  font-style:normal;
+  font-size:70%;
+}
+
+.oliv_title {
+  font-size:130%;
+  font-weight:bold;
+}
+
+.oliv_subtitle {
+  font-size:115%;
+  font-weight:bold;
+  font-style:italic;
+}
+
+.oliv_error {
+  color:red;
+  font-weight:bold;
+}
+.oliv_field_title {
+  font-size:60%;
+}
+
+.oliv_var_name {
+  background-color:lightblue;
+  text-align:right;
+	font-size:60%;
+}
+
+.oliv_var_value {
+  background-color:lightgrey;
+  text-align:left;
+	font-size:60%;
+}
+
+.oliv_not_translated {
+	background-color:lightyellow;
+}
+
+/*----------------------------------------------------------------------------*/
+/* id definition */
+#oliv_site {
+  z-index:0;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:1000px;
+  background-repeat:repeat-x;
+  background-position:center center;
+}
+
+#oliv_page {
+  z-index:0;
+  margin:0 auto;
+  width:900px;
+  height:500px;
+}
+
+#oliv_space {
+  height:10px;
+}
+
+#oliv_header {
+  margin:0 auto;
+  width:900px;
+  height:80px;
+  background-repeat:no-repeat;
+  background-position:center bottom;
+}
+
+#oliv_title {
+  padding-top:50px;
+  text-align:right;
+}
+
+#oliv_login {
+  text-align:right;
+  width:900px;
+  height:0px;
+}
+
+#oliv_top {
+  margin:0 auto;
+  float:left;
+  width:900px;
+  height:30px;
+  background-repeat:no-repeat;
+}
+
+#oliv_search {
+  float:right;
+  margin-top:-24px;
+  height:24px;
+  width:150px;
+}
+
+#oliv_main {
+  margin:0 auto;
+  float:left;
+  width:1000px;
+}
+
+#oliv_left {
+  float:left;
+  width:200px;
+}
+
+#oliv_line {
+	float:right;
+	width:1px;
+	height:500px;
+	background-color:#dcdc78;
+  background-repeat:repeat-y;
+}
+
+#oliv_left1,#oliv_left2,#oliv_left3 {
+  margin-top:5px;
+}
+
+#oliv_center{
+  float:left;
+  width:700px;
+	margin-left:10px;
+}
+
+#oliv_content {
+  min-height:150px;
+}
+
+#oliv_footer {
+  float:left;
+  margin:0 auto;
+  width:900px;
+  height:30px;
+  text-align:center;
+  background-color:#dcdc78;
+}
+
+/*----------------------------------------------------------------------------*/
+/* edit mode definitions */
+#oliv_editbox {
+  position:absolute;
+  z-index:998;
+  border:solid;
+  border-width:1px;
+  height:100%;
+  width:100%;
+  color:red;
+  background-color:lightblue;
+  opacity:0.2
+}
+
+#oliv_markbox {
+  position:absolute;
+  z-index:998;
+  border:solid;
+  border-width:1px;
+  height:100%;
+  width:100%;
+  color:red;
+}
+
+#oliv_edittitle {
+  position:absolute;
+  z-index:999;
+  border:none;
+  border-width:1px;
+  width:150px;
+  color:red;
+}
+
+#oliv_warning {
+}
+
+#oliv_info {
+  float:right;
+  width:50%;
+  z-index:1000;
+  padding: 0.2em;
+  border:solid 1px;
+  background-color:#ffd0d0;
+  color:red;
+  font-weight:bold;
+}

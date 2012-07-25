@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- OLIV
+//
+// This file is part of the OLIV Content Management System.
+//
+// Copyright(c) 2012 Thomas H Winkler
+// thomas.winkler@iggmp.net
+//
+// This file may be licensed under the terms of of the
+// GNU General Public License Version 3 (the ``GPL'').
+//
+// Software distributed under the License is distributed
+// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// express or implied. See the GPL for the specific language
+// governing rights and limitations.
+//
+// You should have received a copy of the GPL along with this
+// program. If not, go to http://www.gnu.org/licenses/gpl.html
+// or write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+// session configuration file
+//
+// Version 0.1 -->
+
+<core>
+  <system>
+		<OLIV_CORE_PATH>./</OLIV_CORE_PATH>
+		<OLIV_SITE_NAME>OLIV</OLIV_SITE_NAME>
+		<OLIV_ICON>browser.ico</OLIV_ICON>
+    <OLIV_DEFAULT_LANG>de_DE</OLIV_DEFAULT_LANG>
+    <OLIV_TEMPLATE>default</OLIV_TEMPLATE>
+    <OLIV_IMAGES_PATH>images/</OLIV_IMAGES_PATH>
+    <OLIV_LANGUAGE_PATH>language/</OLIV_LANGUAGE_PATH>
+    
+    <OLIV_INDEX_PAGE>index</OLIV_INDEX_PAGE>
+    
+    <OLIV_TEMPLATE_MARK>0</OLIV_TEMPLATE_MARK>
+    <OLIV_TEMPLATE_EDIT>0</OLIV_TEMPLATE_EDIT>
+  </system>
+</core>

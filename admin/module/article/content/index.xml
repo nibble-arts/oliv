@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article>
+  <text owner='admin' group='admin' access='444' lang='de_DE' index='1336633758'>
+    <h2>ARTICLE_INDEX001</h2>
+      <p>ARTICLE_INDEX002</p>
+      <p>ARTICLE_INDEX003</p>
+      <ul>
+        <li>ARTICLE_INDEX004</li>
+        <li>ARTICLE_INDEX005</li>
+        <li>ARTICLE_INDEX006</li>
+        <li>ARTICLE_INDEX007</li>
+        <li>ARTICLE_INDEX008</li>
+      </ul>
+    <h3>ARTICLE_INDEX009</h3>
+      <p>ARTICLE_INDEX010</p>
+      <p>ARTICLE_INDEX011</p>
+      <p>ARTICLE_INDEX012</p>
+    <h3>ARTICLE_INDEX013</h3>
+      <p>ARTICLE_INDEX014</p>
+    <h3>ARTICLE_INDEX015</h3>
+      <p>ARTICLE_INDEX016</p>
+      <p>ARTICLE_INDEX017</p>
+    <h3>ARTICLE_INDEX018</h3>
+      <p>ARTICLE_INDEX019</p>
+
+      <p><daba owner='admin' group='admin' access='770'>field:name</daba></p>
+  </text>
+</article>

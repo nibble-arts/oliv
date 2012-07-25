@@ -1,0 +1,11 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# convert parameters
+RewriteRule ^rewrite.php/(.*?)/(.*?)$ rewrite.php?lang=$1&url=$2 [L]
+
+# suppres xml access
+# RewriteRule ^.*?.xml$ 404.html
+
+# suppres ini access
+RewriteRule ^.*?.ini$ 404.html

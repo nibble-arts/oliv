@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<!-- content routing index
+// automatically created by route indexing -->
+
+<content>
+<!-- referenz by module -->
+  <id>
+    <index>
+      <de_DE>Startseite</de_DE>
+      <en_GB>home</en_GB>
+      <cs_CZ>start</cs_CZ>
+    </index>
+    <download>
+      <de_DE>Download</de_DE>
+      <en_GB>download</en_GB>
+      <cs_CZ>obeslat</cs_CZ>
+    </download>
+    <documentation>
+      <de_DE>Dokumentation</de_DE>
+      <en_GB>documentation</en_GB>
+      <cs_CZ>dokumentace</cs_CZ>
+    </documentation>
+  </id>
+  
+<!-- referenz by page name -->
+  <name>
+    <startseite lang='de_DE'>index</startseite>
+    <home lang='en_GB'>index</home>
+    <start lang='cs_CZ'>index</start>
+
+    <Download lang='de_DE'>download</Download>
+    <download lang='en_GB'>download</download>
+    <obeslat lang='cs_CZ'>download</obeslat>
+
+    <Dokumentation lang='de_DE'>documentation</Dokumentation>
+    <documentation lang='en_GB'>documentation</documentation>
+    <dokumentace lang='cs_CZ'>documentation</dokumentace>
+  </name>
+</content>
