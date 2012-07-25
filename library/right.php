@@ -47,35 +47,35 @@ class OLIVRight extends OLIVCore
     
     switch($m)
     {
-      case r:
-        return $right[r];
+      case 'r':
+        return $right['r'];
         break;
 
-      case w:
-        return $right[w];
+      case 'w':
+        return $right['w'];
         break;
 
-      case x:
-        return $right[x];
+      case 'x':
+        return $right['x'];
         break;
 
-      case rw:
-        return ($right[r] & $right[w]);
+      case 'rw':
+        return ($right['r'] & $right['w']);
         break;
 
-      case rx:
-        return ($right[r] & $right[x]);
+      case 'rx':
+        return ($right['r'] & $right['x']);
         break;
 
-      case wx:
-        return ($right[w] & $right[x]);
+      case 'wx':
+        return ($right['w'] & $right['x']);
         break;
 
-      case rwx:
-        return ($right[r] & $right[w] & $right[x]);
+      case 'rwx':
+        return ($right['r'] & $right['w'] & $right['x']);
         break;
 
-      case _:
+      case '_':
         return $right;
         break;
     }
@@ -96,9 +96,9 @@ class OLIVRight extends OLIVCore
 		$group = (string)$access->attributes()->group;
     // decode requested rights
 		$access = (string)$access->attributes()->access;
-    $ownRight = intval($access[0]);
-    $groupRight = intval($access[1]);
-    $allRight = intval($access[2]);
+    $ownRight = intval(substr($access,0,1));
+    $groupRight = intval(substr($access,1,1));
+    $allRight = intval(substr($access,2,1));
 
 //------------------------------------------------------------------------------
 // get user rights

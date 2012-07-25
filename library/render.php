@@ -67,10 +67,16 @@ class OLIVRender extends OLIVCore
 //   link ... hyperlink on area
 //   title ... hyperlink-title
 //   script ... script in module to be executed
-  public function template($template,$content="")
+  static public function template($template,$content="")
   {
     $o = "";
-
+    $templateName = "";
+    $areaName = "";
+    $contentName = "";
+    $script = "";
+    $mod = "";
+    $value = "";
+    
     if ($template)
     {
       // get template name
@@ -197,22 +203,21 @@ class OLIVRender extends OLIVCore
 // call script
         if ($script)
         {
-          $o .= $this->$script($areaName,$content->$areaName);
+//          $o .= $this->$script($areaName,$content->$areaName);
         }
-//------------------------------------------------------------------------------
+
 // if no script call module
         elseif ($mod)
         {
           $element = $content->$areaName;
           if ($element)
           {
-            $outputObj = $this->callScript($element); // create output string from module
+            $outputObj = OLIVRender::callScript($element); // create output string from module
 //TODO
 // make syntax check of script output
     				$o .= $outputObj->o;
           }
   			}
-
 //------------------------------------------------------------------------------
 // no module or script
 //   direct render of multilingual text
@@ -252,9 +257,11 @@ class OLIVRender extends OLIVCore
   }
 
 
+
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // calls module
-  private function callScript($module)
+  static private function callScript($module)
   {
     if ($module->script->main)
     {

@@ -108,7 +108,7 @@ class OLIVRoute extends OLIVCore
 
 				while ($x	< $length)
 				{
-					if ($names['$x'])
+					if (isset($names[$x]))
 					{
 						$rest = implode("/",$urlArray);
 						$value = array_shift($urlArray);
@@ -137,13 +137,19 @@ class OLIVRoute extends OLIVCore
 // create intern link
 // options array contains url information and href options
 // array(array(mod,urletc.),array(id,title,etc.))
-  public function intern($text,$options="")
+  static public function intern($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $param = $options[param];
-    $class = $options["class"];
-    $lang = $param["lang"]; // get link language
+    $url = "";
+    $val = "";
+    $param = "";
+    $class = "";
+    $lang = "";
+    
+    if (isset($options['url'])) $url = strtolower($options['url']);
+    if (isset($options['val'])) $val = $options['val'];
+    if (isset($options['param'])) $param = $options['param'];
+    if (isset($options['class'])) $class = $options['class'];
+    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -162,11 +168,11 @@ class OLIVRoute extends OLIVCore
 //TODO make url basis for intern, extern, form, e.i.
 //------------------------------------------------------------------------------
 // create form url
-  public function url($text,$options="")
+  static public function url($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $lang = $param["lang"]; // get link language
+    $url = strtolower($options['url']);
+    $val = $options['val'];
+    $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -181,7 +187,7 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  public function makeUrl($lang,$url)
+  static public function makeUrl($lang,$url)
   {
 // create absolute url
 // for correct Apache modrewrite
@@ -193,14 +199,14 @@ class OLIVRoute extends OLIVCore
 
     $val = OLIVRoute::translatePageName($lang,$url);
     
-    if ($url[strtolower(val)]) array_push($routeArray,$val);
+    if ($url[strtolower($val)]) array_push($routeArray,$val);
     return (implode("/",$routeArray));
   }
 
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  private function makeParam($param)
+  static private function makeParam($param)
   {
     $paramArray = array();
 
@@ -219,14 +225,14 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // translate url to lang.pageName
-  public function translatePageName($lang,$url)
+  static public function translatePageName($lang,$url)
   {
     global $_ROUTE;
     return ((string)$_ROUTE->id->$url->$lang);
   }
 
 
-  public function getUrl($name)
+  static public function getUrl($name)
   {
     global $_ROUTE;
     return ((string)$_ROUTE->name->$name);
@@ -239,7 +245,7 @@ class OLIVRoute extends OLIVCore
 // extract and returns parameters for modules
 //
 // get information from content.xml for this purpose
-  public function parseUrl(&$url)
+  static public function parseUrl(&$url)
   {
 		global $_ROUTE;
 

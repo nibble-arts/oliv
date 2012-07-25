@@ -49,7 +49,7 @@
   </head>
   
   <body>
-    <?
+    <?PHP
 // render site
     $core->render(); // display site
 

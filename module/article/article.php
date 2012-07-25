@@ -64,7 +64,7 @@ class article extends OLIVCore
     OLIVText::load($langPath,$articleName);
 
 // parse for commands and parameters
-    if ($_argv[val])
+    if ($_argv['val'])
     {
   // load editor
       $this->loadScript("articleEdit.php",OLIV_MODULE_PATH . "article/");
@@ -72,13 +72,13 @@ class article extends OLIVCore
 			$article = array(
 				"path" => $langPath,
 				"name" => $articleName,
-				"lang" => $_argv[lang]
+				"lang" => $_argv['lang']
 			);
 
       $this->editor = new ArticleEditor($article);
 
   // extract cmd and param
-      $this->paramArray = explode("/",cut_slash($_argv[val]));
+      $this->paramArray = explode("/",cut_slash($_argv['val']));
 
   // retranslate command
       $this->command = OLIVText::getId($this->paramArray[0]);
@@ -121,11 +121,11 @@ class article extends OLIVCore
         $flag = new simpleXmlElement("<flag><img src='flag' lang='$ownerLang' width='25px' float='right' margin_side='0.5em'/></flag>");
 
         $options = array(
-          'url' => $_argv[url],
+          'url' => $_argv['url'],
           'param' => array(
             "title" => "orig_lang",
             "lang" => $ownerLang,
-            "val" => $_argv[val]
+            "val" => $_argv['val']
           )
         );
         $this->o .= OLIVRoute::intern(OLIVImage::img($flag->img),$options);
@@ -134,10 +134,10 @@ class article extends OLIVCore
       
 
       $options = array(
-        'url' => $_argv[url],
+        'url' => $_argv['url'],
         'param' => array(
           "title" => "edit",
-          "val" => $_argv[val]
+          "val" => $_argv['val']
         )
       );
 
@@ -158,6 +158,9 @@ class article extends OLIVCore
   {
     global $_PLUGIN;
     global $_argv;
+    
+    $o = "";
+    $class = "";
 
     $indexTimeStamp = (string)$text->attributes()->index;
     $index = new OLIVIndex();
@@ -191,20 +194,20 @@ class article extends OLIVCore
         switch($key)
         {
 // call render plugins
-          case img:
+          case 'img':
             $o .= OLIVImage::img($value->img);
             break;
 
             
           default:
 // insert text in index
-//            $index->insertText(OLIVText::_((string)$value),$_argv[url],$_argv[val]);
+//            $index->insertText(OLIVText::_((string)$value),$_argv['url'],$_argv['val']);
 
 
 //------------------------------------------------------------------------------
 // insert edit field
 						$options = array(
-							'url' => $_argv[url],
+							'url' => $_argv['url'],
               'val' => OLIVText::_("edit") . "/$value",
 							'param' => array(
 								"title" => "edit",
@@ -222,12 +225,12 @@ class article extends OLIVCore
             {
               switch ($this->command)
               {
-                case edit:
+                case 'edit':
                   if ($this->paramArray[0] == $value)
                     $o .= $this->editor->open($value,OLIVText::_((string)$value));
                   break;
                   
-                case save:
+                case 'save':
                   $this->editor->saveSnippet($value);
                   break;
               }
@@ -294,7 +297,7 @@ class article extends OLIVCore
           if (sessionfile_exists($this->path . $file . "/$file.xml"))
           {
             $xml = sessionxml_load_file($this->path . $file . "/$file.xml");
-            $_ARTICLES[$file] = $xml;
+            $_ARTICLES['$file'] = $xml;
           }
         }
       }

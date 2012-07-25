@@ -35,7 +35,7 @@ class OLIVLang
 
 
 // get the language family from a lang string
-	function family($lang)
+	static public function family($lang)
 	{
 		return (substr($lang,0,2));
 	}

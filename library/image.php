@@ -164,12 +164,18 @@ class OLIVImage extends OLIVCore
 function img_exists($path,$image,$lang)
 {
   global $_imgType;
+  
+  $image = "";
+  $imgType = "";
 
 // extract extension
 	$parts = explode(".",$image);
-	$imgType = $parts[1];
-	$image = $parts[0];
 
+  if (isset($parts[0]))
+   	$image = $parts[0];
+  if (isset($parts[1]))
+   	$imgType = $parts[1];
+  
 // extension found
 	if ($imgType)
 	{

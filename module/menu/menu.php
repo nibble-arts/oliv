@@ -39,7 +39,8 @@ class menu extends OLIVCore
   function __construct($header)
   {
     global $_argv;
-
+    $bg_img = "";
+    
     // load menu items
     $menuName = (string)$header;
 		$this->menuXml = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/$menuName.xml");
@@ -79,7 +80,7 @@ class menu extends OLIVCore
 
 //------------------------------------------------------------------------------
 // item aktive
-        if ($_argv[url] == $url)
+        if ($_argv['url'] == $url)
         {
           if ($background_img)
             $bg_img = $background_img;
@@ -97,14 +98,14 @@ class menu extends OLIVCore
   // set attributes for menu items
         switch ($area)
         {
-          case menu_item:
-            // change if image is inactive
+          case 'menu_item':
+    // change if image is inactive
             if ($bg_img)
             {
-              $this->menuXml->menu_item[$x]["background_image"] = $bg_img;
+              $this->menuXml->menu_item[$x]['background_image'] = $bg_img;
             }
 
-            // add class for inactive item
+    // add class for inactive item
             if ($class) $this->menuXml->menu_item[$x]->addAttribute("class",$class);
   
     // change item node name
@@ -112,7 +113,7 @@ class menu extends OLIVCore
             $x++;
             break;
           
-          case menu_background:
+          case 'menu_background':
             olivxml_insert($tempXml,olivxml_changeNode("menu_background_{$templateName}",$entry));
             break;
         }
@@ -151,7 +152,7 @@ class menu extends OLIVCore
 
     if ($img)
     {
-      if ($_argv[url] == $url)
+      if ($_argv['url'] == $url)
         $text = "<img src='" . OLIV_MODULE_PATH . "menu/template/" . OLIV_TEMPLATE . "/images/" . $img . ".png' alt='$url'>";
       else
         $text = "<img src='" . OLIV_MODULE_PATH . "menu/template/" . OLIV_TEMPLATE . "/images/" . $img . "_inactive.png' alt='$url'>";

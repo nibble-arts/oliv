@@ -107,11 +107,23 @@ class OLIVText extends OLIVCore
   static public function load($path,$file,$default_language = OLIV_DEFAULT_LANG)
   {
     global $_TEXT;
+    
+    if (!is_array($_TEXT)) $_TEXT = array();
+    
+    $defaultText = OLIVText::loadText($default_language,$path,$file);
+    $langText = OLIVText::loadText(OLIV_LANG,$path,$file);
+
+    if (is_array($defaultText))
+      $_TEXT = array_merge_recursive($_TEXT,$defaultText);
+
+    if (is_array($langText))
+      $_TEXT = array_replace_recursive($_TEXT,$langText);
+
 
 // default language
-    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText($default_language,$path,$file));
+//    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText($default_language,$path,$file));
 // selected language
-    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText(OLIV_LANG,$path,$file));
+//    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText(OLIV_LANG,$path,$file));
   }
   
   
@@ -172,13 +184,15 @@ class OLIVText extends OLIVCore
 //-------------------------------------------------------------------------------------------
 // scan text array for text
 // return ID
-  private function _scanText($text,$textArray)
+  static private function _scanText($text,$textArray)
   {
+    $retKey = "";
+    
     if (is_array($textArray))
     {
       foreach($textArray as $key => $value)
       {
-        if (!$value[text]) // recursion
+        if (!array_key_exists('text',$value)) // recursion
         {
           $retKey = OLIVText::_scanText($text,$value);
           if ($retKey)
@@ -186,7 +200,7 @@ class OLIVText extends OLIVCore
         }
         else
         {
-          if ($value[text] == $text)
+          if ($value['text'] == $text)
           {
             $retKey = $key;
             break;
@@ -247,21 +261,34 @@ class OLIVText extends OLIVCore
 // overwrites existing keys
   static private function mergeArray($a,$b)
   {
+/*echo "<hr>";
+    if (!is_array($a))
+    {
+      echoall("a no array -> a[] created");
+      $a = array();
+    }
+    
     if (is_array($b))
     {
       foreach ($b as $key => $value)
       {
         if (is_array($value))
         {
-           $a['$key'] = OLIVText::mergeArray($a['$key'],$value);
+echoall("insert array recursive");
+          $a[$key] = OLIVText::mergeArray($a[$key],$value);
         }
         else
         {
-          $a['$key'] = $value;
+echoall("insert $value");
+          $a[$key] = $value;
         }
       }
     }
-    return ($a);
+    echoall("b no array");*/
+    if (!is_array($a)) $a = array();
+    
+    if (is_array($b))
+      return (array_merge_recursive($a,$b));
   }
 
 
