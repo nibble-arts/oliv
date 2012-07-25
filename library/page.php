@@ -31,10 +31,9 @@ defined('OLIVCORE') or die ("render.php - OLIVCore not present");
 
 $_PAGES;
 
-class OLIVPage extends OLIVCore
+class OLIVPage
 {
   private $structure;
- 
 
   // constructor
   public function __construct()
@@ -48,10 +47,11 @@ class OLIVPage extends OLIVCore
 // load xml page
   public function load($pageName = "")
   {
+    global $_argv;
+    
     if (!$pageName)
     {
-      $arg = $this->argv();
-      $url = $arg[url];
+      $url = $_argv['url'];
 
       if (!$url)
 			{
@@ -90,6 +90,7 @@ class OLIVPage extends OLIVCore
   }
 
 
+//------------------------------------------------------------------------------
 // set module value in page
   public function setScript($id,$module)
   {
@@ -98,6 +99,7 @@ class OLIVPage extends OLIVCore
   }
 
 
+//------------------------------------------------------------------------------
 // return page structure xml
   public function structure()
   {
@@ -125,7 +127,7 @@ class OLIVPage extends OLIVCore
           if (sessionfile_exists($path . $file . "/$file.xml"))
           {
             $xml = sessionxml_load_file($path . $file . "/$file.xml");
-            $_PAGES[$file] = $xml;
+            $_PAGES['$file'] = $xml;
           }
         }
       }

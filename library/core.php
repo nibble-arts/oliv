@@ -59,22 +59,26 @@ class OLIVCore
 
   public function init($session)
   {
+// set time zone
+    date_default_timezone_set ("Europe/Paris");
+
+
 // set session
 		if ($session)
-			define ("OLIV_SESSION",$session . "/");
+			define ('OLIV_SESSION',$session . "/");
 		else
 			die("***FATAL ERROR: init.php - no session defined");
 
 // core path for multisession defined
-    defined ("OLIV_CORE_PATH") or die ("Core path not defined");
+    defined ('OLIV_CORE_PATH') or die ("Core path not defined");
 
 // load basic system methods
-    $this->loadScript("library/init.php");
-    defined ("OLIVENV") or die ("Environment not set");
+    OLIVCore::loadScript("library/init.php");
+    defined ('OLIVENV') or die ("Environment not set");
 
 //------------------------------------------------------------------------------
 // load system language
-    defined ("OLIVTEXT") or die ("INIT: OLIVTEXT not found");
+    defined ('OLIVTEXT') or die ("INIT: OLIVTEXT not found");
     OLIVText::load(OLIV_LANGUAGE_PATH,OLIV_CORE_TEXT);
 
 
@@ -105,7 +109,6 @@ class OLIVCore
 
 // initialise preprocessor
     $this->processor = new OLIVProcessor();
-
 // initialise renderer
     $this->render = new OLIVRender();
   }
@@ -129,7 +132,7 @@ class OLIVCore
   public function preProcessor()
   {
 // call preprocessor
-    $this->processor->process(&$this->page,&$this->template,$this->module);
+    $this->processor->process($this->page,$this->template,$this->module);
   }
 
 
@@ -165,7 +168,7 @@ class OLIVCore
 
 //------------------------------------------------------------------------------
 // load script and execute
-  public function loadScript($file,$path="")
+  static public function loadScript($file,$path="")
   {
     $path = OLIV_CORE_PATH . $path; // redirect to core root directory
 
@@ -176,13 +179,13 @@ class OLIVCore
       
 //debug
 //print_r("load script " . $path . $file . "<br>");
-      switch($fileInfo[extension])
+      switch($fileInfo['extension'])
       {
-        case php:
+        case 'php':
           include_once ($path . $file);
           break;
 
-        case js:
+        case 'js':
           echo "<script type='text/javascript' src='{$path}{$file}'></script >";
           break;
           

@@ -40,14 +40,13 @@ class OLIVRoute extends OLIVCore
 
   public function __construct()
   {
-    global $_argv;
     global $_ROUTE;
 
     $path = OLIV_PAGE_PATH . "content.xml";
 
     $_ROUTE = sessionxml_load_file($path);
 
-    $this->route(&$_argv);
+    $this->route();
   }
 
 
@@ -56,20 +55,23 @@ class OLIVRoute extends OLIVCore
 // ROUTER
 
 // get link id from language coded /module/value
-  public function route($argv)
+  public function route()
   {
+    global $_argv;
     global $_ROUTE;
+    
+    if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
 
-		$val = $this->parseUrl($argv[url]); // extract values from url
-		$argv[val] .= $this->parseUrl($argv[url]); // add values to val-parameter
+		$val = $this->parseUrl($_argv['url']); // extract values from url
+ 		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
 
     // routable url found
-    if ($argv[url])
+    if ($_argv['url'])
     {
-      if ($newVal = OLIVRoute::getUrl($argv[url]))
+      if ($newVal = OLIVRoute::getUrl($_argv['url']))
 			{
-				define (OLIV_PAGE,OLIV_SITE_NAME . " " . $argv[url]); // set page title
-        $argv[url] = $newVal;
+				define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $_argv['url']); // set page title
+        $_argv['url'] = $newVal;
 			}
       else
       {
@@ -83,8 +85,8 @@ class OLIVRoute extends OLIVCore
     else
     {
 //echoall("INDEX");
-      $argv[url] = OLIV_INDEX_PAGE;
-			define (OLIV_PAGE,OLIV_SITE_NAME . " " . $this->getPageName(OLIV_LANG,$argv[url])); // set page title
+      $_argv['url'] = OLIV_INDEX_PAGE;
+			define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $this->translatePageName(OLIV_LANG,$_argv['url'])); // set page title
     }
   }
 
@@ -93,7 +95,7 @@ class OLIVRoute extends OLIVCore
 // $url ... friendly string (index.php/part1/part2...)
 // $names ... optional array of names for associative array
 //						if count($urlArray) > count($names), the rest is returned in the last parameter of names 
-	function decode($url,$names = array())
+	static function decode($url,$names = array())
 	{
 		if ($url)
 		{
@@ -108,7 +110,7 @@ class OLIVRoute extends OLIVCore
 
 				while ($x	< $length)
 				{
-					if ($names[$x])
+					if (isset($names[$x]))
 					{
 						$rest = implode("/",$urlArray);
 						$value = array_shift($urlArray);
@@ -137,13 +139,19 @@ class OLIVRoute extends OLIVCore
 // create intern link
 // options array contains url information and href options
 // array(array(mod,urletc.),array(id,title,etc.))
-  public function intern($text,$options="")
+  static public function intern($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $param = $options[param];
-    $class = $options["class"];
-    $lang = $param["lang"]; // get link language
+    $url = "";
+    $val = "";
+    $param = "";
+    $class = "";
+    $lang = "";
+    
+    if (isset($options['url'])) $url = strtolower($options['url']);
+    if (isset($options['val'])) $val = $options['val'];
+    if (isset($options['param'])) $param = $options['param'];
+    if (isset($options['class'])) $class = $options['class'];
+    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -162,11 +170,15 @@ class OLIVRoute extends OLIVCore
 //TODO make url basis for intern, extern, form, e.i.
 //------------------------------------------------------------------------------
 // create form url
-  public function url($text,$options="")
+  static public function url($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $lang = $param["lang"]; // get link language
+    $url = "";
+    $val = "";
+    $lang = "";
+    
+    if (array_key_exists('url',$options)) $url = strtolower($options['url']);
+    if (array_key_exists('val',$options)) $val = $options['val'];
+    if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -181,7 +193,7 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  public function makeUrl($lang,$url)
+  static public function makeUrl($lang,$url)
   {
 // create absolute url
 // for correct Apache modrewrite
@@ -191,16 +203,16 @@ class OLIVRoute extends OLIVCore
     else
       $lang = OLIV_LANG;
 
-    $val = OLIVRoute::getPageName($lang,$url);
+    $val = OLIVRoute::translatePageName($lang,$url);
     
-    if ($url[strtolower(val)]) array_push($routeArray,$val);
+    if ($url[strtolower($val)]) array_push($routeArray,$val);
     return (implode("/",$routeArray));
   }
 
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  private function makeParam($param)
+  static private function makeParam($param)
   {
     $paramArray = array();
 
@@ -219,14 +231,14 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // translate url to lang.pageName
-  public function getPageName($lang,$url)
+  static public function translatePageName($lang,$url)
   {
     global $_ROUTE;
     return ((string)$_ROUTE->id->$url->$lang);
   }
 
 
-  public function getUrl($name)
+  static public function getUrl($name)
   {
     global $_ROUTE;
     return ((string)$_ROUTE->name->$name);
@@ -239,7 +251,7 @@ class OLIVRoute extends OLIVCore
 // extract and returns parameters for modules
 //
 // get information from content.xml for this purpose
-  public function parseUrl(&$url)
+  static public function parseUrl(&$url)
   {
 		global $_ROUTE;
 
@@ -271,8 +283,10 @@ class OLIVRoute extends OLIVCore
 // removes slash from start and end of string
 function cut_slash($url)
 {
-  if ($url[0] == "/") $url = substr($url,1);
-  if ($url[strlen($url)-1] == "/") $url = substr($url,0,strlen($url)-1);
+  if (substr($url,0,1) == "/") $url = substr($url,1);
+  if (strlen($url) > 0)
+    if ($url[strlen($url)-1] == "/")
+      $url = substr($url,0,strlen($url)-1);
 
   return ($url);
 }

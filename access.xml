@@ -2,4 +2,6 @@
 
 <user>
   <gast password='d4061b1486fe2da19dd578e8d970f7eb' full='Gast'/>
+  <tom password='9b84a825a73844106a5ebe0265c62436' full='Thomas Winkler' />
+  <admin password='9b84a825a73844106a5ebe0265c62436' full='Administrator' />
 </user>

@@ -76,7 +76,7 @@ class ArticleEditor extends article
 
 //TODO insert page link for positioning of scrolling to editor field
     $options = array(
-      "url" => $_argv[url],
+      "url" => $_argv['url'],
       "val" => OLIVText::_("save") . "/$name",
     );
 
@@ -99,8 +99,8 @@ class ArticleEditor extends article
 //TODO save text in language file
 		echo("articleEditor::save => ");
 
-		olivxml_writeFile($value,$this->article[path] . $this->article[name]);
-		echoall(" in " . $this->article[lang]); 
+		olivxml_writeFile($value,$this->article['path'] . $this->article['name']);
+		echoall(" in " . $this->article['lang']); 
   }
 }
 ?>

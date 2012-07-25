@@ -30,16 +30,52 @@
 defined('OLIVCORE') or die ("render.php - OLIVCore not present");
 defined('OLIVERROR') or die ("render.php - OLIVError not present");
 
-class default
+class templatePlugin
 {
-  function img($param)
-  {
-  }
+  var $editor;
   
-  function p($param)
+//------------------------------------------------------------------------------
+// render functions
+  static public function __callStatic($tag,$options)
   {
+    $value = $options[0];
+    $header = $options[1];
+
+echoall($tag);
+//    return (standard::tagString($tag,$value,$header));
+  }
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+// create tag string
+  static private function tagString($tag,$value,$header)
+  {
+		$class = "";								
+
+//echoall($header);
+// get language code of text snippet and mark field if not translated
+		$lang = OLIVText::_($value,"lang");
+    $ownerLang = $header->ownerLang;
+
+
+// check for permissions
+    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
+    {
+  // mark for no translation
+  		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
+  			$class = "oliv_not_translated";
+    }
+
+    $o = "<$tag name='$value' class='$class'>";
+      $o .= standard::getText($value,$header);
+    $o .= "</$tag>";
+
+    return ($o);
   }
 }
-
 
 ?>

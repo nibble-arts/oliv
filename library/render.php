@@ -56,6 +56,9 @@ class OLIVRender extends OLIVCore
   }
 
 
+
+
+
 //------------------------------------------------------------------------------
 // render template recursive
 // return rendered string
@@ -67,24 +70,37 @@ class OLIVRender extends OLIVCore
 //   link ... hyperlink on area
 //   title ... hyperlink-title
 //   script ... script in module to be executed
-  public function template($template,$content="")
+  static public function template($template,$content="")
   {
+    global $_PLUGIN;
+
     $o = "";
+    $templateName = "";
+    $areaName = "";
+    $contentName = "";
+    $value = "";
 
     if ($template)
     {
+
       // get template name
       $templateName = (string)$template->attributes()->name;
 
   // loop over children
       foreach($template->children() as $entry)
       {
-        $areaName = (string)$entry->getName();
+        $style = "";
+        $class = "";
+        $script = "";
+        $mod = "";
+        $background_image = "";
 
+        $areaName = (string)$entry->attributes()->id;
+        $areaTag = $entry->getName();
 
 //------------------------------------------------------------------------------
 // repeat function detected
-        if ($repeat = (string)$entry->attributes()->repeat)
+/*        if ($repeat = (string)$entry->attributes()->repeat)
         {
           // if area information in content loop
           $part = $content->$areaName;
@@ -110,31 +126,33 @@ class OLIVRender extends OLIVCore
           }
 					break; // end rendering
         }
-
+*/
 
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //   collect parameters
-        // if content get name and value of area
+    // if content, get name and value of area
         if ($content)
         {
           $value = (string)$content->$areaName;
           $contentName = (string)$content->$areaName->getName();
         }
 
-        // get information for link
+
+    // get information for link
         $link = (string)$entry->attributes()->link;
         $title = (string)$entry->attributes()->title;
 
-// get template attributes
+
+    // get template attributes
         $style = (string)$entry->attributes()->style;
         $class = (string)$entry->attributes()->class;
-				$tag = (string)$entry->attributes()->tag;
 				$image = (string)$entry->attributes()->image;
 				$background_image = (string)$entry->attributes()->background_image;
 
-// insert template background image
+
+    // insert template background image
 				if ($background_image = OLIVImage::_($background_image))
 					$style .= "background-image:url($background_image)";
 
@@ -148,12 +166,25 @@ class OLIVRender extends OLIVCore
 // get content attributes
           if ($content)
           {
-            $style .= (string)$content->$areaName->attributes()->style; // add style
-            $class .= (string)$content->$areaName->attributes()->class; // add class
-            $script = (string)$content->$areaName->attributes()->script; // set module script
-            $mod = (string)$content->$areaName->attributes()->mod; // add module
-					  $background_image = (string)$content->$areaName->attributes()->background_image;
 
+//TODO loop over attributes
+// extract mod call
+// auto generate parameters for tags
+
+            if ($content->$areaName->attributes()->style)
+              $style .= (string)$content->$areaName->attributes()->style; // add style
+            if ($content->$areaName->attributes()->class)
+              $class .= (string)$content->$areaName->attributes()->class; // add class
+            if ($content->$areaName->attributes()->background_image)
+			   		  $background_image = (string)$content->$areaName->attributes()->background_image;
+
+
+// get module script call
+            if ($content->$areaName->attributes()->mod)
+              $mod = (string)$content->$areaName->attributes()->mod; // add module
+
+
+//TODO change to plugin
 // insert content background image
 						if ($background_image = OLIVImage::_($background_image))
 							$style .= "background-image:url($background_image)";
@@ -161,19 +192,55 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
         }
-        else
-        {
-//          $style = "";
-          $script = "";
-          $mod = "";
-        }
+
+
+
+
+
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // start tag
-				if (!$tag) $tag = "div";
+//TODO start tag from plugin
+//------------------------------------------------------------------------------
+// get render plugin if registered
+        $plugin = $_PLUGIN->render->func->$areaTag;
 
-        $divString = "<{$tag} id='" . $areaName . "'";
+// call function for tag
+        if ((string)$plugin)
+        {
+          $pluginFunc = explode("::",(string)$plugin);
+
+    // load plugin script
+          OLIVCore::loadScript($pluginFunc[0] . ".php",OLIV_PLUGIN_PATH . $pluginFunc[0] . "/");
+          $class = $pluginFunc[0];
+          $func = $pluginFunc[1];
+
+          $o .= $class::$func($areaTag,$entry);
+        }
+        else
+        {
+    // ouput tag directly
+    echoall("?" . $areaTag);
+          $o .= "<$areaTag name='$areaName' class='$class' style='$style'>"; // start tag
+
+          // call recursive if children
+          if (count($entry->children())) // recursive call
+;//            $o .= $this->_parse($entry);
+          else
+            $o .= "?($areaTag) " . OLIVText::_($value);
+
+          $o .= "</$areaTag>";
+        }
+
+
+
+
+
+
+//				if (!$areaTag) $areaTag = "div";
+
+        $divString = "<{$areaTag} id='" . $areaName . "'";
         if ($style) $divString .= " style='{$style}'"; // insert and overwrite css style
         if ($class) $divString .= " class='{$class}'"; // insert and overwrite css style
 
@@ -193,12 +260,19 @@ class OLIVRender extends OLIVCore
           $o .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
         }
 
+
 //------------------------------------------------------------------------------
 // call script
+// TODO remove it when plugin rendering is functional
         if ($script)
         {
-          $o .= $this->$script($areaName,$content->$areaName);
+//          $o .= $this->$script($areaName,$content->$areaName);
         }
+//------------------------------------------------------------------------------
+
+
+
+
 //------------------------------------------------------------------------------
 // if no script call module
         elseif ($mod)
@@ -206,13 +280,15 @@ class OLIVRender extends OLIVCore
           $element = $content->$areaName;
           if ($element)
           {
-            $outputObj = $this->callScript($element); // create output string from module
+/*echoall("<hr>");
+echoall($mod);
+echoall($element);*/
+            $outputObj = OLIVRender::callScript($element); // create output string from module
 //TODO
 // make syntax check of script output
     				$o .= $outputObj->o;
           }
   			}
-
 //------------------------------------------------------------------------------
 // no module or script
 //   direct render of multilingual text
@@ -232,7 +308,7 @@ class OLIVRender extends OLIVCore
   
 
 // end of div tag
-        $o .= "</{$tag}>";
+        $o .= "</{$areaTag}>";
   
 
 //------------------------------------------------------------------------------
@@ -248,13 +324,19 @@ class OLIVRender extends OLIVCore
       return ($o);
     }
     else
+    {
+//TODO render content only
+      echoall($content);
       return OLIVERROR::render ("render::template - no template to render");
+    }
   }
 
 
+
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // calls module
-  private function callScript($module)
+  static private function callScript($module)
   {
     if ($module->script->main)
     {

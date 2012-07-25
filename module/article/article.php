@@ -51,47 +51,30 @@ class article extends OLIVCore
     global $_argv;
 
     $this->header = $header;
-    $this->path = OLIV_MODULE_PATH . "article/";
+    $this->header->path = OLIV_MODULE_PATH . "article/";
+
     $this->scan();
 
+
     // load index file
-    OLIVIndex::load($this->path,"article.idx");
+    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
-    $langPath = $this->path . (string)$header->script->language;
-    $contentPath = $this->path . (string)$header->script->content;
+    $langPath = $this->header->path . (string)$header->script->language;
+    $contentPath = $this->header->path . (string)$header->script->content;
 
     OLIVText::load($langPath,$articleName);
 
-// parse for commands and parameters
-    if ($_argv[val])
-    {
-  // load editor
-      $this->loadScript("articleEdit.php",OLIV_MODULE_PATH . "article/");
-
-			$article = array(
-				"path" => $langPath,
-				"name" => $articleName,
-				"lang" => $_argv[lang]
-			);
-
-      $this->editor = new ArticleEditor($article);
-
-  // extract cmd and param
-      $this->paramArray = explode("/",cut_slash($_argv[val]));
-
-  // retranslate command
-      $this->command = OLIVText::getId($this->paramArray[0]);
-      array_shift($this->paramArray);
-    }
-
-// else render article
 
 // load content
     if (sessionfile_exists($contentPath . "$articleName.xml"))
     {
       $article = sessionxml_load_file($contentPath . "$articleName.xml");
-      $this->parse($article);
+
+//echoall($article);
+//      OLIVRender::template("",$article);
+
+//      $this->parse($article);
     }
     else
       $this->o .= OLIVError::render("article.php - content for <b>'$articleName'</b> not found");
@@ -106,9 +89,8 @@ class article extends OLIVCore
 
     if ($text)
     {
-      $text = $text->text;
-
-      $owner = $text->attributes()->owner;
+//      $onlyText = $text->text;
+/*      $owner = $text->attributes()->owner;
       $ownerLang = $text->attributes()->lang;
 
 
@@ -121,11 +103,11 @@ class article extends OLIVCore
         $flag = new simpleXmlElement("<flag><img src='flag' lang='$ownerLang' width='25px' float='right' margin_side='0.5em'/></flag>");
 
         $options = array(
-          'url' => $_argv[url],
+          'url' => $_argv['url'],
           'param' => array(
             "title" => "orig_lang",
             "lang" => $ownerLang,
-            "val" => $_argv[val]
+            "val" => $_argv['val']
           )
         );
         $this->o .= OLIVRoute::intern(OLIVImage::img($flag->img),$options);
@@ -134,10 +116,10 @@ class article extends OLIVCore
       
 
       $options = array(
-        'url' => $_argv[url],
+        'url' => $_argv['url'],
         'param' => array(
           "title" => "edit",
-          "val" => $_argv[val]
+          "val" => $_argv['val']
         )
       );
 
@@ -146,7 +128,7 @@ class article extends OLIVCore
 
 //TODO
 //echoall("owner: $owner");
-
+*/
 //------------------------------------------------------------------------------
       $this->o .= $this->_parse($text);
     }
@@ -159,8 +141,14 @@ class article extends OLIVCore
     global $_PLUGIN;
     global $_argv;
 
+    $o = "";
+    $class = "";
+
+    $access = $text->text;
+
     $indexTimeStamp = (string)$text->attributes()->index;
     $index = new OLIVIndex();
+
 
     if ($text and count($text->children()))
     {
@@ -169,52 +157,60 @@ class article extends OLIVCore
         $key = (string)$entry->getName();
         $value = (string)$entry;
 
+
+
 //------------------------------------------------------------------------------
 // get render plugin if registered
         $plugin = $_PLUGIN->render->func->$key;
 
-//print_r($key);
+    // call function for tag
         if ((string)$plugin)
         {
           $pluginFunc = (string)$plugin;
           $pluginScript = (string)$plugin->attributes()->script;
-//echoall("call function $pluginFunc in plugin $pluginScript.php");
 
-          include_once (OLIV_CORE_PATH . OLIV_PLUGIN_PATH . $pluginScript . "/$pluginScript.php");
+    // load plugin script
+          OLIVCore::loadScript("$pluginScript.php",OLIV_PLUGIN_PATH . $pluginScript . "/");
+          $o .= $pluginScript::$pluginFunc($entry,$this->header);
+        }
+        else
+        {
+    // ouput tag directly
+          $o .= "<$key name='$value' class='$class'>"; // start tag
 
-          
+          // call recursive if children
+          if (count($entry->children())) // recursive call
+            $o .= $this->_parse($entry);
+          else
+            $o .= "?($key) " . OLIVText::_($value);
+
+          $o .= "</$key>";
         }
 
-//------------------------------------------------------------------------------
-//TODO change all rendering to plugins
 
-        switch($key)
+
+
+//------------------------------------------------------------------------------
+
+/*        switch($key)
         {
 // call render plugins
-          case img:
+          case 'img':
             $o .= OLIVImage::img($value->img);
             break;
 
             
           default:
 // insert text in index
-//            $index->insertText(OLIVText::_((string)$value),$_argv[url],$_argv[val]);
+//            $index->insertText(OLIVText::_((string)$value),$_argv['url'],$_argv['val']);
 
 
 //------------------------------------------------------------------------------
 // insert edit field
-						$options = array(
-							'url' => $_argv[url],
-              'val' => OLIVText::_("edit") . "/$value",
-							'param' => array(
-								"title" => "edit",
-							)
-						);
 
 
 // get language code of text snippet and mark field if not translated
 						$lang = OLIVText::_($value,"lang");
-
 
 
 // call editor
@@ -222,12 +218,12 @@ class article extends OLIVCore
             {
               switch ($this->command)
               {
-                case edit:
+                case 'edit':
                   if ($this->paramArray[0] == $value)
                     $o .= $this->editor->open($value,OLIVText::_((string)$value));
                   break;
                   
-                case save:
+                case 'save':
                   $this->editor->saveSnippet($value);
                   break;
               }
@@ -242,7 +238,8 @@ class article extends OLIVCore
                 // print language string if defined
                 if ($value)
 								{
-									if ($lang != OLIV_LANG)
+      // mark for no translation
+									if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
 										$class = "oliv_not_translated";
 									else
 										$class = "";								
@@ -256,13 +253,22 @@ class article extends OLIVCore
   
               $oTemp .= "</$key>"; // end tag
               
+  						$options = array(
+  							'url' => $_argv['url'],
+                'val' => OLIVText::_("edit") . "/$value",
+  							'param' => array(
+  								"title" => "edit",
+  							)
+  						);
+
               $o .= OLIVRoute::intern($oTemp,$options);
             }
           break;
-        }
+        }*/
       }
     }
-    $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $this->path;
+
+    $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $this->header->path;
 
 // write index;
 /*    $xml = $index->index->asXML();
@@ -282,19 +288,19 @@ class article extends OLIVCore
 
 		$_ARTICLES = array();
 
-    $path = $this->path . "content/";
-    if ($pageDir = sessionopendir ($this->path))
+    $path = $this->header->path . "content/";
+    if ($pageDir = sessionopendir ($this->header->path))
     {
 
       while ($file = readdir($pageDir))
       {
-        if (is_dir($this->path . $file) and $file != "." and $file != "..")
+        if (is_dir($this->header->path . $file) and $file != "." and $file != "..")
         {
           // get define.xml
-          if (sessionfile_exists($this->path . $file . "/$file.xml"))
+          if (sessionfile_exists($this->header->path . $file . "/$file.xml"))
           {
-            $xml = sessionxml_load_file($this->path . $file . "/$file.xml");
-            $_ARTICLES[$file] = $xml;
+            $xml = sessionxml_load_file($this->header->path . $file . "/$file.xml");
+            $_ARTICLES['$file'] = $xml;
           }
         }
       }

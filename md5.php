@@ -1,9 +1,8 @@
-<?PHP session_start(); ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <?PHP
 //
-// OLIV-CMS
+// IG-CMS
 //
 // This file is part of the OLIV Content Management System.
 //
@@ -29,32 +28,23 @@
 //
 // Version 0.1
 //------------------------------------------------------------------------------
+    date_default_timezone_set ("Europe/Paris");
+    $data = "";
+    echo md5("Jitka");
 ?>
 
 <html>
   <head>
-    <?PHP
-// init core
-			include("init.php");
-
-      $core = new OLIVCore();
-      $core->init("oliv");
-
-// load page content
-      $core->loadContent();
+    <link rel="stylesheet" type="text/css" href="template/default/default.css">
+    <link href="images/browser.ico" type="image/x-icon" rel="shortcut icon">
   
-// call preprocessor
-      $core->preProcessor();
-    ?>
-  </head>
-  
-  <body>
-    <?PHP
-// render site
-    $core->render(); // display site
+    <form method='post' action='md5.php'>
+      Passwort <input type="text" name="data" value=<?PHP echo $data; ?>>
+      <input type="submit" value="MD5">
 
-    
-//    OLIVError::renderDebug();
-    ?>
+      <?PHP if (true) echo " <b>" . md5("gast"); ?></b>
+      
+    </form>
+      
   </body>
 </html>

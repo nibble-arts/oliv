@@ -48,45 +48,42 @@ class OLIVPlugin
 
     if ($pluginDir = olivopendir ($path))
     {
-  
       while ($file = readdir($pluginDir))
       {
         if (olivis_dir($path . $file) and $file != "." and $file != "..")
         {
           $file .= "/";
 
-          // get define.xml
-          if (olivfile_exists($path . $file))
+      // get define.xml
+          if (olivfile_exists($path . $file . "define.xml"))
           {
             $xml = olivxml_load_file($path . $file . "define.xml");
 
             // get type of plugin
             $type = $xml->children()->getName();
 
-          // type don't exist -> create
+// type don't exist -> create
             if ($type != (string)$_PLUGIN->$type->getName())
             {
               olivxml_insert($_PLUGIN,$xml);
             }
-          // insert or replace functions
+
+// insert or replace functions
             else
             {
               $func = $xml->$type->func;
               foreach ($func->children() as $entry)
               {
                 $func = (string)$entry->getName();
-                // function exists -> replace
 
-                if ($func == (string)$_PLUGIN->$type->func->$func)
-                {
-                  $_PLUGIN->$type->func->$func = (string)$entry;
-                  $_PLUGIN->$type->func->$func->attributes()->script = (string)$entry->attributes()->script;
-                }
+                $_PLUGIN->$type->func->$func = (string)$entry;
+                $_PLUGIN->$type->func->$func->attributes()->script = (string)$entry->attributes()->script;
               }
             }
           }
         }
       }
+//echoall($_PLUGIN);
       closedir ($pluginDir);
     }
     else
