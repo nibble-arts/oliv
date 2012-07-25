@@ -59,9 +59,11 @@ class OLIVRoute extends OLIVCore
   {
     global $_argv;
     global $_ROUTE;
+    
+    if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
 
 		$val = $this->parseUrl($_argv['url']); // extract values from url
-		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
+ 		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
 
     // routable url found
     if ($_argv['url'])
@@ -170,9 +172,13 @@ class OLIVRoute extends OLIVCore
 // create form url
   static public function url($text,$options="")
   {
-    $url = strtolower($options['url']);
-    $val = $options['val'];
-    $lang = $param['lang']; // get link language
+    $url = "";
+    $val = "";
+    $lang = "";
+    
+    if (array_key_exists('url',$options)) $url = strtolower($options['url']);
+    if (array_key_exists('val',$options)) $val = $options['val'];
+    if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     

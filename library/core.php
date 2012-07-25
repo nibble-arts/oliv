@@ -73,7 +73,7 @@ class OLIVCore
     defined ('OLIV_CORE_PATH') or die ("Core path not defined");
 
 // load basic system methods
-    $this->loadScript("library/init.php");
+    OLIVCore::loadScript("library/init.php");
     defined ('OLIVENV') or die ("Environment not set");
 
 //------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ class OLIVCore
 
 //------------------------------------------------------------------------------
 // load script and execute
-  public function loadScript($file,$path="")
+  static public function loadScript($file,$path="")
   {
     $path = OLIV_CORE_PATH . $path; // redirect to core root directory
 

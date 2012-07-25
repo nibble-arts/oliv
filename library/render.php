@@ -69,6 +69,8 @@ class OLIVRender extends OLIVCore
 //   script ... script in module to be executed
   static public function template($template,$content="")
   {
+    global $_PLUGIN;
+
     $o = "";
     $templateName = "";
     $areaName = "";
@@ -122,25 +124,25 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //   collect parameters
-        // if content get name and value of area
+    // if content, get name and value of area
         if ($content)
         {
           $value = (string)$content->$areaName;
           $contentName = (string)$content->$areaName->getName();
         }
 
-        // get information for link
+    // get information for link
         $link = (string)$entry->attributes()->link;
         $title = (string)$entry->attributes()->title;
 
-// get template attributes
+    // get template attributes
         $style = (string)$entry->attributes()->style;
         $class = (string)$entry->attributes()->class;
 				$tag = (string)$entry->attributes()->tag;
 				$image = (string)$entry->attributes()->image;
 				$background_image = (string)$entry->attributes()->background_image;
 
-// insert template background image
+    // insert template background image
 				if ($background_image = OLIVImage::_($background_image))
 					$style .= "background-image:url($background_image)";
 
@@ -174,9 +176,18 @@ class OLIVRender extends OLIVCore
           $mod = "";
         }
 
+
+
+
+
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // start tag
+//TODO start tag from plugin
+
+
+
 				if (!$tag) $tag = "div";
 
         $divString = "<{$tag} id='" . $areaName . "'";
@@ -199,13 +210,21 @@ class OLIVRender extends OLIVCore
           $o .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
         }
 
+
+
 //------------------------------------------------------------------------------
 // call script
+// TODO remove it when plugin rendering is functional
         if ($script)
         {
 //          $o .= $this->$script($areaName,$content->$areaName);
         }
+//------------------------------------------------------------------------------
 
+
+
+
+//------------------------------------------------------------------------------
 // if no script call module
         elseif ($mod)
         {

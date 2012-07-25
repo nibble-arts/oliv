@@ -61,20 +61,20 @@ else
 //
 //------------------------------------------------------------------------------
 if (file_exists(OLIV_CORE_PATH . "system.xml"))
-	$this->coreXml = simplexml_load_file(OLIV_CORE_PATH . "system.xml");
+	$coreXml = simplexml_load_file(OLIV_CORE_PATH . "system.xml");
 else
 	die ("init.php - system.xml not found");
 
 
 //------------------------------------------------------------------------------
 // create constants
-if ($this->coreXml)
+if ($coreXml)
 {
 //------------------------------------------------------------------------------
 // set system constants
-  if ($this->coreXml->system->children())
+  if ($coreXml->system->children())
   {
-    foreach($this->coreXml->system->children() as $key => $value)
+    foreach($coreXml->system->children() as $key => $value)
     {
       if (!defined($key))
         define($key,$value);
@@ -86,13 +86,13 @@ if ($this->coreXml)
 
 //------------------------------------------------------------------------------
 // system includes
-  $part = $this->coreXml->xpath("includes");
+  $part = $coreXml->xpath("includes");
 
   if (count($part[0]->children()))
   {
     foreach($part[0]->children() as $entry)
     {
-      $this->loadScript($entry, OLIV_INCLUDE_PATH);
+      OLIVCore::loadScript($entry, OLIV_INCLUDE_PATH);
     }
   }
   else
@@ -105,7 +105,7 @@ else
 //------------------------------------------------------------------------------
 // valid image extensions
 global $_imgType;
-$_imgType = $this->coreXml->image;
+$_imgType = $coreXml->image;
 
 //------------------------------------------------------------------------------
 // set global argument array
@@ -184,14 +184,14 @@ if (isset($_argv['action']))
 {
   switch($_argv['action'])
   {
-    case login:
+    case 'login':
       if (OLIVUser::checkPassword($_argv['login'],$_argv['password']))
       {
         $user = $_argv['login'];
       }
       break;
   
-    case logout:
+    case 'logout':
       $user = "";
       break;
   }

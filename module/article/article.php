@@ -51,41 +51,20 @@ class article extends OLIVCore
     global $_argv;
 
     $this->header = $header;
-    $this->path = OLIV_MODULE_PATH . "article/";
+    $this->header->path = OLIV_MODULE_PATH . "article/";
+
     $this->scan();
 
+
     // load index file
-    OLIVIndex::load($this->path,"article.idx");
+    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
-    $langPath = $this->path . (string)$header->script->language;
-    $contentPath = $this->path . (string)$header->script->content;
+    $langPath = $this->header->path . (string)$header->script->language;
+    $contentPath = $this->header->path . (string)$header->script->content;
 
     OLIVText::load($langPath,$articleName);
 
-// parse for commands and parameters
-    if ($_argv['val'])
-    {
-  // load editor
-      $this->loadScript("articleEdit.php",OLIV_MODULE_PATH . "article/");
-
-			$article = array(
-				"path" => $langPath,
-				"name" => $articleName,
-				"lang" => $_argv['lang']
-			);
-
-      $this->editor = new ArticleEditor($article);
-
-  // extract cmd and param
-      $this->paramArray = explode("/",cut_slash($_argv['val']));
-
-  // retranslate command
-      $this->command = OLIVText::getId($this->paramArray[0]);
-      array_shift($this->paramArray);
-    }
-
-// else render article
 
 // load content
     if (sessionfile_exists($contentPath . "$articleName.xml"))
@@ -158,7 +137,7 @@ class article extends OLIVCore
   {
     global $_PLUGIN;
     global $_argv;
-    
+
     $o = "";
     $class = "";
 
@@ -174,29 +153,34 @@ class article extends OLIVCore
 
 
 
-
-
 //------------------------------------------------------------------------------
 // get render plugin if registered
         $plugin = $_PLUGIN->render->func->$key;
 
-//print_r($key);
+    // call function for tag
         if ((string)$plugin)
         {
           $pluginFunc = (string)$plugin;
           $pluginScript = (string)$plugin->attributes()->script;
-//echoall("call function $pluginFunc in plugin $pluginScript.php");
 
           include_once (OLIV_CORE_PATH . OLIV_PLUGIN_PATH . $pluginScript . "/$pluginScript.php");
+
+          $o .= $pluginScript::$pluginFunc($value,$this->header);
+        }
+        else
+        {
+    // ouput tag directly
+          $o .= "<$key name='$value' class='$class'>"; // start tag
+            $o .= $value;
+          $o .= "</$key>";
         }
 
 
 
 
 //------------------------------------------------------------------------------
-//TODO change all rendering to plugins
 
-        switch($key)
+/*        switch($key)
         {
 // call render plugins
           case 'img':
@@ -211,13 +195,6 @@ class article extends OLIVCore
 
 //------------------------------------------------------------------------------
 // insert edit field
-						$options = array(
-							'url' => $_argv['url'],
-              'val' => OLIVText::_("edit") . "/$value",
-							'param' => array(
-								"title" => "edit",
-							)
-						);
 
 
 // get language code of text snippet and mark field if not translated
@@ -264,13 +241,22 @@ class article extends OLIVCore
   
               $oTemp .= "</$key>"; // end tag
               
+  						$options = array(
+  							'url' => $_argv['url'],
+                'val' => OLIVText::_("edit") . "/$value",
+  							'param' => array(
+  								"title" => "edit",
+  							)
+  						);
+
               $o .= OLIVRoute::intern($oTemp,$options);
             }
           break;
-        }
+        }*/
       }
     }
-    $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $this->path;
+
+    $path = OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $this->header->path;
 
 // write index;
 /*    $xml = $index->index->asXML();
@@ -290,18 +276,18 @@ class article extends OLIVCore
 
 		$_ARTICLES = array();
 
-    $path = $this->path . "content/";
-    if ($pageDir = sessionopendir ($this->path))
+    $path = $this->header->path . "content/";
+    if ($pageDir = sessionopendir ($this->header->path))
     {
 
       while ($file = readdir($pageDir))
       {
-        if (is_dir($this->path . $file) and $file != "." and $file != "..")
+        if (is_dir($this->header->path . $file) and $file != "." and $file != "..")
         {
           // get define.xml
-          if (sessionfile_exists($this->path . $file . "/$file.xml"))
+          if (sessionfile_exists($this->header->path . $file . "/$file.xml"))
           {
-            $xml = sessionxml_load_file($this->path . $file . "/$file.xml");
+            $xml = sessionxml_load_file($this->header->path . $file . "/$file.xml");
             $_ARTICLES['$file'] = $xml;
           }
         }

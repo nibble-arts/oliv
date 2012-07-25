@@ -43,7 +43,8 @@ class login extends OLIVCore
 // use ssh for login
     global $_argv;
 
-		$host = "https://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
+//		$host = "https://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
+		$host = "http://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
 
 //TODO change to form class using router
 // create formular

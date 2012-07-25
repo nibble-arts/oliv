@@ -3,8 +3,11 @@
 <plugin>
   <render>
     <func>
-      <img script='standard'>image</img>
+      <img script='standard'>_img</img>
       <p script='standard'>_p</p>
+      <h1 script='standard'>_h1</h1>
+      <h2 script='standard'>_h2</h2>
+      <h3 script='standard'>_h3</h3>
     </func>
   </render>
 </plugin>
