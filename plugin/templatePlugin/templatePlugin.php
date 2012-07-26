@@ -38,35 +38,83 @@ class templatePlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
-    $value = $options[0];
-    $param = $options[1];
+    $template = $options[0]['template'];
+    $content = $options[0]['content'];
+    $value = $options[0]['value'];
 
-    return (templatePlugin::tagString($tag,$value,$param));
+    return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
   }
-
-
-
-
 
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function tagString($tag,$value,$param)
+  static private function startTag($tag,$template,$content)
   {
-    $paramString = "";
+    $templateArray = array();
+    $retString = "";
 
-    foreach ($param->attributes() as $entry)
+    $templateArray = templatePlugin::getParamArray($template);
+//TODO
+// insert also content parameters to template
+//echoall($content);
+
+  // combine parameters from array to tag string
+    foreach ($templateArray as $key => $value)
     {
-      $key = (string)$entry->getName();
-      $value = (string)$entry;
-      $paramString = "$key='$value' ";
+      $retString .= "$key='$value' ";
     }
 
-    $o = "<$tag name='$value' $paramString>";
-//      $o .= 
-    $o .= "</$tag>";
+    return ("<$tag $retString>"); //name='$tag' 
+ }
 
-    return ($o);
+
+//------------------------------------------------------------------------------
+// create parameter string for tag
+  static private function getParamArray($param)
+  {
+    $paramArray = array();
+
+    if ($param->attributes())
+    {
+      foreach ($param->attributes() as $entry)
+      {
+        $key = (string)$entry->getName();
+        $value = (string)$entry;
+        
+        $newParam = templatePlugin::parse($key,$value);#
+        $newKey = key($newParam);
+        $newValue = $newParam[$newKey];
+
+    // add parameter to existing key
+        if (array_key_exists($newKey,$paramArray))
+          $paramArray[$newKey] .= $newValue;
+        else
+    // add new parameter
+          $paramArray = array_merge ($paramArray,$newParam);
+      }
+    }
+    return ($paramArray);
+  }
+
+
+//------------------------------------------------------------------------------
+// parse tag parameters
+// insert content background image
+  static private function parse($key,$value)
+  {
+    switch ($key)
+    {
+// use image class for background-image
+      case 'background-image':
+    		if ($background_image = OLIVImage::_($value))
+    			$paramArray['style'] = "background-image:url($background_image);";
+        break;
+
+      default:
+  			$paramArray[$key] = $value;;
+    }
+
+    return ($paramArray);
   }
 }
 

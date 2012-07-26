@@ -38,6 +38,38 @@ class OLIVPlugin
   {
     $this->scan(OLIV_PLUGIN_PATH);
   }
+
+
+//------------------------------------------------------------------------------
+// call plugin
+// $func ... function name (in render plugin normally the tag name)
+// $type ... type of plugin: render, search, etc.
+
+// $options ... array of options for plugin call
+  static public function call($func,$type,$options = array())
+  {
+    global $_PLUGIN;
+
+// get render plugin if registered
+    $plugin = $_PLUGIN->$type->func->$func;
+
+// call function for tag
+    if ((string)$plugin)
+    {
+      $pluginFunc = explode("::",(string)$plugin);
+
+// load plugin script
+      OLIVCore::loadScript($pluginFunc[0] . ".php",OLIV_PLUGIN_PATH . $pluginFunc[0] . "/");
+      $class = $pluginFunc[0];
+      $func = $pluginFunc[1];
+
+// call script and return output
+      return ($class::$func($options));
+    }
+    else
+      return (FALSE);
+  }
+
   
 //------------------------------------------------------------------------------
 // scan plugin directory and load plugin metadata
@@ -90,6 +122,9 @@ class OLIVPlugin
       OLIVError::fire("plugin::scan - directory $path not found");
 //print_r($_PLUGIN->asXML());
   }
+  
+
+
 }
 
 ?>

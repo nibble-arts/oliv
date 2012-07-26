@@ -38,10 +38,12 @@ class textPlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
-    $value = $options[0];
-    $header = $options[1];
+    $content = $options[0];
+    $value = $options[0]['template'];
 
-    return (standard::tagString($tag,$value,$header));
+//echoall($content);
+
+    return (textPlugin::tagString($tag,$value));
   }
 
 
@@ -51,36 +53,41 @@ class textPlugin
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function tagString($tag,$value,$header)
+  static private function tagString($tag,$value,$header="")
   {
-		$class = "";								
+		$class = "";	
+    $retArray = array();
+
 
 //echoall($header);
 // get language code of text snippet and mark field if not translated
 		$lang = OLIVText::_($value,"lang");
-    $ownerLang = $header->ownerLang;
+//    $ownerLang = $header->ownerLang;
 
 
 // check for permissions
-    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
+/*    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
     {
   // mark for no translation
   		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
     }
+*/
+    $retArray['startTag'] = "<$tag name='$value' class='$class'>";
+    $retArray['value'] = OLIVText::_((string)$value); // textPlugin::getText($value,$header);
+    $retArray['endTag'] = "</$tag>";
 
-    $o = "<$tag name='$value' class='$class'>";
-      $o .= standard::getText($value,$header);
-    $o .= "</$tag>";
-
-    return ($o);
+    return ($retArray);
   }
 
+
+//TODO remove from plugin
+// do it in renderer
 
 //------------------------------------------------------------------------------
 // get language text
 // include editor if edit mode and rights
-  static private function getText($value,$header)
+  static private function getText($value,$header="")
   {
     global $_argv;
     
