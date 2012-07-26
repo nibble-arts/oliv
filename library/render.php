@@ -248,11 +248,6 @@ class OLIVRender extends OLIVCore
 //
 //------------------------------------------------------------------------------
 /*
-// call recursion
-        if (count($entry->children()))
-          $o .= OLIVRender::_template($entry,$content);
-  
-
 // end of div tag
         $o .= "</{$areaTag}>";
   

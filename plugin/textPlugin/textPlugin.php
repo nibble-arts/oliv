@@ -55,6 +55,9 @@ class textEditPlugin
   	global $_argv;
   	
   	$o = "";
+		$command = "";
+		$partName = "";
+
     $content = $options[0];
     $value = (string)$options[0]['template'];
 		
@@ -64,11 +67,16 @@ class textEditPlugin
 // extract cmd and param
     $paramArray = explode("/",cut_slash($_argv['val']));
 
+
 // retranslate command
-    $command = OLIVText::getId($paramArray[0]);
-    $partName = $paramArray[1];
+		if (count($paramArray) > 1)
+		{
+		  $command = OLIVText::getId($paramArray[0]);
+		  $partName = $paramArray[1];
+		}
 
 
+//TODO get information from article for saving
 //------------------------------------------------------------------------------
 // call editor
     if ($partName == $value)
@@ -186,6 +194,7 @@ class textEditor
     global $_argv;
     $o = "";
 
+
 //TODO insert page link for positioning of scrolling to editor field
     $options = array(
       "url" => $_argv['url'],
@@ -193,6 +202,7 @@ class textEditor
     );
 
     $actionUrl = OLIVRoute::url(OLIV_LANG,$options);
+
 
 //TODO use form method
     $o .= "<form action='$actionUrl'><textarea name='text' width='50'>";
