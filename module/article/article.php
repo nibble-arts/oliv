@@ -35,6 +35,7 @@ defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
 $_ARTICLES;
 
 
+//------------------------------------------------------------------------------
 class article extends OLIVCore
 {
 	var $o = "";
@@ -52,7 +53,7 @@ class article extends OLIVCore
 
     $this->header = $header;
     $this->header->path = OLIV_MODULE_PATH . "article/";
-
+    
 //    $this->scan();
 
 
@@ -81,35 +82,8 @@ class article extends OLIVCore
       $this->o .= OLIVError::render("article.php - content for <b>'$articleName'</b> not found");
   }
   
-
-
-
-//TODO move to rendering
-//------------------------------------------------------------------------------
-/*
-
-// insert edit field
-
-// get language code of text snippet and mark field if not translated
-						$lang = OLIVText::_($value,"lang");
-
-// call editor
-            if ($this->paramArray[0] == $value)
-            {
-              switch ($this->command)
-              {
-                case 'edit':
-                  if ($this->paramArray[0] == $value)
-                    $o .= $this->editor->open($value,OLIVText::_((string)$value));
-                  break;
-                  
-                case 'save':
-                  $this->editor->saveSnippet($value);
-                  break;
-              }
-            }
-*/  
   
+//------------------------------------------------------------------------------
 // scan session for articles
 // module must be loaded
   private function scan()

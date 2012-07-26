@@ -71,7 +71,6 @@ class OLIVPlugin
 
       $func = $pluginCall[1];
 
-
 //------------------------------------------------------------------------------
 // call render class for tag
 // load plugin script

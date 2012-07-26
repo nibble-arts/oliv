@@ -140,7 +140,6 @@ class textRender
   }
 }
 
-
 //------------------------------------------------------------------------------
 // text editor class
 class textEditor
