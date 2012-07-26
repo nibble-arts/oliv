@@ -63,11 +63,44 @@ class OLIVUser extends OLIVCore
   }
 
 
-// get simpleXmlElement of user group membership
+// get user rights
   public static function getRight($user)
   {
     global $_access;
-    return ($_access->$user);
+
+    return ($_access->user->$user);
+  }
+
+
+// get user group
+  public static function getGroup($user)
+  {
+    global $_access;
+    $groupArray = array();
+    $groupXml = new simpleXmlElement("<group></group>");
+    
+    $groups = $_access->group;
+    foreach($groups->children() as $entry)
+    {
+      $groupName = $entry->getName();
+      if ($entry->$user)
+        $groupXml->addChild($groupName);
+    }
+
+    return ($groupXml);
+  }
+
+
+  public static function superUser($user)
+  {
+    $userRight = (OLIVUser::getRight($user));
+
+    if ($userRight)
+    {
+      if ($userRight->attributes()->su) return (TRUE);
+      else return (FALSE);
+    }
+    return (FALSE);
   }
 }
 ?>

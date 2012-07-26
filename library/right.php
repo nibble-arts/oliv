@@ -44,7 +44,7 @@ class OLIVRight extends OLIVCore
   public static function __callStatic($m,$access)
   {
     $right = OLIVRight::checkAccess($access[0]);
-    
+
     switch($m)
     {
       case 'r':
@@ -90,44 +90,52 @@ class OLIVRight extends OLIVCore
 // returns false if no access
   private static function checkAccess($access)
   {
-    $owner = "";
-    $group = "";
+    $owner = "000";
+    $group = "000";
     $rights = "";
     $ownRight = "";
     $groupRight = "";
     $allRight = "";
     
+
 //------------------------------------------------------------------------------
 // get requested rights
-
-    if ($access->attributes())
-    {
-  		$owner = (string)$access->attributes()->owner;
-      $group = (string)$access->attributes()->group;
+		if (isset($access['owner'])) $owner = (string)$access->attributes()->owner;
+    if (isset($access['group'])) $group = (string)$access->attributes()->group;
+  
+    // decode requested rights
+		if (isset($access['access'])) $rights = (string)$access->attributes()->access;
     
-      // decode requested rights
-  		$rights = (string)$access->attributes()->access;
-      $ownRight = intval(substr($rights,0,1));
-      $groupRight = intval(substr($rights,1,1));
-      $allRight = intval(substr($rights,2,1));
-    }
+    $ownRight = intval(substr($rights,0,1));
+    $groupRight = intval(substr($rights,1,1));
+    $allRight = intval(substr($rights,2,1));
+
 
 //------------------------------------------------------------------------------
 // get user rights
     $userRight = OLIVUser::getRight(OLIV_USER);
     $userOwner = $userRight->getName();
-    $userGroup = $userRight;
+    $userGroup = OLIVUser::getGroup(OLIV_USER);
 
 
 //------------------------------------------------------------------------------
 // no rights requested
     if (!$owner and !$group and !$rights) return array("r" => 1,"w" => 1,"x" => 1);
 
+
 //print_r($userGroup->asXML());
 //------------------------------------------------------------------------------
 // check owner rights
     $r = $w = $x = 0;
-    
+
+
+// give all rights if superuser
+    if (OLIV_SU)
+    {
+      $r = $w = $x = 1;
+    }
+
+
     if (OLIV_USER)
     {
       if ($owner == $userOwner)
@@ -140,7 +148,7 @@ class OLIVRight extends OLIVCore
     }
     
 // check group rights
-    if (count($userGroup->$group))
+    if ($userGroup)
     {
       if ($group == (string)$userGroup->$group->getName())
       {

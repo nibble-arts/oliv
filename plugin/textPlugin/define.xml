@@ -3,12 +3,12 @@
 <plugin>
   <render>
     <func>
-      <img>textPlugin::img</img>
-      <p>textPlugin::p</p>
-      <h1>textPlugin::h1</h1>
-      <h2>textPlugin::h2</h2>
-      <h3>textPlugin::h3</h3>
-      <li>textPlugin::li</li>
+      <img script='textPlugin' class='textPlugin::img' editClass='textEditPlugin::img' />
+      <p script='textPlugin' class='textPlugin::p' editClass='textEditPlugin::p' />
+      <h1 script='textPlugin' class='textPlugin::h1' editClass='textEditPlugin::h1' />
+      <h2 script='textPlugin' class='textPlugin::h2' editClass='textEditPlugin::h2' />
+      <h3 script='textPlugin' class='textPlugin::h3' editClass='textEditPlugin::h3' />
+      <li script='textPlugin' class='textPlugin::li' editClass='textEditPlugin::li' />
     </func>
   </render>
 </plugin>

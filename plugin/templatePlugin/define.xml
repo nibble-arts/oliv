@@ -3,8 +3,8 @@
 <plugin>
   <render>
     <func>
-      <div>templatePlugin::div</div>
-      <background_image>templatePlugin::background_image</background_image>
+      <div script='templatePlugin' class='templatePlugin::div' />
+      <background_image script='templatePlugin' class='templatePlugin::background_image' />
     </func>
   </render>
 </plugin>

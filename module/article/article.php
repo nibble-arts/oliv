@@ -49,7 +49,7 @@ class article extends OLIVCore
   public function __construct($header)
   {
     global $_argv;
-echoall($header);
+
     $this->header = $header;
     $this->header->path = OLIV_MODULE_PATH . "article/";
 
@@ -70,6 +70,7 @@ echoall($header);
     if (sessionfile_exists($contentPath . "$articleName.xml"))
     {
       $article = sessionxml_load_file($contentPath . "$articleName.xml");
+
 
 //echoall($article);
       $this->o .= OLIVRender::template($article,"");

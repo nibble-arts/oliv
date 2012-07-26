@@ -41,9 +41,7 @@ class textPlugin
     $content = $options[0];
     $value = $options[0]['template'];
 
-//echoall($content);
-
-    return (textPlugin::tagString($tag,$value));
+    return (textPlugin::tagString($tag,$value,$content));
   }
 
 
@@ -53,26 +51,29 @@ class textPlugin
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function tagString($tag,$value,$header="")
+  static private function tagString($tag,$value,$options)
   {
 		$class = "";	
     $retArray = array();
 
+echoall("$tag $value");
 
-//echoall($header);
+    $content = $options['template'];
 // get language code of text snippet and mark field if not translated
 		$lang = OLIVText::_($value,"lang");
-//    $ownerLang = $header->ownerLang;
+    $ownerLang = $content->attributes()->lang;
 
 
+//echoall("lang: $lang, ownerLang: $ownerLang, OLIV_LANG: " . OLIV_LANG);
 // check for permissions
-/*    if (OLIVRight::w($header) and $ownerLang and ($ownerLang != OLIV_LANG))
+    if (OLIVRight::w($content) and $ownerLang and ($ownerLang != OLIV_LANG))
     {
+
   // mark for no translation
   		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
     }
-*/
+
     $retArray['startTag'] = "<$tag name='$value' class='$class'>";
     $retArray['value'] = OLIVText::_((string)$value); // textPlugin::getText($value,$header);
     $retArray['endTag'] = "</$tag>";
@@ -87,7 +88,7 @@ class textPlugin
 //------------------------------------------------------------------------------
 // get language text
 // include editor if edit mode and rights
-  static private function getText($value,$header="")
+/*  static private function getText($value,$header="")
   {
     global $_argv;
     
@@ -157,6 +158,21 @@ class textPlugin
     $o .= OLIVRoute::intern($oTemp,$options);
 
     return ($o);
+  }*/
+}
+
+
+
+class textEditPlugin
+{
+//------------------------------------------------------------------------------
+// render functions
+  static public function __callStatic($tag,$options)
+  {
+    $content = $options[0];
+    $value = $options[0]['template'];
+
+    return (textPlugin::tagString($tag,$value,$content));
   }
 }
 

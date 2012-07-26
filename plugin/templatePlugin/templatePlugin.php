@@ -118,4 +118,18 @@ class templatePlugin
   }
 }
 
+
+class templateEditPlugin
+{
+//------------------------------------------------------------------------------
+// render functions
+  static public function __callStatic($tag,$options)
+  {
+    $template = $options[0]['template'];
+    $content = $options[0]['content'];
+    $value = $options[0]['value'];
+
+    return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
+  }
+}
 ?>

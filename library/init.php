@@ -197,8 +197,16 @@ if (isset($_argv['action']))
   }
 }
 
+
 $_SESSION['user'] = $user;
 define('OLIV_USER',$_SESSION['user']);
+
+
+if (OLIVUser::superUser(OLIV_USER))
+  define('OLIV_SU',TRUE);
+else
+  define('OLIV_SU',FALSE);
+
 
 //echoall($_SESSION);
 

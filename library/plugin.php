@@ -50,21 +50,40 @@ class OLIVPlugin
   {
     global $_PLUGIN;
 
-// get render plugin if registered
-    $plugin = $_PLUGIN->$type->func->$func;
-
-// call function for tag
-    if ((string)$plugin)
+    if (isset($_PLUGIN->$type->func->$func))
     {
-      $pluginFunc = explode("::",(string)$plugin);
+  // get render plugin if registered
+      $plugin = $_PLUGIN->$type->func;
 
+      $pluginScript = (string)$plugin->$func->attributes()->script;
+      
+      $pluginCall = explode("::",(string)$plugin->$func->attributes()->class);
+      $pluginEditCall = explode("::",(string)$plugin->$func->attributes()->editClass);
+
+
+//------------------------------------------------------------------------------
+// check for rights to edit
+// and edit class
+      if (OLIVRight::w($options['template']) and $pluginEditCall[0])
+        $class = $pluginEditCall[0];
+      else
+        $class = $pluginCall[0];
+
+      $func = $pluginCall[1];
+
+
+//------------------------------------------------------------------------------
+// call render class for tag
 // load plugin script
-      OLIVCore::loadScript($pluginFunc[0] . ".php",OLIV_PLUGIN_PATH . $pluginFunc[0] . "/");
-      $class = $pluginFunc[0];
-      $func = $pluginFunc[1];
+      OLIVCore::loadScript($pluginScript . ".php",OLIV_PLUGIN_PATH . $pluginScript . "/");
 
+
+//echoall($options);
 // call script and return output
-      return ($class::$func($options));
+      if (class_exists($class))
+        return ($class::$func($options));
+      else
+        OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
     }
     else
       return (FALSE);
@@ -104,12 +123,10 @@ class OLIVPlugin
             else
             {
               $func = $xml->$type->func;
+
               foreach ($func->children() as $entry)
               {
-                $func = (string)$entry->getName();
-
-                $_PLUGIN->$type->func->$func = (string)$entry;
-                $_PLUGIN->$type->func->$func->attributes()->script = (string)$entry->attributes()->script;
+                olivxml_insert($_PLUGIN->$type->func,$entry);
               }
             }
           }

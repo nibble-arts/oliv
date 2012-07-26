@@ -104,6 +104,8 @@ class OLIVRender extends OLIVCore
         $areaName = (string)$entry->attributes()->id;
         $areaTag = $entry->getName();
 
+
+//TODO make repeat to plugin
 //------------------------------------------------------------------------------
 // repeat function detected
 /*        if ($repeat = (string)$entry->attributes()->repeat)
@@ -172,13 +174,7 @@ class OLIVRender extends OLIVCore
           }
         }
 
-//------------------------------------------------------------------------------
 
-
-
-
-
-//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // start tag
 // get plugin output
@@ -193,9 +189,33 @@ class OLIVRender extends OLIVCore
           $pluginArray['value'] = $value;
         }
 
+
 //------------------------------------------------------------------------------
 // start tag sequenz
         $o .= $pluginArray['startTag'];
+
+
+  //------------------------------------------------------------------------------
+  // call module
+        if ($mod)
+        {
+//echoall($mod);
+//echoall($areaContent);
+          if ($areaContent)
+          {
+            $outputObj = OLIVRender::callScript($areaContent); // create output string from module
+
+  // supress tag value which is module parameter
+            $pluginArray['value'] = "";
+
+  //TODO
+  // make syntax check of module output
+    				$o .= $outputObj->o;
+          }
+  			}
+//------------------------------------------------------------------------------
+
+
 
     // check for recursion
         if (count($entry->children()))
@@ -217,25 +237,6 @@ class OLIVRender extends OLIVCore
 
           $o .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
         }
-
-
-//------------------------------------------------------------------------------
-// call module
-        if ($mod)
-        {
-//echoall($mod);
-//echoall($areaContent);
-          if ($areaContent)
-          {
-            $outputObj = OLIVRender::callScript($areaContent); // create output string from module
-
-//TODO
-// make syntax check of module output
-    				$o .= $outputObj->o;
-          }
-  			}
-//------------------------------------------------------------------------------
-
 
 
 // end tag sequenz
