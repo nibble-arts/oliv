@@ -104,6 +104,7 @@ class textEditPlugin
 		  );
 
 			$tagArray['url'] = $_argv['url'];
+			$tagArray['title'] = OLIVText::_("edit_text");
       $tagArray['val'] = OLIVText::_("edit") . "/$value";
       $tagArray['value'] = $value;
 		}

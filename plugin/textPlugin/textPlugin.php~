@@ -76,6 +76,7 @@ class textEditPlugin
 		}
 
 
+//TODO get information from article for saving
 //------------------------------------------------------------------------------
 // call editor
     if ($partName == $value)
@@ -102,9 +103,10 @@ class textEditPlugin
 		    "val" => OLIVText::_("edit") . "/$value",
 		  );
 
-		  $editUrl = OLIVRoute::url(OLIV_LANG,$urlOptions);
-
-			$tagArray['value'] = OLIVRoute::intern($tagArray['value'],$urlOptions);
+			$tagArray['url'] = $_argv['url'];
+			$tagArray['title'] = OLIVText::_("edit");
+      $tagArray['val'] = OLIVText::_("edit") . "/$value";
+      $tagArray['value'] = $value;
 		}
 
 		return ($tagArray);

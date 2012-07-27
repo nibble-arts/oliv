@@ -88,12 +88,14 @@ class OLIVRender extends OLIVCore
 
     if ($template)
     {
-      // get template name
+// get template name
 //      $templateName = (string)$template->attributes()->name;
 
-  // loop over children
+
+// loop over children
       foreach($template->children() as $entry)
       {
+      	$tempO = "";
         $style = "";
         $class = "";
         $script = "";
@@ -118,34 +120,39 @@ class OLIVRender extends OLIVCore
         {
           $areaContent = $content->$areaName;
           $value = (string)$areaContent;
-          $contentName = $content->$areaName->getName();
+          $contentName = $areaContent->getName();
 
 
 // area present in content definition
           if (($areaName == $contentName))
           {
-          
-            
+
 
 //------------------------------------------------------------------------------
 // loop over multiple content
-            if (count($content->$areaName) > 1)
+            if (count($areaContent) > 1)
             {
-              foreach ($content->$areaName as $entry)
+              foreach ($areaContent as $contentEntry)
               {
-                $o .= OLIVRender::template($template,$entry);
+					// insert area name
+              	$contentEntry->$areaName = (string)$contentEntry;
+              	
+              	$tempXml = new simpleXmlElement("<temp></temp>");
+              	olivxml_insert($tempXml,$entry);
+
+                $tempO .= OLIVRender::_template($tempXml,$contentEntry);
               }
-              return($o); // end rendering -> supresses single output outside of loop
+              return($tempO); // end rendering -> supresses single output outside of loop
             }
 
 
 //------------------------------------------------------------------------------
 // script and module call only from content possible
-            if (isset($content->$areaName))
+            if (isset($areaContent))
             {
   // get module script call
-              if (isset($content->$areaName->attributes()->mod))
-                $mod = (string)$content->$areaName->attributes()->mod; // add module
+              if (isset($areaContent->attributes()->mod))
+                $mod = (string)$areaContent->attributes()->mod; // add module
   
   
 //TODO insert content parameters in template
@@ -177,15 +184,13 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 // start tag sequenz
-        $o .= $pluginArray['startTag'];
+        $tempO .= $pluginArray['startTag'];
 
 
 //------------------------------------------------------------------------------
 // call module
         if ($mod)
         {
-//echoall($mod);
-//echoall($areaContent);
           if ($areaContent)
           {
             $outputObj = OLIVRender::callScript($areaContent); // create output string from module
@@ -195,20 +200,21 @@ class OLIVRender extends OLIVCore
 
   //TODO
   // make syntax check of module output
-    				$o .= $outputObj->o;
+    				$tempO .= $outputObj->o;
           }
   			}
 //------------------------------------------------------------------------------
 
 
 
-    // check for recursion
+// check for recursion
         if (count($entry->children()))
-          $o .= OLIVRender::_template($entry,$content);
+          $tempO .= OLIVRender::_template($entry,$content);
 
-    // output content directly as text
+
+// output content directly as text
         else
-          $o .= OLIVText::_($pluginArray['value']);
+          $tempO .= OLIVText::_($pluginArray['value']);
 
 
 //------------------------------------------------------------------------------
@@ -216,41 +222,42 @@ class OLIVRender extends OLIVCore
         if (OLIV_TEMPLATE_EDIT)
         {
           if (OLIV_TEMPLATE_MARK)
-            $o .= "<div id='oliv_markbox'>";
+            $tempO .= "<div id='oliv_markbox'>";
           else
-            $o .= "<div id='oliv_editbox'>";
+            $tempO .= "<div id='oliv_editbox'>";
 
-          $o .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
+          $tempO .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
         }
 
 
 // end tag sequenz
-        $o .= $pluginArray['endTag'];
+        $tempO .= $pluginArray['endTag'];
 //------------------------------------------------------------------------------
 
   
 
 //------------------------------------------------------------------------------
 // create link on div
+
+
         if (array_key_exists('url',$pluginArray))
         {
           $url = $pluginArray['url'];
-          $paramArray = array("id" => $areaName);
+          $paramArray['id'] = $areaName;
 
           if (array_key_exists('val',$pluginArray))
             $val = $pluginArray['val'];
 
           if (array_key_exists('title',$pluginArray))
-            array_push($paramArray,$pluginArray['title']);
+            $paramArray['title'] = $pluginArray['title'];
           
 
-//          $tmp = OLIVRoute::intern($pluginArray['value'],array("url" => $url,"param" => $paramArray));
-//echoall($tmp);
-        }
 //------------------------------------------------------------------------------
+// insert link
+          $tempO = OLIVRoute::intern($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
+        }
 
-
-
+				$o .= $tempO;
       }
 
       return ($o);

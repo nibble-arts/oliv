@@ -50,6 +50,7 @@ class OLIVPlugin
   {
     global $_PLUGIN;
 
+
     if (isset($_PLUGIN->$type->func->$func))
     {
   // get render plugin if registered
@@ -61,6 +62,7 @@ class OLIVPlugin
       $pluginEditCall = explode("::",(string)$plugin->$func->attributes()->editClass);
 
 
+//TODO check content edit flag too
 //------------------------------------------------------------------------------
 // check for rights to edit
 // and edit class
@@ -71,6 +73,7 @@ class OLIVPlugin
 
       $func = $pluginCall[1];
 
+
 //------------------------------------------------------------------------------
 // call render class for tag
 // load plugin script
@@ -80,6 +83,9 @@ class OLIVPlugin
 // call script and return output
       if (class_exists($class))
         return ($class::$func($options));
+
+
+// error class not found
       else
         OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
     }

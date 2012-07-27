@@ -119,11 +119,6 @@ class OLIVText extends OLIVCore
     if (is_array($langText))
       $_TEXT = array_replace_recursive($_TEXT,$langText);
 
-
-// default language
-//    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText($default_language,$path,$file));
-// selected language
-//    $_TEXT = OLIVText::mergeArray($_TEXT,OLIVText::loadText(OLIV_LANG,$path,$file));
   }
   
   
@@ -223,7 +218,7 @@ class OLIVText extends OLIVCore
     }
     
     $fileName = $lang . "." . $fileName . ".ini";; // add language prefix
-    $filePath = $path . $lang . "/" . $fileName;
+    $filePath = $path . $fileName;
 
 // load if file exists
     if (sessionfile_exists($filePath))

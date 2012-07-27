@@ -83,6 +83,9 @@ class OLIVPlugin
 // call script and return output
       if (class_exists($class))
         return ($class::$func($options));
+
+
+// error class not found
       else
         OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
     }

@@ -38,35 +38,114 @@ class templatePlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
-    $value = $options[0];
-    $param = $options[1];
-
-    return (templatePlugin::tagString($tag,$value,$param));
+    $template = $options[0]['template'];
+    $content = $options[0]['content'];
+    $value = $options[0]['value'];
+echoall($tag);
+    return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
   }
-
-
-
-
 
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function tagString($tag,$value,$param)
+  static private function startTag($tag,$template,$content)
   {
-    $paramString = "";
-    foreach ($param->attributes() as $entry)
-    {
-      $key = (string)$entry->getName();
-      $value = (string)$entry;
-      $paramString = "$key='$value' ";
-    }
-echoall($tag);
-    $o = "<$tag name='$value' $paramString>";
-      $o .= "*$tag";
-    $o .= "</$tag>";
+    $templateArray = array();
+    $retString = "";
 
-    return ($o);
+    $paramArray = templatePlugin::getParamArray($template);
+
+//TODO
+// insert also content parameters to template
+//echoall($content);
+
+  // combine parameters from array to tag string
+    foreach ($paramArray as $key => $value)
+    {
+        $retString .= "$key='$value' ";
+    }
+
+    return ("<$tag $retString>"); //name='$tag' 
+ }
+
+
+//------------------------------------------------------------------------------
+// create parameter string for tag
+  static private function getParamArray($param)
+  {
+    $paramArray = array();
+
+
+// loop over parameters
+    if ($param->attributes())
+    {
+      foreach ($param->attributes() as $entry)
+      {
+        $key = (string)$entry->getName();
+        $value = (string)$entry;
+        
+        $newParam = templatePlugin::parse($key,$value);
+
+        $newKey = key($newParam);
+        $newValue = $newParam[$newKey];
+
+
+    // add parameter to existing key
+        if (array_key_exists($newKey,$paramArray))
+          $paramArray[$newKey] .= $newValue;
+        else
+    // add new parameter
+          $paramArray = array_merge ($paramArray,$newParam);
+      }
+    }
+
+    return ($paramArray);
+  }
+
+
+//------------------------------------------------------------------------------
+// parse tag parameters
+// insert content background image
+  static private function parse($key,$value)
+  {
+    switch ($key)
+    {
+// use image class for background-image
+      case 'background-image':
+    		if ($background_image = OLIVImage::_($value))
+    			$paramArray['style'] = "background-image:url($background_image);";
+        break;
+
+// set url parameters for link
+      case 'url':
+        $paramArray['url'] = $value;
+        break;
+      
+      case 'title':
+        $paramArray['title'] = OLIVText::_($value);
+        break;
+
+// set normal value
+      default:
+  			$paramArray[$key] = $value;;
+    }
+
+    return ($paramArray);
   }
 }
 
+
+class templateEditPlugin
+{
+//------------------------------------------------------------------------------
+// render functions
+  static public function __callStatic($tag,$options)
+  {
+    $template = $options[0]['template'];
+    $content = $options[0]['content'];
+    $value = $options[0]['value'];
+
+    return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
+  }
+}
 ?>

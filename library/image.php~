@@ -228,8 +228,7 @@ function img_lang_exists($path,$image,$lang)
   {
     $langPath = $path . $lang . "/";
     $langImage = $lang . "." . $image;
-
-
+echoall($langPath);
 		// language version found
 		if (sessionfile_exists($langPath . $langImage))
 		  return($langPath . $langImage);
