@@ -50,6 +50,7 @@ class OLIVPlugin
   {
     global $_PLUGIN;
 
+
     if (isset($_PLUGIN->$type->func->$func))
     {
   // get render plugin if registered
@@ -61,6 +62,7 @@ class OLIVPlugin
       $pluginEditCall = explode("::",(string)$plugin->$func->attributes()->editClass);
 
 
+//TODO check content edit flag too
 //------------------------------------------------------------------------------
 // check for rights to edit
 // and edit class

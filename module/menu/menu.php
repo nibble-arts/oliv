@@ -35,111 +35,99 @@ class menu extends OLIVCore
 {
 	var $o; // output string
   var $menuXml;
+  var $template;
+  var $templateName;
 
   function __construct($header)
   {
     global $_argv;
     $bg_img = "";
     
-    // load menu items
+
+// load menu items
     $menuName = (string)$header;
 		$this->menuXml = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/$menuName.xml");
 
+
     // load menu template
-    $templateName = (string)$this->menuXml->attributes()->template;
-    $template = OLIVModule::load_template($header,$templateName);
-
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-// process menu content
-
-// create temporary xml
-    $tempXml = new simpleXmlElement("<$menuName></$menuName>");
-    foreach ($this->menuXml->attributes() as $key => $val)
-    {
-      $tempXml->addAttribute($key,$val);
-    }
-
-//print_r($tempXml);
-//------------------------------------------------------------------------------
-// loop children
-    $x = 0;
-    foreach($this->menuXml->children() as $entry)
-    {
-      // set style for aktive / inaktive
-      $area = (string)$entry->getName(); // count menu_items
-
-//print_r($entry->getName());
-      $url = $entry->attributes()->url;
-      $img = $entry->attributes()->img;
-      $background_img = (string)$entry->attributes()->background_image;
-
-// check if right to display menuItem
-      if (OLIVRight::r($entry))
-      {
-
-//------------------------------------------------------------------------------
-// item aktive
-        if ($_argv['url'] == $url)
-        {
-          if ($background_img)
-            $bg_img = $background_img;
-          $class = "menu_{$menuName}_active";
-        }
-  //------------------------------------------------------------------------------
-  // item inactive
-        else
-        {
-          if ($background_img)
-            $bg_img = $background_img . "_inactive";
-          // add class for active item
-          $class = "menu_{$menuName}_inactive";
-        }
-  // set attributes for menu items
-        switch ($area)
-        {
-          case 'menu_item':
-    // change if image is inactive
-            if ($bg_img)
-            {
-              $this->menuXml->menu_item[$x]['background_image'] = $bg_img;
-            }
-
-    // add class for inactive item
-            if ($class) $this->menuXml->menu_item[$x]->addAttribute("class",$class);
-  
-    // change item node name
-            olivxml_insert($tempXml,olivxml_changeNode("menu_item_{$templateName}",$this->menuXml->menu_item[$x]));
-            $x++;
-            break;
-          
-          case 'menu_background':
-            olivxml_insert($tempXml,olivxml_changeNode("menu_background_{$templateName}",$entry));
-            break;
-        }
-      }
-    }
-//print_r($tempXml);
-    $this->menuXml = $tempXml;
-//print_r($this->menuXml);
-//print_r($template->asXML());
+    $this->templateName = (string)$this->menuXml->attributes()->template;
+    $this->template = OLIVModule::load_template($header,$this->templateName);
 
 
-// render menu template
-    	$this->o .= OLIVRender::template($template,$this->menuXml);
+// parse template with menu content for repeating entries
+//    $this->_repeat($this->template);
+
+//echoall($this->template);
+//echoall($this->menuXml);
+
+
+// call renderer
+    	$this->o .= OLIVRender::template($this->template,$this->menuXml);
   }
 
 
+/*
+//------------------------------------------------------------------------------
+// loop trough template recursive and find repeat parameters
+  private function _repeat(&$template)
+  {
+    $templateName = $template->getName();
 
 
+    foreach($template as $entry)
+    {
+      $entryArray = array();
 
 
+    // repeat parameter found
+      $id = (string)$entry->attributes()->id;
+      $menuEntries = $this->menuXml->$id;
+
+
+  // call recursion
+      if (count($entry->children()))
+      {
+        $this->_repeat($entry);
+      }
+      elseif ($id == (string)$menuEntries->getName())
+      {
+    // loop if more than one item
+        if (count($menuEntries) > 1)
+        {
+
+//TODO change index of first entry => 0
+          
+          
+          for ($x = 1;$x < count($menuEntries); $x++)
+          {
+      // insert entry in array
+            $tag = $entry->getName();
+            $entryXml = new simpleXmlElement("<$tag id='{$id}'></$tag>");
+
+            array_push($entryArray,$entryXml);
+          }
+        }
+      }
+    }
+
+// insert new items in template
+    foreach($entryArray as $entry)
+    {
+      olivxml_insert($template,$entry);
+    }
+
+    return $entryArray;
+  }
+*/
+
+
+//TODO move to menu plugin
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // render item
 // $area ... name of area to be rendered in
 // $item ... simpleXmlElement of content
-  public function renderItem($area,$item)
+/*  public function renderItem($area,$item)
   {
     global $_argv;
 //print_r($item);
@@ -169,7 +157,106 @@ class menu extends OLIVCore
     $o .= OLIVRoute::intern($text,$option);
 
     return ($o);
-  }
+  }*/
+
+
 }
 
+
+
+
+//echoall($this->template);
+//echoall($this->menuXml);
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+// process menu content
+
+//TODO create menu content from template and menuXml
+// id ... menu_item + template name
+// look for repeat parameter for row / colum
+
+
+// create temporary menu xml
+/*    $tempMenuXml = new simpleXmlElement("<$menuName></$menuName>");
+    foreach ($this->menuXml->attributes() as $key => $val)
+    {
+      $tempMenuXml->addAttribute($key,$val);
+    }
+
+
+// create temporary template xml
+    $tempTemplateXml = new simpleXmlElement("<template></template>");
+
+
+
+//------------------------------------------------------------------------------
+// loop menu children
+    $x = 0;
+    foreach($this->menuXml->children() as $entry)
+    {
+      // set style for aktive / inaktive
+      $area = (string)$entry->getName(); // count menu_items
+
+      $url = (string)$entry->attributes()->url;
+      $img = (string)$entry->attributes()->img;
+      $background_img = (string)$entry->attributes()->background_image;
+
+
+// check if right to display menuItem
+      if (OLIVRight::r($entry))
+      {
+//------------------------------------------------------------------------------
+// item aktive
+        if ($_argv['url'] == $url)
+        {
+    // set background image and class for aktive display
+          if ($background_img)
+            $bg_img = $background_img;
+          $class = "menu_{$menuName}_active";
+        }
+
+
+//------------------------------------------------------------------------------
+// item inactive
+        else
+        {
+    // set background image and class for inaktive display
+          if ($background_img)
+            $bg_img = $background_img . "_inactive";
+          $class = "menu_{$menuName}_inactive";
+        }
+
+
+// set attributes for menu items
+        switch ($area)
+        {
+          case 'menu_item':
+    // change if image is inactive
+            if ($bg_img)
+            {
+              $this->menuXml->menu_item[$x]['background_image'] = $bg_img;
+            }
+
+    // add class for inactive item
+            if ($class) $this->menuXml->menu_item[$x]->addAttribute("class",$class);
+  
+
+    // change item node name
+            olivxml_insert($tempMenuXml,olivxml_changeNode("menu_item_{$this->templateName}",$this->menuXml->menu_item[$x]));
+            $x++;
+            break;
+          
+          case 'menu_background':
+            olivxml_insert($tempMenuXml,olivxml_changeNode("menu_background_{$this->templateName}",$entry));
+            break;
+        }
+      }
+    }
+*/
+//echoall($tempMenuXml);
+//    $this->menuXml = $tempMenuXml;
+//echoall($this->menuXml);
+//echoall($this->template);
+
+// render menu template
 ?>

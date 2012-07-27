@@ -103,9 +103,9 @@ class textEditPlugin
 		    "val" => OLIVText::_("edit") . "/$value",
 		  );
 
-		  $editUrl = OLIVRoute::url(OLIV_LANG,$urlOptions);
-
-			$tagArray['value'] = OLIVRoute::intern($tagArray['value'],$urlOptions);
+			$tagArray['url'] = $_argv['url'];
+      $tagArray['val'] = OLIVText::_("edit") . "/$value";
+      $tagArray['value'] = $value;
 		}
 
 		return ($tagArray);

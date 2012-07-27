@@ -53,15 +53,16 @@ class templatePlugin
     $templateArray = array();
     $retString = "";
 
-    $templateArray = templatePlugin::getParamArray($template);
+    $paramArray = templatePlugin::getParamArray($template);
+
 //TODO
 // insert also content parameters to template
 //echoall($content);
 
   // combine parameters from array to tag string
-    foreach ($templateArray as $key => $value)
+    foreach ($paramArray as $key => $value)
     {
-      $retString .= "$key='$value' ";
+        $retString .= "$key='$value' ";
     }
 
     return ("<$tag $retString>"); //name='$tag' 
@@ -74,6 +75,8 @@ class templatePlugin
   {
     $paramArray = array();
 
+
+// loop over parameters
     if ($param->attributes())
     {
       foreach ($param->attributes() as $entry)
@@ -81,9 +84,11 @@ class templatePlugin
         $key = (string)$entry->getName();
         $value = (string)$entry;
         
-        $newParam = templatePlugin::parse($key,$value);#
+        $newParam = templatePlugin::parse($key,$value);
+
         $newKey = key($newParam);
         $newValue = $newParam[$newKey];
+
 
     // add parameter to existing key
         if (array_key_exists($newKey,$paramArray))
@@ -93,6 +98,7 @@ class templatePlugin
           $paramArray = array_merge ($paramArray,$newParam);
       }
     }
+
     return ($paramArray);
   }
 
@@ -110,6 +116,16 @@ class templatePlugin
     			$paramArray['style'] = "background-image:url($background_image);";
         break;
 
+// set url parameters for link
+      case 'url':
+        $paramArray['url'] = $value;
+        break;
+      
+      case 'title':
+        $paramArray['title'] = OLIVText::_($value);
+        break;
+
+// set normal value
       default:
   			$paramArray[$key] = $value;;
     }

@@ -4,6 +4,7 @@
   <render>
     <func>
       <div script='templatePlugin' class='templatePlugin::div' />
+      <span script='templatePlugin' class='templatePlugin::div' />
       <background_image script='templatePlugin' class='templatePlugin::background_image' />
     </func>
   </render>

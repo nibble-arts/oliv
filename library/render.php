@@ -86,7 +86,6 @@ class OLIVRender extends OLIVCore
     $value = "";
     $areaContent = "";
 
-
     if ($template)
     {
       // get template name
@@ -105,41 +104,10 @@ class OLIVRender extends OLIVCore
         $areaTag = $entry->getName();
 
 
-//TODO make repeat to plugin
-//------------------------------------------------------------------------------
-// repeat function detected
-/*        if ($repeat = (string)$entry->attributes()->repeat)
-        {
-          // if area information in content loop
-          $part = $content->$areaName;
 
-          if (count($part))
-          {
-            $entry->attributes()->repeat = ""; // deactivate repeat function for recursion
-            
-						$tempTempl = new simpleXmlElement("<template></template>");
-						olivxml_insert($tempTempl,$entry); // insert template part
-
-            // loop over content entries
-            foreach ($part as $element)
-            {
-							$val = (string)$element;
-
-							$tempCont = new simpleXmlElement("<content></content>");
-							olivxml_insert($tempCont,$element); // insert template part
-
-              $o .= OLIVRender::_template($tempTempl,$tempCont);
-              // print_r($entry);
-            }
-          }
-					break; // end rendering
-        }
-
-
-    // get information for link
-        $link = (string)$entry->attributes()->link;
-        $title = (string)$entry->attributes()->title;
-*/
+//echo "<hr>";
+//echoall($template);
+//echoall($content);
 
 
 //------------------------------------------------------------------------------
@@ -150,13 +118,29 @@ class OLIVRender extends OLIVCore
         {
           $areaContent = $content->$areaName;
           $value = (string)$areaContent;
-          $contentName = (string)$content->$areaName->getName();
+          $contentName = $content->$areaName->getName();
 
 
 // area present in content definition
           if (($areaName == $contentName))
           {
-  // script and module call only from content possible
+          
+            
+
+//------------------------------------------------------------------------------
+// loop over multiple content
+            if (count($content->$areaName) > 1)
+            {
+              foreach ($content->$areaName as $entry)
+              {
+                $o .= OLIVRender::template($template,$entry);
+              }
+              return($o); // end rendering -> supresses single output outside of loop
+            }
+
+
+//------------------------------------------------------------------------------
+// script and module call only from content possible
             if (isset($content->$areaName))
             {
   // get module script call
@@ -180,12 +164,13 @@ class OLIVRender extends OLIVCore
 // get plugin output
         $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $areaContent,"value" => $value));
 
-    // if no polugin found
-    // output default div clause
+
+// if no plugin found
+// output default div clause
         if (!$pluginArray)
         {
-          $pluginArray['startTag'] = "<div id='$areaTag'>";
-          $pluginArray['endTag'] = "</div>";
+          $pluginArray['startTag'] = "<$areaTag>";
+          $pluginArray['endTag'] = "</$areaTag>";
           $pluginArray['value'] = $value;
         }
 
@@ -195,8 +180,8 @@ class OLIVRender extends OLIVCore
         $o .= $pluginArray['startTag'];
 
 
-  //------------------------------------------------------------------------------
-  // call module
+//------------------------------------------------------------------------------
+// call module
         if ($mod)
         {
 //echoall($mod);
@@ -243,26 +228,31 @@ class OLIVRender extends OLIVCore
         $o .= $pluginArray['endTag'];
 //------------------------------------------------------------------------------
 
-
-
-//
-//------------------------------------------------------------------------------
-/*
-// end of div tag
-        $o .= "</{$areaTag}>";
   
 
 //------------------------------------------------------------------------------
 // create link on div
-        if ($link)
+        if (array_key_exists('url',$pluginArray))
         {
-          $o .= OLIVRoute::intern("",array("url" => $link,"param" => array("id" => $areaName,"title" => $title)));
+          $url = $pluginArray['url'];
+          $paramArray = array("id" => $areaName);
+
+          if (array_key_exists('val',$pluginArray))
+            $val = $pluginArray['val'];
+
+          if (array_key_exists('title',$pluginArray))
+            array_push($paramArray,$pluginArray['title']);
+          
+
+//          $tmp = OLIVRoute::intern($pluginArray['value'],array("url" => $url,"param" => $paramArray));
+//echoall($tmp);
         }
-*/
 //------------------------------------------------------------------------------
-// end not table rendering
-//        }
+
+
+
       }
+
       return ($o);
     }
     else
