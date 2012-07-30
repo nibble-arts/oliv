@@ -4,5 +4,5 @@
   <masterpage>common</masterpage>
   <oliv_header mod='header' />
   <oliv_content mod='article'>documentation</oliv_content>
-  <oliv_left1 mod='menu'>index</oliv_left1>
+  <oliv_left1 mod='menu'>main</oliv_left1>
 </content>

@@ -56,8 +56,9 @@ class OLIVRoute extends OLIVCore
   public function route()
   {
     global $_argv;
-    
+
     if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
+
 
 		$val = $this->parseUrl($_argv['url']); // extract values from url
  		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
@@ -237,16 +238,22 @@ class OLIVRoute extends OLIVCore
   }
 
 
+// translate pageName to url id
   static public function getUrl($name)
   {
     global $_PAGES;
 
-    foreach($_PAGES as $entry)
+
+    foreach($_PAGES as $key => $entry)
     {
-      if (array_key_exists('NAME',$entry))
+      if(array_key_exists("FRIENDLY_NAME",$entry['text']))
       {
-        if ($entry['text']['NAME']['text'] == $name)
+        $friendlyName = $entry['text']['FRIENDLY_NAME']['text'];
+
+        if ($friendlyName == $name)
+        {
           return ($entry['text']['ID']['text']);
+        }
       }
     }
   }
@@ -260,11 +267,11 @@ class OLIVRoute extends OLIVCore
 // get information from content.xml for this purpose
   static public function parseUrl(&$url)
   {
-
     $retArray = array();
     $paramArray = array();
     $tempArray = array();
     
+
 		$urlArray = explode("/",cut_slash($url));
 
     // search for url matches

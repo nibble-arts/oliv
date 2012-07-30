@@ -38,20 +38,31 @@ class menu extends OLIVCore
   var $template;
   var $templateName;
 
+
+//------------------------------------------------------------------------------
+// create menu
   function __construct($header)
   {
     global $_argv;
     $bg_img = "";
     
+//echoall($_argv);
+    
 
 // load menu items
     $menuName = (string)$header;
-		$this->menuXml = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/$menuName.xml");
+
+
+//		$this->menuXml = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/$menuName.xml");
+
+		$menu = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/menu.xml");
+    $this->menuXml = menu::parse($menu->$menuName,$_argv['url']);
 
 
     // load menu template
-    $this->templateName = (string)$this->menuXml->attributes()->template;
+    $this->templateName = (string)$menu->$menuName->attributes()->template;
     $this->template = OLIVModule::load_template($header,$this->templateName);
+//echoall($this->template);
 
 
 // parse template with menu content for repeating entries
@@ -64,6 +75,58 @@ class menu extends OLIVCore
 // call renderer
     	$this->o .= OLIVRender::template($this->template,$this->menuXml);
   }
+
+
+//------------------------------------------------------------------------------
+// parse menu file
+// create content xml-file for renderer
+  function parse($menu,$url)
+  {
+    $menuXml = new simpleXmlElement("<menu></menu>");
+//echoall($menu);
+    $templateName = (string)$menu->attributes()->template;
+
+
+    if ($menu)
+    {
+      foreach ($menu->children() as $entry)
+      {
+        $menuName = $entry->getName();
+  // Page Name
+        $itemName = OLIVRoute::translatePageName(OLIV_LANG,$menuName);
+
+
+//TODO
+// sub menus found
+// must be inside of <menu_item> tag
+// render recursive
+        if(count($entry))
+        {
+//          echoall("submenus found");
+        }
+
+
+// aktive menuitem found
+        if ($menuName == $url)
+          $active = "menu_side_activ";
+        else
+          $active = "menu_side_inactive";
+          
+
+        $tempXml = new simpleXmlElement("<menu_item_{$templateName} id='$menuName' url='$menuName' class='$active'>$itemName</menu_item_{$templateName}>");
+        olivxml_insert($menuXml,$tempXml);
+    // set menu item
+        
+
+
+
+      }
+      return ($menuXml);
+    }
+    else
+      OLIVError::fire("menu::parse - no menu defined");
+  }
+
 
 
 /*
