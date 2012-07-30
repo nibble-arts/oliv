@@ -29,7 +29,6 @@
 
 defined('OLIVCORE') or die ("render.php - OLIVCore not present");
 
-$_PAGES;
 
 class OLIVPage
 {
@@ -38,7 +37,6 @@ class OLIVPage
   // constructor
   public function __construct()
   {
-    $this->scan(OLIV_LANG);
     $this->structure = new simpleXmlElement("<page></page>"); // create empty page
   }
   
@@ -104,36 +102,5 @@ class OLIVPage
   public function structure()
   {
     return ($this->structure);
-  }
-
-
-//------------------------------------------------------------------------------
-// get list of existing pages
-  public function scan($lang)
-  {
-		global $_PAGES;
-
-		$_PAGES = array();
-
-    $path = OLIV_PAGE_PATH;
-    if ($pageDir = sessionopendir ($path))
-    {
-
-      while ($file = readdir($pageDir))
-      {
-        if (sessionis_dir($path . $file) and $file != "." and $file != "..")
-        {
-          // get define.xml
-          if (sessionfile_exists($path . $file . "/$file.xml"))
-          {
-            $xml = sessionxml_load_file($path . $file . "/$file.xml");
-            $_PAGES['$file'] = $xml;
-          }
-        }
-      }
-      closedir ($pageDir);
-    }
-    else
-      OLIVError::fire("page::scan - directory $path not found");
   }
 }

@@ -98,30 +98,9 @@ class OLIVText extends OLIVCore
   }
 
 
-// return printf
 
 
 
-//-------------------------------------------------------------------------------------------
-// load text file from path
-  static public function load($path,$file,$default_language = OLIV_DEFAULT_LANG)
-  {
-    global $_TEXT;
-    
-    if (!is_array($_TEXT)) $_TEXT = array();
-    
-    $defaultText = OLIVText::loadText($default_language,$path,$file);
-    $langText = OLIVText::loadText(OLIV_LANG,$path,$file);
-
-    if (is_array($defaultText))
-      $_TEXT = array_merge_recursive($_TEXT,$defaultText);
-
-    if (is_array($langText))
-      $_TEXT = array_replace_recursive($_TEXT,$langText);
-
-  }
-  
-  
 //-------------------------------------------------------------------------------------------
 // fetch namespace to array
   static public function fetchNameSpace($nameSpace)
@@ -207,6 +186,35 @@ class OLIVText extends OLIVCore
   }
 
 
+//-------------------------------------------------------------------------------------------
+// load text file from path
+// to global _TEXT
+  static public function load($path,$file,$default_language = OLIV_DEFAULT_LANG)
+  {
+    global $_TEXT;
+
+    $_TEXT = OLIVText::_load($_TEXT,$path,$file,$default_language);
+  }
+  
+
+// load text from file and add to $textArray
+  static public function _load($textArray,$path,$file,$default_language = OLIV_DEFAULT_LANG)
+  {
+    if (!is_array($textArray)) $textArray = array();
+    
+    $defaultText = OLIVText::loadText($default_language,$path,$file);
+    $langText = OLIVText::loadText(OLIV_LANG,$path,$file);
+
+    if (is_array($defaultText))
+      $textArray = array_merge_recursive($textArray,$defaultText);
+
+    if (is_array($langText))
+      $textArray = array_replace_recursive($textArray,$langText);
+
+    return ($textArray);
+  }
+  
+  
 //-------------------------------------------------------------------------------------------
 // load text array
   static private function loadText($lang,$path,$fileName="")

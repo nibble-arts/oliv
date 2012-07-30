@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<content id='admin'>
+  <masterpage>common</masterpage>
+  <oliv_header mod='header' />
+  <oliv_content mod='article'>admin</oliv_content>
+  <oliv_left1 mod='menu'>index</oliv_left1>
+</content>

@@ -29,7 +29,8 @@
 
 defined('OLIVCORE') or die ("route.php - OLIVCore not present");
 
-global $_ROUTE;
+$_PAGES = array();
+
 
 
 //TODO
@@ -40,12 +41,9 @@ class OLIVRoute extends OLIVCore
 
   public function __construct()
   {
-    global $_ROUTE;
+    global $_PAGES;
 
-    $path = OLIV_PAGE_PATH . "content.xml";
-
-    $_ROUTE = sessionxml_load_file($path);
-
+    $this->scan(OLIV_LANG);
     $this->route();
   }
 
@@ -58,7 +56,6 @@ class OLIVRoute extends OLIVCore
   public function route()
   {
     global $_argv;
-    global $_ROUTE;
     
     if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
 
@@ -146,7 +143,8 @@ class OLIVRoute extends OLIVCore
     $param = "";
     $class = "";
     $lang = "";
-    
+
+
     if (isset($options['url'])) $url = strtolower($options['url']);
     if (isset($options['val'])) $val = $options['val'];
     if (isset($options['param'])) $param = $options['param'];
@@ -233,15 +231,24 @@ class OLIVRoute extends OLIVCore
 // translate url to lang.pageName
   static public function translatePageName($lang,$url)
   {
-    global $_ROUTE;
-    return ((string)$_ROUTE->id->$url->$lang);
+    global $_PAGES;
+
+    return ($_PAGES[$url]['text']['FRIENDLY_NAME']['text']);
   }
 
 
   static public function getUrl($name)
   {
-    global $_ROUTE;
-    return ((string)$_ROUTE->name->$name);
+    global $_PAGES;
+
+    foreach($_PAGES as $entry)
+    {
+      if (array_key_exists('NAME',$entry))
+      {
+        if ($entry['text']['NAME']['text'] == $name)
+          return ($entry['text']['ID']['text']);
+      }
+    }
   }
 
 
@@ -253,7 +260,6 @@ class OLIVRoute extends OLIVCore
 // get information from content.xml for this purpose
   static public function parseUrl(&$url)
   {
-		global $_ROUTE;
 
     $retArray = array();
     $paramArray = array();
@@ -276,10 +282,41 @@ class OLIVRoute extends OLIVCore
     $url = implode("/",$retArray); // update url
     return (implode("/",$paramArray)); // return parameters
   }
-}
+
+
+//------------------------------------------------------------------------------
+// get list of existing pages
+  public function scan($lang)
+  {
+		global $_PAGES;
+
+    $path = OLIV_PAGE_PATH;
+    if ($pageDir = sessionopendir ($path))
+    {
+      while ($file = readdir($pageDir))
+      {
+        if (sessionis_dir($path . $file) and $file != "." and $file != "..")
+        {
+          // get define.xml
+          if (sessionfile_exists($path . $file . "/$file.xml"))
+          {
+            $xml = sessionxml_load_file($path . $file . "/$file.xml");
+            $pageText = OLIVText::_load("",$path . "$file/language/",$file);
+
+            $_PAGES[$file]['define'] = $xml;
+            $_PAGES[$file]['text'] = $pageText['PAGE'];
+          }
+        }
+      }
+      closedir ($pageDir);
+    }
+    else
+      OLIVError::fire("page::scan - directory $path not found");
+  }}
 
 
 
+//------------------------------------------------------------------------------
 // removes slash from start and end of string
 function cut_slash($url)
 {
