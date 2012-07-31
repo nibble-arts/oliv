@@ -56,14 +56,17 @@ class menu extends OLIVCore
 //		$this->menuXml = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/$menuName.xml");
 
 		$menu = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/menu.xml");
-    $this->menuXml = menu::parse($menu->$menuName,$_argv['url']);
 
 
     // load menu template
     $this->templateName = (string)$menu->$menuName->attributes()->template;
     $this->template = OLIVModule::load_template($header,$this->templateName);
+
+
+    $this->menuXml = $this->parse($menu->$menuName,$_argv['url']);
 //echoall($this->template);
 
+echoall($this->menuXml->asXML());
 
 // parse template with menu content for repeating entries
 //    $this->_repeat($this->template);
@@ -80,7 +83,7 @@ class menu extends OLIVCore
 //------------------------------------------------------------------------------
 // parse menu file
 // create content xml-file for renderer
-  function parse($menu,$url)
+  private function parse($menu,$url,$level = 0)
   {
     $menuXml = new simpleXmlElement("<menu></menu>");
 //echoall($menu);
@@ -91,36 +94,60 @@ class menu extends OLIVCore
     {
       foreach ($menu->children() as $entry)
       {
-        $menuName = $entry->getName();
-  // Page Name
-        $itemName = OLIVRoute::translatePageName(OLIV_LANG,$menuName);
-
-
-//TODO
-// sub menus found
-// must be inside of <menu_item> tag
-// render recursive
-        if(count($entry))
-        {
-//          echoall("submenus found");
-        }
+  // Page definition
+        $pageName = $entry->getName();
+        $itemName = OLIVRoute::translatePageName(OLIV_LANG,$pageName);
 
 
 // aktive menuitem found
-        if ($menuName == $url)
+        if ($pageName == $url)
           $active = "menu_side_activ";
         else
           $active = "menu_side_inactive";
           
 
-        $tempXml = new simpleXmlElement("<menu_item_{$templateName} id='$menuName' url='$menuName' class='$active'>$itemName</menu_item_{$templateName}>");
+//echo "<hr>";
+//echoall($pageName);
+        $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
+          id='$pageName'
+          url='$pageName'
+          class='$active'>
+            $level: $itemName
+          </menu_item_{$this->templateName}>");
+
+//        olivxml_insert($menuXml,$tempXml);
+
+//TODO
+// sub menus found
+// display when active
+        if(count($entry))
+        {
+//echoall("recursion $pageName");
+          $subXml = menu::parse($entry,$url,$level+1);
+//echoall("subXml : ");
+//echoall($subXml);
+//echoall("tempXml : ");
+//echoall($tempXml);
+//echoall("insert subXml into tempXml");
+          $menuName = "menu_item_" . $this->templateName;
+          olivxml_insert($tempXml->$menuName,$subXml);
+//echoall("tempXml : ");
+//echoall($tempXml);
+        }
+
+
+//echoall("tempXml : ");
+//echoall($tempXml);
         olivxml_insert($menuXml,$tempXml);
-    // set menu item
-        
-
-
-
+//echoall ("return");
+//echoall("menuXml : ");
+//echoall($menuXml);
+//echo "<hr>";
       }
+
+ 
+//echoall($tempXml);
+//echoall($menuXml->asXML());
       return ($menuXml);
     }
     else

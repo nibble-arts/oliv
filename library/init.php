@@ -176,7 +176,10 @@ define('OLIVENV','alive');
 //------------------------------------------------------------------------------
 // login state
 //   define USER for session
-$user = $_SESSION['user'];
+if (array_key_exists('user',$_SESSION))
+  $user = $_SESSION['user'];
+else
+  $user = $_SESSION['user'] = "";
 
 
 // change user login state    
@@ -198,10 +201,12 @@ if (isset($_argv['action']))
 }
 
 
+// set user status+
 $_SESSION['user'] = $user;
 define('OLIV_USER',$_SESSION['user']);
 
 
+// set superuser state
 if (OLIVUser::superUser(OLIV_USER))
   define('OLIV_SU',TRUE);
 else
