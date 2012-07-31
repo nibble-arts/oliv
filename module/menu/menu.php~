@@ -62,7 +62,7 @@ class menu extends OLIVCore
 
 
     $this->menuXml = $this->parse($menu->$menuName,$_argv['url']);
-
+echoall($this->menuXml->asXML());
 
 // call renderer
     	$this->o .= OLIVRender::template($this->template,$this->menuXml);

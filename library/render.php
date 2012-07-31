@@ -169,7 +169,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag
 // get plugin output
-        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $areaContent,"value" => $value));
+        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 
 
 // if no plugin found

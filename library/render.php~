@@ -169,6 +169,9 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag
 // get plugin output
+echo "<hr>";
+echoall($content);
+echoall($areaContent);
         $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $areaContent,"value" => $value));
 
 
@@ -239,7 +242,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // create link on div
 
-//echoall($pluginArray);
+
         if (array_key_exists('url',$pluginArray))
         {
           $url = $pluginArray['url'];
@@ -251,7 +254,7 @@ class OLIVRender extends OLIVCore
           if (array_key_exists('title',$pluginArray))
             $paramArray['title'] = $pluginArray['title'];
           
-echoall($paramArray);
+
 //------------------------------------------------------------------------------
 // insert link
           $tempO = OLIVRoute::intern($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));

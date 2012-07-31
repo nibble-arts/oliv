@@ -41,7 +41,7 @@ class templatePlugin
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
-echoall($tag);
+
     return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
   }
 
@@ -53,11 +53,13 @@ echoall($tag);
     $templateArray = array();
     $retString = "";
 
+// get template parameters
     $paramArray = templatePlugin::getParamArray($template);
 
 //TODO
 // insert also content parameters to template
-//echoall($content);
+		$contentParamArray = templatePlugin::getParamArray($content);
+
 
   // combine parameters from array to tag string
     foreach ($paramArray as $key => $value)
@@ -71,13 +73,10 @@ echoall($tag);
 
 //------------------------------------------------------------------------------
 // create parameter string for tag
-  static private function getParamArray($param)
+  static private function getParamArray($param,$paramArray = array())
   {
-    $paramArray = array();
-
-
 // loop over parameters
-    if ($param->attributes())
+    if ($param)
     {
       foreach ($param->attributes() as $entry)
       {

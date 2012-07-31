@@ -53,11 +53,13 @@ class templatePlugin
     $templateArray = array();
     $retString = "";
 
+// get template parameters
     $paramArray = templatePlugin::getParamArray($template);
 
 //TODO
 // insert also content parameters to template
-//echoall($content);
+		$paramArray = templatePlugin::getParamArray($content,$paramArray);
+
 
   // combine parameters from array to tag string
     foreach ($paramArray as $key => $value)
@@ -71,13 +73,10 @@ class templatePlugin
 
 //------------------------------------------------------------------------------
 // create parameter string for tag
-  static private function getParamArray($param)
+  static private function getParamArray($param,$paramArray = array())
   {
-    $paramArray = array();
-
-
 // loop over parameters
-    if ($param->attributes())
+    if ($param)
     {
       foreach ($param->attributes() as $entry)
       {
