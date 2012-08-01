@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<plugin>
+  <render>
+    <func>
+      <div script='templatePlugin' class='templatePlugin::div' />
+      <span script='templatePlugin' class='templatePlugin::span' />
+      <background_image script='templatePlugin' class='templatePlugin::background_image' />
+    </func>
+  </render>
+</plugin>

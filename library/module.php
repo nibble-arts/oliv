@@ -90,7 +90,7 @@ class OLIVModule
   
   
 	// get image path
-	public function getImagePath($name)
+	static public function getImagePath($name)
 	{
 		global $_MODULES;
 

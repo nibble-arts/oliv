@@ -1,0 +1,97 @@
+commit 7d2bedea29a06c2146371febaa90da046a48d25b
+Author: tom <thomas.winkler@iggmp.net>
+Date:   Wed Jul 25 10:24:43 2012 +0200
+
+    Signed-off-by: tom <thomas.winkler@iggmp.net>
+
+diff --git a/admin/template/default/default.css b/admin/template/default/default.css
+index 703ffca..7f05a4c 100644
+--- a/admin/template/default/default.css
++++ b/admin/template/default/default.css
+@@ -120,7 +120,7 @@ input {
+ }
+ 
+ .oliv_not_translated {
+-	background-color:yellow;
++	background-color:#ffd0d0;
+ }
+ 
+ /*----------------------------------------------------------------------------*/
+diff --git a/library/image.php b/library/image.php
+index bba0e03..0976317 100644
+--- a/library/image.php
++++ b/library/image.php
+@@ -38,6 +38,7 @@ class OLIVImage extends OLIVCore
+ 	public static function _($image,$lang = "")
+ 	{
+ 		global $_MODULES;
++
+     if ($image)
+     {
+ //------------------------------------------------------------------------------
+@@ -164,8 +165,7 @@ class OLIVImage extends OLIVCore
+ function img_exists($path,$image,$lang)
+ {
+   global $_imgType;
+-  
+-  $image = "";
++
+   $imgType = "";
+ 
+ // extract extension
+@@ -175,7 +175,7 @@ function img_exists($path,$image,$lang)
+    	$image = $parts[0];
+   if (isset($parts[1]))
+    	$imgType = $parts[1];
+-  
++
+ // extension found
+ 	if ($imgType)
+ 	{
+diff --git a/module/article/article.php b/module/article/article.php
+index 30ac3c2..1f088d7 100644
+--- a/module/article/article.php
++++ b/module/article/article.php
+@@ -172,6 +172,10 @@ class article extends OLIVCore
+         $key = (string)$entry->getName();
+         $value = (string)$entry;
+ 
++
++
++
++
+ //------------------------------------------------------------------------------
+ // get render plugin if registered
+         $plugin = $_PLUGIN->render->func->$key;
+@@ -184,10 +188,11 @@ class article extends OLIVCore
+ //echoall("call function $pluginFunc in plugin $pluginScript.php");
+ 
+           include_once (OLIV_CORE_PATH . OLIV_PLUGIN_PATH . $pluginScript . "/$pluginScript.php");
+-
+-          
+         }
+ 
++
++
++
+ //------------------------------------------------------------------------------
+ //TODO change all rendering to plugins
+ 
+@@ -219,7 +224,6 @@ class article extends OLIVCore
+ 						$lang = OLIVText::_($value,"lang");
+ 
+ 
+-
+ // call editor
+             if ($this->paramArray[0] == $value)
+             {
+@@ -245,7 +249,8 @@ class article extends OLIVCore
+                 // print language string if defined
+                 if ($value)
+ 								{
+-									if ($lang != OLIV_LANG)
++      // mark for no translation
++									if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
+ 										$class = "oliv_not_translated";
+ 									else
+ 										$class = "";								

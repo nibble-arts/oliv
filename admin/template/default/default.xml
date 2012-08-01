@@ -27,37 +27,37 @@
 
 
 <template name='default'>
-  <oliv_site background_image='oliv_leaves'>
-    <oliv_page>
-      <oliv_space />
+  <div id='oliv_site' background-image='oliv_leaves'>
+    <div id='oliv_page'>
+      <div id='oliv_space' />
 
-      <oliv_header>
-        <oliv_login />
-        <oliv_title />
-      </oliv_header>
+      <div id='oliv_header'>
+        <div id='oliv_login' />
+        <div id='oliv_title' />
+      </div>
   
-      <oliv_space />
+      <div id='oliv_space' />
 
-      <oliv_top>
-        <oliv_search />
-      </oliv_top>
+      <div id='oliv_top'>
+        <div id='oliv_search' />
+      </div>
       
-      <oliv_space />
+      <div id='oliv_space' />
     
-      <oliv_main>
-        <oliv_left>
-          <oliv_left1 />
-          <oliv_left2 />
-          <oliv_left3 />
-        </oliv_left>
+      <div id='oliv_main'>
+        <div id='oliv_left'>
+          <div id='oliv_left1' />
+          <div id='oliv_left2' />
+          <div id='oliv_left3' />
+        </div>
 
-        <oliv_center>
-          <oliv_content />
-        </oliv_center>
+        <div id='oliv_center'>
+          <div id='oliv_content' />
+        </div>
 
-      </oliv_main>
-      <oliv_footer />
-    </oliv_page>
-  </oliv_site>
+      </div>
+      <div id='oliv_footer' />
+    </div>
+  </div>
 </template>
 
