@@ -85,6 +85,8 @@ class OLIVRender extends OLIVCore
     $contentName = "";
     $value = "";
     $areaContent = "";
+    $url = "";
+    $val = "";
 
     if ($template)
     {
@@ -105,12 +107,9 @@ class OLIVRender extends OLIVCore
         $areaName = (string)$entry->attributes()->id;
         $areaTag = $entry->getName();
 
-
-
 //echo "<hr>";
 //echoall($template);
 //echoall($content);
-
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -181,6 +180,13 @@ class OLIVRender extends OLIVCore
           $pluginArray['value'] = $value;
         }
 
+// if no link, set url/title to ""
+        if (!array_key_exists('url',$pluginArray))
+          $pluginArray['url'] = "";
+          
+        if (!array_key_exists('text',$pluginArray))
+          $pluginArray['title'] = "";
+
 
 //------------------------------------------------------------------------------
 // start tag sequenz
@@ -238,9 +244,7 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 // create link on div
-
-
-        if (array_key_exists('url',$pluginArray))
+        if ($pluginArray['url'])
         {
           $url = $pluginArray['url'];
           $paramArray['id'] = $areaName;
@@ -254,6 +258,7 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 // insert link
+//echoall($paramArray);
           $tempO = OLIVRoute::intern($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
         }
 

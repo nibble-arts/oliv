@@ -90,15 +90,15 @@ class menu extends OLIVCore
 
 // aktive menuitem found
         if ($pageName == $url)
-          $active = "menu_side_activ";
+          $active = "menu_{$templateName}_activ";
         else
-          $active = "menu_side_inactive";
+          $active = "menu_{$templateName}_inactive";
           
 
 //echo "<hr>";
-//echoall($pageName);
+//echoall($this->templateName);
         $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
-          id='$pageName'
+          name='menu_$pageName'
           url='$pageName'
           class='$active'>
             $itemName
