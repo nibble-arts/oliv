@@ -109,6 +109,7 @@ class OLIVCore
 
 // initialise preprocessor
     $this->processor = new OLIVProcessor();
+
 // initialise renderer
     $this->render = new OLIVRender();
   }
@@ -135,16 +136,18 @@ class OLIVCore
     $this->processor->process($this->page,$this->template,$this->module);
   }
 
-
-  // start render engine
+// start render engine
   public function render()
   {
-//global $_TEXT;
-//echoall($_TEXT);
-
     $this->render->page($this->template,$this->page,$this->processor);
   }
 
+// display render result
+  public function display()
+  {
+    echo $this->render->display();
+  }
+ 
 
 //------------------------------------------------------------------------------
 // get name of page

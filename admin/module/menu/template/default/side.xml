@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <template name='side'>
-  <div id='menu_background_side' style='background-color:#dcdc78'>
+  <div id='menu_background_side' style='background-color:#dcdc78;padding:3px'>
     <div title='index_title' id='menu_item_side' />
   </div>
 </template>

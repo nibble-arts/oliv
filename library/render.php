@@ -34,23 +34,34 @@ defined('OLIVERROR') or die ("render.php - OLIVError not present");
 
 class OLIVRender extends OLIVCore
 {
+  var $o = "";
 
 //------------------------------------------------------------------------------
 // constructor
   public function __construct()
   {
+    $this->o = "";
+  }
+
+
+
+//------------------------------------------------------------------------------
+// return render result
+  public function display()
+  {
+    return ($this->o);
   }
 
 
 //------------------------------------------------------------------------------
 // main rendering routine
-// display page
+// render page to this->o
 //------------------------------------------------------------------------------
   public function page($template,$page)
   {
 // output rendered page
     if ($template)
-      echo OLIVRender::template($template->xml(),$page->structure());
+      $this->o = OLIVRender::template($template->xml(),$page->structure());
     else
       OLIVError::fire ("render::page - no template found");
   }

@@ -51,8 +51,8 @@
   <body>
     <?PHP
 // render site
-    $core->render(); // display site
-
+    $core->render(); // render site
+    $core->display(); // display site
     
 //    OLIVError::renderDebug();
     ?>

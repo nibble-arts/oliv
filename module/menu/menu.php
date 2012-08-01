@@ -53,7 +53,7 @@ class menu extends OLIVCore
     $menuName = (string)$header;
 
 
-		$menu = sessionxml_load_file(OLIV_MODULE_PATH . "menu/content/menu.xml");
+		$menu = sessionxml_load_file(OLIV_MODULE_PATH . "menu/menu.xml");
 
 
 // load menu template

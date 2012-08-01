@@ -3,7 +3,7 @@
 <content id='common'>
   <oliv_login mod='login' />
 <!--  <oliv_search mod='search' />-->
-  <oliv_title class='oliv_title'>site_name</oliv_title>
+  <oliv_title class='oliv_title'>title</oliv_title>
 <!--  <oliv_top mod='menu'>top</oliv_top>-->
   <oliv_footer mod='footer'>OLIV-CMS V0.1 - (c) 2012 Thomas Winkler</oliv_footer>
   <oliv_contact />

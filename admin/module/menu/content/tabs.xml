@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<menu template='tabs'>
-  <menu_background_tabs />
-  <menu_item_tabs url='index' title='back_home'>home</menu_item_tabs>
-  <menu_item_tabs url='admin' title='admin'>admin</menu_item_tabs>
-  <menu_item_tabs url='download' title='download_area'>download</menu_item_tabs>
-  <menu_item_tabs url='documentation' title='docu_area'>documentation</menu_item_tabs>
-</menu>
