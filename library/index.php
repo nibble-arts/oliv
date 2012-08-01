@@ -44,7 +44,7 @@ class OLIVIndex
 
 
 // load index xml
-  public function load($path,$name)
+  static public function load($path,$name)
   {
     global $_INDEX;
 

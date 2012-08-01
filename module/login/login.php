@@ -43,7 +43,8 @@ class login extends OLIVCore
 // use ssh for login
     global $_argv;
 
-		$host = "https://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
+//		$host = "https://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
+		$host = "http://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
 
 //TODO change to form class using router
 // create formular
@@ -71,22 +72,25 @@ class login extends OLIVCore
   
             $this->o .= "<input type='hidden' name='action' value='login'>";
 
-            if ($_argv[action] == "login")
+            if (isset($_argv['action']))
             {
-              $this->o .= "</tr>";
-              $this->o .= "<tr>";
-              if ($_argv[login] and $_argv[password])
-                $this->o .= "<td colspan='3'><span class='oliv_error'>" . OLIVText::_("login_incorrect") . "</span></td>";
-              else
-                $this->o .= "<td colspan='3'><span class='oliv_error'>" . OLIVText::_("no_login") . "</span></td>";
+              if ($_argv['action'] == "login")
+              {
+                $this->o .= "</tr>";
+                $this->o .= "<tr>";
+                if ($_argv['login'] and $_argv['password'])
+                  $this->o .= "<td colspan='3'><span class='oliv_error'>" . OLIVText::_("login_incorrect") . "</span></td>";
+                else
+                  $this->o .= "<td colspan='3'><span class='oliv_error'>" . OLIVText::_("no_login") . "</span></td>";
+              }
             }
           }
         $this->o .= "</tr>";
       $this->o .= "</table>";
 
       $this->o .= "<input type='hidden' name='lang' value='" . OLIV_LANG . "'>";
-      $this->o .= "<input type='hidden' name='url' value='" . $_argv[url] . "'>";
-      $this->o .= "<input type='hidden' name='val' value='" . $_argv[val] . "'>";
+      $this->o .= "<input type='hidden' name='url' value='" . $_argv['url'] . "'>";
+      $this->o .= "<input type='hidden' name='val' value='" . $_argv['val'] . "'>";
       
     $this->o .= "</form>";
   }

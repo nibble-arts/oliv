@@ -56,37 +56,38 @@ class OLIVProcessor extends OLIVCore
       {
         foreach($areas as $entry)
         {
-          $mod = $entry->attributes()->mod;
-          $script = $module->getModuleByName($mod);
-
-    // script found
-          if ($script->script)
+          if ($mod = $entry->attributes()->mod)
           {
-    // link modules to page elements
-            $page->setScript((string)$entry->getName(),$script->script);
+            $script = $module->getModuleByName($mod);
+
+      // script found
+            if (isset($script->script))
+            {
+      // link modules to page elements
+              $page->setScript((string)$entry->getName(),$script->script);
+    
+  //------------------------------------------------------------------------------
+  // load module script
+              $this->loadScript($script->script->main,OLIV_MODULE_PATH . $script->name . "/");
   
-//------------------------------------------------------------------------------
-// load module script
-            $this->loadScript($script->script->main,OLIV_MODULE_PATH . $script->name . "/");
-
-            // load module text
-            $path = OLIV_MODULE_PATH . $script->name . "/" . $script->script->language;
-            $file = $script->name;
-            $default_language = $script->script->default_language;
-            
-            OLIVText::load($path,$file,$default_language);
-
-//------------------------------------------------------------------------------
+              // load module text
+              $path = OLIV_MODULE_PATH . $script->name . "/" . $script->script->language;
+              $file = $script->name;
+              $default_language = $script->script->default_language;
+              
+              OLIVText::load($path,$file,$default_language);
+  
+  //------------------------------------------------------------------------------
+            }
+            else
+              OLIVError::warning("processor::process - required module '" . $mod . "' not found");
           }
-          else
-            OLIVError::warning("processor::process - required module '" . $mod . "' not found");
         }
       }
       else
         OLIVError::fire("processor::process - page is empty");
     }
   }
-
 }
 
 

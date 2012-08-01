@@ -40,14 +40,14 @@ class OLIVTemplate
   
   public function __construct($path,$name)
   {
-    $this->template = $this->load($path,$name);
+    $this->template = OLIVTemplate::load($path,$name);
   }
 
 
   // load template and corresponding css
   // with name from path
   // if no css with name -> use default.css
-  public function load($path,$name)
+  static public function load($path,$name)
   {
 //echoall("template - link css: " . $path . $name);
     OLIVTemplate::link_css($path,$name);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<menu>
+  <top template='tabs'>
+    <index />
+    <download  owner='admin' group='admin' access='770' />
+  </top>
+  
+  <main template='side'>
+    <index />
+    <download  owner='admin' group='admin' access='770' />
+    <admin owner='admin' group='admin' access='770'>
+      <download>
+        <index owner='admin' group='admin' access='770' />
+      </download>
+      <documentation />
+    </admin>
+  </main>
+
+  <admin template='side'>
+    <download />
+  </admin>
+</menu>

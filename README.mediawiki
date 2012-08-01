@@ -18,3 +18,5 @@ For flexibility some basic function are realised as modules:
 The Plugins are used to extend basic functions like the rendering or search engine. Plugins can be used stand alone or be part of a module.
 == Multisession ==
 The multisession capability of OLIV makes it easy to realise different sites on a server with only one OLIV installation. All global installed modules can be used by all sites, whereas the content and templates are stored in a single separate subdirectory.
+== Version ==
+OLIV is in an early developement state and threre are some big tasks to solve to get to an operational version.
