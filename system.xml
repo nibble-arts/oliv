@@ -30,8 +30,7 @@
 		<OLIV_SSH_HOST>localhost</OLIV_SSH_HOST>
     <OLIV_INCLUDE_PATH>library/</OLIV_INCLUDE_PATH>
     <OLIV_JAVASCRIPT_PATH>javascript/</OLIV_JAVASCRIPT_PATH>
-		<OLIV_SESSION_PATH>session/</OLIV_SESSION_PATH>
-    <OLIV_MODULE_PATH>module/</OLIV_MODULE_PATH>
+	   <OLIV_MODULE_PATH>module/</OLIV_MODULE_PATH>
     <OLIV_PAGE_PATH>page/</OLIV_PAGE_PATH>
     <OLIV_PLUGIN_PATH>plugin/</OLIV_PLUGIN_PATH>
     <OLIV_TEMPLATE_PATH>template/</OLIV_TEMPLATE_PATH>
@@ -49,8 +48,8 @@
     <file>xml.php</file>
 
 <!-- basic dynamic system classes -->
+		<file>debug.php</file>
     <file>html.php</file>
-    <file>event.php</file>
     <file>file.php</file>
     <file>module.php</file>
     <file>render.php</file>
@@ -62,7 +61,6 @@
     <file>template.php</file>
     <file>processor.php</file>
     <file>page.php</file>
-    <file>expression.php</file>
     <file>image.php</file>
     <file>index.php</file>
     <file>search.php</file>

@@ -42,15 +42,18 @@ class OLIVHtml
 
   public function __construct()
   {
-    $this->header();
+    echo $this->header();
   }
+
 
 	public function header()
 	{
-    echo "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
-		echo "<base href='/" . OLIV_BASE . "'>"; // link base referenz
-		echo "<title>" . OLIV_PAGE . "</title>"; // page title in browser
-    echo "<link href='" . OLIVImage::_(OLIV_ICON) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
+    $o = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
+		$o .= "<base href='/" . OLIV_BASE . "'>"; // link base referenz
+		$o .= "<title>" . OLIV_PAGE . "</title>"; // page title in browser
+    $o .= "<link href='" . OLIVImage::_(OLIV_ICON) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
+
+		return ($o);
 	}
 }
 ?>

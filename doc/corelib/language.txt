@@ -1,0 +1,18 @@
+																Class OLIVLang
+																--------------
+
+
+Class to work with language codes.
+
+
+path: library/
+
+
+class methods:
+--------------
+
+
+static public family(string lang)
+---------------------------------
+
+Returns the language code out of the lang_COUNTRY string.

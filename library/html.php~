@@ -22,14 +22,36 @@
 //
 
 //------------------------------------------------------------------------------
-// Event management
+// html class
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("event.php - OLIVCore not present");
 
-class OLIVEvent extends OLIVCore
+// core initialisation completed
+// set core alive
+defined('OLIVCORE') or die ("template.php - OLIVCore not present");
+defined('OLIVERROR') or die ("template.php - OLIVError not present");
+
+define ("OLIVHtml","alive");
+
+
+//------------------------------------------------------------------------------
+class OLIVHtml
 {
+
+  public function __construct()
+  {
+    $this->header();
+  }
+
+
+	public function header()
+	{
+    echo "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
+		echo "<base href='/" . OLIV_BASE . "'>"; // link base referenz
+		echo "<title>" . OLIV_PAGE . "</title>"; // page title in browser
+    echo "<link href='" . OLIVImage::_(OLIV_ICON) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
+	}
 }
 ?>

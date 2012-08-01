@@ -1,9 +1,6 @@
-<?PHP session_start(); ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <?PHP
 //
-// OLIV-CMS
+// OLIV
 //
 // This file is part of the OLIV Content Management System.
 //
@@ -25,34 +22,61 @@
 //
 
 //------------------------------------------------------------------------------
-// Main routine
+// debug methods
 //
 // Version 0.1
 //------------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------------
+// intelligent display for debug
+function echoall($string)
+{
+//  echo "<div id='oliv_debug'>";  
+  if (is_array($string))
+  {
+    echo count($string) . " elements";
+    echoarray($string);
+  }
+
+  elseif (is_object($string))
+  {
+    echoarray($string);
+  }
+
+  else
+  {
+    switch ($string)
+    {
+      case 'NULL':
+        echo "*NULL";
+        break;
+  
+      case "":
+        echo "*empty";
+        break;
+  
+      case 'FALSE':
+        echo "*FALSE";
+        break;
+  
+      default:
+        echo $string;
+        break;
+    }
+  }
+  echo "<br>";
+//  echo "</span>";
+}
+
+
+// displays array in code-style
+function echoarray($entry)
+{
+  echo "<pre>";
+    print_r($entry);
+  echo "</pre>";
+}
+
 ?>
-
-<html>
-  <head>
-    <?PHP
-// init core
-      include("library/core.php")
-      $core = new OLIVCore();
-      $core->init("iggmp");
-
-// load page content
-      $core->loadContent();
-
-// call preprocessor
-      $core->preProcessor();
-    ?>
-  </head>
-
-  <body>
-    <?
-// render site
-    $core->render(); // display site
-
-//    OLIVError::renderDebug();
-    ?>
-  </body>
-</html>

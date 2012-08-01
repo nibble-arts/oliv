@@ -64,7 +64,7 @@ function sessionis_dir($file)
 }
 
 
-function sessionparse_ini_file($file,$param)
+function sessionparse_ini_file($file,$param="")
 {
 	return (parse_ini_file(session_path($file),$param));
 }

@@ -31,8 +31,9 @@ defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
 defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
 defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
 
-class OLIVImage extends OLIVCore
+class OLIVImage
 {
+//------------------------------------------------------------------------------
 // call image
 // if exist use language version
 	public static function _($image,$lang = "")
@@ -64,10 +65,12 @@ class OLIVImage extends OLIVCore
       elseif ($tempImage = img_exists(OLIV_TEMPLATE_PATH . "/default/images/",$image,$lang))
         return (session_path($tempImage));
 
+
 //------------------------------------------------------------------------------
 // look in module paths
       if (is_array($_MODULES))
       {
+      
         foreach ($_MODULES as $entry)
   			{
   				$path = OLIVModule::getImagePath((string)$entry->name);
@@ -79,6 +82,7 @@ class OLIVImage extends OLIVCore
   			}
   		}
     }
+
 // image not found
 		return false;
 	}
@@ -88,6 +92,7 @@ class OLIVImage extends OLIVCore
 // create html img string out of img xml
   static public function img($image,$lang="")
   {
+
     $o = "";
 
     $src = (string)$image->attributes()->src; // image name -> src path via OLIVImage

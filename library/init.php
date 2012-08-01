@@ -47,6 +47,7 @@ define ('OLIV_HOST', $_SERVER['HTTP_HOST'] . "/");
 
 
 
+
 //------------------------------------------------------------------------------
 // set http / https protocol
 if (isset($_SERVER['HTTPS']))
@@ -102,42 +103,10 @@ else
   die ("init.php - configure.xml not found");
 
 
-//------------------------------------------------------------------------------
+
 // valid image extensions
 global $_imgType;
 $_imgType = $coreXml->image;
-
-//------------------------------------------------------------------------------
-// set global argument array
-global $_argv;
-$_argv = array("url" => "","val" => "");
-
-// decode friendly url to parameters
-if (isset($_SERVER['PATH_INFO']))
-  $_argv = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
-
-// insert GET POST messages in parameters
-foreach($_GET as $key => $value)
-{
-  $_argv[$key] = $value;
-}
-
-foreach($_POST as $key => $value)
-{
-  $_argv[$key] = $value;
-}
-
-
-//echoall("library/init.php");
-//echoall($_argv);
-
-
-
-
-
-
-
-
 
 
 //------------------------------------------------------------------------------
@@ -159,7 +128,45 @@ else
     die("init.php - session access.xml not found");
 }
 
-//print_r($_access);
+
+
+
+//------------------------------------------------------------------------------
+// set global argument array
+global $_argv;
+$_argv = array("url" => "","val" => "");
+
+
+// decode friendly url to parameters
+if (isset($_SERVER['PATH_INFO']))
+  $_argv = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
+
+// insert GET POST messages in parameters
+foreach($_GET as $key => $value)
+{
+  $_argv[$key] = $value;
+}
+
+foreach($_POST as $key => $value)
+{
+  $_argv[$key] = $value;
+}
+
+
+//------------------------------------------------------------------------------
+// language definition => loaded from argv
+//TODO
+// if not in parameters
+//    look for HTTP_USER_AGENT
+//    set to default language
+
+//debug
+if (isset($_argv['lang']))
+  define ('OLIV_LANG', $_argv['lang']);
+else
+  define ('OLIV_LANG', OLIV_DEFAULT_LANG);
+
+
 
 
 //------------------------------------------------------------------------------
@@ -170,6 +177,12 @@ define('OLIVENV','alive');
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 
@@ -201,7 +214,7 @@ if (isset($_argv['action']))
 }
 
 
-// set user status+
+// set user status
 $_SESSION['user'] = $user;
 define('OLIV_USER',$_SESSION['user']);
 
@@ -211,76 +224,6 @@ if (OLIVUser::superUser(OLIV_USER))
   define('OLIV_SU',TRUE);
 else
   define('OLIV_SU',FALSE);
-
-
-//echoall($_SESSION);
-
-//------------------------------------------------------------------------------
-// language definition => loaded from argv
-// if not in parameters
-//    look for HTTP_USER_AGENT
-//    set to default language
-
-
-
-
-//debug
-if (isset($_argv['lang']))
-  define ('OLIV_LANG', $_argv['lang']);
-else
-  define ('OLIV_LANG', OLIV_DEFAULT_LANG);
-
-
-
-//------------------------------------------------------------------------------
-// intelligent display for debug
-function echoall($string)
-{
-//  echo "<div id='oliv_debug'>";  
-  if (is_array($string))
-  {
-    echo count($string) . " elements";
-    echoarray($string);
-  }
-
-  elseif (is_object($string))
-  {
-    echoarray($string);
-  }
-
-  else
-  {
-    switch ($string)
-    {
-      case 'NULL':
-        echo "*NULL";
-        break;
-  
-      case "":
-        echo "*empty";
-        break;
-  
-      case 'FALSE':
-        echo "*FALSE";
-        break;
-  
-      default:
-        echo $string;
-        break;
-    }
-  }
-  echo "<br>";
-//  echo "</span>";
-}
-
-
-// displays array in code-style
-function echoarray($entry)
-{
-  echo "<pre>";
-    print_r($entry);
-  echo "</pre>";
-}
 
 
 ?>

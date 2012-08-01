@@ -1,7 +1,5 @@
 <?PHP
 //
-// OLIV
-//
 // This file is part of the OLIV Content Management System.
 //
 // Copyright(c) 2012 Thomas H Winkler
@@ -22,35 +20,53 @@
 //
 
 //------------------------------------------------------------------------------
-// create session environment
+// oliv session file functions
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------------
-// load session definitions
-//------------------------------------------------------------------------------
-
-if (file_exists("session.xml"))
-	$sessionXml = simplexml_load_file("session.xml");
-else
-	die ("session_init.php - session.xml not found");
-
-
-if ($sessionXml->system->children())
+function olivfile_exists($file)
 {
-  foreach($sessionXml->system->children() as $key => $value)
-  {
-    define($key,$value);
-  }
+  return (file_exists(OLIV_CORE_PATH . $file));
 }
-else
-  die ("init.php - no session constant definitions found");
+
+function olivopendir($path)
+{
+  return (opendir(OLIV_CORE_PATH . $path));
+}
+
+function olivis_dir($path)
+{
+  return (is_dir(OLIV_CORE_PATH . $path));
+}
+
+//------------------------------------------------------------------------------
+
+function session_path($file)
+{
+	return ($file);
+//	return (OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $file);
+}
+
+function sessionfile_exists($file)
+{
+  return (file_exists(session_path($file)));
+}
+
+function sessionopendir($file)
+{
+  return (opendir(session_path($file)));
+}
+
+function sessionis_dir($file)
+{
+  return (is_dir(session_path($file)));
+}
 
 
-// include system core
-include(OLIV_CORE_PATH . "library/core.php");
-
+function sessionparse_ini_file($file,$param)
+{
+	return (parse_ini_file(session_path($file),$param));
+}
 
 ?>

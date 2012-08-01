@@ -32,7 +32,7 @@
 // load session definitions
 //------------------------------------------------------------------------------
 
-if (file_exists("configure.xml"))
+if (file_exists("session.xml"))
 	$sessionXml = simplexml_load_file("configure.xml");
 else
 	die ("session_init.php - session configure.xml not found");

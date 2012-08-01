@@ -79,7 +79,7 @@ class article extends OLIVCore
 //      $this->parse($article);
     }
     else
-      $this->o .= OLIVError::render("article.php - content for <b>'$articleName'</b> not found");
+      $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
   }
   
   

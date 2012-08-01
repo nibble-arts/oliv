@@ -126,7 +126,8 @@ class OLIVCore
 // start preprocessor
   public function preProcessor()
   {
-    $this->processor->process($this->page,$this->template,$this->module);
+// call preprocessor
+//    $this->processor->process($this->page,$this->template,$this->module);
   }
 
 // start render engine
