@@ -40,7 +40,7 @@ class OLIVProcessor extends OLIVCore
   
   
 //------------------------------------------------------------------------------
-// parse page/template/module with argv parameters
+// parse page/template/module
 //------------------------------------------------------------------------------
   public function process($page,$template,$module)
   {
@@ -69,6 +69,7 @@ class OLIVProcessor extends OLIVCore
   //------------------------------------------------------------------------------
   // load module script
               $this->loadScript($script->script->main,OLIV_MODULE_PATH . $script->name . "/");
+
   
               // load module text
               $path = OLIV_MODULE_PATH . $script->name . "/" . $script->script->language;

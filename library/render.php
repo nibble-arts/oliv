@@ -163,14 +163,6 @@ class OLIVRender extends OLIVCore
   // get module script call
               if (isset($areaContent->attributes()->mod))
                 $mod = (string)$areaContent->attributes()->mod; // add module
-  
-  
-//TODO insert content parameters in template
-//TODO change to plugin
-// insert content background image
-/*						if ($background_image = OLIVImage::_($background_image))
-							$style .= "background-image:url($background_image)";
-*/
             }
           }
         }
@@ -254,7 +246,7 @@ class OLIVRender extends OLIVCore
   
 
 //------------------------------------------------------------------------------
-// create link on div
+// create link on tag
         if ($pluginArray['url'])
         {
           $url = $pluginArray['url'];
@@ -295,24 +287,22 @@ class OLIVRender extends OLIVCore
   {
     if ($module->script->main)
     {
-//OLIVError::debug("render - run mod: " . $module->script->main);
       $tempArray = explode(".",$module->script->main);
       $class = $tempArray[0];
 
       if (class_exists($class))
       {
 
-
 //------------------------------------------------------------------------------
 // call module class and return output
         $outputObj = new $class($module);
 //------------------------------------------------------------------------------
 
-
       } 
     }
     else
       OLIVError::fire("render::callModule - no main script declared");
+
 		return ($outputObj);
   }
 }

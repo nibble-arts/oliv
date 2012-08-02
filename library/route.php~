@@ -29,25 +29,20 @@
 
 defined('OLIVCORE') or die ("route.php - OLIVCore not present");
 
-global $_ROUTE;
+$_PAGES = array();
+
 
 
 //TODO
 // insert: also use normal links
 
-class OLIVRoute extends OLIVCore
+class OLIVRoute
 {
 
   public function __construct()
   {
-    global $_argv;
-    global $_ROUTE;
-
-    $path = OLIV_PAGE_PATH . "content.xml";
-
-    $_ROUTE = sessionxml_load_file($path);
-
-    $this->route(&$_argv);
+    $this->scan(OLIV_LANG);
+    $this->route();
   }
 
 
@@ -56,26 +51,26 @@ class OLIVRoute extends OLIVCore
 // ROUTER
 
 // get link id from language coded /module/value
-  public function route($argv)
+  private function route()
   {
-    global $_ROUTE;
+    global $_argv;
 
-		$val = $this->parseUrl($argv[url]);
-		$argv[val] .= $this->parseUrl($argv[url]);
+    if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
+
+
+		$val = $this->parseUrl($_argv['url']); // extract values from url
+ 		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
 
     // routable url found
-    if ($argv[url])
+    if ($_argv['url'])
     {
-      if ($newVal = OLIVRoute::getUrl($argv[url]))
+      if ($newVal = OLIVRoute::getUrl($_argv['url']))
 			{
-				define (OLIV_PAGE,OLIV_SITE_NAME . " " . $argv[url]); // set page title
-        $argv[url] = $newVal;
+				define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $_argv['url']); // set page title
+        $_argv['url'] = $newVal;
 			}
       else
       {
-//------------------------------------------------------------------------------
-//TODO
-// rescan route information if not found
         OLIVError::fire ("route.php::route - rescan route information");
       }
     }
@@ -83,18 +78,20 @@ class OLIVRoute extends OLIVCore
     else
     {
 //echoall("INDEX");
-      $argv[url] = OLIV_INDEX_PAGE;
-			define (OLIV_PAGE,OLIV_SITE_NAME . " " . $this->getPageName(OLIV_LANG,$argv[url])); // set page title
+      $_argv['url'] = OLIV_INDEX_PAGE;
+			define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $this->translatePageName(OLIV_LANG,$_argv['url'])); // set page title
     }
   }
 
 
+//------------------------------------------------------------------------------
 // decode friendly url
 // $url ... friendly string (index.php/part1/part2...)
 // $names ... optional array of names for associative array
 //						if count($urlArray) > count($names), the rest is returned in the last parameter of names 
-	function decode($url,$names = array())
+	public static function decode($url,$names = array())
 	{
+	echoall($url);
 		if ($url)
 		{
 			$urlArray = explode("/",cut_slash($url));
@@ -108,7 +105,7 @@ class OLIVRoute extends OLIVCore
 
 				while ($x	< $length)
 				{
-					if ($names[$x])
+					if (isset($names[$x]))
 					{
 						$rest = implode("/",$urlArray);
 						$value = array_shift($urlArray);
@@ -122,6 +119,7 @@ class OLIVRoute extends OLIVCore
 					}
 					$x++;
 				}
+				echoall($retArray);
 				return($retArray);
 			}
 			else
@@ -137,13 +135,20 @@ class OLIVRoute extends OLIVCore
 // create intern link
 // options array contains url information and href options
 // array(array(mod,urletc.),array(id,title,etc.))
-  public function intern($text,$options="")
+  static public function intern($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $param = $options[param];
-    $class = $options["class"];
-    $lang = $param["lang"]; // get link language
+    $url = "";
+    $val = "";
+    $param = "";
+    $class = "";
+    $lang = "";
+
+
+    if (isset($options['url'])) $url = strtolower($options['url']);
+    if (isset($options['val'])) $val = $options['val'];
+    if (isset($options['param'])) $param = $options['param'];
+    if (isset($options['class'])) $class = $options['class'];
+    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -162,11 +167,15 @@ class OLIVRoute extends OLIVCore
 //TODO make url basis for intern, extern, form, e.i.
 //------------------------------------------------------------------------------
 // create form url
-  public function url($text,$options="")
+  static public function url($text,$options="")
   {
-    $url = strtolower($options[url]);
-    $val = $options[val];
-    $lang = $param["lang"]; // get link language
+    $url = "";
+    $val = "";
+    $lang = "";
+    
+    if (array_key_exists('url',$options)) $url = strtolower($options['url']);
+    if (array_key_exists('val',$options)) $val = $options['val'];
+    if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
 
     if (!$lang) $lang = OLIV_LANG; // if no language use current
     
@@ -181,7 +190,7 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  public function makeUrl($lang,$url)
+  static public function makeUrl($lang,$url)
   {
 // create absolute url
 // for correct Apache modrewrite
@@ -191,16 +200,16 @@ class OLIVRoute extends OLIVCore
     else
       $lang = OLIV_LANG;
 
-    $val = OLIVRoute::getPageName($lang,$url);
+    $val = OLIVRoute::translatePageName($lang,$url);
     
-    if ($url[strtolower(val)]) array_push($routeArray,$val);
+    if ($url[strtolower($val)]) array_push($routeArray,$val);
     return (implode("/",$routeArray));
   }
 
 
 //------------------------------------------------------------------------------
 // return parameter string for link
-  private function makeParam($param)
+  static private function makeParam($param)
   {
     $paramArray = array();
 
@@ -219,17 +228,32 @@ class OLIVRoute extends OLIVCore
 
 //------------------------------------------------------------------------------
 // translate url to lang.pageName
-  public function getPageName($lang,$url)
+  static public function translatePageName($lang,$url)
   {
-    global $_ROUTE;
-    return ((string)$_ROUTE->id->$url->$lang);
+    global $_PAGES;
+
+    return ($_PAGES[$url]['text']['FRIENDLY_NAME']['text']);
   }
 
 
-  public function getUrl($name)
+// translate pageName to url id
+  static public function getUrl($name)
   {
-    global $_ROUTE;
-    return ((string)$_ROUTE->name->$name);
+    global $_PAGES;
+
+
+    foreach($_PAGES as $key => $entry)
+    {
+      if(array_key_exists("FRIENDLY_NAME",$entry['text']))
+      {
+        $friendlyName = $entry['text']['FRIENDLY_NAME']['text'];
+
+        if ($friendlyName == $name)
+        {
+          return ($entry['text']['ID']['text']);
+        }
+      }
+    }
   }
 
 
@@ -239,14 +263,13 @@ class OLIVRoute extends OLIVCore
 // extract and returns parameters for modules
 //
 // get information from content.xml for this purpose
-  public function parseUrl(&$url)
+  static public function parseUrl(&$url)
   {
-		global $_ROUTE;
-
     $retArray = array();
     $paramArray = array();
     $tempArray = array();
     
+
 		$urlArray = explode("/",cut_slash($url));
 
     // search for url matches
@@ -264,15 +287,48 @@ class OLIVRoute extends OLIVCore
     $url = implode("/",$retArray); // update url
     return (implode("/",$paramArray)); // return parameters
   }
-}
+
+
+//------------------------------------------------------------------------------
+// get list of existing pages
+  public function scan($lang)
+  {
+		global $_PAGES;
+
+    $path = OLIV_PAGE_PATH;
+    if ($pageDir = sessionopendir ($path))
+    {
+      while ($file = readdir($pageDir))
+      {
+        if (sessionis_dir($path . $file) and $file != "." and $file != "..")
+        {
+          // get define.xml
+          if (sessionfile_exists($path . $file . "/$file.xml"))
+          {
+            $xml = sessionxml_load_file($path . $file . "/$file.xml");
+            $pageText = OLIVText::_load("",$path . "$file/language/",$file);
+
+            $_PAGES[$file]['define'] = $xml;
+            $_PAGES[$file]['text'] = $pageText['PAGE'];
+          }
+        }
+      }
+      closedir ($pageDir);
+    }
+    else
+      OLIVError::fire("page::scan - directory $path not found");
+  }}
 
 
 
+//------------------------------------------------------------------------------
 // removes slash from start and end of string
 function cut_slash($url)
 {
-  if ($url[0] == "/") $url = substr($url,1);
-  if ($url[strlen($url)-1] == "/") $url = substr($url,0,strlen($url)-1);
+  if (substr($url,0,1) == "/") $url = substr($url,1);
+  if (strlen($url) > 0)
+    if ($url[strlen($url)-1] == "/")
+      $url = substr($url,0,strlen($url)-1);
 
   return ($url);
 }

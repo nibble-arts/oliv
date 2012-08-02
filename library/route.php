@@ -36,13 +36,11 @@ $_PAGES = array();
 //TODO
 // insert: also use normal links
 
-class OLIVRoute extends OLIVCore
+class OLIVRoute
 {
 
   public function __construct()
   {
-    global $_PAGES;
-
     $this->scan(OLIV_LANG);
     $this->route();
   }
@@ -53,7 +51,7 @@ class OLIVRoute extends OLIVCore
 // ROUTER
 
 // get link id from language coded /module/value
-  public function route()
+  private function route()
   {
     global $_argv;
 
@@ -73,9 +71,6 @@ class OLIVRoute extends OLIVCore
 			}
       else
       {
-//------------------------------------------------------------------------------
-//TODO
-// rescan route information if not found
         OLIVError::fire ("route.php::route - rescan route information");
       }
     }
@@ -89,11 +84,12 @@ class OLIVRoute extends OLIVCore
   }
 
 
+//------------------------------------------------------------------------------
 // decode friendly url
 // $url ... friendly string (index.php/part1/part2...)
 // $names ... optional array of names for associative array
 //						if count($urlArray) > count($names), the rest is returned in the last parameter of names 
-	static function decode($url,$names = array())
+	public static function decode($url,$names = array())
 	{
 		if ($url)
 		{

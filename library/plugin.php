@@ -88,6 +88,7 @@ class OLIVPlugin
 // error class not found
       else
         OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
+        return (FALSE);
     }
     else
       return (FALSE);
@@ -99,10 +100,12 @@ class OLIVPlugin
   private function scan($path)
   {
     global $_PLUGIN;
+
     $_PLUGIN = new simpleXmlElement("<plugin></plugin>");
 
     if ($pluginDir = olivopendir ($path))
     {
+    	$cnt = 0;
       while ($file = readdir($pluginDir))
       {
         if (olivis_dir($path . $file) and $file != "." and $file != "..")
@@ -133,15 +136,17 @@ class OLIVPlugin
                 olivxml_insert($_PLUGIN->$type->func,$entry);
               }
             }
+            $cnt++;
           }
         }
       }
 //echoall($_PLUGIN);
       closedir ($pluginDir);
+      return ($cnt);
     }
     else
       OLIVError::fire("plugin::scan - directory $path not found");
-//print_r($_PLUGIN->asXML());
+			return (FALSE);
   }
   
 
