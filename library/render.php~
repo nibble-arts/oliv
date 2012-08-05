@@ -34,23 +34,34 @@ defined('OLIVERROR') or die ("render.php - OLIVError not present");
 
 class OLIVRender extends OLIVCore
 {
+  var $o = "";
 
 //------------------------------------------------------------------------------
 // constructor
   public function __construct()
   {
+    $this->o = "";
+  }
+
+
+
+//------------------------------------------------------------------------------
+// return render result
+  public function display()
+  {
+    return ($this->o);
   }
 
 
 //------------------------------------------------------------------------------
 // main rendering routine
-// display page
+// render page to this->o
 //------------------------------------------------------------------------------
   public function page($template,$page)
   {
 // output rendered page
     if ($template)
-      echo OLIVRender::template($template->xml(),$page->structure());
+      $this->o = OLIVRender::template($template->xml(),$page->structure());
     else
       OLIVError::fire ("render::page - no template found");
   }
@@ -85,6 +96,8 @@ class OLIVRender extends OLIVCore
     $contentName = "";
     $value = "";
     $areaContent = "";
+    $url = "";
+    $val = "";
 
     if ($template)
     {
@@ -105,12 +118,9 @@ class OLIVRender extends OLIVCore
         $areaName = (string)$entry->attributes()->id;
         $areaTag = $entry->getName();
 
-
-
 //echo "<hr>";
 //echoall($template);
 //echoall($content);
-
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -169,10 +179,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag
 // get plugin output
-echo "<hr>";
-echoall($content);
-echoall($areaContent);
-        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $areaContent,"value" => $value));
+        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 
 
 // if no plugin found
@@ -183,6 +190,13 @@ echoall($areaContent);
           $pluginArray['endTag'] = "</$areaTag>";
           $pluginArray['value'] = $value;
         }
+
+// if no link, set url/title to ""
+        if (!array_key_exists('url',$pluginArray))
+          $pluginArray['url'] = "";
+          
+        if (!array_key_exists('text',$pluginArray))
+          $pluginArray['title'] = "";
 
 
 //------------------------------------------------------------------------------
@@ -241,12 +255,13 @@ echoall($areaContent);
 
 //------------------------------------------------------------------------------
 // create link on div
-
-
-        if (array_key_exists('url',$pluginArray))
+        if ($pluginArray['url'])
         {
           $url = $pluginArray['url'];
           $paramArray['id'] = $areaName;
+
+          if (array_key_exists('type',$pluginArray))
+						$type = $pluginArray['type'];
 
           if (array_key_exists('val',$pluginArray))
             $val = $pluginArray['val'];
@@ -257,6 +272,8 @@ echoall($areaContent);
 
 //------------------------------------------------------------------------------
 // insert link
+//echoall($paramArray);
+
           $tempO = OLIVRoute::intern($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
         }
 

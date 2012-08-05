@@ -25,6 +25,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
+
+//------------------------------------------------------------------------------
+// system functions
 function olivfile_exists($file)
 {
   return (file_exists(OLIV_CORE_PATH . $file));
@@ -40,11 +43,20 @@ function olivis_dir($path)
   return (is_dir(OLIV_CORE_PATH . $path));
 }
 
-//------------------------------------------------------------------------------
+function olivxml_load_file($file)
+{
+//echoall(OLIV_CORE_PATH . $file);
+  return (simplexml_load_file(OLIV_CORE_PATH . $file));
+}
 
+
+
+
+//------------------------------------------------------------------------------
+// session functions
 function session_path($file)
 {
-	return ($file);
+	return (OLIV_BASE . OLIV_SESSION_PATH . $file);
 //	return (OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $file);
 }
 
@@ -63,10 +75,18 @@ function sessionis_dir($file)
   return (is_dir(session_path($file)));
 }
 
-
-function sessionparse_ini_file($file,$param)
+function sessionparse_ini_file($file,$param="")
 {
 	return (parse_ini_file(session_path($file),$param));
 }
+
+// load from session directory
+function sessionxml_load_file($file)
+{
+  return (simplexml_load_file(session_path($file)));
+//  return (simplexml_load_file(OLIV_CORE_PATH . OLIV_SESSION_PATH . OLIV_SESSION . $file));
+}
+
+
 
 ?>

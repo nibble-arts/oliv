@@ -260,6 +260,9 @@ class OLIVRender extends OLIVCore
           $url = $pluginArray['url'];
           $paramArray['id'] = $areaName;
 
+          if (array_key_exists('type',$pluginArray))
+						$type = $pluginArray['type'];
+
           if (array_key_exists('val',$pluginArray))
             $val = $pluginArray['val'];
 
@@ -270,6 +273,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // insert link
 //echoall($paramArray);
+
           $tempO = OLIVRoute::intern($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
         }
 

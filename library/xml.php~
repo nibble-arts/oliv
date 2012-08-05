@@ -29,13 +29,6 @@
 
 
 
-function olivxml_load_file($file)
-{
-//echoall(OLIV_CORE_PATH . $file);
-  return (simplexml_load_file(OLIV_CORE_PATH . $file));
-}
-
-
 function sessionxml_load_file($file)
 {
 // local session directory
@@ -104,6 +97,6 @@ function olivxml_changeNode($node,$xml)
 // write simpleXmlElement to file
 function olivxml_writeFile($xml,$file)
 {
-	
+	echoall("write " . (string)$xml . " to $file");
 }
 ?>
