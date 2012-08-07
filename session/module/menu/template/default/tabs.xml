@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<template name='topmenu'>
-  <menu_background_tabs style='background-color:#dcdc78'>
-    <menu_item_tabs repeat='row' style='float:left;width:150px;margin-right:2px;' tag='span' />
-  </menu_background_tabs>
-</template>

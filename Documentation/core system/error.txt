@@ -1,0 +1,58 @@
+																Class OLIVError
+																---------------
+
+
+The error class is used for the handling of warnings and errors in the init and
+rendering prozess. There are different types of messages, that can be used open
+or hidden.
+
+
+path: library/
+
+
+class attributes:
+-----------------
+
+	string $_error					string with the errors
+	string $_warning				string with the warnings
+	string $_debug					string with the debug textes
+
+
+class methods:
+--------------
+
+
+void static public fire(string)
+-------------------------------
+Output a error message using the renderError function immediately.
+
+
+string static public renderError(string)
+----------------------------------------
+Returns an error string in a div tag using the oliv_error id.
+
+
+string static public renderWarning(string)
+------------------------------------------
+Returns an error string in a div tag using the oliv_warning id.
+
+
+string static public renderDebug(string)
+----------------------------------------
+Returns an error string in a div tag using the oliv_debug id.
+
+
+void static public error(string)
+--------------------------------
+Writes the error message with the timestamp to the global _error variable.
+
+
+void static public warning(string)
+----------------------------------
+Writes the warning message with the timestamp to the global _warning variable.
+
+
+void static public debug(string)
+--------------------------------
+Writes the debug message with the timestamp to the global _debug variable.
+

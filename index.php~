@@ -35,25 +35,23 @@
   <head>
     <?PHP
 // init core
-			include("init.php");
-
+      include("library/core.php");
       $core = new OLIVCore();
-      $core->init("oliv");
+      $core->init("iggmp");
 
 // load page content
       $core->loadContent();
-  
+
 // call preprocessor
       $core->preProcessor();
     ?>
   </head>
-  
+
   <body>
     <?PHP
 // render site
-    $core->render(); // render site
-    $core->display(); // display site
-    
+    $core->render(); // display site
+
 //    OLIVError::renderDebug();
     ?>
   </body>

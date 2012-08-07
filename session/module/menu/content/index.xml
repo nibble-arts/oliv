@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<tabs template='index'>
-  <menu_background />
-  <menu_item script='renderItem' url='index' title='back_home'>home</menu_item>
-  <menu_item script='renderItem' url='download' title='download_area'>download</menu_item>
-  <menu_item script='renderItem' url='documentation' title='docu_area'>documentation</menu_item>
-</tabs>

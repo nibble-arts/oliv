@@ -1,0 +1,77 @@
+															Class OLIVRoute
+															---------------
+
+
+The route class offers the methods to translate the simple page IDs, which are
+used in the core system to identify the right page to load, to a friendly url
+string. It is using the language definitions of the page, to translate the
+friendly url to the currently used language.
+
+The retranslation process uses the same page language informations to get back
+the right page ID and open the wanted page. In this parsing process, the global
+_argv value is created. The friendly url string is separated in the part, which
+aims to the page ID, and the rest, which is used as value parameter for modules
+or plugins. The result is stored in the global _argv variable.
+
+
+path: library/
+
+
+class methods
+-------------
+
+
+void public __construct(void)
+-----------------------------
+The constructor calls the page scan method to get all page information for the
+router. Then it starts the route process.
+
+
+void private route(void)
+------------------------
+The friendly url string, sent from the webserver, is
+analyzed. The part of the virtual path in the friendly url, which aims to a
+page ID is extracted as parameter url, the rest of the virtual url path is
+extracted as val parameter. The url is now retranslated to the page ID. The
+result is inserted in the global array _argv:
+
+			array()
+				"url" => pageID,
+				"val" => rest of the friendly url string
+
+
+array public static function decode(string url[,array names])
+-------------------------------------------------------------
+The method compares the friendly url string with the page ID definitions in
+the menu.xml file. The path found in the menu definition is returned as valid
+url array with the lang and url entries.
+
+The rest of the friendly url is returned as val entry in the return array. If a
+names array is defined, the val parts are assoziated with the parts of the
+friendly url rest.
+
+Example:
+--------
+	friendly url								/en_GB/index/edit/ARTICLE_INDEX003/
+	return array								array()
+																"lang" => "en_GB"
+																"url" => "index"
+																"val" => "edit/ARTICLE_INDEX003"
+
+with names = array("action"):
+
+	return array								array()
+																"lang" => "en_GB"
+																"url" => "index"
+																"val" => "ARTICLE_INDEX003"
+																"action" => "edit"
+
+with names = array("action","part"):
+
+	return array								array()
+																"lang" => "en_GB"
+																"url" => "index"
+																"val" => ""
+																"action" => "edit"
+																"part" => "ARTICLE_INDEX003"
+	 
