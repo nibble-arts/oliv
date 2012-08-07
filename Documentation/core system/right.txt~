@@ -1,0 +1,49 @@
+															Class OLIVRight
+															---------------
+
+
+The rights method can check the UNIX/Linux type rights of xml objects, with the
+owner-group-access definition in the attributes section. Depending on the type
+of request, it returns an array or a string with the access licence.
+
+
+path: library/
+
+
+class methods
+-------------
+
+
+mixed public static __callStatic(string m,object access)
+--------------------------------------------------------
+
+The method must be called with an parameter as function name. Depending on the
+call, a boolean value, or an array of boolean values is returned.
+
+	function name					return value
+			r										has right to read
+			w										has right to write
+			x										has right to execute (call link)
+			rw									has right to read and right
+			rx									has right to read and execute
+			wx									has right to write and execute
+			rwx									has all rights
+
+			_									returns an assoziative array with all rights
+														array()
+															"r" => owner_right,
+															"w" => group_right,
+															"x" => all_right
+
+
+
+array private static checkAccess(object access)
+-----------------------------------------------
+
+The method returns an array of the rights found in the access xml object.
+
+	array()
+		"r" => owner_right,
+		"w" => group_right,
+		"x" => all_right
+
