@@ -1,8 +1,0 @@
-															Class OLIVIndex
-															---------------
-
-
-
-//TODO to be written
-
-The index class is used to create an index file for search on the pages.
