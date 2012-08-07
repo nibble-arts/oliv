@@ -1,0 +1,30 @@
+																	Class OLIVHtml
+																	--------------
+
+
+The html class creates the html header based on the page and router information
+loaded during the initialization process.
+
+
+path: includes/
+
+
+class methods:
+--------------
+
+
+void __construct()
+------------------
+The constructor calls the header method and output it to the browser.
+
+
+string public header()
+----------------------
+Creates the header string with the following parameters:
+
+<base href='OLIV_BASE' ... />				html basis for link calls
+<title>OLIV_PAGE</title>						Page title, shown in the tab or header of
+																		the browser
+<link href='OLIV_ICON' ... />				definition of the browser icon, using the
+																		OLIVImage class.
+

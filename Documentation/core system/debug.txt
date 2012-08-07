@@ -1,0 +1,35 @@
+																			DEBUG
+																			-----
+
+
+The debug functions offer the formatted output of different variable types.
+
+
+path: library/
+
+
+string echoall(mixed)
+---------------------
+
+The function analyzes the parameter and tries to create an formatted output,
+suitable to the variable type. It supports:
+
+string, int, etc.
+array
+object
+
+For certain values, the return value is a string:
+
+	 value				string
+		NULL				*NULL
+		FALSE				*FALSE
+		""					*empty
+
+Arrays and objects are returned in a <pre> tag using the echoarray function.
+
+
+string echoarray(mixed)
+-----------------------
+
+The function returns a array or object in a <pre> tag, using the print_r
+function.

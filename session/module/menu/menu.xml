@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<menu>
+  <main template='side'>
+    <documentation type='extern' url='documentation' name='extern_documentation' />
+<!--    <admin owner='admin' group='admin' access='770' />-->
+  </main>
+</menu>

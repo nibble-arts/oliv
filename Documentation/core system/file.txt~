@@ -1,0 +1,49 @@
+																		FILE
+																		----
+
+
+The file functions are used to distinguish between the system path and the
+session path while using file functions. 
+
+
+path: library/
+
+
+bool olivfile_exists(string file)
+---------------------------------
+Returns TRUE, if a file exists in the OLIV_CORE_PATH.
+
+
+string olivopendir(string file)
+-------------------------------
+Returns a handler, if the directory exists in the OLIV_CORE_PATH.
+
+
+bool olivis_dir(string file)
+----------------------------
+Returns TRUE, if the file is a directory in OLIV_CORE_PATH.
+
+
+string session_path(string file)
+--------------------------------
+Corrects the file the the correct path/file for use in a session.
+
+
+bool sessionfile_exists(string file)
+------------------------------------
+Returns TRUE, if a file exists in the session directory.
+
+
+string sessionopendir(string file)
+----------------------------------
+Returns a handler, if the directory exists in the session directory..
+
+
+bool sessionis_dir(string file)
+-------------------------------
+Returns TRUE, if the file is a directory in the session directory..
+
+
+array sessionparse_ini_file(string file[,string parameter])
+-----------------------------------------------------------
+Parses an ini file loaded from the session directory.

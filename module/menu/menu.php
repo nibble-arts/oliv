@@ -83,26 +83,45 @@ class menu extends OLIVCore
     {
       foreach ($menu->children() as $entry)
       {
+	// is extern link
+				if ((string)$entry->attributes()->type == "extern")
+				{
+					$url = (string)$entry->attributes()->url;
+					$name = OLIVText::_((string)$entry->attributes()->name);
+
+		      $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
+		        name='menu_$url'
+		        url='$url'
+		        type='extern'>
+		          $name
+		        </menu_item_{$this->templateName}>");
+				}
+				else
+				{
+
+
   // Page definition
-        $pageName = $entry->getName();
-        $itemName = OLIVRoute::translatePageName(OLIV_LANG,$pageName);
+		      $pageName = $entry->getName();
+		      $itemName = OLIVRoute::translatePageName(OLIV_LANG,$pageName);
+
+
 
 
 // aktive menuitem found
-        if ($pageName == $url)
-          $active = "menu_{$templateName}_activ";
-        else
-          $active = "menu_{$templateName}_inactive";
+		      if ($pageName == $url)
+		        $active = "menu_{$templateName}_activ";
+		      else
+		        $active = "menu_{$templateName}_inactive";
           
 
 //echo "<hr>";
 //echoall($this->templateName);
-        $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
-          name='menu_$pageName'
-          url='$pageName'
-          class='$active'>
-            $itemName
-          </menu_item_{$this->templateName}>");
+		      $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
+		        name='menu_$pageName'
+		        url='$pageName'
+		        class='$active'>
+		          $itemName
+		        </menu_item_{$this->templateName}>");
 
 //        olivxml_insert($menuXml,$tempXml);
 
@@ -115,9 +134,9 @@ class menu extends OLIVCore
           $menuName = "menu_item_" . $this->templateName;
           olivxml_insert($tempXml->$menuName,$subXml);
         }*/
+	      }
         olivxml_insert($menuXml,$tempXml);
-      }
-
+			}
  
 //echoall($tempXml);
 //echoall($menuXml->asXML());
