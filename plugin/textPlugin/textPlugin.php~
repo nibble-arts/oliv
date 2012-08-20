@@ -53,14 +53,13 @@ class textEditPlugin
   static public function __callStatic($tag,$options)
   {
   	global $_argv;
-  	
-  	$o = "";
+
 		$command = "";
 		$partName = "";
 
     $content = $options[0];
     $value = (string)$options[0]['template'];
-		
+
     $tagArray = textRender::tagString($tag,$value,$content);
 
 
@@ -76,40 +75,53 @@ class textEditPlugin
 		}
 
 
-//TODO get information from article for saving
 //------------------------------------------------------------------------------
-// call editor
-    if ($partName == $value)
+// save changed text and reload
+		if (($partName == $value) and $command == 'save')
+		{
+			textEditPlugin::saveSnippet($_argv['lang'],$partName,$_argv['text']);
+			$tagArray['value'] = OLIVText::_((string)$value);
+		}
+
+//------------------------------------------------------------------------------
+// open editor
+    if (($partName == $value) and $command == 'edit')
     {
 			$editor = new textEditor;
-      switch ($command)
-      {
-        case 'edit':
-          $tagArray['value'] = $editor->open($value,OLIVText::_((string)$value));
-          break;
-          
-        case 'save':
-          $editor->saveSnippet($value);
-          break;
-      }
+      $tagArray['value'] = $editor->open($value,OLIVText::_((string)$value));
     }
 		else
 		{
+
+
 //------------------------------------------------------------------------------
 // render text
-// set link to start editor
-		  $urlOptions = array(
-		    "url" => $_argv['url'],
-		    "val" => OLIVText::_("edit") . "/$value",
-		  );
-
-			$tagArray['url'] = $_argv['url'];
-			$tagArray['title'] = OLIVText::_("edit");
-      $tagArray['val'] = OLIVText::_("edit") . "/$value";
-      $tagArray['value'] = $value;
+// set link to call editor
+			$tagArray['link'] = array(
+				'url' => $_argv['url'],
+				'title' => OLIVText::_("edit_text"),
+      	'val' => OLIVText::_("edit") . "/" . (string)$value,
+      	'value' => $value
+      );
 		}
 
 		return ($tagArray);
+  }
+
+
+
+//------------------------------------------------------------------------------
+// save text part
+  static private function saveSnippet($lang,$partName,$text)
+  {
+		$partNameArray = explode("_",$partName);
+
+		$path = OLIV_MODULE_PATH . "article/language/";
+		$nameSpace = $partNameArray[0] . "_" . $partNameArray[1];
+		$file = strtolower($partNameArray[1]);
+
+
+		OLIVText::update(array($partName => strip_tags($text)),$nameSpace,$path,$file,$lang);
   }
 }
 
@@ -148,6 +160,10 @@ class textRender
     return ($retArray);
   }
 }
+
+
+
+
 
 
 //------------------------------------------------------------------------------
@@ -211,21 +227,6 @@ class textEditor
     $o .= "</textarea></form>";
 
     return $o;
-  }
-  
-
-
-//------------------------------------------------------------------------------
-// save text part
-  function saveSnippet($value)
-  {
-    global $_argv;
-
-//TODO save text in language file
-		echo("textPlugin::save => ");
-
-		olivxml_writeFile($value,$this->article['path'] . $this->article['name']);
-		echoall(" in " . $this->article['lang']); 
   }
 }
 ?>

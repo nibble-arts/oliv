@@ -140,7 +140,11 @@ class OLIVText extends OLIVCore
 		OLIVText::write($textArray,$path,$file,$lang);
 
 // reload altered text
+echoall("reload $file");
+global $_TEXT;
+echoall($_TEXT);
 		OLIVText::load($path,$file,$lang);
+echoall($_TEXT);
 	}
 
 

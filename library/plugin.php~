@@ -66,7 +66,7 @@ class OLIVPlugin
 //------------------------------------------------------------------------------
 // check for rights to edit
 
-echoall($options['template']);
+echoall(OLIVRight::_($options['template']));
 
       if (OLIVRight::w($options['template']) and $pluginEditCall[0])
         $class = $pluginEditCall[0];

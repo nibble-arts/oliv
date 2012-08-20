@@ -140,13 +140,21 @@ class OLIVRoute
   {
     $url = "";
     $val = "";
+    $title = "";
+    $target = "";
     $param = "";
     $class = "";
     $lang = "";
 
 
-    if (isset($options['url'])) $url = strtolower($options['url']);
-    if (isset($options['val'])) $val = $options['val'];
+// link parameters
+    if (isset($options['link']['url'])) $url = strtolower($options['link']['url']);
+    if (isset($options['link']['val'])) $val = $options['link']['val'];
+    if (isset($options['link']['title'])) $title = $options['link']['title'];
+    if (isset($options['link']['target'])) $target = $options['link']['target'];
+
+
+// parameters
     if (isset($options['param'])) $param = $options['param'];
     if (isset($options['class'])) $class = $options['class'];
     if (isset($options['lang'])) $lang = $param['lang']; // get link language
@@ -176,7 +184,7 @@ class OLIVRoute
 
 
     // return href string
-    return ("<a $class href='$path' $param>$text</a>");
+    return ("<a $class href='$path' title='$title' target='$target' $param>$text</a>");
   }
 
 
@@ -208,18 +216,19 @@ class OLIVRoute
 // return parameter string for link
   static public function makeUrl($lang,$url)
   {
-// create absolute url
-// for correct Apache modrewrite
-    $routeArray = array(OLIV_PROTOCOL . OLIV_HOST . OLIV_BASE . OLIV_SCRIPT_NAME);
+		if ($url)
+		{
+		  $routeArray = array(OLIV_PROTOCOL . OLIV_HOST . OLIV_BASE . OLIV_SCRIPT_NAME);
 
-    if ($lang) array_push($routeArray,$lang);
-    else
-      $lang = OLIV_LANG;
+		  if ($lang) array_push($routeArray,$lang);
+		  else
+		    $lang = OLIV_LANG;
 
-    $val = OLIVRoute::translatePageName($lang,$url);
-    
-    if ($url[strtolower($val)]) array_push($routeArray,$val);
-    return (implode("/",$routeArray));
+		  $val = OLIVRoute::translatePageName($lang,$url);
+		  
+		  if ($url[strtolower($val)]) array_push($routeArray,$val);
+		  return (implode("/",$routeArray));
+		}
   }
 
 

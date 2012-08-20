@@ -179,18 +179,13 @@ class OLIVRender extends OLIVCore
         if (!$pluginArray)
         {
           $pluginArray['startTag'] = "<$areaTag>";
-          $pluginArray['endTag'] = "</$areaTag>";
+          $pluginArray['link'] = "";
           $pluginArray['value'] = $value;
+          $pluginArray['endTag'] = "</$areaTag>";
         }
 
 
-// if no link, set url/title to ""
-        if (!array_key_exists('url',$pluginArray))
-          $pluginArray['url'] = "";
-        if (!array_key_exists('title',$pluginArray))
-          $pluginArray['title'] = "";
-
-
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // start tag sequenz
         $tempO .= $pluginArray['startTag'];
@@ -242,29 +237,19 @@ class OLIVRender extends OLIVCore
 // end tag sequenz
         $tempO .= $pluginArray['endTag'];
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
-// create link on tag
-        if ($pluginArray['url'])
+// create link for tag
+        if (array_key_exists('link',$pluginArray))
         {
-          $url = $pluginArray['url'];
+          $linkArray = $pluginArray['link'];
           $paramArray['id'] = $areaName;
 
-          if (array_key_exists('val',$pluginArray))
-            $val = $pluginArray['val'];
-
-          if (array_key_exists('title',$pluginArray))
-            $paramArray['title'] = $pluginArray['title'];
-          
-          if (array_key_exists('target',$pluginArray))
-            $paramArray['target'] = $pluginArray['target'];
-          
 
 // insert link
-//echoall($paramArray);
-
-          $tempO = OLIVRoute::_($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
+          $tempO = OLIVRoute::_($tempO,array("link" => $linkArray,"param" => $paramArray));
 //------------------------------------------------------------------------------
 
         }

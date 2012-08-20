@@ -106,6 +106,7 @@ function olivini_writeFile($iniArray,$path,$file,$lang)
 
 // create file name
 	$file = "{$lang}.{$file}.ini";
+$file = "test.ini";
 
 
 // get complete path to session

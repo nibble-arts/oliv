@@ -38,34 +38,24 @@ class templatePlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
-    $url = "";
-    $title = "";
-    $target = "";
-    
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
 
+
+// parse start tag parameters
     $startTagArray = templatePlugin::startTag($template,$content);
 
+
+// create tag string
     $startTag = "<$tag " . templatePlugin::paramToString($startTagArray['param']) . ">";
     $endTag = "</$tag>";
 
 
-// create link
-    if (array_key_exists("url",$startTagArray['link']))
-      $url = $startTagArray['link']['url'];
-    if (array_key_exists("title",$startTagArray['link']))
-      $title = $startTagArray['link']['title'];
-    if (array_key_exists("target",$startTagArray['link']))
-      $target = $startTagArray['link']['target'];
-
-      
+// return plugin array
     return (array(
       "startTag" => $startTag,
-      "url" => $url,
-      "title" => $title,
-      "target" => $target,
+			"link" => $startTagArray['link'],
       "value" => $value,
       "endTag" => $endTag)
     );
@@ -179,7 +169,8 @@ class templatePlugin
     			$paramArray['param']['style'] = "background-image:url($background_image);";
         break;
 
-    // set url parameters for link
+
+// set url parameters for link
       case 'url':
         $paramArray['link']['url'] = (string)$value;
         break;
@@ -189,7 +180,7 @@ class templatePlugin
         break;
 
       case 'target':
-        $paramArray['link']['target'] = (string)OLIVText::_($value);
+        $paramArray['link']['target'] = (string)$value;
         break;
 
 // set normal value

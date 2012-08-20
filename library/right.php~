@@ -90,8 +90,11 @@ class OLIVRight
 // returns false if no access
   private static function checkAccess($access)
   {
-    $ownRight = "000";
-    $groupRight = "000";
+    $owner = "000";
+    $group = "000";
+    $rights = "";
+    $ownRight = "";
+    $groupRight = "";
     $allRight = "";
     
 
@@ -117,7 +120,7 @@ class OLIVRight
 
 //------------------------------------------------------------------------------
 // no rights requested
-    if (!$ownRight and !$groupRight and !$allRight) return array("r" => 1,"w" => 1,"x" => 1);
+//    if (!$ownRight and !$groupRight and !$allRight) return array("r" => 1,"w" => 1,"x" => 1);
 
 
 //print_r($userGroup->asXML());
