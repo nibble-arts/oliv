@@ -144,7 +144,7 @@ class OLIVRoute
     $class = "";
     $lang = "";
 
-
+echoall($options);
     if (isset($options['url'])) $url = strtolower($options['url']);
     if (isset($options['val'])) $val = $options['val'];
     if (isset($options['param'])) $param = $options['param'];

@@ -261,12 +261,11 @@ class OLIVRender extends OLIVCore
             $paramArray['target'] = $pluginArray['target'];
           
 
+//------------------------------------------------------------------------------
 // insert link
 //echoall($paramArray);
 
           $tempO = OLIVRoute::_($tempO,array("url" => $url,"val" => $val,"param" => $paramArray));
-//------------------------------------------------------------------------------
-
         }
 
 				$o .= $tempO;

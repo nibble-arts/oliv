@@ -40,6 +40,7 @@ class templatePlugin
   {
     $url = "";
     $title = "";
+    $target = "";
     
     $template = $options[0]['template'];
     $content = $options[0]['content'];
@@ -49,16 +50,22 @@ class templatePlugin
 
     $startTag = "<$tag " . templatePlugin::paramToString($startTagArray['param']) . ">";
     $endTag = "</$tag>";
-    
+
+
+// create link
     if (array_key_exists("url",$startTagArray['link']))
       $url = $startTagArray['link']['url'];
     if (array_key_exists("title",$startTagArray['link']))
       $title = $startTagArray['link']['title'];
+    if (array_key_exists("target",$startTagArray['link']))
+      $target = $startTagArray['link']['target'];
 
+      
     return (array(
       "startTag" => $startTag,
       "url" => $url,
       "title" => $title,
+      "target" => $target,
       "value" => $value,
       "endTag" => $endTag)
     );
@@ -78,8 +85,6 @@ class templatePlugin
 // insert content parameters
 		$paramArray = templatePlugin::getParamArray($content,$paramArray);
 
-
-//echoall($paramArray);
     return ($paramArray);
  }
 
@@ -156,6 +161,9 @@ class templatePlugin
   }
 
 
+
+
+
 //------------------------------------------------------------------------------
 // parse tag parameters
 // insert content background image
@@ -178,6 +186,10 @@ class templatePlugin
       
       case 'title':
         $paramArray['link']['title'] = (string)OLIVText::_($value);
+        break;
+
+      case 'target':
+        $paramArray['link']['target'] = (string)OLIVText::_($value);
         break;
 
 // set normal value

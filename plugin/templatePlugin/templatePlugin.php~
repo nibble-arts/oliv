@@ -38,63 +38,122 @@ class templatePlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
+    $url = "";
+    $title = "";
+    $target = "";
+    
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
 
-    return (array("startTag" => templatePlugin::startTag($tag,$template,$content),"value" => $value,"endTag" => "</$tag>"));
+    $startTagArray = templatePlugin::startTag($template,$content);
+
+    $startTag = "<$tag " . templatePlugin::paramToString($startTagArray['param']) . ">";
+    $endTag = "</$tag>";
+
+
+// create link
+    if (array_key_exists("url",$startTagArray['link']))
+      $url = $startTagArray['link']['url'];
+    if (array_key_exists("title",$startTagArray['link']))
+      $title = $startTagArray['link']['title'];
+    if (array_key_exists("target",$startTagArray['link']))
+      $target = $startTagArray['link']['target'];
+
+      
+    return (array(
+      "startTag" => $startTag,
+      "url" => $url,
+      "title" => $title,
+      "target" => $target,
+      "value" => $value,
+      "endTag" => $endTag)
+    );
   }
 
 
 //------------------------------------------------------------------------------
 // create tag string
-  static private function startTag($tag,$template,$content)
+  static private function startTag($template,$content)
   {
-    $templateArray = array();
-    $retString = "";
+//    $templateArray = array();
+//    $retString = "";
 
 // get template parameters
     $paramArray = templatePlugin::getParamArray($template);
 
-//TODO
-// insert also content parameters to template
-		$contentParamArray = templatePlugin::getParamArray($content);
+// insert content parameters
+		$paramArray = templatePlugin::getParamArray($content,$paramArray);
 
-
-  // combine parameters from array to tag string
-    foreach ($paramArray as $key => $value)
-    {
-        $retString .= "$key='$value' ";
-    }
-
-    return ("<$tag $retString>"); //name='$tag' 
+    return ($paramArray);
  }
+
+
+
+//------------------------------------------------------------------------------
+// convert array to parameter string
+  static private function paramToString($paramArray)
+  {
+    $retString = "";
+    
+    foreach($paramArray as $key => $value)
+    {
+      $retString .= "$key='$value' ";
+    }
+    
+    return ($retString);
+  }
 
 
 //------------------------------------------------------------------------------
 // create parameter string for tag
-  static private function getParamArray($param,$paramArray = array())
+  static private function getParamArray($param,$paramArray = array("param" => array(),"link" => array()))
   {
 // loop over parameters
     if ($param)
     {
-      foreach ($param->attributes() as $entry)
+      foreach ($param->attributes() as $key => $value)
       {
-        $key = (string)$entry->getName();
-        $value = (string)$entry;
+        $newParam = array();
+        $newLink = array();
+        $newParamValue = "";
+        $newLinkValue = "";
         
-        $newParam = templatePlugin::parse($key,$value);
 
-        $newKey = key($newParam);
-        $newValue = $newParam[$newKey];
+// get parameters from array
+        $newParamArray = templatePlugin::parse($key,$value);
 
 
-    // add parameter to existing key
-        if (array_key_exists($newKey,$paramArray))
-          $paramArray[$newKey] .= $newValue;
+// select param and link part
+        if (array_key_exists("param",$newParamArray)) $newParam = $newParamArray['param'];
+        if (array_key_exists("link",$newParamArray)) $newLink = $newParamArray['link'];
+
+        $newParamKey = key($newParam);
+        $newLinkKey = key($newLink);
+        
+        if ($newParamKey) $newParamValue = $newParam[$newParamKey];
+        if ($newLinkKey) $newLinkValue = $newLink[$newLinkKey];
+
+
+//------------------------------------------------------------------------------
+// add parameter to existing parameter
+        if (array_key_exists($newParamKey,$paramArray['param']))
+          $paramArray['param'][$newParamKey] .= $newParamValue;
         else
-    // add new parameter
-          $paramArray = array_merge ($paramArray,$newParam);
+// add new parameter
+          $paramArray['param'] = array_merge ($paramArray['param'],$newParam);
+
+
+//------------------------------------------------------------------------------
+// add parameter to existing link
+
+
+        if (array_key_exists($newLinkKey,$paramArray['link']))
+          $paramArray['link'][$newLinkKey] = $newLinkValue;
+        else
+        {
+          $paramArray['link'] = array_merge ($paramArray['link'],$newLink);
+        }
       }
     }
 
@@ -107,26 +166,33 @@ class templatePlugin
 // insert content background image
   static private function parse($key,$value)
   {
+    $paramArray = array();
+
     switch ($key)
     {
 // use image class for background-image
       case 'background-image':
     		if ($background_image = OLIVImage::_($value))
-    			$paramArray['style'] = "background-image:url($background_image);";
+    			$paramArray['param']['style'] = "background-image:url($background_image);";
         break;
 
-// set url parameters for link
+    // set url parameters for link
       case 'url':
-        $paramArray['url'] = $value;
+        $paramArray['link']['url'] = (string)$value;
         break;
       
       case 'title':
-        $paramArray['title'] = OLIVText::_($value);
+        $paramArray['link']['title'] = (string)OLIVText::_($value);
+        break;
+
+      case 'target':
+        $paramArray['link']['target'] = (string)OLIVText::_($value);
         break;
 
 // set normal value
       default:
-  			$paramArray[$key] = $value;;
+  			$paramArray['param'][$key] = $value;
+        break;
     }
 
     return ($paramArray);
@@ -134,6 +200,14 @@ class templatePlugin
 }
 
 
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+// class for editor call
 class templateEditPlugin
 {
 //------------------------------------------------------------------------------

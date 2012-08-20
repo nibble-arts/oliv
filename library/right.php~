@@ -90,11 +90,8 @@ class OLIVRight
 // returns false if no access
   private static function checkAccess($access)
   {
-    $owner = "000";
-    $group = "000";
-    $rights = "";
-    $ownRight = "";
-    $groupRight = "";
+    $ownRight = "000";
+    $groupRight = "000";
     $allRight = "";
     
 

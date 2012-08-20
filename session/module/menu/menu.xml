@@ -2,7 +2,9 @@
 
 <menu>
   <main template='side'>
-    <documentation type='extern' url='documentation' name='extern_documentation' />
+  	<index title='home_site' />
+    <documentation owner='admin' group='editor' access='760' url='http://localhost/oliv/documentation/index.php' title='extern_documentation' name='extern_documentation' />
 <!--    <admin owner='admin' group='admin' access='770' />-->
+		<iggmp owner='tom' access='700' url='http://www.iggmp.net' target='_blank' name='IG-GmP'/>
   </main>
 </menu>
