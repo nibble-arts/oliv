@@ -80,12 +80,12 @@ class menu extends OLIVCore
     if ($menu)
     {
 
-
 //------------------------------------------------------------------------------
 // loop over menu entries
       foreach ($menu->children() as $entry)
       {
 				$itemName = "";
+				$itemUrl = "";
 				$itemTitle = "";
 				$itemTarget = "";
 
@@ -94,7 +94,7 @@ class menu extends OLIVCore
 // is extern link
 				if ($entry->attributes()->url)
 				{
-					$pageName = (string)$entry->attributes()->url;
+					$itemUrl = (string)$entry->attributes()->url;
 					if ($entry->attributes()->name)
 						$itemName = OLIVText::_((string)$entry->attributes()->name);
 				}
@@ -103,8 +103,8 @@ class menu extends OLIVCore
 // is intern link
 				else
 				{
-		      $pageName = $entry->getName();
-		      $itemName = OLIVRoute::translatePageName(OLIV_LANG,$pageName);
+		      $itemUrl = $entry->getName();
+		      $itemName = OLIVRoute::translatePageName(OLIV_LANG,$itemUrl);
 				}
 
 
@@ -116,7 +116,7 @@ class menu extends OLIVCore
 				
 
 // aktive menuitem found
-	      if ($pageName == $url)
+	      if ($itemUrl == $url)
 	        $active = "menu_{$templateName}_activ";
 	      else
 	        $active = "menu_{$templateName}_inactive";
@@ -126,14 +126,14 @@ class menu extends OLIVCore
 				if (OLIVRight::r($entry))
 				{
 					if (!OLIVRight::x($entry))
-						$pageName = "";
+						$itemUrl = "";
 
 
 
 // create menu item entry
 			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
-			      name='menu_$pageName'
-			      url='$pageName'
+			      name='menu_$itemUrl'
+			      url='$itemUrl'
 			      title = '$itemTitle'
 			      target = '$itemTarget'
 			      class='$active'>

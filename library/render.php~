@@ -220,6 +220,7 @@ class OLIVRender extends OLIVCore
         else
           $tempO .= OLIVText::_($pluginArray['value']);
 
+
 //------------------------------------------------------------------------------
 // display template edit layer
         if (OLIV_TEMPLATE_EDIT)
@@ -238,7 +239,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-
+//echoall($pluginArray);
 //------------------------------------------------------------------------------
 // create link for tag
         if (array_key_exists('link',$pluginArray))
@@ -248,7 +249,7 @@ class OLIVRender extends OLIVCore
 
 
 // insert link
-          $tempO = OLIVRoute::_($tempO,array("link" => $linkArray,"param" => $paramArray));
+	        $tempO = OLIVRoute::generate($tempO,array("link" => $linkArray,"param" => $paramArray));
 //------------------------------------------------------------------------------
 
         }

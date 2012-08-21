@@ -136,7 +136,7 @@ class OLIVRoute
 // create intern link
 // options array contains url information and href options
 // array(array(mod,urletc.),array(id,title,etc.))
-  static public function _($text,$options = array())
+  static public function link($text,$options = array())
   {
     $url = "";
     $val = "";
@@ -147,8 +147,14 @@ class OLIVRoute
     $lang = "";
 
 
+
+
 // link parameters
     if (isset($options['link']['url'])) $url = strtolower($options['link']['url']);
+//TODO     elsewise translate intern url to correct path
+		else
+			echoall("create intern url for ");
+
     if (isset($options['link']['val'])) $val = $options['link']['val'];
     if (isset($options['link']['title'])) $title = $options['link']['title'];
     if (isset($options['link']['target'])) $target = $options['link']['target'];
@@ -173,8 +179,7 @@ class OLIVRoute
 		  $path = OLIVRoute::makeUrl($lang,$url) . "/";
 		  if ($val) $path .= $val . "/";
 		}
-		
-    
+
 // create parameter string
     $param = OLIVRoute::makeParam($param);
 
@@ -216,18 +221,19 @@ class OLIVRoute
 // return parameter string for link
   static public function makeUrl($lang,$url)
   {
-// create absolute url
-// for correct Apache modrewrite
-    $routeArray = array(OLIV_PROTOCOL . OLIV_HOST . OLIV_BASE . OLIV_SCRIPT_NAME);
+		if ($url)
+		{
+		  $routeArray = array(OLIV_PROTOCOL . OLIV_HOST . OLIV_BASE . OLIV_SCRIPT_NAME);
 
-    if ($lang) array_push($routeArray,$lang);
-    else
-      $lang = OLIV_LANG;
+		  if ($lang) array_push($routeArray,$lang);
+		  else
+		    $lang = OLIV_LANG;
 
-    $val = OLIVRoute::translatePageName($lang,$url);
-    
-    if ($url[strtolower($val)]) array_push($routeArray,$val);
-    return (implode("/",$routeArray));
+		  $val = OLIVRoute::translatePageName($lang,$url);
+		  
+		  if ($url[strtolower($val)]) array_push($routeArray,$val);
+		  return (implode("/",$routeArray));
+		}
   }
 
 

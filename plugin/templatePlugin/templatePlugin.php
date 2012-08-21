@@ -38,6 +38,8 @@ class templatePlugin
 // render functions
   static public function __callStatic($tag,$options)
   {
+  	$link = "";
+  	
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
@@ -52,13 +54,18 @@ class templatePlugin
     $endTag = "</$tag>";
 
 
+//echoall($startTagArray);
 // return plugin array
-    return (array(
+    $tagArray = (array(
       "startTag" => $startTag,
-			"link" => $startTagArray['link'],
       "value" => $value,
       "endTag" => $endTag)
     );
+
+// insert link if present
+		if (count($startTagArray['link'])) $tagArray['link'] = $startTagArray['link'];
+
+		return $tagArray;
   }
 
 

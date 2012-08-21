@@ -136,7 +136,7 @@ class OLIVRoute
 // create intern link
 // options array contains url information and href options
 // array(array(mod,urletc.),array(id,title,etc.))
-  static public function _($text,$options = array())
+  static public function link($text,$options = array())
   {
     $url = "";
     $val = "";
@@ -147,8 +147,14 @@ class OLIVRoute
     $lang = "";
 
 
+
+echoall($options);
 // link parameters
     if (isset($options['link']['url'])) $url = strtolower($options['link']['url']);
+//TODO     elsewise translate intern url to correct path
+		else
+			echoall("create intern url for ");
+
     if (isset($options['link']['val'])) $val = $options['link']['val'];
     if (isset($options['link']['title'])) $title = $options['link']['title'];
     if (isset($options['link']['target'])) $target = $options['link']['target'];
@@ -173,8 +179,7 @@ class OLIVRoute
 		  $path = OLIVRoute::makeUrl($lang,$url) . "/";
 		  if ($val) $path .= $val . "/";
 		}
-		
-    
+
 // create parameter string
     $param = OLIVRoute::makeParam($param);
 

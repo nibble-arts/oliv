@@ -239,7 +239,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-
+//echoall($pluginArray);
 //------------------------------------------------------------------------------
 // create link for tag
         if (array_key_exists('link',$pluginArray))
@@ -249,7 +249,7 @@ class OLIVRender extends OLIVCore
 
 
 // insert link
-          $tempO = OLIVRoute::_($tempO,array("link" => $linkArray,"param" => $paramArray));
+	        $tempO = OLIVRoute::link($tempO,array("link" => $linkArray,"param" => $paramArray));
 //------------------------------------------------------------------------------
 
         }

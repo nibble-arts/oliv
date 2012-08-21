@@ -39,11 +39,19 @@ class OLIVRight
 //   w ... returns true if write permission
 //   x ... returns true if execute permission
 // all possible combinations rw, rx, wx, rwx returns true if all permissions
+// strict ... FALSE = if no access information found, return 1
+//				... TRUE = access information must be correct
 //
 //   _ ... returns associative array with r,w,x values
   public static function __callStatic($m,$access)
   {
-    $right = OLIVRight::checkAccess($access[0]);
+		$right = "";
+		$strict = "";
+
+		if (isset($access[0])) $right = $access[0];
+		if (isset($access[1])) $strict = $access[1];
+
+    $right = OLIVRight::checkAccess($right,$strict);
 
     switch($m)
     {
@@ -88,7 +96,7 @@ class OLIVRight
 //
 // returns true if access granted
 // returns false if no access
-  private static function checkAccess($access)
+  private static function checkAccess($access,$strict = FALSE)
   {
     $owner = "000";
     $group = "000";
@@ -120,7 +128,12 @@ class OLIVRight
 
 //------------------------------------------------------------------------------
 // no rights requested
-    if (!$ownRight and !$groupRight and !$allRight) return array("r" => 1,"w" => 1,"x" => 1);
+// return true if not strict
+// return false if strict
+    if (!$ownRight and !$groupRight and !$allRight and !$strict)
+    	return array("r" => 1,"w" => 1,"x" => 1);
+    else
+    	return array("r" => 0,"w" => 0,"x" => 0);
 
 
 //print_r($userGroup->asXML());
