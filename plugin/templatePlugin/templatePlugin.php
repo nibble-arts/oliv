@@ -39,7 +39,7 @@ class templatePlugin
   static public function __callStatic($tag,$options)
   {
   	$link = "";
-  	
+
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];

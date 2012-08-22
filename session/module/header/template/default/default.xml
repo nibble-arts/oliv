@@ -2,5 +2,5 @@
 
 <template name='common'>
 <!--  <header_background background_image="green_line.png" />-->
-  <div id='header_img' url='index' background-image="oliv_logo.png" />
+  <div id='header_img' url='index' title='back_home' background-image="oliv_logo.png" />
 </template>

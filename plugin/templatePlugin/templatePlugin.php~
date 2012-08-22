@@ -39,7 +39,7 @@ class templatePlugin
   static public function __callStatic($tag,$options)
   {
   	$link = "";
-  	
+echoall($options);
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
@@ -81,7 +81,7 @@ class templatePlugin
 
 // insert content parameters
 		$paramArray = templatePlugin::getParamArray($content,$paramArray);
-echoall($paramArray);
+
     return ($paramArray);
  }
 

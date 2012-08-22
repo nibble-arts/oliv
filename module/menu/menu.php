@@ -88,6 +88,7 @@ class menu extends OLIVCore
 				$itemUrl = "";
 				$itemTitle = "";
 				$itemTarget = "";
+		    $paramString = "";
 
 
 //------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ class menu extends OLIVCore
 // is intern link
 				else
 				{
-		      $itemUrl = $entry->getName(); //TODO insert correct link
+		      $itemUrl = $entry->getName();
 		      $itemName = OLIVRoute::translatePageName(OLIV_LANG,$itemUrl);
 				}
 
@@ -115,28 +116,38 @@ class menu extends OLIVCore
 					$itemTarget = OLIVText::_((string)$entry->attributes()->target);
 				
 
-// aktive menuitem found
+// set display class aktive / inactive
 	      if ($itemUrl == $url)
-	        $active = "menu_{$templateName}_activ";
+	        $displayClass = "menu_{$templateName}_active";
 	      else
-	        $active = "menu_{$templateName}_inactive";
+	        $displayClass = "menu_{$templateName}_inactive";
         
 
-// check access
+//------------------------------------------------------------------------------
+// display item if read permission
 				if (OLIVRight::r($entry))
 				{
-					if (!OLIVRight::x($entry))
-						$itemUrl = "";
+// insert link if x permission
+					if (OLIVRight::x($entry))
+					{
+						$paramString = "url='$itemUrl'";
 
+						if ($itemTitle)
+							$paramString .= " title = '$itemTitle'";
+						if ($itemTarget)
+							$paramString .= " target = '$itemTarget'";
+					}
+// set display class to disabled
+					else
+						$displayClass = "menu_{$templateName}_disabled";
+
+
+// insert name and format
+					$paramString .= 	" name='menu_$itemUrl' class='$displayClass'";
 
 
 // create menu item entry
-			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName}
-			      name='menu_$itemUrl'
-			      url='$itemUrl'
-			      title = '$itemTitle'
-			      target = '$itemTarget'
-			      class='$active'>
+			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} $paramString>
 			        $itemName
 			      </menu_item_{$this->templateName}>");
 

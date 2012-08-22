@@ -118,9 +118,6 @@ class OLIVRender extends OLIVCore
         $areaName = (string)$entry->attributes()->id;
         $areaTag = $entry->getName();
 
-//echo "<hr>";
-//echoall($template);
-//echoall($content);
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -179,9 +176,9 @@ class OLIVRender extends OLIVCore
         if (!$pluginArray)
         {
           $pluginArray['startTag'] = "<$areaTag>";
-          $pluginArray['link'] = "";
           $pluginArray['value'] = $value;
           $pluginArray['endTag'] = "</$areaTag>";
+          unset($pluginArray['link']);
         }
 
 
@@ -202,8 +199,8 @@ class OLIVRender extends OLIVCore
   // supress tag value which is module parameter
             $pluginArray['value'] = "";
 
-  //TODO
-  // make syntax check of module output
+//TODO
+// make syntax check of module output
     				$tempO .= $outputObj->o;
           }
   			}
@@ -239,7 +236,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-//echoall($pluginArray);
+
 //------------------------------------------------------------------------------
 // create link for tag
         if (array_key_exists('link',$pluginArray))
@@ -261,7 +258,7 @@ class OLIVRender extends OLIVCore
     }
     else
     {
-//TODO render content only
+//TODO render content only ???
 //      echoall($content);
       return OLIVERROR::render ("render::_template - no template to render");
     }

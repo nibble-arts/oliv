@@ -76,7 +76,7 @@ class OLIVUser extends OLIVCore
 
 //------------------------------------------------------------------------------
 // get user group
-// returns a xml object with the groups the user is assigned to
+// returns a xml object with the groups the user is assigned
   public static function getGroup($user)
   {
     global $_access;

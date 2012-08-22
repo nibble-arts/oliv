@@ -8,7 +8,7 @@
   
   <main template='side'>
     <index />
-    <download group='editor' access='776' />
+    <download group='tom' access='776' />
     <admin owner='admin' group='admin' access='760' />
   </main>
 

@@ -147,20 +147,23 @@ class OLIVRoute
     $lang = "";
 
 
-
-echoall($options);
+//echoall($options['link']);
 // link parameters
     if (isset($options['link']['url'])) $url = strtolower($options['link']['url']);
-//TODO     elsewise translate intern url to correct path
 		else
-			echoall("create intern url for ");
+		{
+// return without link
+	    return ($text);
+		}
 
+
+// get link parameters
     if (isset($options['link']['val'])) $val = $options['link']['val'];
     if (isset($options['link']['title'])) $title = $options['link']['title'];
     if (isset($options['link']['target'])) $target = $options['link']['target'];
 
 
-// parameters
+// get common parameters
     if (isset($options['param'])) $param = $options['param'];
     if (isset($options['class'])) $class = $options['class'];
     if (isset($options['lang'])) $lang = $param['lang']; // get link language
@@ -168,11 +171,13 @@ echoall($options);
     if (!$lang) $lang = OLIV_LANG; // if no language use current
 
 
+//------------------------------------------------------------------------------
 // create extern link
 		if (substr($url,0,7) == "http://" or substr($url,0,8) == "https://")
 			$path = $url;
 
 
+//------------------------------------------------------------------------------
 // create intern link
 		else
 		{
@@ -193,8 +198,8 @@ echoall($options);
   }
 
 
-//TODO make url basis for intern, extern, form, e.i.
 //------------------------------------------------------------------------------
+//TODO make url basis for intern, extern, form, e.i.
 // create form url
   static public function url($text,$options="")
   {

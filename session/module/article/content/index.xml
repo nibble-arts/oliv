@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <article>
-  <h2 owner='admin' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX_001</h2>
-  <p owner='admin' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX_002</p>
+  <h2 owner='admin' group='editor' access='774' lang='de_DE' index='1336633758'>ARTICLE_INDEX_001</h2>
+  <p owner='tom' group='editor' access='774' lang='de_DE' index='1336633758'>ARTICLE_INDEX_002</p>
 
 <!--    <p><daba owner='tom' group='admin' access='770'>field:name</daba></p>-->
 </article>

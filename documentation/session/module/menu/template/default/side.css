@@ -17,6 +17,12 @@
 }
 
 .menu_side_inactive {
+  color:black;
+  font-style:normal;
+	background-color:#dcdc78
+}
+
+.menu_side_disabled {
   color:grey;
   font-style:normal;
 	background-color:#dcdc78

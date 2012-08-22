@@ -47,48 +47,23 @@ class OLIVRight
   {
 		$right = "";
 		$strict = "";
-  	// $access[0] = access information
-  	// $access[1] = strict information
 
 		if (isset($access[0])) $right = $access[0];
 		if (isset($access[1])) $strict = $access[1];
 
     $right = OLIVRight::checkAccess($right,$strict);
 
-    switch($m)
-    {
-      case 'r':
-        return $right['r'];
-        break;
 
-      case 'w':
-        return $right['w'];
-        break;
+		if (strstr($m,'r'))
+			return $right['r'];
 
-      case 'x':
-        return $right['x'];
-        break;
+		if (strstr($m,'w'))
+			return $right['w'];
 
-      case 'rw':
-        return ($right['r'] & $right['w']);
-        break;
+		if (strstr($m,'x'))
+			return $right['x'];
 
-      case 'rx':
-        return ($right['r'] & $right['x']);
-        break;
-
-      case 'wx':
-        return ($right['w'] & $right['x']);
-        break;
-
-      case 'rwx':
-        return ($right['r'] & $right['w'] & $right['x']);
-        break;
-
-      case '_':
-        return $right;
-        break;
-    }
+		return $right;
   }
 
 
@@ -100,9 +75,9 @@ class OLIVRight
 // returns false if no access
   private static function checkAccess($access,$strict = FALSE)
   {
-    $owner = "000";
-    $group = "000";
-    $rights = "";
+    $owner = "";
+    $group = "";
+    $rights = "000";
     $ownRight = "";
     $groupRight = "";
     $allRight = "";
@@ -112,10 +87,9 @@ class OLIVRight
 // get requested rights
 		if (isset($access['owner'])) $owner = (string)$access->attributes()->owner;
     if (isset($access['group'])) $group = (string)$access->attributes()->group;
-  
-    // decode requested rights
 		if (isset($access['access'])) $rights = (string)$access->attributes()->access;
-    
+
+
     $ownRight = intval(substr($rights,0,1));
     $groupRight = intval(substr($rights,1,1));
     $allRight = intval(substr($rights,2,1));
@@ -124,24 +98,28 @@ class OLIVRight
 //------------------------------------------------------------------------------
 // get user rights
     $userRight = OLIVUser::getRight(OLIV_USER);
-    $userOwner = $userRight->getName();
+
     $userGroup = OLIVUser::getGroup(OLIV_USER);
+    $userOwner = $userRight->getName();
 
 
 //------------------------------------------------------------------------------
 // no rights requested
-// return true if not strict
-// return false if strict
-    if (!$ownRight and !$groupRight and !$allRight and !$strict)
-    	return array("r" => 1,"w" => 1,"x" => 1);
-    else
-    	return array("r" => 0,"w" => 0,"x" => 0);
 
+// reset rights
+    $r = $w = $x = 0;
+
+// if no rights found, check strict parameter
+    if (!$ownRight and !$groupRight and !$allRight)
+		{
+			if (!$strict)
+		  	$r = $w = $x = 1;
+		  else
+		  	$r = $w = $x = 0;
+		}
 
 //print_r($userGroup->asXML());
 //------------------------------------------------------------------------------
-// check owner rights
-    $r = $w = $x = 0;
 
 
 // give all rights if superuser
@@ -151,33 +129,36 @@ class OLIVRight
     }
 
 
-    if (OLIV_USER)
+//------------------------------------------------------------------------------
+// check owner
+   if (OLIV_USER)
     {
       if ($owner == $userOwner)
       {
-//      echo "set owner right";
         if($ownRight & 4) $r = 1;
         if($ownRight & 2) $w = 1;
         if($ownRight & 1) $x = 1;
       }
     }
-    
-// check group rights
+
+
+//------------------------------------------------------------------------------
+// check group
     if ($userGroup)
     {
       if ($group == (string)$userGroup->$group->getName())
       {
-//    echo "set group right";
         if($groupRight & 4) $r = 1;
         if($groupRight & 2) $w = 1;
         if($groupRight & 1) $x = 1;
       }
     }
-    
+
+
+//------------------------------------------------------------------------------
 // check all rights
     if ($access)
     {
-//    echo "set all right";
       if($allRight & 4) $r = 1;
       if($allRight & 2) $w = 1;
       if($allRight & 1) $x = 1;
