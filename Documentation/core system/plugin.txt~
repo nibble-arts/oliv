@@ -33,6 +33,8 @@ The plugin call method needs the following parameters to execute:
 	options					in the optional options array additional parameters can be
 									assigned to the plugin
 
+If the script exists it is included and executed with the given parameters.
+
 
 mixed private function scen(string path)
 ----------------------------------------

@@ -39,152 +39,24 @@ class admin extends OLIVCore
   function __construct($header)
   {
     $template = OLIVModule::load_template($header);
-    
-    $this->info();
+
+		if (OLIV_CONTENT_EDIT)
+	    $this->o = $this->displayAdmin($template);
   }
   
 
-//------------------------------------------------------------------------------
-// returns core information
-  public function info()
-  {
-    global $_TEXT;
-    global $_PAGES;
+	private function displayAdmin($template)
+	{
+		$link = array("link" => array(
+				"url" => OLIV_PAGE,
+				"val" => "save"
+			)
+		);
 
-    
-    $this->o .=  "<table border='1' align='center'>";
-//------------------------------------------------------------------------------
-// CORE STATUS
-      $this->o .=  "<tr>";
+		$ok = OLIVRoute::link("OK",$link);
 
-        if (defined(OLIVENV) and defined(OLIVCORE) and defined(OLIVTEXT) and defined(OLIVERROR) and defined(OLIVDABA))
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-        
-          $this->o .=  "<h1>OLIV-CMS Core Status</h1>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-
-      $this->o .=  "<tr><td>";
-        $this->o .= OLIVText::assocArray($_PAGES);
-      $this->o .=  "</td></tr>";
-
-//------------------------------------------------------------------------------
-//SYSTEM DEFINITIONS
-      $constList = get_defined_constants(true);
-
-      $this->o .=  "<tr>";
-        if (count($constList))
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-
-          $this->o .=  "<h2>SYSTEM DEFINITIONS</h2>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      $this->o .=  "<tr>";
-        $this->o .=  "<td>";
-          $this->o .= OLIVText::assocArray($constList[user]);
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-
-
-//------------------------------------------------------------------------------
-// INCLUDED SCRIPTS
-      $scriptList = array();
-
-      $this->o .=  "<tr>";
-        if (count($scriptList))
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-
-          $this->o .=  "<h2>INCLUDED SCRIPTS</h2>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      $this->o .=  "<tr>";
-        $this->o .=  "<td>";
-          $this->o .= OLIVText::assocArray($this->includes);
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      
-
-//------------------------------------------------------------------------------
-// LOADED MODULES
-      $moduleList = array();
-
-      $this->o .=  "<tr>";
-        if (count($moduleList))
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-
-          $this->o .=  "<h2>LOADED MODULES</h2>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      $this->o .=  "<tr>";
-        $this->o .=  "<td>";
-//          $this->o .= OLIVText::assocArray($this->module->getNameList());
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-
-
-//------------------------------------------------------------------------------
-// DATABASE SETTINGS
-      $database = false;
-      
-      $this->o .=  "<tr>";
-        if ($database)
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-
-          $this->o .=  "<h2>DATABASE SETTINGS</h2>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      
-      if (OLIVDABA)
-      {
-        $this->o .=  "<tr>";
-          $this->o .=  "<td style='background-color:lightblue;'>";
-//            $this->o .=  "table prefix: " . $this->daba->prefix() . "<br>";
-//            $this->o .=  "database id: " . $this->daba->resource() . "<br>";
-//            $this->o .=  "database select: " . $this->daba->active() . "<br>";
-          $this->o .=  "</td>";
-        $this->o .=  "</tr>";
-      }
-      else
-      {
-        $this->o .=  "<tr>";
-          $this->o .=  "<td class='admin_false'>";
-            $this->o .=  "*** DATABASE NOT INITIALIZED";
-          $this->o .=  "</td>";
-        $this->o .=  "</tr>";
-      }
-
-
-// LANGUAGE SETTINGS
-      $textList = $_TEXT;
-
-      $this->o .=  "<tr>";
-        if (count($textList))
-          $this->o .=  "<td class='admin_true'>";
-        else
-          $this->o .=  "<td class='admin_false'>";
-
-          $this->o .=  "<h2>LANGUAGE SETTINGS</h2>";
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-      $this->o .=  "<tr>";
-        $this->o .=  "<td>";
-          $this->o .= OLIVText::assocArray(array("current language" => OLIV_LANG,"default language" => OLIV_DEFAULT_LANG));
-
-          $this->o .= OLIVText::assocArray($textList);
-        $this->o .=  "</td>";
-      $this->o .=  "</tr>";
-    $this->o .=  "</table>";
-  }
+		return $ok;
+	} 
 }
 
 ?>

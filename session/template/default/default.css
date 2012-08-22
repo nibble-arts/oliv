@@ -159,6 +159,11 @@ input {
   text-align:right;
 }
 
+#oliv_admin {
+  text-align:right;
+  height:0px;
+}
+
 #oliv_login {
   text-align:right;
   width:900px;

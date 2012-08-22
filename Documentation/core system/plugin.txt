@@ -1,3 +1,8 @@
+------------------------------------
+TODO: insert corrections from V0.2.1
+------------------------------------
+
+
 															Class OLIVPlugin
 															----------------
 
@@ -36,8 +41,9 @@ The plugin call method needs the following parameters to execute:
 If the script exists it is included and executed with the given parameters.
 
 
-mixed private function scen(string path)
+mixed private function scan(string path)
 ----------------------------------------
 The method scans the path directory for plugins and register it in the global
 _PLUGIN array. In the case of success the count of registered plugins is
 returned, elsewise FALSE.
+
