@@ -63,17 +63,10 @@ class textEditPlugin
     $tagArray = textRender::tagString($tag,$value,$content);
 
 
-// extract cmd and param
-    $paramArray = explode("/",cut_slash($_argv['val']));
-
-
-// retranslate command
-		if (count($paramArray) > 1)
-		{
-		  $command = OLIVText::getId($paramArray[0]);
-		  $partName = $paramArray[1];
-		}
-
+//------------------------------------------------------------------------------
+// get action parameters
+		$command = OLIV_COMMAND;
+		$partName = OLIV_VAL;
 
 //------------------------------------------------------------------------------
 // save changed text and reload
@@ -187,14 +180,14 @@ class textEditor
 		<script type="text/javascript">
 			tinyMCE.init({
 				mode : "textareas",
-				plugins : "save,paste",
+				plugins : "save",
 				width : "480",
 				theme : "advanced",
 				language : "<?PHP echo $lang; ?>",
-				theme_advanced_buttons1 : "save,cancel,|,undo,redo,|,cut,copy,paste",
+				theme_advanced_buttons1 : "save",
 				theme_advanced_buttons2 : "",
 				theme_advanced_buttons3 : "",
-				theme_advanced_toolbar_location : "bottom",
+				theme_advanced_toolbar_location : "top",
 				theme_advanced_toolbar_align : "left"
 			});
 		</script>

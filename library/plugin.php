@@ -65,11 +65,14 @@ class OLIVPlugin
 //TODO check content edit flag
 //------------------------------------------------------------------------------
 // check for rights to edit
-
       if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and OLIV_CONTENT_EDIT)
+      {
         $class = $pluginEditCall[0];
+			}
       else
+			{
         $class = $pluginCall[0];
+			}
 
       $func = $pluginCall[1];
 

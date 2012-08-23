@@ -36,26 +36,78 @@ class admin extends OLIVCore
 {
 	var $o = "";
 
+//------------------------------------------------------------------------------
   function __construct($header)
   {
     $template = OLIVModule::load_template($header);
 
 		if (OLIV_CONTENT_EDIT)
-	    $this->o = $this->displayAdmin($template);
+	    $content = $this->displayAdmin($template);
+
+
+		if ($content)
+		  $this->o = OLIVRender::template($template,$content);
   }
   
 
+
+//------------------------------------------------------------------------------
+// display admin field
 	private function displayAdmin($template)
 	{
-		$link = array("link" => array(
-				"url" => OLIV_PAGE,
-				"val" => "save"
-			)
-		);
+		global $_argv;
 
-		$ok = OLIVRoute::link("OK",$link);
+		$o = "";
+		$text = "";
+		$url = "";
+		$val = "";
+		$image = "";
 
-		return $ok;
+		$command = OLIV_COMMAND;
+
+
+// create empty content
+		$content = new simpleXmlElement("<admin></admin>");
+
+
+// parse status
+		switch ($command)
+		{
+			case 'edit':
+				$image = OLIVImage::_("admin_cancel");
+				$url = $_argv['url'];
+//				$val = "save/" . OLIV_VAL;
+				break;
+
+			default:
+		}
+
+
+//------------------------------------------------------------------------------
+// show action button
+		if ($image)
+		{
+			olivxml_insert($content,new simpleXmlElement("<admin_action background-image='$image' url='$url'>x</admin_action>"));
+		}
+
+//------------------------------------------------------------------------------
+// show edit mode
+		if (OLIV_CONTENT_EDIT)
+		{
+			$image = OLIVImage::_("admin_content_edit");
+			olivxml_insert($content,new simpleXmlElement("<admin_content_edit background-image='$image'>c</admin_content_edit>"));
+		}
+
+
+		if (OLIV_TEMPLATE_EDIT)
+		{
+			$image = OLIVImage::_("admin_template_edit");
+			olivxml_insert($content,new simpleXmlElement("<admin_template_edit background-image='$image'>t</admin_template_edit>"));
+		}
+
+
+//hoall($content);
+		return $content;
 	} 
 }
 

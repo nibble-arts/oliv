@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<admin>
+	<div id='admin_field'>
+		<span id='admin_action' background-image='admin_cancel' url='index' group='editor' access='770' />
+		<span id='admin_content_edit' group='editor' access='770' />
+		<span id='admin_template_edit' group='admin' access='770' />
+		<span id='admin_edit_status' />
+	</div>
+</admin>

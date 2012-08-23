@@ -167,6 +167,25 @@ else
   define ('OLIV_LANG', OLIV_DEFAULT_LANG);
 
 
+
+//------------------------------------------------------------------------------
+//TODO set page status
+echoall($_argv);
+
+
+if (array_key_exists('val',$_argv))
+{
+// extract cmd and param
+  $cmdArray = explode("/",cut_slash($_argv['val']));
+// retranslate command
+
+  $command = OLIVText::getId($cmdArray[0]);
+
+  $parameter = $cmdArray[1];
+}
+
+echoall("cmd $command, param $parameter");
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // from here all scrips are available

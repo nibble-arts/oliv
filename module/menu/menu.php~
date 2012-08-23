@@ -44,8 +44,6 @@ class menu extends OLIVCore
   function __construct($header)
   {
     global $_argv;
-    $bg_img = "";
-    $paramString = "";
     
 
 // load menu items
@@ -89,6 +87,7 @@ class menu extends OLIVCore
 				$itemUrl = "";
 				$itemTitle = "";
 				$itemTarget = "";
+		    $paramString = "";
 
 
 //------------------------------------------------------------------------------
@@ -167,7 +166,7 @@ class menu extends OLIVCore
 			}
  
 //echoall($tempXml);
-//echoall($menuXml->asXML());
+echoall($menuXml->asXML());
       return ($menuXml);
     }
     else

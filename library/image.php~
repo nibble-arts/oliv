@@ -94,71 +94,70 @@ class OLIVImage
   {
     $o = "";
 
-		if (is_object($image))
-		{
-		  $src = (string)$image->attributes()->src; // image name -> src path via OLIVImage
-		  $lang = (string)$image->attributes()->lang; // image language
-		  $alt = (string)$image->attributes()->alt; // alternative text
-		  $width = (string)$image->attributes()->width; // image width
-		  $height = (string)$image->attributes()->height; // image height
-		  $link = (string)$image->attributes()->link; // link an image
-		  $float = (string)$image->attributes()->float; // float definition: left, right
-		  $margin = (string)$image->attributes()->margin; // margin distance
-		  $margin_left = (string)$image->attributes()->margin_left; // margin distance
-		  $margin_right = (string)$image->attributes()->margin_right; // margin distance
-		  $margin_top = (string)$image->attributes()->margin_top; // margin distance
-		  $margin_bottom = (string)$image->attributes()->margin_bottom; // margin distance
-		  $margin_side = (string)$image->attributes()->margin_side; // margin distance
+		if (is_object($image)) echo "ok";
+		
+    $src = (string)$image->attributes()->src; // image name -> src path via OLIVImage
+    $lang = (string)$image->attributes()->lang; // image language
+    $alt = (string)$image->attributes()->alt; // alternative text
+    $width = (string)$image->attributes()->width; // image width
+    $height = (string)$image->attributes()->height; // image height
+    $link = (string)$image->attributes()->link; // link an image
+    $float = (string)$image->attributes()->float; // float definition: left, right
+    $margin = (string)$image->attributes()->margin; // margin distance
+    $margin_left = (string)$image->attributes()->margin_left; // margin distance
+    $margin_right = (string)$image->attributes()->margin_right; // margin distance
+    $margin_top = (string)$image->attributes()->margin_top; // margin distance
+    $margin_bottom = (string)$image->attributes()->margin_bottom; // margin distance
+    $margin_side = (string)$image->attributes()->margin_side; // margin distance
 
-		  $path = OLIVImage::_($src,$lang);
-		  
-		  $style = "";
-		  // create inline style
-		  if ($float)
-		  {
-		    $style .= "float:$float;";
-		    
-		    // intelligent side margin
-		    if ($margin_side)
-		    {
-		      switch ($float)
-		      {
-		        case 'left':
-		          $style .= "margin-right:$margin_side";
-		          break;
-		        case 'right':
-		          $style .= "margin-left:$margin_side";
-		          break;
-		      }
-		    } 
-		  }
-		  else
-		  {
-		    if ($margin_side)
-		      $style .= "margin-right:$margin_side;margin-left:$margin_side";
-		  }
+    $path = OLIVImage::_($src,$lang);
+    
+    $style = "";
+    // create inline style
+    if ($float)
+    {
+      $style .= "float:$float;";
+      
+      // intelligent side margin
+      if ($margin_side)
+      {
+        switch ($float)
+        {
+          case 'left':
+            $style .= "margin-right:$margin_side";
+            break;
+          case 'right':
+            $style .= "margin-left:$margin_side";
+            break;
+        }
+      } 
+    }
+    else
+    {
+      if ($margin_side)
+        $style .= "margin-right:$margin_side;margin-left:$margin_side";
+    }
 
 
-		  if ($margin) $style .= "margin:$margin;";
-		  if ($margin_left) $style .= "margin:$margin_left;";
-		  if ($margin_right) $style .= "margin:$margin_right;";
-		  if ($margin_top) $style .= "margin:$margin_top;";
-		  if ($margin_bottom) $style .= "margin:$margin_bottom;";
+    if ($margin) $style .= "margin:$margin;";
+    if ($margin_left) $style .= "margin:$margin_left;";
+    if ($margin_right) $style .= "margin:$margin_right;";
+    if ($margin_top) $style .= "margin:$margin_top;";
+    if ($margin_bottom) $style .= "margin:$margin_bottom;";
 
-		  // insert style if defined
-		  if ($style) $o .= "<span style='$style'>";
+    // insert style if defined
+    if ($style) $o .= "<span style='$style'>";
 
-		    $o .= "<img src='$path'";
-		      if ($alt) $o .= " alt='$alt'";
-		      if ($height) $o .= " height='$height'";
-		      if ($width) $o .= " width='$width'";
-		    $o .= ">";
+      $o .= "<img src='$path'";
+        if ($alt) $o .= " alt='$alt'";
+        if ($height) $o .= " height='$height'";
+        if ($width) $o .= " width='$width'";
+      $o .= ">";
 
-		  // end style
-		  if ($style) $o .= "</span>";
+    // end style
+    if ($style) $o .= "</span>";
 
-		  return ($o);
-		}
+    return ($o);
   }
 }
 

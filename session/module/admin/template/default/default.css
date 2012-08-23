@@ -1,0 +1,14 @@
+#admin_field {
+	height:25px;
+	float:right;
+	padding:1px;
+	background-color:lightblue;
+}
+
+#admin_action,admin_content_edit,admin_template_edit {
+	height:100%;
+	width:25px;
+	display:block;
+	float:left;
+	background-repeat:no-repeat;
+}

@@ -44,7 +44,6 @@ class menu extends OLIVCore
   function __construct($header)
   {
     global $_argv;
-    $bg_img = "";
     
 
 // load menu items

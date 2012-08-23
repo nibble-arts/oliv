@@ -149,6 +149,8 @@ class OLIVCore
 				define('OLIV_VAL',"");
 			}
 		}
+		
+echoall(OLIV_COMMAND . " " . OLIV_VAL);
   }
 
 

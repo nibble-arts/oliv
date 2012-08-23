@@ -28,6 +28,7 @@
 <core>
   <system>
 		<OLIV_SSH_HOST>localhost</OLIV_SSH_HOST>
+		<OLIV_SESSION_PATH>session/</OLIV_SESSION_PATH>
     <OLIV_INCLUDE_PATH>library/</OLIV_INCLUDE_PATH>
     <OLIV_JAVASCRIPT_PATH>javascript/</OLIV_JAVASCRIPT_PATH>
 	   <OLIV_MODULE_PATH>module/</OLIV_MODULE_PATH>
@@ -65,6 +66,7 @@
     <file>index.php</file>
     <file>search.php</file>
     <file>plugin.php</file>
+    <file>status.php</file>
   </includes>
   
   <image>

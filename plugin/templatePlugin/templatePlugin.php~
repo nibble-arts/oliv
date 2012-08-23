@@ -39,7 +39,7 @@ class templatePlugin
   static public function __callStatic($tag,$options)
   {
   	$link = "";
-echoall($options);
+
     $template = $options[0]['template'];
     $content = $options[0]['content'];
     $value = $options[0]['value'];
@@ -167,7 +167,7 @@ echoall($options);
   static private function parse($key,$value)
   {
     $paramArray = array();
-
+echoall($key);
     switch ($key)
     {
 // use image class for background-image
