@@ -1,0 +1,10 @@
+Format and content definitions
+for documentation files
+-----------------------
+
+*) The documentation files are stored in a plain text file, 80 characters wide
+with fixed line lengths of 80 characters.
+
+*) The title of the file is aligned in the center with a --- unterline.
+
+

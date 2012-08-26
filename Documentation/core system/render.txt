@@ -1,3 +1,21 @@
+//TODO
+Optimize the rendering engine, to render the content to the corresponding
+template field also recursive the substructure of the content:
+
+Example:
+
+<template_area>				-> inserted in the template
+	<div>								-> render directly using the plugin system
+		<img .... />
+		<h2>text</h2>
+	</div>
+</template_area>
+
+
+//TODO
+Set status of the template tags, if rendered when no content is defined, or
+rendered any way.
+
 																Class OLIVRender
 																----------------
 

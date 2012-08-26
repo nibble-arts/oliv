@@ -1,3 +1,21 @@
+//TODO
+Optimize the rendering engine, to render the content to the corresponding template
+field also recursive the substructure of the content:
+
+Example:
+
+<template_area>				-> inserted in the template
+	<div>								-> render directly using the plugin system
+		<img .... />
+		<h2>text</h2>
+	</div>
+</template_area>
+
+
+//TODO
+Set status of the template tags, if rendered when no content is defined, or rendered
+any way.
+
 																Class OLIVRender
 																----------------
 
@@ -94,4 +112,10 @@ link definition
 	intern page link with the router class (see router documentation).
 
 
+object static private callScript(object module)
+-----------------------------------------------
+The script takes the information from the module object and creates a
+new instance of the module. The constructor of the module must contain the
+module main script. The return value has to be stored in the
+public module->$o attribute, which can be read by the renderer.
 

@@ -22,7 +22,7 @@ class methods:
 --------------
 
 
-void static public fire(string)
+void static public fire(string errorText)
 -------------------------------
 Output a error message using the renderError function immediately.
 
