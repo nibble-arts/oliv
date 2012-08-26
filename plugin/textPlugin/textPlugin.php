@@ -140,6 +140,8 @@ class textRender
 // check for permissions
     if (OLIVRight::w($content) and $ownerLang and ($ownerLang != OLIV_LANG))
     {
+
+
   // mark for no translation
   		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
