@@ -43,8 +43,9 @@ function olivxml_insert(&$xml_to,$xml_from)
       {
           $xml_temp->addAttribute($attr_key, $attr_value);
       }
-     
-      olivxml_insert($xml_temp, $xml_child);
+
+			if (count($xml_child))
+	      olivxml_insert($xml_temp, $xml_child);
     }
 	}
   else

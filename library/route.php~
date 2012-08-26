@@ -198,8 +198,8 @@ class OLIVRoute
   }
 
 
-//TODO make url basis for intern, extern, form, e.i.
 //------------------------------------------------------------------------------
+//TODO make url basis for intern, extern, form, e.i.
 // create form url
   static public function url($text,$options="")
   {
@@ -355,6 +355,7 @@ class OLIVRoute
         }
       }
       closedir ($pageDir);
+echoall($_PAGES);
     }
     else
       OLIVError::fire("page::scan - directory $path not found");

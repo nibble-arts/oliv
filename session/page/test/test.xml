@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<content id='index'>
+  <oliv_content><img src='logo' /><h2>Ein normaler Text</h2><span style='font-family:serif'><p>Direkt im Content gespeichert und ausgegeben.</p><p>Und das funktioniert direkt mit allen Plugin Funktionen</p></span></oliv_content>
+</content>

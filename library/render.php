@@ -105,7 +105,8 @@ class OLIVRender extends OLIVCore
 //      $templateName = (string)$template->attributes()->name;
 
 
-// loop over children
+//------------------------------------------------------------------------------
+// loop over children of template
       foreach($template->children() as $entry)
       {
       	$tempO = "";
@@ -121,8 +122,9 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// collect content parameters
-    // if content present, get parameters
+// if content present, get parameters
+// and collect content parameters
+// start content sequenz
         if ($content)
         {
           $areaContent = $content->$areaName;
@@ -135,8 +137,23 @@ class OLIVRender extends OLIVCore
           {
 
 
+//TODO
+// extract content
+//		if tag_name == template_area_name => insert content in template and render
+//		else
+//			if content part has children => render content recursive
+
+
+						if (count($areaContent->children()))
+	          {
+//TODO content no part of template => render direct
+//	          	echoall($content);
+	          	$tempO .= OLIVRender::_template($content,"");
+    	      }
+
+
 //------------------------------------------------------------------------------
-// loop over multiple content
+// loop over multiple content entries
             if (count($areaContent) > 1)
             {
               foreach ($areaContent as $contentEntry)
@@ -154,20 +171,23 @@ class OLIVRender extends OLIVCore
 
 
 //------------------------------------------------------------------------------
-// script and module call only from content possible
+// get module script call
             if (isset($areaContent))
             {
-  // get module script call
               if (isset($areaContent->attributes()->mod))
                 $mod = (string)$areaContent->attributes()->mod; // add module
             }
           }
         }
 
+// end content sequenz
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+
 
 //------------------------------------------------------------------------------
-// start tag
-// get plugin output
+// call plugin
         $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 
 
