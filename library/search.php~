@@ -22,24 +22,14 @@
 //
 
 //------------------------------------------------------------------------------
-// Article module
+// search engine
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("mod_search::search.php - OLIVCore not present");
-if (!system::OLIVINDEX()) die ("mod_search::search.php - OLIVIndext not present");
-if (!system::OLIVERROR()) die ("mod_search::search.php - OLIVError not present");
+defined('OLIVCORE') or die ("search.php - OLIVCore not present");
 
-class search
+class OLIVSearch extends OLIVCore
 {
-  var $o;
-  public function __construct($header)
-  {
-    OLIVIndex::load(OLIV_MODULE_PATH,"article.idx");
-    
-  }
 }
-
-
 ?>

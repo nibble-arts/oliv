@@ -44,7 +44,7 @@ function olivxml_insert(&$xml_to,$xml_from)
           $xml_temp->addAttribute($attr_key, $attr_value);
       }
 
-			if (count($xml_child))
+			if (count($xml_child->children()))
 	      olivxml_insert($xml_temp, $xml_child);
     }
 	}
@@ -98,7 +98,7 @@ function olivini_writeFile($iniArray,$path,$file,$lang)
 {
 	$headerString = "; creaded by oliv\n";
 	$headerString .= "; timestamp " . time() . "\n";
-	$headerString .= "; user " . OLIV_USER . "\n";
+	$headerString .= "; user " . status::OLIV_USER() . "\n";
 
 	
 // convert array to string

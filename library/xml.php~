@@ -98,7 +98,7 @@ function olivini_writeFile($iniArray,$path,$file,$lang)
 {
 	$headerString = "; creaded by oliv\n";
 	$headerString .= "; timestamp " . time() . "\n";
-	$headerString .= "; user " . OLIV_USER . "\n";
+	$headerString .= "; user " . status::OLIV_USER() . "\n";
 
 	
 // convert array to string

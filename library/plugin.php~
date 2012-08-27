@@ -27,8 +27,8 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("plugin.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("plugin.php - OLIVError not present");
 
 $_PLUGIN;
 
@@ -67,7 +67,6 @@ class OLIVPlugin
 // check for rights to edit
       if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and OLIV_CONTENT_EDIT)
       {
-      	OLIVStatus::set("edit");
         $class = $pluginEditCall[0];
 			}
       else

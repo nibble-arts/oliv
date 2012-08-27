@@ -30,7 +30,9 @@
 
 // core initialisation completed
 // set core alive
-define ("OLIVCORE","alive");
+
+
+$_STATUS = array();
 
 
 //------------------------------------------------------------------------------
@@ -46,11 +48,16 @@ class OLIVCore
   private $render; // renderer engine
   private $html; // html class
 
-  public function __construct()
+
+  public function __construct($corePath)
   {
 //TODO set system timezone
 // set time zone
+
+		system::set('OLIV_CORE_PATH',$corePath);
+
     date_default_timezone_set ("Europe/Paris");
+		system::set("OLIVCORE","alive");
   }
 
 
@@ -62,27 +69,40 @@ class OLIVCore
 
   public function init($session)
   {
+
 //------------------------------------------------------------------------------
 // set session
 		if ($session)
-			define ('OLIV_SESSION',$session . "/");
+			system::set('OLIV_SESSION',$session . "/");
 		else
 			die("***FATAL ERROR: init.php - no session defined");
 
+
 // core path for multisession defined
-    defined ('OLIV_CORE_PATH') or die ("Core path not defined");
+    if (!system::OLIV_CORE_PATH())
+    	die ("Core path not defined");
 
 
+
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // load basic system methods
+
     OLIVCore::loadScript("library/init.php");
-    defined ('OLIVENV') or die ("Environment not set");
+    if (!system::OLIVENV())
+    	die ("Environment not set");
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
+
 // load system language
-    defined ('OLIVTEXT') or die ("INIT: OLIVTEXT not found");
-    OLIVText::load(OLIV_LANGUAGE_PATH,OLIV_CORE_TEXT);
+    if (!system::OLIVTEXT())
+    	die ("INIT: OLIVTEXT not found");
+    	
+    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
 
 
 //------------------------------------------------------------------------------
@@ -105,7 +125,7 @@ class OLIVCore
     $this->plugin = new OLIVPlugin();
 
 // load site template
-    $this->template = new OLIVTemplate(OLIV_TEMPLATE_PATH . OLIV_TEMPLATE . "/",OLIV_TEMPLATE);
+    $this->template = new OLIVTemplate(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",system::OLIV_TEMPLATE());
 
 // initialise page
     $this->page = new OLIVPage();
@@ -121,33 +141,21 @@ class OLIVCore
 // set core status
 //------------------------------------------------------------------------------
 //TODO set page status
-		global $_argv;
 
-		if (array_key_exists('val',$_argv))
+
+		if (status::val())
 		{
 // extract cmd and param
-			if ($_argv['val'])
-			{
-				$cmdArray = explode("/",cut_slash($_argv['val']));
+			$cmdArray = explode("/",cut_slash(status::val()));
 
 // retranslate command
 // and set status
-				if (count($cmdArray))
-					define('OLIV_COMMAND',OLIVText::getId($cmdArray[0]));
-				else
-					define('OLIV_COMMAND',"");
+			if (count($cmdArray))
+				status::set('command',OLIVText::getId($cmdArray[0]));
 
 
-				if (count($cmdArray) > 1)
-					define('OLIV_VAL',$cmdArray[1]);
-				else
-					define('OLIV_VAL',"");
-			}
-			else
-			{
-				define('OLIV_COMMAND',"");
-				define('OLIV_VAL',"");
-			}
+			if (count($cmdArray) > 1)
+				status::set('val',$cmdArray[1]);
 		}
   }
 
@@ -185,7 +193,7 @@ class OLIVCore
 // load script and execute
   static public function loadScript($file,$path="")
   {
-    $path = OLIV_CORE_PATH . $path; // redirect to core root directory
+    $path = system::OLIV_CORE_PATH() . $path; // redirect to core root directory
 
     if (file_exists($path . $file))
     {
@@ -215,5 +223,206 @@ class OLIVCore
       OLIVError::fire("core::loadScript - script {$path}{$file} not found");
      return FALSE;
   }
+}
+
+
+$_STATUS = array();
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+class system
+{
+// get status variable
+	static public function __callStatic($m,$parameters)
+	{
+		return value::get($m,'system');
+	}
+// return array of status values
+	static public function getAll()
+	{
+		return value::getAll('system');
+	}
+// set values
+	static public function set($name,$val)
+	{
+		value::set($name,'system',$val);
+	}
+// append $name value with $val
+	static public function append($name,$val)
+	{
+		value::append($name,'system',$val);
+	}
+// remove value
+	static public function remove($name)
+	{
+		value::remove($name,'system');
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+class status
+{
+// get status variable
+	static public function __callStatic($m,$parameters)
+	{
+		return value::get($m,'status');
+	}
+// return array of status values
+	static public function getAll()
+	{
+		return value::getAll('status');
+	}
+// set values
+	static public function set($name,$val)
+	{
+		value::set($name,'status',$val);
+	}
+// append $name value with $val
+	static public function append($name,$val)
+	{
+		value::append($name,'status',$val);
+	}
+// remove value
+	static public function remove($name)
+	{
+		value::remove($name,'status');
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+class argv
+{
+// get status variable
+	static public function __callStatic($m,$parameters)
+	{
+		return value::get($m,'argv');
+	}
+// return array of status values
+	static public function getAll()
+	{
+		return value::getAll('argv');
+	}
+// set values
+	static public function set($name,$val)
+	{
+		value::set($name,'argv',$val);
+	}
+// append $name value with $val
+	static public function append($name,$val)
+	{
+		value::append($name,'argv',$val);
+	}
+// remove value
+	static public function remove($name)
+	{
+		value::remove($name,'argv');
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+class value
+{
+
+// get value with type and name
+	static public function get($name,$type)
+	{
+		global $_STATUS;
+
+
+// check for type
+		if (array_key_exists(strtoupper($type),$_STATUS))
+		{
+			$typeArray = $_STATUS[strtoupper($type)];
+
+			if (array_key_exists(strtoupper($name),$typeArray))
+				return ($typeArray[strtoupper($name)]);
+			else
+				return FALSE;
+		}
+
+// type not defined
+		return FALSE;
+	}
+
+
+//------------------------------------------------------------------------------
+// return array of status values
+	static public function getAll($type = "")
+	{
+		global $_STATUS;
+
+// return type part
+		if ($type)
+		{
+			if (array_key_exists(strtoupper($type),$_STATUS))
+				return $_STATUS[strtoupper($type)];
+			else
+				return FALSE;
+		}
+
+// return all
+		else
+			return $_STATUS;
+	}
+
+
+//------------------------------------------------------------------------------
+// set values
+	static public function set($name,$type,$val)
+	{
+		global $_STATUS;
+
+		$_STATUS[strtoupper($type)][strtoupper($name)] = $val;
+	}
+
+
+//------------------------------------------------------------------------------
+// append $name value with $val
+// create if not exists
+	static public function append($name,$type,$val)
+	{
+		global $_STATUS;
+
+		if (array_key_exists($type,$_STATUS))
+		{
+			$typeArray = $_STATUS[$type];
+
+			if (array_key_exists(strtoupper($name),$_STATUS))
+				$_STATUS[strtoupper($type)][strtoupper($name)] .= $val; // append value
+			else
+				value::set($name,$type,$val); // create new entry
+		}
+	}
+
+
+//------------------------------------------------------------------------------
+// remove value from type
+	static public function remove($name,$type)
+	{
+		global $_STATUS;
+
+// type exists
+		if (array_key_exists(strtoupper($type),$_STATUS))
+		{
+			$typeArray = $_STATUS[strtoupper($type)];
+
+// value exists => remove entry
+			if (array_key_exists(strtoupper($name),$typeArray))
+			{
+				unset($_STATUS[strtoupper($type)][strtoupper($name)]);
+			}
+		}
+	}
 }
 ?>

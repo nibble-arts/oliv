@@ -27,8 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("database.php - OLIVCore not present");
-define ('OLIVDABA', 'alive');
+if (!system::OLIVCORE()) die ("database.php - OLIVCore not present");
+system::set('OLIVDABA', 'alive');
+
 
 class OLIVDatabase extends OLIVCore
 {

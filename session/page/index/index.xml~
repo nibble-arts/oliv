@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <content id='index'>
+	<masterpage>common</masterpage>
   <oliv_header mod='header' />
   <oliv_content mod='article'>index</oliv_content>
+  <oliv_left2><img src='oliv_edit' /></oliv_left2>
   <oliv_left1 mod='menu'>main</oliv_left1>
 </content>

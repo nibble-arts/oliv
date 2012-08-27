@@ -27,7 +27,7 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("index.php - OLIVCore not present");
+if (!system::OLIVCORE()) or die ("index.php - OLIVCore not present");
 
 system::set('OLIVINDEX',"alive");
 

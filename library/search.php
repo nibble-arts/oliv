@@ -27,7 +27,7 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("search.php - OLIVCore not present");
+if (!system::OLIVCORE()) die ("search.php - OLIVCore not present");
 
 class OLIVSearch extends OLIVCore
 {

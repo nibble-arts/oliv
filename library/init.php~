@@ -32,53 +32,50 @@
 //echoall($_SERVER[HTTPS]);
 
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // set document root path
 $pathArray = explode("/",$_SERVER['SCRIPT_FILENAME']);
-define ('OLIV_SCRIPT_NAME', array_pop($pathArray));
-define ('OLIV_DOCUMENT_ROOT', implode("/",$pathArray) . "/");
+
+system::set('OLIV_SCRIPT_NAME',array_pop($pathArray));
+system::set('OLIV_DOCUMENT_ROOT', implode("/",$pathArray) . "/");
 
 $pathArray = explode("/",$_SERVER['SCRIPT_NAME']);
 
 array_pop($pathArray);
 if (!$pathArray[0]) array_shift($pathArray);
 
-define ('OLIV_BASE', implode("/",$pathArray) . "/");
-define ('OLIV_HOST', $_SERVER['HTTP_HOST'] . "/");
-
-
+system::set('OLIV_BASE', implode("/",$pathArray) . "/");
+system::set('OLIV_HOST', $_SERVER['HTTP_HOST'] . "/");
 
 
 //------------------------------------------------------------------------------
 // set http / https protocol
 if (isset($_SERVER['HTTPS']))
-	define ('OLIV_PROTOCOL',"https://");
+	system::set('OLIV_PROTOCOL',"https://");
 else
-	define ('OLIV_PROTOCOL',"http://");
+	system::set('OLIV_PROTOCOL',"http://");
 
 
 
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // load system definitions
-//
-//------------------------------------------------------------------------------
-if (file_exists(OLIV_CORE_PATH . "system.xml"))
-	$coreXml = simplexml_load_file(OLIV_CORE_PATH . "system.xml");
+
+if (file_exists(system::OLIV_CORE_PATH() . "system.xml"))
+	$coreXml = simplexml_load_file(system::OLIV_CORE_PATH() . "system.xml");
 else
 	die ("init.php - system.xml not found");
 
 
 //------------------------------------------------------------------------------
-// create constants
+// set system constants
 if ($coreXml)
 {
-//------------------------------------------------------------------------------
-// set system constants
   if ($coreXml->system->children())
   {
     foreach($coreXml->system->children() as $key => $value)
     {
-      if (!defined($key))
-        define($key,$value);
+			system::set($key,(string)$value);
     }
   }
   else
@@ -93,7 +90,7 @@ if ($coreXml)
   {
     foreach($part[0]->children() as $entry)
     {
-      OLIVCore::loadScript($entry, OLIV_INCLUDE_PATH);
+      OLIVCore::loadScript($entry, system::OLIV_INCLUDE_PATH());
     }
   }
   else
@@ -110,10 +107,38 @@ $_imgType = $coreXml->image;
 
 
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+// load session definitions
+
+if (file_exists("session.xml"))
+	$sessionXml = simplexml_load_file("session.xml");
+else
+	die ("init.php - session.xml not found");
+
+
+//------------------------------------------------------------------------------
+// set session constants
+if ($sessionXml)
+{
+  if ($sessionXml->system->children())
+  {
+    foreach($sessionXml->system->children() as $key => $value)
+    {
+			system::set($key,(string)$value);
+    }
+  }
+  else
+    die ("init.php - no session constant definitions found");
+}
+else
+  die ("init.php - session.xml not found");
+
+
+//------------------------------------------------------------------------------
 // load session user rights
 global $_access;
 
-if (OLIV_ACCESS_FILE == "local")
+if (system::OLIV_ACCESS_FILE() == "local")
 {
   if (sessionfile_exists("access.xml"))
     $_access = sessionxml_load_file("access.xml");
@@ -132,25 +157,60 @@ else
 
 
 //------------------------------------------------------------------------------
-// set global argument array
-global $_argv;
-$_argv = array("url" => "","val" => "");
-
+//------------------------------------------------------------------------------
+// set page arguments
 
 // decode friendly url to parameters
 if (isset($_SERVER['PATH_INFO']))
-  $_argv = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
+  $pathInfo = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
+else
+	$pathInfo = array();
 
-// insert GET POST messages in parameters
+
+
+// insert GET POST messages in argv
 foreach($_GET as $key => $value)
 {
-  $_argv[$key] = $value;
+	argv::set($key,$value);
 }
 
 foreach($_POST as $key => $value)
 {
-  $_argv[$key] = $value;
+	argv::set($key,$value);
 }
+
+
+// set lang,url,val from GET/POST
+// remove these parameters from argv
+status::set('lang',argv::lang());
+argv::remove('lang');
+
+status::set('url',argv::url());
+argv::remove('url');
+
+status::set('val',argv::val());
+argv::remove('val');
+
+
+
+// set language from friendly url
+if (array_key_exists('lang',$pathInfo))
+	status::set('lang',$pathInfo['lang']);
+else
+	status::set('lang',system::OLIV_DEFAULT_LANG());
+
+
+// set url from friendly url
+if (array_key_exists('url',$pathInfo))
+	status::set('url',$pathInfo['url']);
+
+
+// set val from friendly url
+if (array_key_exists('val',$pathInfo))
+	status::set('val',$pathInfo['val']);
+
+
+
 
 
 //------------------------------------------------------------------------------
@@ -160,37 +220,13 @@ foreach($_POST as $key => $value)
 //    look for HTTP_USER_AGENT
 //    set to default language
 
-//debug
-if (isset($_argv['lang']))
-  define ('OLIV_LANG', $_argv['lang']);
-else
-  define ('OLIV_LANG', OLIV_DEFAULT_LANG);
 
-
-
-//------------------------------------------------------------------------------
-//TODO set page status
-echoall($_argv);
-
-
-if (array_key_exists('val',$_argv))
-{
-// extract cmd and param
-  $cmdArray = explode("/",cut_slash($_argv['val']));
-// retranslate command
-
-  $command = OLIVText::getId($cmdArray[0]);
-
-  $parameter = $cmdArray[1];
-}
-
-echoall("cmd $command, param $parameter");
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // from here all scrips are available
 
-define('OLIVENV','alive');
+system::set('OLIVENV','alive');
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -213,34 +249,41 @@ else
 
 
 // change user login state    
-if (isset($_argv['action']))
+switch(argv::action())
 {
-  switch($_argv['action'])
-  {
-    case 'login':
-      if (OLIVUser::checkPassword($_argv['login'],$_argv['password']))
-      {
-        $user = $_argv['login'];
-      }
-      break;
-  
-    case 'logout':
-      $user = "";
-      break;
-  }
+  case 'login':
+    if (OLIVUser::checkPassword(argv::login(),argv::password()))
+    {
+      $user = argv::login();
+
+    // remove login parameters
+      argv::remove('action');
+      argv::remove('login');
+      argv::remove('password');
+    }
+    break;
+
+  case 'logout':
+    $user = "";
+    break;
+
+  default:
+  	break;
 }
 
 
 // set user status
 $_SESSION['user'] = $user;
-define('OLIV_USER',$_SESSION['user']);
+status::set('OLIV_USER',$_SESSION['user']);
 
 
 // set superuser state
-if (OLIVUser::superUser(OLIV_USER))
-  define('OLIV_SU',TRUE);
+if (OLIVUser::superUser(system::OLIV_USER()))
+  status::set('OLIV_SU',TRUE);
 else
-  define('OLIV_SU',FALSE);
+  status::set('OLIV_SU',FALSE);
+
+
 
 //------------------------------------------------------------------------------
 ?>

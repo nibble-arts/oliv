@@ -27,8 +27,8 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("plugin.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("plugin.php - OLIVError not present");
 
 $_PLUGIN;
 
@@ -36,7 +36,7 @@ class OLIVPlugin
 {
   public function __construct()
   {
-    $this->scan(OLIV_PLUGIN_PATH);
+    $this->scan(system::OLIV_PLUGIN_PATH());
   }
 
 
@@ -65,7 +65,7 @@ class OLIVPlugin
 //TODO check content edit flag
 //------------------------------------------------------------------------------
 // check for rights to edit
-      if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and OLIV_CONTENT_EDIT)
+      if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and system::OLIV_CONTENT_EDIT())
       {
         $class = $pluginEditCall[0];
 			}
@@ -80,7 +80,7 @@ class OLIVPlugin
 //------------------------------------------------------------------------------
 // call render class for tag
 // load plugin script
-      OLIVCore::loadScript($pluginScript . ".php",OLIV_PLUGIN_PATH . $pluginScript . "/");
+      OLIVCore::loadScript($pluginScript . ".php",system::OLIV_PLUGIN_PATH() . $pluginScript . "/");
 
 
 // call script and return output

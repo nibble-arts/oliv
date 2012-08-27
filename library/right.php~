@@ -27,7 +27,8 @@
 // V0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("right.php - OLIVCore not present");
+
+if (!system::OLIVCORE()) die ("right.php - OLIVCore not present");
 
 
 class OLIVRight
@@ -97,9 +98,9 @@ class OLIVRight
 
 //------------------------------------------------------------------------------
 // get user rights
-    $userRight = OLIVUser::getRight(OLIV_USER);
+    $userRight = OLIVUser::getRight(status::OLIV_USER());
 
-    $userGroup = OLIVUser::getGroup(OLIV_USER);
+    $userGroup = OLIVUser::getGroup(status::OLIV_USER());
     $userOwner = $userRight->getName();
 
 
@@ -123,7 +124,7 @@ class OLIVRight
 
 
 // give all rights if superuser
-    if (OLIV_SU)
+    if (status::OLIV_SU())
     {
       $r = $w = $x = 1;
     }
@@ -131,7 +132,7 @@ class OLIVRight
 
 //------------------------------------------------------------------------------
 // check owner
-   if (OLIV_USER)
+   if (system::OLIV_USER())
     {
       if ($owner == $userOwner)
       {

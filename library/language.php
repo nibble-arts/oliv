@@ -27,7 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("language.php - OLIVCore not present");
+
+if (!system::OLIVCORE())
+	die ("language.php - OLIVCore not present");
 
 
 class OLIVLang

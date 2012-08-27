@@ -31,9 +31,11 @@
 // todo:  insert printf, sprintf method
 
 
+if (!system::OLIVCORE()) die ("text.php - OLIVCore not present");
 
-defined('OLIVCORE') or die ("language.php - OLIVCore not present");
-define ("OLIVTEXT","alive");
+
+system::set("OLIVTEXT","alive");
+
 
 // global static text array
 $_TEXT = array();
@@ -221,21 +223,27 @@ class OLIVText extends OLIVCore
 //-------------------------------------------------------------------------------------------
 // load text file from path
 // to global _TEXT
-  static public function load($path,$file,$default_language = OLIV_DEFAULT_LANG)
+  static public function load($path,$file,$default_language = "")
   {
     global $_TEXT;
 
+		if (!$default_language)
+			$default_language = status::OLIV_DEFAULT_LANG();
+			
     $_TEXT = OLIVText::_load($_TEXT,$path,$file,$default_language);
   }
   
 
 // load text from file, add to $textArray and return array
-  static public function _load($textArray,$path,$file,$default_language = OLIV_DEFAULT_LANG)
+  static public function _load($textArray,$path,$file,$default_language = "")
   {
+		if (!$default_language)
+			$default_language = status::OLIV_DEFAULT_LANG();
+
     if (!is_array($textArray)) $textArray = array();
     
     $defaultText = OLIVText::loadText($default_language,$path,$file);
-    $langText = OLIVText::loadText(OLIV_LANG,$path,$file);
+    $langText = OLIVText::loadText(status::lang(),$path,$file);
 
 
 // insert default text

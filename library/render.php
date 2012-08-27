@@ -27,9 +27,10 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVTEXT') or die ("render.php - OLIVText not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+
+if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("render.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("render.php - OLIVError not present");
 
 
 class OLIVRender extends OLIVCore
@@ -240,9 +241,9 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 // display template edit layer
-        if (OLIV_TEMPLATE_EDIT)
+        if (system::OLIV_TEMPLATE_EDIT())
         {
-          if (OLIV_TEMPLATE_MARK)
+          if (system::OLIV_TEMPLATE_MARK())
             $tempO .= "<div id='oliv_markbox'>";
           else
             $tempO .= "<div id='oliv_editbox'>";
@@ -280,7 +281,7 @@ class OLIVRender extends OLIVCore
     {
 //TODO render content only ???
 //      echoall($content);
-      return OLIVERROR::render ("render::_template - no template to render");
+      return OLIVERROR::renderError("render::_template - no template to render");
     }
   }
 

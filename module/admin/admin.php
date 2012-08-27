@@ -27,9 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
-defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
-defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("mod_admin::admin.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("mod_admin::admin.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("mod_admin::admin.php - OLIVError not present");
 
 
 class admin extends OLIVCore
@@ -41,12 +41,16 @@ class admin extends OLIVCore
   {
     $template = OLIVModule::load_template($header);
 
-		if (OLIV_CONTENT_EDIT)
+		if (system::OLIV_CONTENT_EDIT())
 	    $content = $this->displayAdmin($template);
 
 
 		if ($content)
+		{
+//echoall($template);
+//echoall($content);
 		  $this->o = OLIVRender::template($template,$content);
+		}
   }
   
 
@@ -63,50 +67,48 @@ class admin extends OLIVCore
 		$val = "";
 		$image = "";
 
-		$command = OLIV_COMMAND;
-
+		$command = status::command();
 
 // create empty content
-		$content = new simpleXmlElement("<admin></admin>");
+		$content = new simpleXmlElement("<content></content>");
 
 
+//------------------------------------------------------------------------------
+// show action button
 // parse status
 		switch ($command)
 		{
 			case 'edit':
 				$image = OLIVImage::_("admin_cancel");
-				$url = $_argv['url'];
+				$url = status::url();
 //				$val = "save/" . OLIV_VAL;
 				break;
 
 			default:
 		}
 
-
-//------------------------------------------------------------------------------
-// show action button
 		if ($image)
 		{
-			olivxml_insert($content,new simpleXmlElement("<admin_action background-image='$image' url='$url'>x</admin_action>"));
+			olivxml_insert($content,new simpleXmlElement("<admin_action url='$url' title='cancel'></admin_action>"));
+			olivxml_insert($content->admin_action,new simpleXmlElement("<img src='admin_cancel' />"));
 		}
 
 //------------------------------------------------------------------------------
 // show edit mode
-		if (OLIV_CONTENT_EDIT)
+		if (system::OLIV_CONTENT_EDIT())
 		{
-			$image = OLIVImage::_("admin_content_edit");
-			olivxml_insert($content,new simpleXmlElement("<admin_content_edit background-image='$image'>c</admin_content_edit>"));
+			olivxml_insert($content,new simpleXmlElement("<admin_content_edit></admin_content_edit>"));
+			olivxml_insert($content->admin_content_edit,new simpleXmlElement("<img src='admin_content_edit' />"));
 		}
 
 
-		if (OLIV_TEMPLATE_EDIT)
+		if (system::OLIV_TEMPLATE_EDIT())
 		{
 			$image = OLIVImage::_("admin_template_edit");
-			olivxml_insert($content,new simpleXmlElement("<admin_template_edit background-image='$image'>t</admin_template_edit>"));
+//			olivxml_insert($content,new simpleXmlElement("<admin_template_edit><img src='$image' /></admin_template_edit>"));
 		}
 
 
-//hoall($content);
 		return $content;
 	} 
 }

@@ -22,36 +22,24 @@
 //
 
 //------------------------------------------------------------------------------
-// create session environment
+// Article module
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
+defined('OLIVCORE') or die ("mod_search::search.php - OLIVCore not present");
+defined('OLIVINDEX') or die ("mod_search::search.php - OLIVIndext not present");
+defined('OLIVERROR') or die ("mod_search::search.php - OLIVError not present");
 
-//------------------------------------------------------------------------------
-// load session definitions
-//------------------------------------------------------------------------------
-
-if (file_exists("session.xml"))
-	$sessionXml = simplexml_load_file("session.xml");
-else
-	die ("session_init.php - session.xml not found");
-
-
-if ($sessionXml->system->children())
+class search
 {
-  foreach($sessionXml->system->children() as $key => $value)
+  var $o;
+  public function __construct($header)
   {
-    define($key,$value);
+    OLIVIndex::load(OLIV_MODULE_PATH,"article.idx");
+    
   }
 }
-else
-  die ("init.php - no session constant definitions found");
-
-
-// include system core
-echoall("hier");
-include(OLIV_CORE_PATH . "library/core.php");
 
 
 ?>

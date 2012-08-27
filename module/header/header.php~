@@ -22,24 +22,35 @@
 //
 
 //------------------------------------------------------------------------------
-// Article module
+// Header module
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("mod_search::search.php - OLIVCore not present");
-if (!system::OLIVINDEX()) die ("mod_search::search.php - OLIVIndext not present");
-if (!system::OLIVERROR()) die ("mod_search::search.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("mod::header.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("mod::header.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("mod::header.php - OLIVError not present");
 
-class search
+class header extends OLIVCore
 {
-  var $o;
-  public function __construct($header)
-  {
-    OLIVIndex::load(OLIV_MODULE_PATH,"article.idx");
-    
-  }
-}
+  private $header; // module header metadata
+  public $o;
 
+  function __construct($header)
+  {
+    // load header template
+    $template = OLIVModule::load_template($header);
+
+// render header
+    $this->renderHeader($template);
+  }
+  
+  
+  function renderHeader($template)
+  {
+//  	$this->o .= "#ig_header_news { visibility:visible; } "; // make new visible
+    $this->o .= OLIVRender::template($template);
+	}
+}
 
 ?>

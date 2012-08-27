@@ -22,35 +22,39 @@
 //
 
 //------------------------------------------------------------------------------
-// create session environment
+// html class
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
 
+// core initialisation completed
+// set core alive
+if (!system::OLIVCORE()) die ("html.php - OLIVCore not present");
+IF (!system::OLIVERROR()) die ("html.php - OLIVError not present");
+
+
+system::set("OLIVHtml","alive");
+
+
 //------------------------------------------------------------------------------
-// load session definitions
-//------------------------------------------------------------------------------
-
-if (file_exists("session.xml"))
-	$sessionXml = simplexml_load_file("session.xml");
-else
-	die ("session_init.php - session.xml not found");
-
-
-if ($sessionXml->system->children())
+class OLIVHtml
 {
-  foreach($sessionXml->system->children() as $key => $value)
+
+  public function __construct()
   {
-    define($key,$value);
+    echo $this->header();
   }
+
+
+	public function header()
+	{
+    $o = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
+		$o .= "<base href='/" . OLIV_BASE . "'>"; // link base referenz
+		$o .= "<title>" . status::oliv_page() . "</title>"; // page title in browser
+    $o .= "<link href='" . OLIVImage::_(OLIV_ICON) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
+
+		return ($o);
+	}
 }
-else
-  die ("init.php - no session constant definitions found");
-
-
-// include system core
-include(OLIV_CORE_PATH . "library/core.php");
-
-
 ?>

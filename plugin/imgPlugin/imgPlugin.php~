@@ -27,8 +27,8 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("render.php - OLIVError not present");
 
 class imgPlugin
 {
@@ -65,21 +65,22 @@ class imgRender
 		$class = "";	
     $retArray = array();
 
-
+//echoall($options);
     $content = $options['template'];
 // get language code of text snippet and mark field if not translated
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
+
 		$imgUrl = OLIVImage::_((string)$content->attributes()->src);
 
 //echoall("lang: $lang, ownerLang: $ownerLang, OLIV_LANG: " . OLIV_LANG);
 // check for permissions
-    if (OLIVRight::w($content) and $ownerLang and ($ownerLang != OLIV_LANG))
+    if (OLIVRight::w($content) and $ownerLang and ($ownerLang != system::OLIV_LANG()))
     {
 
 
   // mark for no translation
-  		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
+  		if (($lang != system::OLIV_LANG()) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
     }
 

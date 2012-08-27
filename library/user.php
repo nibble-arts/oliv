@@ -27,7 +27,8 @@
 // V0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("right.php - OLIVCore not present");
+
+if (!system::OLIVCORE()) die ("user.php - OLIVCore not present");
 
 
 class OLIVUser extends OLIVCore
@@ -52,6 +53,7 @@ class OLIVUser extends OLIVCore
   public static function checkPassword($user,$password)
   {
     $userRight = OLIVUser::getRight($user);
+
 //echoall((string)$userRight->attributes()->password) . "<br>";
 //echoall($user . md5($password));
 

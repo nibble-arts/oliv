@@ -167,7 +167,7 @@ class templatePlugin
   static private function parse($key,$value)
   {
     $paramArray = array();
-echoall($key);
+
     switch ($key)
     {
 // use image class for background-image

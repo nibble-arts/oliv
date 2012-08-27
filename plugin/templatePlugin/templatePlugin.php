@@ -27,8 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("plugin::templatePlugin.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("plugin::templatePlugin.php - OLIVError not present");
+
 
 class templatePlugin
 {

@@ -30,7 +30,6 @@
 if (!system::OLIVCORE()) die ("error.php - OLIVCore not present");
 if (!system::OLIVTEXT()) die ("error.php - OLIVText not present");
 
-
 system::set('OLIVERROR',"alive");
 
 

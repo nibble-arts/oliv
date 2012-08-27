@@ -2,7 +2,7 @@
 
 <admin>
 	<div id='admin_field'>
-		<span id='admin_action' url='index' group='editor' access='770' />
+		<span id='admin_action' group='editor' access='770' />
 		<span id='admin_content_edit' group='editor' access='770' />
 		<span id='admin_template_edit' group='admin' access='770' />
 		<span id='admin_edit_status' />

@@ -27,9 +27,10 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
-defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
-defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("image.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("image.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("image.php - OLIVError not present");
+
 
 class OLIVImage
 {
@@ -52,7 +53,7 @@ class OLIVImage
 
 //------------------------------------------------------------------------------
 // look in system image path
-    	if ($tempImage = img_exists(OLIV_IMAGES_PATH,$image,$lang))
+    	if ($tempImage = img_exists(system::OLIV_IMAGES_PATH(),$image,$lang))
       {
   			return (session_path($tempImage));
       }
@@ -60,9 +61,9 @@ class OLIVImage
 
 //------------------------------------------------------------------------------
 // look in system template path
-    	if ($tempImage = img_exists(OLIV_TEMPLATE_PATH . OLIV_TEMPLATE . "/images/",$image,$lang))
+    	if ($tempImage = img_exists(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/images/",$image,$lang))
         return (session_path($tempImage));
-      elseif ($tempImage = img_exists(OLIV_TEMPLATE_PATH . "/default/images/",$image,$lang))
+      elseif ($tempImage = img_exists(system::OLIV_TEMPLATE_PATH() . "/default/images/",$image,$lang))
         return (session_path($tempImage));
 
 
@@ -228,7 +229,7 @@ function img_exists($path,$image,$lang)
 function img_lang_exists($path,$image,$lang)
 {
   // check for language code
-  if (!$lang) $lang = OLIV_LANG;
+  if (!$lang) $lang = status::lang();
 
   // language code subdirectory found
   if (sessionis_dir($path . $lang))
@@ -243,9 +244,9 @@ function img_lang_exists($path,$image,$lang)
   }
 
 	// look for default language subdirectory
-  elseif (sessionis_dir($path . OLIV_DEFAULT_LANG . "/"))
+  elseif (sessionis_dir($path . system::OLIV_DEFAULT_LANG() . "/"))
   {
-    $langPath = $path . OLIV_DEFAULT_LANG . "/";
+    $langPath = $path . system::OLIV_DEFAULT_LANG() . "/";
     $langImage = "default." . $image;
 
 		// language version found

@@ -27,8 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("render.php - OLIVCore not present");
-defined('OLIVERROR') or die ("render.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
+
 
 class textPlugin
 {
@@ -52,8 +53,6 @@ class textEditPlugin
 {
   static public function __callStatic($tag,$options)
   {
-  	global $_argv;
-
 		$command = "";
 		$partName = "";
 
@@ -65,15 +64,18 @@ class textEditPlugin
 
 //------------------------------------------------------------------------------
 // get action parameters
-		$command = OLIV_COMMAND;
-		$partName = OLIV_VAL;
+		$command = status::command();
+		$partName = status::val();
 
 //------------------------------------------------------------------------------
 // save changed text and reload
 		if (($partName == $value) and $command == 'save')
 		{
-			textEditPlugin::saveSnippet($_argv['lang'],$partName,$_argv['text']);
-			$tagArray['value'] = OLIVText::_((string)$value);
+			if (status::text());
+			{
+				textEditPlugin::saveSnippet(status::lang(),$partName,argv::text());
+				$tagArray['value'] = OLIVText::_((string)$value);
+			}
 		}
 
 //------------------------------------------------------------------------------
@@ -91,7 +93,7 @@ class textEditPlugin
 // render text
 // set link to call editor
 			$tagArray['link'] = array(
-				'url' => $_argv['url'],
+				'url' => status::url(),
 				'title' => OLIVText::_("edit_text"),
       	'val' => OLIVText::_("edit") . "/" . (string)$value,
       	'value' => $value
@@ -109,7 +111,7 @@ class textEditPlugin
   {
 		$partNameArray = explode("_",$partName);
 
-		$path = OLIV_MODULE_PATH . "article/language/";
+		$path = system::OLIV_MODULE_PATH() . "article/language/";
 		$nameSpace = $partNameArray[0] . "_" . $partNameArray[1];
 		$file = strtolower($partNameArray[1]);
 
@@ -136,14 +138,14 @@ class textRender
     $ownerLang = $content->attributes()->lang;
 
 
-//echoall("lang: $lang, ownerLang: $ownerLang, OLIV_LANG: " . OLIV_LANG);
+
 // check for permissions
-    if (OLIVRight::w($content) and $ownerLang and ($ownerLang != OLIV_LANG))
+    if (OLIVRight::w($content) and $ownerLang and ($ownerLang != status::lang()))
     {
 
 
   // mark for no translation
-  		if (($lang != OLIV_LANG) and OLIVText::_((string)$value))
+  		if (($lang != status::lang()) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
     }
 
@@ -169,12 +171,12 @@ class textEditor
 
   function __construct()
   {
-		$lang = OLIVLang::family(OLIV_LANG); // lang code for tinyMCE
+		$lang = OLIVLang::family(status::lang()); // lang code for tinyMCE
 
 
 // load scripts for tinyMCE
-    OLIVCore::loadScript("jquery-1.7.1.js",OLIV_JAVASCRIPT_PATH);
-    OLIVCore::loadScript("tiny_mce.js",OLIV_JAVASCRIPT_PATH . "tiny_mce/");
+    OLIVCore::loadScript("jquery-1.7.1.js",system::OLIV_JAVASCRIPT_PATH());
+    OLIVCore::loadScript("tiny_mce.js",system::OLIV_JAVASCRIPT_PATH() . "tiny_mce/");
 
 
 // create editor
@@ -202,17 +204,16 @@ class textEditor
 // open editor
   function open($name,$text)
   {
-    global $_argv;
     $o = "";
 
 
 //TODO insert page link for positioning of scrolling to editor field
     $options = array(
-      "url" => $_argv['url'],
+      "url" => status::url(),
       "val" => OLIVText::_("save") . "/$name",
     );
 
-    $actionUrl = OLIVRoute::url(OLIV_LANG,$options);
+    $actionUrl = OLIVRoute::url(status::lang(),$options);
 
 
 //TODO use form method

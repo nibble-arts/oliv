@@ -27,7 +27,8 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("route.php - OLIVCore not present");
+if (!system::OLIVCORE()) die ("route.php - OLIVCore not present");
+
 
 $_PAGES = array();
 
@@ -41,7 +42,7 @@ class OLIVRoute
 
   public function __construct()
   {
-    $this->scan(OLIV_LANG);
+    $this->scan(status::lang());
     $this->route();
   }
 
@@ -53,21 +54,20 @@ class OLIVRoute
 // get link id from language coded /module/value
   private function route()
   {
-    global $_argv;
 
-    if (!array_key_exists('val',$_argv)) $_argv['val'] = "";
+		$tempArray = $this->parseUrl(status::url()); // extract values from url
+
+		status::set('url',$tempArray['url']);
+ 		status::append('val',$tempArray['val']); // add values to val-parameter
 
 
-		$val = $this->parseUrl($_argv['url']); // extract values from url
- 		$_argv['val'] .= $this->parseUrl($_argv['url']); // add values to val-parameter
-
-    // routable url found
-    if ($_argv['url'])
+// routable url found
+    if (status::url())
     {
-      if ($newVal = OLIVRoute::getUrl($_argv['url']))
+      if ($newVal = OLIVRoute::getUrl(status::url()))
 			{
-				define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $_argv['url']); // set page title
-        $_argv['url'] = $newVal;
+				status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . status::url()); // set page title
+        status::set('url',$newVal);
 			}
       else
       {
@@ -78,8 +78,8 @@ class OLIVRoute
     else
     {
 //echoall("INDEX");
-      $_argv['url'] = OLIV_INDEX_PAGE;
-			define ('OLIV_PAGE',OLIV_SITE_NAME . " " . $this->translatePageName(OLIV_LANG,$_argv['url'])); // set page title
+      status::set('url',system::OLIV_INDEX_PAGE());
+			status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url())); // set page title
     }
   }
 
@@ -168,7 +168,7 @@ class OLIVRoute
     if (isset($options['class'])) $class = $options['class'];
     if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
-    if (!$lang) $lang = OLIV_LANG; // if no language use current
+    if (!$lang) $lang = status::lang(); // if no language use current
 
 
 //------------------------------------------------------------------------------
@@ -211,7 +211,7 @@ class OLIVRoute
     if (array_key_exists('val',$options)) $val = $options['val'];
     if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
 
-    if (!$lang) $lang = OLIV_LANG; // if no language use current
+    if (!$lang) $lang = status::lang(); // if no language use current
     
     $path = OLIVRoute::makeUrl($lang,$url) . "/";
     if ($val) $path .= $val . "/";
@@ -228,11 +228,11 @@ class OLIVRoute
   {
 		if ($url)
 		{
-		  $routeArray = array(OLIV_PROTOCOL . OLIV_HOST . OLIV_BASE . OLIV_SCRIPT_NAME);
+		  $routeArray = array(system::OLIV_PROTOCOL() . system::OLIV_HOST() . system::OLIV_BASE() . system::OLIV_SCRIPT_NAME());
 
 		  if ($lang) array_push($routeArray,$lang);
 		  else
-		    $lang = OLIV_LANG;
+		    $lang = status::lang();
 
 		  $val = OLIVRoute::translatePageName($lang,$url);
 		  
@@ -304,7 +304,7 @@ class OLIVRoute
 // extract and returns parameters for modules
 //
 // get information from content.xml for this purpose
-  static public function parseUrl(&$url)
+  static public function parseUrl($url)
   {
     $retArray = array();
     $paramArray = array();
@@ -325,8 +325,7 @@ class OLIVRoute
         array_push($retArray,$entry); // insert url part
     }
 
-    $url = implode("/",$retArray); // update url
-    return (implode("/",$paramArray)); // return parameters
+    return (array("url" => implode("/",$retArray),"val" => implode("/",$paramArray))); // return parameters
   }
 
 
@@ -336,7 +335,8 @@ class OLIVRoute
   {
 		global $_PAGES;
 
-    $path = OLIV_PAGE_PATH;
+
+    $path = system::OLIV_PAGE_PATH();
     if ($pageDir = sessionopendir ($path))
     {
       while ($file = readdir($pageDir))

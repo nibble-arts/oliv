@@ -27,8 +27,8 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("processor.php - OLIVCore not present");
-if (!system::OLIVERROR()) die ("processor.php - OLIVError not present");
+defined('OLIVCORE') or die ("processor.php - OLIVCore not present");
+defined('OLIVERROR') or die ("processor.php - OLIVError not present");
 
 
 class OLIVProcessor extends OLIVCore
@@ -68,11 +68,11 @@ class OLIVProcessor extends OLIVCore
     
   //------------------------------------------------------------------------------
   // load module script
-              $this->loadScript($script->script->main,system::OLIV_MODULE_PATH() . $script->name . "/");
+              $this->loadScript($script->script->main,OLIV_MODULE_PATH . $script->name . "/");
 
   
               // load module text
-              $path = system::OLIV_MODULE_PATH() . $script->name . "/" . $script->script->language;
+              $path = OLIV_MODULE_PATH . $script->name . "/" . $script->script->language;
               $file = $script->name;
               $default_language = $script->script->default_language;
               

@@ -30,10 +30,11 @@
 
 // core initialisation completed
 // set core alive
-defined('OLIVCORE') or die ("template.php - OLIVCore not present");
-defined('OLIVERROR') or die ("template.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("html.php - OLIVCore not present");
+IF (!system::OLIVERROR()) die ("html.php - OLIVError not present");
 
-define ("OLIVHtml","alive");
+
+system::set("OLIVHtml","alive");
 
 
 //------------------------------------------------------------------------------
@@ -49,9 +50,9 @@ class OLIVHtml
 	public function header()
 	{
     $o = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
-		$o .= "<base href='/" . OLIV_BASE . "'>"; // link base referenz
-		$o .= "<title>" . OLIV_PAGE . "</title>"; // page title in browser
-    $o .= "<link href='" . OLIVImage::_(OLIV_ICON) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
+		$o .= "<base href='/" . system::OLIV_BASE() . "'>"; // link base referenz
+		$o .= "<title>" . status::oliv_page() . "</title>"; // page title in browser
+    $o .= "<link href='" . OLIVImage::_(system::OLIV_ICON()) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
 
 		return ($o);
 	}

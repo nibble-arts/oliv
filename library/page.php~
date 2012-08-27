@@ -49,7 +49,7 @@ class OLIVPage
     if (!$pageName)
     {
       $url = status::url();
-
+echoall($url);
       if (!$url)
 			{
 				$url = system::OLIV_INDEX_PAGE(); // set index_page if no arguments

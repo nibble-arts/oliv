@@ -27,9 +27,10 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
-defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
-defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("mod_menu::menu.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("mod_menu::menu.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("mod_menu::menu.php - OLIVError not present");
+
 
 class menu extends OLIVCore
 {
@@ -43,14 +44,11 @@ class menu extends OLIVCore
 // create menu
   function __construct($header)
   {
-    global $_argv;
-    
-
 // load menu items
     $menuName = (string)$header;
 
 
-		$menu = sessionxml_load_file(OLIV_MODULE_PATH . "menu/menu.xml");
+		$menu = sessionxml_load_file(system::OLIV_MODULE_PATH() . "menu/menu.xml");
 
 
 // load menu template
@@ -58,7 +56,7 @@ class menu extends OLIVCore
     $this->template = OLIVModule::load_template($header,$this->templateName);
 
 
-    $this->menuXml = $this->parse($menu->$menuName,$_argv['url']);
+    $this->menuXml = $this->parse($menu->$menuName,status::url());
 
 
 // call renderer
@@ -104,7 +102,7 @@ class menu extends OLIVCore
 				else
 				{
 		      $itemUrl = $entry->getName();
-		      $itemName = OLIVRoute::translatePageName(OLIV_LANG,$itemUrl);
+		      $itemName = OLIVRoute::translatePageName(status::lang(),$itemUrl);
 				}
 
 

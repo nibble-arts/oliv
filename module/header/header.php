@@ -27,9 +27,9 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-defined('OLIVCORE') or die ("mod_menu::menu.php - OLIVCore not present");
-defined('OLIVTEXT') or die ("mod_menu::menu.php - OLIVText not present");
-defined('OLIVERROR') or die ("mod_menu::menu.php - OLIVError not present");
+if (!system::OLIVCORE()) die ("mod_header::header.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("mod_header::header.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("mod_header::header.php - OLIVError not present");
 
 class header extends OLIVCore
 {
