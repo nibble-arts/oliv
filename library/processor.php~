@@ -45,7 +45,7 @@ class OLIVProcessor extends OLIVCore
   public function process($page,$template,$module)
   {
     $i = 0;
-
+echoall($page);
 //------------------------------------------------------------------------------
 // parse site
     if (count($page->structure()))
@@ -72,7 +72,7 @@ class OLIVProcessor extends OLIVCore
 
   
               // load module text
-              $path = system::OLIV_MODULE_PATH() . $script->name . "/" . $script->script->language;
+              $path = system::OLIV_MODULE_PATH() . $script->name . "/language/";
               $file = $script->name;
               $default_language = $script->script->default_language;
               
@@ -84,6 +84,7 @@ class OLIVProcessor extends OLIVCore
               OLIVError::warning("processor::process - required module '" . $mod . "' not found");
           }
         }
+//echoall($page->structure());
       }
       else
         OLIVError::fire("processor::process - page is empty");

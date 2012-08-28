@@ -93,7 +93,6 @@ class OLIVPage
 // set module value in page
   public function setScript($id,$module)
   {
-echoall($this->structure->$id);
 // insert attributes into page definition
 		foreach($module->children() as $entry)
 		{

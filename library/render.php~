@@ -110,32 +110,37 @@ class OLIVRender extends OLIVCore
 // loop over children of template
       foreach($template->children() as $entry)
       {
-      	$tempO = "";
-        $style = "";
-        $class = "";
-        $script = "";
-        $mod = "";
-        $background_image = "";
 
-        $areaName = (string)$entry->attributes()->id;
-        $areaTag = $entry->getName();
+// render only if permission
+				if(OLIVRight::r($entry))
+				{
+		    	$tempO = "";
+		      $style = "";
+		      $class = "";
+		      $script = "";
+		      $mod = "";
+		      $background_image = "";
+
+		      $areaName = (string)$entry->attributes()->id;
+		      $areaTag = $entry->getName();
 
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// if content present, get parameters
-// and collect content parameters
+// if content present and permissiongs
+// get parameters and collect content parameters
 // start content sequenz
-        if ($content)
-        {
-          $areaContent = $content->$areaName;
-          $value = (string)$areaContent;
-          $contentName = $areaContent->getName();
+
+		      if ($content and OLIVRight::r($content))
+		      {
+		        $areaContent = $content->$areaName;
+		        $value = (string)$areaContent;
+		        $contentName = $areaContent->getName();
 
 
 // area present in content definition
-          if (($areaName == $contentName))
-          {
+		        if (($areaName == $contentName))
+		        {
 
 
 //TODO
@@ -145,43 +150,43 @@ class OLIVRender extends OLIVCore
 //			if content part has children => render content recursive
 
 
-						if (count($areaContent->children()))
-	          {
+							if (count($areaContent->children()))
+			        {
 //echoall("rec $contentName");
 //echoall($areaContent);
 //TODO content no part of template => render direct
 //	          	echoall($content);
-	          	$tempO .= OLIVRender::_template($content,"");
-    	      }
+			        	$tempO .= OLIVRender::_template($content,"");
+		  	      }
 
 
 //------------------------------------------------------------------------------
 // loop over multiple content entries
-            if (count($areaContent) > 1)
-            {
-              foreach ($areaContent as $contentEntry)
-              {
-					// insert area name
-              	$contentEntry->$areaName = (string)$contentEntry;
-              	
-              	$tempXml = new simpleXmlElement("<temp></temp>");
-              	olivxml_insert($tempXml,$entry);
+		          if (count($areaContent) > 1)
+		          {
+		            foreach ($areaContent as $contentEntry)
+		            {
+						// insert area name
+		            	$contentEntry->$areaName = (string)$contentEntry;
+		            	
+		            	$tempXml = new simpleXmlElement("<temp></temp>");
+		            	olivxml_insert($tempXml,$entry);
 
-                $tempO .= OLIVRender::_template($tempXml,$contentEntry);
-              }
-              return($tempO); // end rendering -> supresses single output outside of loop
-            }
+		              $tempO .= OLIVRender::_template($tempXml,$contentEntry);
+		            }
+		            return($tempO); // end rendering -> supresses single output outside of loop
+		          }
 
 
 //------------------------------------------------------------------------------
 // get module script call
-            if (isset($areaContent))
-            {
-              if (isset($areaContent->attributes()->mod))
-                $mod = (string)$areaContent->attributes()->mod; // add module
-            }
-          }
-        }
+		          if (isset($areaContent))
+		          {
+		            if (isset($areaContent->attributes()->mod))
+		              $mod = (string)$areaContent->attributes()->mod; // add module
+		          }
+		        }
+		      }
 
 // end content sequenz
 //------------------------------------------------------------------------------
@@ -193,92 +198,94 @@ class OLIVRender extends OLIVCore
 // call plugin
 //echo "<hr>";
 //echoall($areaTag);
-        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
+	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 //echoall($pluginArray);
 
 // if no plugin found
 // output default div clause
-        if (!$pluginArray)
-        {
-          $pluginArray['startTag'] = "<$areaTag>";
-          $pluginArray['value'] = $value;
-          $pluginArray['endTag'] = "</$areaTag>";
-          unset($pluginArray['link']);
-        }
+		      if (!$pluginArray)
+		      {
+		        $pluginArray['startTag'] = "<$areaTag>";
+		        $pluginArray['value'] = $value;
+		        $pluginArray['endTag'] = "</$areaTag>";
+		        unset($pluginArray['link']);
+		      }
 
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // start tag sequenz
-        $tempO .= $pluginArray['startTag'];
+ 	       $tempO .= $pluginArray['startTag'];
 
 
 
 //------------------------------------------------------------------------------
 // call module
         if ($mod)
-        {
-        echoall($areaContent);
-          if ($areaContent)
-          {
-            $outputObj = OLIVRender::callScript($areaContent); // create output string from module
+		      {
+		        if ($areaContent)
+		        {
+		          $outputObj = OLIVRender::callScript($areaContent); // create output string from module
 
   // supress tag value which is module parameter
-            $pluginArray['value'] = "";
+	            $pluginArray['value'] = "";
 
 //TODO
 // make syntax check of module output
-    				$tempO .= $outputObj->o;
-          }
-  			}
+		  				$tempO .= $outputObj->o;
+		        }
+					}
 //------------------------------------------------------------------------------
 
 
 
 // check for recursion
-        if (count($entry->children()))
-          $tempO .= OLIVRender::_template($entry,$content);
+		      if (count($entry->children()))
+		        $tempO .= OLIVRender::_template($entry,$content);
 
 
 // output content directly as text
-        else
-          $tempO .= OLIVText::_($pluginArray['value']);
+		      else
+		        $tempO .= OLIVText::_($pluginArray['value']);
 
 
 //------------------------------------------------------------------------------
 // display template edit layer
-        if (system::OLIV_TEMPLATE_EDIT())
-        {
-          if (system::OLIV_TEMPLATE_MARK())
-            $tempO .= "<div id='oliv_markbox'>";
-          else
-            $tempO .= "<div id='oliv_editbox'>";
+		      if (system::OLIV_TEMPLATE_EDIT())
+		      {
+		        if (system::OLIV_TEMPLATE_MARK())
+		          $tempO .= "<div id='oliv_markbox'>";
+		        else
+		          $tempO .= "<div id='oliv_editbox'>";
 
-          $tempO .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
-        }
+		        $tempO .= "<div id='oliv_edittitle'><b>$areaName</b></div></div>";
+		      }
 
 
 // end tag sequenz
-        $tempO .= $pluginArray['endTag'];
+	        $tempO .= $pluginArray['endTag'];
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
 // create link for tag
-        if (array_key_exists('link',$pluginArray))
-        {
-          $linkArray = $pluginArray['link'];
-          $paramArray['id'] = $areaName;
+		      if (array_key_exists('link',$pluginArray))
+		      {
+		        $linkArray = $pluginArray['link'];
+		        $paramArray['id'] = $areaName;
 
 
 // insert link
-	        $tempO = OLIVRoute::link($tempO,array("link" => $linkArray,"param" => $paramArray));
+		        $tempO = OLIVRoute::link($tempO,array("link" => $linkArray,"param" => $paramArray));
 //------------------------------------------------------------------------------
 
-        }
+		      }
 
 				$o .= $tempO;
+				}
+
+
       }
 
       return ($o);

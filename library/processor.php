@@ -84,6 +84,7 @@ class OLIVProcessor extends OLIVCore
               OLIVError::warning("processor::process - required module '" . $mod . "' not found");
           }
         }
+//echoall($page->structure());
       }
       else
         OLIVError::fire("processor::process - page is empty");

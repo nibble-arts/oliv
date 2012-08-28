@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <admin>
-	<div id='admin_field'>
+	<div id='admin_field' group='editor' access='770' >
 		<span id='admin_action' group='editor' access='770' />
 		<span id='admin_content_edit' group='editor' access='770' />
 		<span id='admin_template_edit' group='admin' access='770' />
