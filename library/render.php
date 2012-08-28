@@ -147,6 +147,8 @@ class OLIVRender extends OLIVCore
 
 						if (count($areaContent->children()))
 	          {
+//echoall("rec $contentName");
+//echoall($areaContent);
 //TODO content no part of template => render direct
 //	          	echoall($content);
 	          	$tempO .= OLIVRender::_template($content,"");
@@ -189,8 +191,10 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 // call plugin
+//echo "<hr>";
+//echoall($areaTag);
         $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
-
+//echoall($pluginArray);
 
 // if no plugin found
 // output default div clause
@@ -207,6 +211,7 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag sequenz
         $tempO .= $pluginArray['startTag'];
+
 
 
 //------------------------------------------------------------------------------
@@ -292,9 +297,10 @@ class OLIVRender extends OLIVCore
 // call module and return module class object
   static private function callScript($module)
   {
-    if ($module->script->main)
+    if ($module->attributes()->main)
     {
-      $tempArray = explode(".",$module->script->main);
+      $tempArray = explode(".",$module->attributes()->main);
+
       $class = $tempArray[0];
 
       if (class_exists($class))

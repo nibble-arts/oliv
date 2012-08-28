@@ -108,7 +108,7 @@ class admin extends OLIVCore
 //			olivxml_insert($content,new simpleXmlElement("<admin_template_edit><img src='$image' /></admin_template_edit>"));
 		}
 
-
+//echoall($content);
 		return $content;
 	} 
 }

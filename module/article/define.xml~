@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <module>
-  <name>header</name>
+  <name>article</name>
+  <access>system</access>
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
     
   <script>
-    <main>header.php</main>
+    <main>article.php</main>
+    <template>template/</template>
+    <language>language/</language>
+    <content>content/</content>
     <default_language>de-DE</default_language>
   </script>
 </module>  

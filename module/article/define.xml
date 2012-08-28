@@ -9,8 +9,6 @@
     
   <script>
     <main>article.php</main>
-    <template>template/</template>
-    <language>language/</language>
     <content>content/</content>
     <default_language>de-DE</default_language>
   </script>

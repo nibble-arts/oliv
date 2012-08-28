@@ -93,8 +93,11 @@ class OLIVPage
 // set module value in page
   public function setScript($id,$module)
   {
-    $this->structure->$id->addChild("script","");
-    olivxml_insert($this->structure->$id->script,$module);
+// insert attributes into page definition
+		foreach($module->children() as $entry)
+		{
+			$this->structure->$id->addAttribute($entry->getName(),(string)$entry);
+		}
   }
 
 

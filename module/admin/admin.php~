@@ -47,8 +47,8 @@ class admin extends OLIVCore
 
 		if ($content)
 		{
-echoall($template);
-echoall($content);
+//echoall($template);
+//echoall($content);
 		  $this->o = OLIVRender::template($template,$content);
 		}
   }
@@ -108,7 +108,7 @@ echoall($content);
 //			olivxml_insert($content,new simpleXmlElement("<admin_template_edit><img src='$image' /></admin_template_edit>"));
 		}
 
-
+echoall($content);
 		return $content;
 	} 
 }

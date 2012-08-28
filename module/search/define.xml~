@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <module>
-  <name>header</name>
+  <name>search</name>
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
     
   <script>
-    <main>header.php</main>
+    <main>search.php</main>
+    <language>language/</language>
     <default_language>de-DE</default_language>
   </script>
 </module>  

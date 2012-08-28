@@ -72,6 +72,7 @@ class imgRender
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
 
+
 		$imgUrl = OLIVImage::_((string)$content->attributes()->src);
 
 //echoall("lang: $lang, ownerLang: $ownerLang, OLIV_LANG: " . OLIV_LANG);
@@ -85,9 +86,9 @@ class imgRender
   			$class = "oliv_not_translated";
     }
 
-    $retArray['startTag'] = "<$tag name='$value' class='$class'>";
-    $retArray['value'] = "<img src='$imgUrl'>"; // textPlugin::getText($value,$header);
-    $retArray['endTag'] = "</$tag>";
+    $retArray['startTag'] = "<img src='$imgUrl'>";
+    $retArray['value'] = ""; // textPlugin::getText($value,$header);
+    $retArray['endTag'] = "</img>";
 
     return ($retArray);
   }

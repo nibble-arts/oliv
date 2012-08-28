@@ -72,7 +72,7 @@ class OLIVProcessor extends OLIVCore
 
   
               // load module text
-              $path = system::OLIV_MODULE_PATH() . $script->name . "/" . $script->script->language;
+              $path = system::OLIV_MODULE_PATH() . $script->name . "/language/";
               $file = $script->name;
               $default_language = $script->script->default_language;
               

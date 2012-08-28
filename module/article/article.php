@@ -53,7 +53,7 @@ class article extends OLIVCore
 
     $this->header = $header;
     $this->header->path = system::OLIV_MODULE_PATH() . "article/";
-    
+
 //    $this->scan();
 
 
@@ -61,8 +61,8 @@ class article extends OLIVCore
     OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
-    $langPath = $this->header->path . (string)$header->script->language;
-    $contentPath = $this->header->path . (string)$header->script->content;
+    $langPath = $this->header->path . "language/";
+    $contentPath = $this->header->path . (string)$header->attributes()->content;
 
     OLIVText::load($langPath,$articleName);
 

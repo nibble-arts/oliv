@@ -62,11 +62,11 @@ class OLIVModule
       if (!($name = (string)$header->attributes()->template)) // special template defined
         $name = system::OLIV_TEMPLATE(); // use template name
     }
-    
-    $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/" . $header->script->template . system::OLIV_TEMPLATE() . "/";
+
+    $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/" . system::OLIV_TEMPLATE() . "/";
 
     if (!olivfile_exists($path . $name . ".xml"))
-      $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/" . $header->script->template . "default/"; // if no template use default
+      $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/default/"; // if no template use default
 
     // load template and link css
     return (OLIVTemplate::load($path,$name));
@@ -99,13 +99,13 @@ class OLIVModule
 
     if ($_MODULES[$name])
     {
-			$path = system::OLIV_MODULE_PATH() . $name . "/" . $_MODULES[$name]->script->template . system::OLIV_TEMPLATE() . "/images/";
+			$path = system::OLIV_MODULE_PATH() . $name . "/template/" . system::OLIV_TEMPLATE() . "/images/";
 	
 		if ($path) // image found in template
 				return $path;
 			else
 			{
-				$path = system::OLIV_MODULE_PATH() . $name . "/" . $_MODULES[$name]->script->template . "default/images/";
+				$path = system::OLIV_MODULE_PATH() . $name . "/template/default/images/";
 				if ($path) // image found in default template
 					return $path;
 			}
