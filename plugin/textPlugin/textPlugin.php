@@ -57,15 +57,23 @@ class textEditPlugin
 		$partName = "";
 
     $content = $options[0];
-    $value = (string)$options[0]['template'];
+    $template = $content['template'];
+    $value = (string)$template;
+		$source = $template->attributes()->source;
 
     $tagArray = textRender::tagString($tag,$value,$content);
 
 
+// no source for editing found
+		if (!$source)
+			return $tagArray;
+
+			
 //------------------------------------------------------------------------------
 // get action parameters
 		$command = status::command();
 		$partName = status::val();
+
 
 //------------------------------------------------------------------------------
 // save changed text and reload
@@ -77,6 +85,7 @@ class textEditPlugin
 				$tagArray['value'] = OLIVText::_((string)$value);
 			}
 		}
+
 
 //------------------------------------------------------------------------------
 // open editor

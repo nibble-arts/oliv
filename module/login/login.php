@@ -91,7 +91,7 @@ class login extends OLIVCore
       $this->o .= "</table>";
 
       $this->o .= "<input type='hidden' name='lang' value='" . status::lang() . "'>";
-      $this->o .= "<input type='hidden' name='url' value='" . status::url() . "'>";
+      $this->o .= "<input type='hidden' name='url' value='" . OLIVRoute::translatePageName(status::lang(),status::url()) . "'>";
       $this->o .= "<input type='hidden' name='val' value='" . status::val() . "'>";
       
     $this->o .= "</form>";

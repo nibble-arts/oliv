@@ -192,7 +192,6 @@ status::set('val',argv::val());
 argv::remove('val');
 
 
-
 // set language from friendly url
 if (array_key_exists('lang',$pathInfo))
 	status::set('lang',$pathInfo['lang']);
@@ -279,12 +278,13 @@ status::set('OLIV_USER',$_SESSION['user']);
 
 
 // set superuser state
-if (OLIVUser::superUser(system::OLIV_USER()))
+if (OLIVUser::superUser(status::OLIV_USER()))
   status::set('OLIV_SU',TRUE);
 else
   status::set('OLIV_SU',FALSE);
 
 
+//echoall(status::getAll());
 
 //------------------------------------------------------------------------------
 ?>

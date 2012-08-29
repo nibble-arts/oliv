@@ -45,13 +45,13 @@ class OLIVProcessor extends OLIVCore
   public function process($page,$template,$module)
   {
     $i = 0;
-echoall($page);
+
 //------------------------------------------------------------------------------
 // parse site
     if (count($page->structure()))
     {
       $areas = $page->structure()->children();
-
+echoall($page->structure());
       if (count($areas))
       {
         foreach($areas as $entry)
@@ -65,7 +65,7 @@ echoall($page);
             {
       // link modules to page elements
               $page->setScript((string)$entry->getName(),$script->script);
-    
+
   //------------------------------------------------------------------------------
   // load module script
               $this->loadScript($script->script->main,system::OLIV_MODULE_PATH() . $script->name . "/");

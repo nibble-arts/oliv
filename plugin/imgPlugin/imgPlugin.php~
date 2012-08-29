@@ -40,7 +40,6 @@ class imgPlugin
     $content = $options[0];
     $value = $options[0]['template'];
 
-
     return (imgRender::tagString($tag,$value,$content));
   }
 }
@@ -52,6 +51,12 @@ class imgEditPlugin
 {
   static public function __callStatic($tag,$options)
   {
+    $content = $options[0];
+    $value = $options[0]['template'];
+
+    return (imgEditRender::tagEditString($tag,$value,$content));
+
+//  	return (imgPlugin::$tag($options));
   }
 }
 
@@ -72,14 +77,20 @@ class imgRender
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
 
-
 		$imgUrl = OLIVImage::_((string)$content->attributes()->src);
 
-//echoall("lang: $lang, ownerLang: $ownerLang, OLIV_LANG: " . OLIV_LANG);
-// check for permissions
+
+// set link if permission granted
+		if (OLIVRight::x($content) and $url = $content->attributes()->url)
+		{
+			$retArray['link']['url'] = $url;
+			$retArray['link']['lang'] = status::lang();
+		}
+
+
+// check for permissions to display translation mark
     if (OLIVRight::w($content) and $ownerLang and ($ownerLang != system::OLIV_LANG()))
     {
-
 
   // mark for no translation
   		if (($lang != system::OLIV_LANG()) and OLIVText::_((string)$value))
@@ -89,8 +100,35 @@ class imgRender
     $retArray['startTag'] = "<img src='$imgUrl'>";
     $retArray['value'] = ""; // textPlugin::getText($value,$header);
     $retArray['endTag'] = "</img>";
-
+echoall($retArray);
     return ($retArray);
   }
+}
+
+//------------------------------------------------------------------------------
+// render tag to edit
+class imgEditRender
+{
+	static public function tagEditString($tag,$value,$options)
+	{
+    $content = $options['template'];
+		$source = $content->attributes()->source;
+
+//echoall($options);
+		$retArray = imgRender::tagString($tag,$value,$options);
+
+		
+// set link if permission granted && source found
+		if (OLIVRight::x($content) and $source)
+		{
+			$retArray['link']['url'] = status::url();
+			$retArray['link']['val'] = OLIVText::_("edit");
+			$retArray['link']['lang'] = status::lang();
+			$retArray['value'] = "edit";
+		}
+		
+
+		return ($retArray);
+	}
 }
 ?>

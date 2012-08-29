@@ -73,7 +73,11 @@ class article extends OLIVCore
       $article = sessionxml_load_file($contentPath . "$articleName.xml");
 
 
-//echoall($article);
+// add source attribute recursive
+			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
+
+
+// render article
       $this->o .= OLIVRender::template($article,"");
 
 //      $this->parse($article);

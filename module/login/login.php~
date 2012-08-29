@@ -59,7 +59,7 @@ class login extends OLIVCore
 // logged in
           if (status::OLIV_USER())
           {
-            $this->o .= "<td>" . OLIVUser::getName(status::OLIV_USER) . "</td>";
+            $this->o .= "<td>" . OLIVUser::getName(status::OLIV_USER()) . "</td>";
             $this->o .= "<td><input type='submit' class='oliv_button' value='" . OLIVText::_("log_out") . "'></td>";
             
             $this->o .= "<input type='hidden' name='action' value='logout'>";
@@ -89,7 +89,7 @@ class login extends OLIVCore
           }
         $this->o .= "</tr>";
       $this->o .= "</table>";
-
+echoall(OLIVRoute::translatePageName(status::lang(),status::url()));
       $this->o .= "<input type='hidden' name='lang' value='" . status::lang() . "'>";
       $this->o .= "<input type='hidden' name='url' value='" . status::url() . "'>";
       $this->o .= "<input type='hidden' name='val' value='" . status::val() . "'>";

@@ -44,6 +44,7 @@ function olivxml_insert(&$xml_to,$xml_from)
           $xml_temp->addAttribute($attr_key, $attr_value);
       }
 
+// add recursive
 			if (count($xml_child->children()))
 	      olivxml_insert($xml_temp, $xml_child);
     }
@@ -56,8 +57,6 @@ function olivxml_insert(&$xml_to,$xml_from)
     {
         $xml_temp->addAttribute($attr_key, $attr_value);
     }
-   
-//    simple_xml_insert($xml_temp, $xml_from);
   }
 } 
 
@@ -81,6 +80,22 @@ function olivxml_changeNode($node,$xml)
     }
   }
   return $temp;
+}
+
+
+//------------------------------------------------------------------------------
+// add attributes to all children
+function olivxml_addAttribute_recursive(&$xml,$name,$value)
+{
+
+	if ($xml->children())
+	{
+		foreach ($xml as $entry)
+		{
+			$tag = $entry->getName();
+			$xml->$tag->addAttribute($name,$value);
+		}
+	}
 }
 
 

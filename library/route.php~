@@ -267,7 +267,7 @@ class OLIVRoute
   static public function translatePageName($lang,$url)
   {
     global $_PAGES;
-
+echoall($lang . " " . $url);
 		if (array_key_exists($url,$_PAGES))
 	    return ($_PAGES[$url]['text']['FRIENDLY_NAME']['text']);
 		else
@@ -335,7 +335,7 @@ class OLIVRoute
   {
 		global $_PAGES;
 
-//echoall(value::getAll());
+
     $path = system::OLIV_PAGE_PATH();
     if ($pageDir = sessionopendir ($path))
     {

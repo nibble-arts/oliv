@@ -67,7 +67,7 @@ class OLIVPage
 
 	// combine page parts
 			olivxml_insert($this->structure,$xml);
-echoall($this->structure);
+//echoall($this->structure);
 
 	// load content text
 			$langPath = system::OLIV_PAGE_PATH() . $pageName . "/language/";

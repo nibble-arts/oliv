@@ -36,7 +36,7 @@ class OLIVPlugin
 {
   public function __construct()
   {
-    $this->scan(OLIV_PLUGIN_PATH);
+    $this->scan(system::OLIV_PLUGIN_PATH());
   }
 
 
@@ -63,35 +63,47 @@ class OLIVPlugin
 
 
 //TODO check content edit flag
-//------------------------------------------------------------------------------
-// check for rights to edit
-      if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and OLIV_CONTENT_EDIT)
-      {
-        $class = $pluginEditCall[0];
-			}
-      else
-			{
-        $class = $pluginCall[0];
-			}
 
-      $func = $pluginCall[1];
+//$options['template']->attributes()->id
+
+
+//------------------------------------------------------------------------------
+// permission to display
+			if (OLIVRight::r($options['template']))
+			{
+
+// permission to edit
+// write permission && edit plugin fourn && edit mode && source founr
+//				$source = (string)$options['template']->attributes()->source;
+				
+		    if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and system::OLIV_CONTENT_EDIT()); // and $source)
+		    {
+		      $class = $pluginEditCall[0]; // set edit class
+				}
+		    else
+				{
+		      $class = $pluginCall[0]; // set display class
+				}
+
+		    $func = $pluginCall[1];
 
 
 //------------------------------------------------------------------------------
 // call render class for tag
 // load plugin script
-      OLIVCore::loadScript($pluginScript . ".php",OLIV_PLUGIN_PATH . $pluginScript . "/");
+	      OLIVCore::loadScript($pluginScript . ".php",system::OLIV_PLUGIN_PATH() . $pluginScript . "/");
 
 
 // call script and return output
-      if (class_exists($class))
-        return ($class::$func($options));
+		    if (class_exists($class))
+		      return ($class::$func($options));
 
 
 // error class not found
-      else
-        OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
-        return (FALSE);
+		    else
+		      OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
+		      return (FALSE);
+			}
     }
     else
       return (FALSE);

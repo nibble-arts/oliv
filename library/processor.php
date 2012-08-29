@@ -65,7 +65,7 @@ class OLIVProcessor extends OLIVCore
             {
       // link modules to page elements
               $page->setScript((string)$entry->getName(),$script->script);
-    
+
   //------------------------------------------------------------------------------
   // load module script
               $this->loadScript($script->script->main,system::OLIV_MODULE_PATH() . $script->name . "/");

@@ -30,6 +30,7 @@
 if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
+
 class textPlugin
 {
   var $editor;
@@ -56,15 +57,17 @@ class textEditPlugin
 		$partName = "";
 
     $content = $options[0];
-    $value = (string)$options[0]['template'];
+    $template = $content['template'];
+    $value = (string)$template;
+		$source = $template->attributes()->source;
 
     $tagArray = textRender::tagString($tag,$value,$content);
-
 
 //------------------------------------------------------------------------------
 // get action parameters
 		$command = status::command();
 		$partName = status::val();
+
 
 //------------------------------------------------------------------------------
 // save changed text and reload
@@ -76,6 +79,7 @@ class textEditPlugin
 				$tagArray['value'] = OLIVText::_((string)$value);
 			}
 		}
+
 
 //------------------------------------------------------------------------------
 // open editor
@@ -110,7 +114,7 @@ class textEditPlugin
   {
 		$partNameArray = explode("_",$partName);
 
-		$path = OLIV_MODULE_PATH . "article/language/";
+		$path = system::OLIV_MODULE_PATH() . "article/language/";
 		$nameSpace = $partNameArray[0] . "_" . $partNameArray[1];
 		$file = strtolower($partNameArray[1]);
 
@@ -174,8 +178,8 @@ class textEditor
 
 
 // load scripts for tinyMCE
-    OLIVCore::loadScript("jquery-1.7.1.js",OLIV_JAVASCRIPT_PATH);
-    OLIVCore::loadScript("tiny_mce.js",OLIV_JAVASCRIPT_PATH . "tiny_mce/");
+    OLIVCore::loadScript("jquery-1.7.1.js",system::OLIV_JAVASCRIPT_PATH());
+    OLIVCore::loadScript("tiny_mce.js",system::OLIV_JAVASCRIPT_PATH() . "tiny_mce/");
 
 
 // create editor

@@ -110,7 +110,6 @@ class OLIVRender extends OLIVCore
 // loop over children of template
       foreach($template->children() as $entry)
       {
-
 // render only if permission
 				if(OLIVRight::r($entry))
 				{
@@ -147,15 +146,14 @@ class OLIVRender extends OLIVCore
 // extract content
 //		if tag_name == template_area_name => insert content in template and render
 //		else
-//			if content part has children => render content recursive
-
+//			if content part has children => render content recursive in $areaName
 
 							if (count($areaContent->children()))
 			        {
 //echoall("rec $contentName");
 //echoall($areaContent);
 //TODO content no part of template => render direct
-//	          	echoall($content);
+
 			        	$tempO .= OLIVRender::_template($content,"");
 		  	      }
 

@@ -28,7 +28,7 @@
 //------------------------------------------------------------------------------
 
 
-if (!system::OLIVCORE()) die ("right.php - OLIVCore not present");
+if (!system::OLIVCORE()) die ("user.php - OLIVCore not present");
 
 
 class OLIVUser extends OLIVCore
