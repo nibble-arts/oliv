@@ -95,7 +95,7 @@ class admin extends OLIVCore
 
 //------------------------------------------------------------------------------
 // show edit mode
-		if (system::OLIV_CONTENT_EDIT() and OLIVRight::r($content))
+		if (system::OLIV_CONTENT_EDIT())
 		{
 			olivxml_insert($content,new simpleXmlElement("<admin_content_edit></admin_content_edit>"));
 			olivxml_insert($content->admin_content_edit,new simpleXmlElement("<img src='admin_content_edit' />"));

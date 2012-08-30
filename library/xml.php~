@@ -85,20 +85,20 @@ function olivxml_changeNode($node,$xml)
 
 //------------------------------------------------------------------------------
 // add attributes to all children
-function olivxml_addAttribute_recursive($xml,$name,$value)
+function olivxml_addAttribute_recursive(&$xml,$name,$value)
 {
-
 	if ($xml->children())
 	{
 		foreach ($xml as $entry)
 		{
+echo "<hr>";
+echoall("insert $name=$value");
 			$tag = $entry->getName();
-			echoall("insert $tag");
-			$xml->$tag->addAttribute($name,$value);
+			if (!$xml->$tag->attributes()->$name)
+				$xml->$tag->addAttribute($name,$value);
 echoall($xml->$tag);
 		}
 	}
-	return $xml->asXML();
 }
 
 

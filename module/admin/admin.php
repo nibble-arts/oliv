@@ -39,6 +39,8 @@ class admin extends OLIVCore
 //------------------------------------------------------------------------------
   function __construct($header)
   {
+  	$content = "";
+  	
     $template = OLIVModule::load_template($header);
 
 		if (system::OLIV_CONTENT_EDIT())

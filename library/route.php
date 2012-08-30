@@ -199,6 +199,20 @@ class OLIVRoute
 
 
 //------------------------------------------------------------------------------
+// get page title
+	static public function translateTitle($url)
+	{
+		global $_PAGES;
+
+		if (array_key_exists($url,$_PAGES)) // url defined
+			if (array_key_exists('text',$_PAGES[$url])) // text passage found
+			{
+				return ($_PAGES[$url]['text']['TITLE']['text']);
+			}
+	}
+	
+
+//------------------------------------------------------------------------------
 //TODO make url basis for intern, extern, form, e.i.
 // create form url
   static public function url($text,$options="")
