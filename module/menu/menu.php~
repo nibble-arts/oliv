@@ -77,9 +77,10 @@ class menu extends OLIVCore
 
     $templateName = (string)$menu->attributes()->template;
 
-
     if ($menu)
     {
+// get name of menu
+		$menuName = $menu->getName();
 
 //------------------------------------------------------------------------------
 // loop over menu entries
@@ -91,7 +92,8 @@ class menu extends OLIVCore
 				$itemTarget = "";
 		    $paramString = "";
 
-
+				$menuItemName = $entry->getName();
+				
 //------------------------------------------------------------------------------
 // is extern link
 				if ($entry->attributes()->url)
@@ -146,18 +148,16 @@ class menu extends OLIVCore
 
 
 // insert name and format
-					$paramString .= 	" name='menu_$itemUrl' class='$displayClass'";
+					$paramString .= " name='menu_$itemUrl' class='$displayClass'";
 
 
 // create menu item entry
-			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} $paramString>
-			        $itemName
-			      </menu_item_{$this->templateName}>");
+			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} source='$menuName::$menuItemName' $paramString>$itemName</menu_item_{$this->templateName}>");
 
 	//        olivxml_insert($menuXml,$tempXml);
 
 	//TODO
-	// sub menus found
+	// sub menus foun
 	// display when active
 	/*        if(count($entry))
 		      {
@@ -170,7 +170,7 @@ class menu extends OLIVCore
 			}
  
 //echoall($tempXml);
-echoall($menuXml->asXML());
+//echoall($menuXml->asXML());
       return ($menuXml);
     }
     else

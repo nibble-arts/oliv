@@ -173,7 +173,7 @@ class OLIVRoute
 
 //------------------------------------------------------------------------------
 // create extern link
-		if (substr($url,0,7) == "http://" or substr($url,0,8) == "https://")
+		if (link_is_extern($url))
 			$path = $url;
 
 
@@ -343,6 +343,23 @@ class OLIVRoute
   }
 
 
+
+//------------------------------------------------------------------------------
+// return array of pages
+	public static function getPages()
+	{
+		global $_PAGES;
+		$retArray = array();
+
+
+		foreach ($_PAGES as $key => $value)
+		{
+			$retArray[$key] = $value['text'];
+		}
+		return($retArray);
+	}
+
+
 //------------------------------------------------------------------------------
 // get list of existing pages
   public function scan($lang)
@@ -386,5 +403,13 @@ function cut_slash($url)
       $url = substr($url,0,strlen($url)-1);
 
   return ($url);
+}
+
+
+//------------------------------------------------------------------------------
+// check if link is extern with http / https protocoll
+function link_is_extern($url)
+{
+		return (substr($url,0,7) == "http://" or substr($url,0,8) == "https://");
 }
 ?>

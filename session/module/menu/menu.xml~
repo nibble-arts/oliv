@@ -7,4 +7,9 @@
 		<iggmp owner='tom' access='470' url='http://www.iggmp.net' title='iggmp' target='_blank' name='IG-GmP'/>
 		<test />
   </main>
+
+  <admin template='side' group='edit' access='770'>
+  	<index />
+  	<test />
+  </admin>
 </menu>

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<plugin>
+  <render>
+    <func>
+      <menuitem script='menuItemPlugin' class='menuPlugin::item' editClass='menuEditPlugin::item' />
+    </func>
+  </render>
+</plugin>

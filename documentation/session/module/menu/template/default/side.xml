@@ -2,6 +2,6 @@
 
 <template name='side'>
   <div id='menu_background_side' style='background-color:#dcdc78;padding:3px'>
-    <div title='index_title' id='menu_item_side' />
+    <menuitem tag='div' id='menu_item_side' />
   </div>
 </template>

@@ -150,10 +150,6 @@ class OLIVRender extends OLIVCore
 
 							if (count($areaContent->children()))
 			        {
-//echoall("rec $contentName");
-//echoall($areaContent);
-//TODO content no part of template => render direct
-
 			        	$tempO .= OLIVRender::_template($content,"");
 		  	      }
 
@@ -197,7 +193,7 @@ class OLIVRender extends OLIVCore
 //echo "<hr>";
 //echoall($areaTag);
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
-//echoall($pluginArray);
+echoall($pluginArray);
 
 // if no plugin found
 // output default div clause
