@@ -114,7 +114,6 @@ class menuEditRender
 
 	static public function createTag($template,$content)
 	{
-
 		$tagArray = menuRender::createTag($template,$content);
 		$value = (string)$content;
 		$source = $content->attributes()->source;
@@ -153,15 +152,28 @@ class menuEditRender
 
 			if (link_is_extern($itemUrl))
 			{
-				$editString = "<i>Name</i><br>";
-				$editString .= "<textarea name='$value'>";
-					$editString .= $value;
-				$editString .= "</textarea>";
+				$editString = "<form method='" . status::url() . "'>";
 
-				$editString .= "<i>Link</i><br>";
-				$editString .= "<textarea name='$itemUrl'>";
-					$editString .= $itemUrl;
-				$editString .= "</textarea>";
+				$editString .= "<div id='menu_edit_frame'>";
+
+					$editString .= OLIVText::_("menu_name") . "<br>";
+					$editString .= "<textarea name='$value'>";
+						$editString .= $value;
+					$editString .= "</textarea><br>";
+
+					$editString .= OLIVText::_("menu_link") . "<br>";
+					$editString .= "<textarea name='$itemUrl'>";
+						$editString .= $itemUrl;
+					$editString .= "</textarea>";
+					
+					$editString .= "<input type='submit' value='" . OLIVText::_("save") . "'>";
+
+				$editString .= "</div>";
+
+				$editString .= "<input type='hidden' name='val' value='" . OLIVText::_("save") . "/" . status::url() . "'>";
+				$editString .= "</form>";
+				
+				unset($tagArray['link']);
 			}
 			else
 //------------------------------------------------------------------------------

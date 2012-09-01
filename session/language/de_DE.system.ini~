@@ -45,7 +45,6 @@ EDIT = "Bearbeiten"
 EDIT_TEXT = "Text bearbeiten"
 EDIT_IMG = "Bild bearbeiten"
 SAVE = "Sichern"
-CANCEL = "Abbrechen"
 
 [TIME]
 FROM = "von"

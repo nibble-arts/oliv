@@ -1,3 +1,6 @@
 [MOD_MENU]
-EXTERN_DOCUMENTATION = 'Dokumentation von OLIV'
+EXTERN_DOCUMENTATION = 'Dokumentation'
 IGGMP = 'IG - Gartenbahnem mit Personenebeförderung'
+
+MENU_NAME = "Link Name"
+MENU_LINK = "Link Ziel"
