@@ -407,9 +407,13 @@ function cut_slash($url)
 
 
 //------------------------------------------------------------------------------
-// check if link is extern with http / https protocoll
+// check if link is extern with http / https protocoll or mailto
 function link_is_extern($url)
 {
-		return (substr($url,0,7) == "http://" or substr($url,0,8) == "https://");
+	if (substr($url,0,5) == "http:" or
+		substr($url,0,6) == "https:" or
+		substr($url,0,7) == "mailto:"
+	)
+		return (TRUE);
 }
 ?>

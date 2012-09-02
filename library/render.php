@@ -238,7 +238,7 @@ class OLIVRender extends OLIVCore
 		        $tempO .= OLIVRender::_template($entry,$content);
 
 
-// output content directly as text
+// output content text
 		      else
 		        $tempO .= OLIVText::_($pluginArray['value']);
 

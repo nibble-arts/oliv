@@ -160,7 +160,6 @@ input {
 }
 
 #oliv_admin {
-	margin-right:0px;
   text-align:right;
   height:0px;
 }
@@ -224,7 +223,9 @@ input {
   margin:0 auto;
   width:900px;
   height:30px;
+  font-size:12px;
   text-align:center;
+	color:grey;
   background-color:#dcdc78;
 }
 

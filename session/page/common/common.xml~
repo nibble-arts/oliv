@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <content id='common'>
+	<oliv_admin mod='admin' />
   <oliv_login mod='login' />
 <!--  <oliv_search mod='search' />-->
   <oliv_title class='oliv_title'>title</oliv_title>
 <!--  <oliv_top mod='menu'>top</oliv_top>-->
-  <oliv_footer mod='footer'>OLIV-CMS V0.1 - (c) 2012 Thomas Winkler</oliv_footer>
+  <oliv_footer><p url='http://github.com/nibble-arts/oliv'>OLIV-CMS by Thomas Winkler: V0.2.4.afba111b - 2012-09-01 21:16:32</p></oliv_footer>
   <oliv_contact />
 </content>

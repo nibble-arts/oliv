@@ -192,8 +192,9 @@ class OLIVRender extends OLIVCore
 // call plugin
 //echo "<hr>";
 //echoall($areaTag);
+echoall($content);
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
-echoall($pluginArray);
+//echoall($pluginArray);
 
 // if no plugin found
 // output default div clause
@@ -238,7 +239,7 @@ echoall($pluginArray);
 		        $tempO .= OLIVRender::_template($entry,$content);
 
 
-// output content directly as text
+// output content text
 		      else
 		        $tempO .= OLIVText::_($pluginArray['value']);
 

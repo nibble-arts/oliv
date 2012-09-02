@@ -152,7 +152,7 @@ class menuEditRender
 
 			if (link_is_extern($itemUrl))
 			{
-				$editString = "<form method='" . status::url() . "'>";
+				$editString = "<form method='post' action='" . status::url() . "'>";
 
 				$editString .= "<div id='menu_edit_frame'>";
 
@@ -202,6 +202,15 @@ class menuEditRender
 //------------------------------------------------------------------------------
 
 			$tagArray['value'] = $editString;
+		}
+		else
+		
+		{
+// mark extern links
+			if (link_is_extern($itemUrl))
+			{
+				$tagArray['value'] = $tagArray['value'] . " <i class='oliv_small'>extern</i>";
+			}
 		}
 
 
