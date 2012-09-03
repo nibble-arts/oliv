@@ -30,28 +30,6 @@
 if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
-OLIVCore::loadScript("contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
-
-?>
-<script language='javascript'>
-	function editClick(e) {
-		var rightclick;
-
-		if (!e) var e = window.event;
-
-		if (e.which) rightclick = (e.which == 3);
-		else if (e.button) rightclick = (e.button == 2);
-
-		if (rightclick)
-		{
-// call contect menu
-			alert("<?PHP echo OLIVText::_('edit');?>");
-			contextMenu();
-		}
-	}
-</script>
-<?PHP
-
 
 class menuPlugin
 {
@@ -137,18 +115,21 @@ class menuEditRender
 	static public function createTag($template,$content)
 	{
 		$o = "";
+		$partSource = "";
+		$partItem = "";
 		
 		$tagArray = menuRender::createTag($template,$content);
 		$value = (string)$content;
 		$source = $content->attributes()->source;
 		$itemUrl = (string)$content->attributes()->url;
 
+		$clipBoard = argv::clipboard();
 
 // set link parameters for editor
 		$tagArray['link']['title'] = OLIVText::_("edit_menu_item");
-		$tagArray['link']['url'] = status::url();
-		$tagArray['link']['val'] = OLIVText::_("edit") . "/$source:$value";
-		$tagArray['link']['onMouseDown'] = "editClick(event)";
+//		$tagArray['link']['url'] = status::url();
+//		$tagArray['link']['val'] = OLIVText::_("edit") . "/$source:$value";
+//		$tagArray['link']['onMouseDown'] = "editClick(event)";
 
 //------------------------------------------------------------------------------
 // get action parameters
@@ -160,6 +141,55 @@ class menuEditRender
 		if (count($partName) > 1)
 			$partItem = $partName[1];
 
+
+		$contextMenu = new OLIVContext("myMenu");
+
+
+// execute common actions
+		switch ($command)
+		{
+//------------------------------------------------------------------------------
+// save changes
+			case 'save':
+				echoall("save menu item '$partSource:$partItem' to " . argv::page());
+				break;
+
+
+//------------------------------------------------------------------------------
+// remove item
+			case 'remove':
+				echoall("remove $partSource:$partItem");
+				break;
+
+//------------------------------------------------------------------------------
+// insert new item
+			case 'add':
+				echoall("add item after $partSource:$partItem");
+				break;
+
+//------------------------------------------------------------------------------
+// cut item
+			case 'cut':
+				$clipBoard = "$partSource:$partItem";
+				
+				echoall("cut item $partSource:$partItem");
+				break;
+
+//------------------------------------------------------------------------------
+// copy item
+			case 'copy':
+				echoall("copy item $partSource:$partItem");
+				break;
+
+//------------------------------------------------------------------------------
+// paste item
+			case 'cut':
+				echoall("paste item after $partSource:$partItem");
+				break;
+
+
+			default:
+		}
 
 //------------------------------------------------------------------------------
 // start editor action
@@ -225,10 +255,6 @@ class menuEditRender
 								$o .= "<input type='hidden' name='val' value='" . OLIVText::_("save") . "/" . $partSource . ":" . $partItem . "'>";
 							}
 
-// add and remove link
-							$o .= OLIVRoute::link(OLIVText::_("remove"),array('link' => array("url" => status::url(),"val" => OLIVText::_("remove") . "/$partSource:$partItem")));
-							$o .= OLIVRoute::link(OLIVText::_("add"),array('link' => array("url" => status::url(),"val" => OLIVText::_("add") . "/$partSource:$partItem")));
-
 						$o .= "</form>";
 					$o .= "</div>";
 
@@ -238,26 +264,6 @@ class menuEditRender
 
 // remove link on editor
 					unset($tagArray['link']);
-					break;
-
-
-//------------------------------------------------------------------------------
-// save changes
-				case 'save':
-					echoall("save menu item '$partSource:$partItem' to " . argv::page());
-					break;
-
-
-//------------------------------------------------------------------------------
-// remove item
-				case 'remove':
-					echoall("remove $partSource:$partItem");
-					break;
-
-//------------------------------------------------------------------------------
-// insert item
-				case 'add':
-					echoall("add item after $partSource:$partItem");
 					break;
 
 
@@ -274,6 +280,23 @@ class menuEditRender
 //------------------------------------------------------------------------------
 // display item
 		{
+// context menu content
+			$contextMenu->insert("add separator",array('url' => status::url(),'val' => OLIVText::_('add') . '/' . $source),"add");
+
+			$contextMenu->insert("move",array('url' => status::url(),'val' => OLIVText::_('move') . '/' . $source . ':' . $value),"move");
+			$contextMenu->insert("edit",array('url' => status::url(),'val' => OLIVText::_('edit') . '/' . $source . ':' . $value),"edit");
+			$contextMenu->insert("delete",array('url' => status::url(),'val' => OLIVText::_('remove') . '/' . $source . ':' . $value),"remove");
+
+			$contextMenu->insert("cut separator",array('url' => status::url(),'val' => OLIVText::_('cut') . '/' . $source . ':' . $value),"cut");
+			$contextMenu->insert("copy",array('url' => status::url(),'val' => OLIVText::_('copy') . '/' . $source . ':' . $value),"copy");
+			$contextMenu->insert("paste",array('url' => status::url(),'val' => OLIVText::_('paste') . '/' . $source . ':' . $value),"paste");
+
+			if (!$clipBoard)
+				$contextMenu->disable("paste");
+
+			echo $contextMenu->draw();
+
+
 // mark extern links
 			if (link_is_extern($itemUrl))
 			{

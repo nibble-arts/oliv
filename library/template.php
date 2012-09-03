@@ -71,6 +71,9 @@ class OLIVTemplate
 // look for name.xml - if not exists load default.xml
   public static function link_css($path,$name)
   {
+// remove .css ending
+		if (substr($name,strlen($name)-4) == ".css") $name = substr($name,0,strlen($name)-4);
+
     if (sessionfile_exists($path . $name . ".css"))
       $cssPath = $path . $name . ".css"; // named css.php class
     else

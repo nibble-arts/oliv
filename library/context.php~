@@ -1,0 +1,95 @@
+<?PHP
+//
+// OLIV
+//
+// This file is part of the OLIV Content Management System.
+//
+// Copyright(c) 2012 Thomas H Winkler
+// thomas.winkler@iggmp.net
+//
+// This file may be licensed under the terms of of the
+// GNU General Public License Version 3 (the ``GPL'').
+//
+// Software distributed under the License is distributed
+// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// express or implied. See the GPL for the specific language
+// governing rights and limitations.
+//
+// You should have received a copy of the GPL along with this
+// program. If not, go to http://www.gnu.org/licenses/gpl.html
+// or write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+//
+
+//------------------------------------------------------------------------------
+// context menu class
+//
+// Version 0.1
+//------------------------------------------------------------------------------
+
+if (!system::OLIVCORE()) die ("context - OLIVCore not present");
+if (!system::OLIVERROR()) die ("context - OLIVError not present");
+
+class OLIVContext
+{
+	var $contextArray = array();
+
+	
+	public function __construct($name)
+	{
+		if ($name)
+		{
+			OLIVCore::loadScript("jquery-1.7.1.js",system::OLIV_JAVASCRIPT_PATH());
+			OLIVCore::loadScript("jquery.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+
+			OLIVCore::loadScript("menuPlugin.js",system::OLIV_JAVASCRIPT_PATH());
+
+		  OLIVTemplate::link_css(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/","jquery.contextMenu.css");
+
+		  $this->contextArray['name'] = $name;
+		}
+		else
+			return FALSE;
+	}
+
+
+// insert entry in 
+	public function insert($class,$link,$text)
+	{
+		$entryArray = array(
+			'url' => array('link' => $link),
+			'text' => OLIVText::_($text),
+			'class' => $class,
+			'id' => $this->contextArray['name']
+		);
+
+		$this->contextArray['entry'][$class] = $entryArray;
+	}
+
+
+	public function draw()
+	{
+		$o = "<ul id='" . $this->contextArray['name'] . "' class='contextMenu'>";
+
+			foreach ($this->contextArray['entry'] as $entry)
+			{
+				$class = $entry['class'];
+
+				if (array_key_exists('display',$entry)) $class .= " disabled";
+
+				$o .= "<li class='$class'>";
+					$o .= OLIVRoute::link($entry['text'],$entry['url']);
+				$o .= "</li>";
+			}
+
+		$o .= "</ul>";
+		echo($o);
+	}
+
+
+	public function disable($name)
+	{
+		$this->contextArray['entry'][$name]['display'] = "disabled";
+	}
+}
+?>

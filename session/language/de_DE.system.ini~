@@ -42,13 +42,17 @@ SEARCH = "suchen"
 MAP = "Karte"
 WORLD_MAP = "Weltkarte"
 
+CUT = "Ausschneiden"
+COPY = "Kopieren"
+PASTE = "Einfügen"
 EDIT = "Bearbeiten"
 EDIT_TEXT = "Text bearbeiten"
 EDIT_IMG = "Bild bearbeiten"
 SAVE = "Sichern"
 CANCEL = "Abbrechen"
 ADD = "Einfügen"
-DEL = "Löschen"
+REMOVE = "Entfernen"
+MOVE = "Bewegen"
 
 [TIME]
 FROM = "von"

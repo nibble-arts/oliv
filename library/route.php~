@@ -146,7 +146,7 @@ class OLIVRoute
     $linkParamString = "";
 
 
-//echoall($options['link']);
+echoall($options['link']);
 // link parameters
 		foreach ($options['link'] as $key => $entry)
 		{
@@ -200,8 +200,7 @@ class OLIVRoute
 // insert class
     if ($class) $class = "class='{$class}'";
 
-echoall("$class href='$path' $linkParamString $param>$text");
-    // return href string
+// return href string
     return ("<a $class href='$path' $linkParamString $param>$text</a>");
   }
 

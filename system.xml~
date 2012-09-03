@@ -66,7 +66,6 @@
     <file>index.php</file>
     <file>search.php</file>
     <file>plugin.php</file>
-    <file>status.php</file>
   </includes>
   
   <image>

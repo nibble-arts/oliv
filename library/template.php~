@@ -53,6 +53,7 @@ class OLIVTemplate
 //echoall("template - link css: " . $path . $name);
     OLIVTemplate::link_css($path,$name);
 
+
 //echoall("template - load template: " . $path . $name);
     if (sessionfile_exists($path . $name . ".xml"))
       return (sessionxml_load_file($path . $name . ".xml"));
@@ -70,6 +71,9 @@ class OLIVTemplate
 // look for name.xml - if not exists load default.xml
   public static function link_css($path,$name)
   {
+		if (substr($name,strlen($name)-4) == ".css") $name = substr($name,0,strlen($name)-4);
+
+echoall($name);
     if (sessionfile_exists($path . $name . ".css"))
       $cssPath = $path . $name . ".css"; // named css.php class
     else
