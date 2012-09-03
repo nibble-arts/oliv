@@ -167,7 +167,6 @@ else
 	$pathInfo = array();
 
 
-
 // insert GET POST messages in argv
 foreach($_GET as $key => $value)
 {
@@ -178,6 +177,7 @@ foreach($_POST as $key => $value)
 {
 	argv::set($key,$value);
 }
+
 
 
 // set lang,url,val from GET/POST

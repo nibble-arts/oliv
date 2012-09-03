@@ -30,6 +30,28 @@
 if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
+OLIVCore::loadScript("contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+
+?>
+<script language='javascript'>
+	function editClick(e) {
+		var rightclick;
+
+		if (!e) var e = window.event;
+
+		if (e.which) rightclick = (e.which == 3);
+		else if (e.button) rightclick = (e.button == 2);
+
+		if (rightclick)
+		{
+// call contect menu
+			alert("<?PHP echo OLIVText::_('edit');?>");
+			contextMenu();
+		}
+	}
+</script>
+<?PHP
+
 
 class menuPlugin
 {
@@ -114,16 +136,19 @@ class menuEditRender
 
 	static public function createTag($template,$content)
 	{
+		$o = "";
+		
 		$tagArray = menuRender::createTag($template,$content);
 		$value = (string)$content;
 		$source = $content->attributes()->source;
 		$itemUrl = (string)$content->attributes()->url;
 
 
+// set link parameters for editor
 		$tagArray['link']['title'] = OLIVText::_("edit_menu_item");
 		$tagArray['link']['url'] = status::url();
 		$tagArray['link']['val'] = OLIVText::_("edit") . "/$source:$value";
-
+		$tagArray['link']['onMouseDown'] = "editClick(event)";
 
 //------------------------------------------------------------------------------
 // get action parameters
@@ -136,80 +161,123 @@ class menuEditRender
 			$partItem = $partName[1];
 
 
-// start editor
+//------------------------------------------------------------------------------
+// start editor action
 // if menu and item selected
-		if (($partSource == $source) and ($partItem == $value) and $command == 'edit')
+		if (($partSource == $source) and ($partItem == $value))
 		{
+			switch ($command)
+			{
+
+//------------------------------------------------------------------------------
 //TODO if extern link: display hyperlink, name and title for change
 // make possible to insert or delete entries
+				case 'edit':
+					$o = "<div id='menu_edit_frame'>";
+						$o .= "<form method='post' action='" . OLIVRoute::url("",array('url' => status::url())) . "'>";
+
+
+// extern page link edit
+							if (link_is_extern($itemUrl))
+							{
+								$o .= OLIVText::_("menu_name") . "<br>";
+								$o .= "<textarea name='$value'>";
+									$o .= $value;
+								$o .= "</textarea><br>";
+
+								$o .= OLIVText::_("menu_link") . "<br>";
+								$o .= "<textarea name='$itemUrl'>";
+									$o .= $itemUrl;
+								$o .= "</textarea>";
+				
+								$o .= "<input type='submit' value='" . OLIVText::_("save") . "'>";
+//							$o .= "<input type='submit' value='" . OLIVText::_("cancel") . "'>";
+
+								$o .= "<input type='hidden' name='val' value='" . OLIVText::_("save") . "/" . $partSource . ":" . $partItem . "'>";
+							}
+							else
+
+//------------------------------------------------------------------------------
+// intern page link edit
+
 
 //TODO if intern link: display a list of available pages to link
 // make possible to change, insert or delete entries
 
 // change of text changes title of page (possible only if owner of page)
 // display if not translated -> create a new language file for page
+							{
 
-
-			if (link_is_extern($itemUrl))
-			{
-				$editString = "<form method='post' action='" . status::url() . "'>";
-
-				$editString .= "<div id='menu_edit_frame'>";
-
-					$editString .= OLIVText::_("menu_name") . "<br>";
-					$editString .= "<textarea name='$value'>";
-						$editString .= $value;
-					$editString .= "</textarea><br>";
-
-					$editString .= OLIVText::_("menu_link") . "<br>";
-					$editString .= "<textarea name='$itemUrl'>";
-						$editString .= $itemUrl;
-					$editString .= "</textarea>";
-					
-					$editString .= "<input type='submit' value='" . OLIVText::_("save") . "'>";
-					$editString .= "<input type='submit' value='" . OLIVText::_("cancel") . "'>";
-
-				$editString .= "</div>";
-
-				$editString .= "<input type='hidden' name='val' value='" . OLIVText::_("save") . "/" . status::url() . "'>";
-				$editString .= "</form>";
-				
-				unset($tagArray['link']);
-			}
-			else
-//------------------------------------------------------------------------------
-// intern page link
-			{
 // get page list
+								$pages = OLIVRoute::getPages();
 
-				$pages = OLIVRoute::getPages();
+//TODO do it with the form method
+								$o .= "<select name='page' size='1'>";
+									foreach ($pages as $entry)
+									{
+										if (array_key_exists('NAME',$entry))
+											$o .= "<option>" . $entry['NAME']['text'] . "</option>";
+									}
+								$o .= "</select>";
+
+								$o .= "<input type='submit' value='" . OLIVText::_("save") . "'>";
+
+								$o .= "<input type='hidden' name='val' value='" . OLIVText::_("save") . "/" . $partSource . ":" . $partItem . "'>";
+							}
+
+// add and remove link
+							$o .= OLIVRoute::link(OLIVText::_("remove"),array('link' => array("url" => status::url(),"val" => OLIVText::_("remove") . "/$partSource:$partItem")));
+							$o .= OLIVRoute::link(OLIVText::_("add"),array('link' => array("url" => status::url(),"val" => OLIVText::_("add") . "/$partSource:$partItem")));
+
+						$o .= "</form>";
+					$o .= "</div>";
+
+// set ouput
+					$tagArray['value'] = $o;
+
+
+// remove link on editor
+					unset($tagArray['link']);
+					break;
+
 
 //------------------------------------------------------------------------------
-//TODO do it with the form method
-				$editString = "<form><select name='$value' size='1'>";
+// save changes
+				case 'save':
+					echoall("save menu item '$partSource:$partItem' to " . argv::page());
+					break;
 
-				foreach ($pages as $entry)
-				{
-					if (array_key_exists('NAME',$entry))
-						$editString .= "<option>" . $entry['NAME']['text'] . "</option>";
-				}
 
-				$editString .= "</select></form>";
+//------------------------------------------------------------------------------
+// remove item
+				case 'remove':
+					echoall("remove $partSource:$partItem");
+					break;
 
+//------------------------------------------------------------------------------
+// insert item
+				case 'add':
+					echoall("add item after $partSource:$partItem");
+					break;
+
+
+				default:
+					break;
 
 			}
 //TODO
-//------------------------------------------------------------------------------
 
-			$tagArray['value'] = $editString;
 		}
 		else
-		
+
+
+//------------------------------------------------------------------------------
+// display item
 		{
 // mark extern links
 			if (link_is_extern($itemUrl))
 			{
-				$tagArray['value'] = $tagArray['value'] . " <i class='small'>extern</i>";
+				$tagArray['value'] = $tagArray['value'] . " <i class='oliv_small'>extern</i>";
 			}
 		}
 

@@ -123,6 +123,11 @@ input {
 	background-color:#ffd0d0;
 }
 
+.oliv_small {
+	font-size:50%;
+}
+
+
 /*----------------------------------------------------------------------------*/
 /* id definition */
 #oliv_site {
@@ -274,4 +279,22 @@ input {
   background-color:#ffd0d0;
   color:red;
   font-weight:bold;
+}
+
+#oliv_context_menu {
+	position:absolute;
+	top:250;
+	left:0;
+	z-index:999'
+}
+
+#oliv_context_table {
+	border-style:outset;
+	border-width:1;
+	backgroun
+}
+
+#oliv_context_item {
+	font-family:sans-serif;
+	font-size:10pt;	
 }

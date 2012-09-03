@@ -140,27 +140,35 @@ class OLIVRoute
   {
     $url = "";
     $val = "";
-    $title = "";
-    $target = "";
     $param = "";
     $class = "";
     $lang = "";
+    $linkParamString = "";
 
 
 //echoall($options['link']);
 // link parameters
-    if (isset($options['link']['url'])) $url = strtolower($options['link']['url']);
-		else
+		foreach ($options['link'] as $key => $entry)
 		{
-// return without link
-	    return ($text);
+// filter url and var parameters
+			switch ($key)
+			{
+				case 'url':
+					if ($url = strtolower($entry));
+					else
+						return ($text);
+
+					break;
+
+				case 'val':
+					$val = $entry;
+					break;
+
+				default:
+					$linkParamString .= "$key='$entry' ";
+					break;
+			}
 		}
-
-
-// get link parameters
-    if (isset($options['link']['val'])) $val = $options['link']['val'];
-    if (isset($options['link']['title'])) $title = $options['link']['title'];
-    if (isset($options['link']['target'])) $target = $options['link']['target'];
 
 
 // get common parameters
@@ -192,9 +200,8 @@ class OLIVRoute
 // insert class
     if ($class) $class = "class='{$class}'";
 
-
-    // return href string
-    return ("<a $class href='$path' title='$title' target='$target' $param>$text</a>");
+// return href string
+    return ("<a $class href='$path' $linkParamString $param>$text</a>");
   }
 
 
@@ -220,7 +227,7 @@ class OLIVRoute
     $url = "";
     $val = "";
     $lang = "";
-    
+
     if (array_key_exists('url',$options)) $url = strtolower($options['url']);
     if (array_key_exists('val',$options)) $val = $options['val'];
     if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
@@ -412,6 +419,7 @@ function link_is_extern($url)
 {
 	if (substr($url,0,5) == "http:" or
 		substr($url,0,6) == "https:" or
+		substr($url,0,11) == "javascript:" or
 		substr($url,0,7) == "mailto:"
 	)
 		return (TRUE);
