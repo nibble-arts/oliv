@@ -285,13 +285,13 @@ input {
 	position:absolute;
 	top:250;
 	left:0;
-	z-index:999'
+	z-index:999;
 }
 
 #oliv_context_table {
 	border-style:outset;
-	border-width:1;
-	backgroun
+	border-width:1px;
+	background-color:red;
 }
 
 #oliv_context_item {

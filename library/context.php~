@@ -8,10 +8,10 @@
 // thomas.winkler@iggmp.net
 //
 // This file may be licensed under the terms of of the
-// GNU General Public License Version 3 (the ``GPL'').
+// GNU General Public License Version 3 (the ``GPL').
 //
 // Software distributed under the License is distributed
-// on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+// on an ``AS IS' basis, WITHOUT WARRANTY OF ANY KIND, either
 // express or implied. See the GPL for the specific language
 // governing rights and limitations.
 //
@@ -35,17 +35,40 @@ class OLIVContext
 	var $contextArray = array();
 
 	
+//------------------------------------------------------------------------------
+// init context menu
 	public function __construct($name)
 	{
 		if ($name)
 		{
+// load javascripts
 			OLIVCore::loadScript("jquery-1.7.1.js",system::OLIV_JAVASCRIPT_PATH());
 			OLIVCore::loadScript("jquery.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
 
-			OLIVCore::loadScript("menuPlugin.js",system::OLIV_JAVASCRIPT_PATH());
-
 		  OLIVTemplate::link_css(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/","jquery.contextMenu.css");
 
+
+// set javascript action for context display
+?>
+			<script type="text/javascript">
+				$(document).ready( function() {
+					$("div[name=<?PHP echo $name; ?>]").contextMenu({
+						menu: '<?PHP echo $name; ?>'
+					},
+						function(action, el, pos) {
+						alert(
+		          'Action: ' + action + '\n\n' +
+		          'Element ID: ' + $(el).attr('id') + '\n\n' +
+		          'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
+		          'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
+            );
+           });
+				});
+			</script>
+<?PHP
+
+
+// set context menu name
 		  $this->contextArray['name'] = $name;
 		}
 		else
@@ -53,11 +76,17 @@ class OLIVContext
 	}
 
 
-// insert entry in 
-	public function insert($class,$link,$text)
+//------------------------------------------------------------------------------
+// insert entry in context menu
+// $class ... display class
+// $command ... command to be executed
+// $val ... value for execution -> format #$command/$val
+// $text ... text to be displayed
+	public function insert($class,$command,$val,$text)
 	{
 		$entryArray = array(
-			'url' => array('link' => $link),
+			'cmd' => OLIVText::_($command),
+			'val' => $val,
 			'text' => OLIVText::_($text),
 			'class' => $class,
 			'id' => $this->contextArray['name']
@@ -67,29 +96,39 @@ class OLIVContext
 	}
 
 
+//------------------------------------------------------------------------------
+// output context menu content
 	public function draw()
 	{
 		$o = "<ul id='" . $this->contextArray['name'] . "' class='contextMenu'>";
 
+
+// create ouput string from array
 			foreach ($this->contextArray['entry'] as $entry)
 			{
 				$class = $entry['class'];
 
-				if (array_key_exists('display',$entry)) $class .= " disabled";
+				if (array_key_exists('display',$entry)) $class .= " " . $entry['display'];
 
 				$o .= "<li class='$class'>";
-					$o .= OLIVRoute::link($entry['text'],$entry['url']);
+					$o .= "<a href='#" . $entry['cmd'] . "/" . $entry['val'] . "'>";
 				$o .= "</li>";
 			}
 
 		$o .= "</ul>";
+
+// output to display
 		echo($o);
 	}
 
 
+//------------------------------------------------------------------------------
+// disable context menu item
 	public function disable($name)
 	{
 		$this->contextArray['entry'][$name]['display'] = "disabled";
 	}
 }
 ?>
+
+

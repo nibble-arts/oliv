@@ -148,11 +148,11 @@ class menu extends OLIVCore
 
 
 // insert name and format
-					$paramString .= " name='menu_$itemUrl' class='$displayClass'";
+					$paramString .= " name='menu_$itemName' class='$displayClass'";
 
 
 // create menu item entry
-			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} source='$menuName::$menuItemName' $paramString>$itemName</menu_item_{$this->templateName}>");
+			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} source='$menuName' $paramString>$itemName</menu_item_{$this->templateName}>");
 
 	//        olivxml_insert($menuXml,$tempXml);
 

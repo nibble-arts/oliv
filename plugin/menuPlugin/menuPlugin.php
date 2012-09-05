@@ -142,9 +142,6 @@ class menuEditRender
 			$partItem = $partName[1];
 
 
-		$contextMenu = new OLIVContext("myMenu");
-
-
 // execute common actions
 		switch ($command)
 		{
@@ -279,20 +276,23 @@ class menuEditRender
 // display item
 		{
 // context menu content
-			$contextMenu->insert("add separator",array('url' => status::url(),'val' => OLIVText::_('add') . '/' . $source),"add");
+			$contextMenu = new OLIVContext("{$source}_{$value}");
 
-			$contextMenu->insert("move",array('url' => status::url(),'val' => OLIVText::_('move') . '/' . $source . ':' . $value),"move");
-			$contextMenu->insert("edit",array('url' => status::url(),'val' => OLIVText::_('edit') . '/' . $source . ':' . $value),"edit");
-			$contextMenu->insert("delete",array('url' => status::url(),'val' => OLIVText::_('remove') . '/' . $source . ':' . $value),"remove");
+			$contextMenu->insert("add separator","add",$source . ':' . $value,"add");
 
-			$contextMenu->insert("cut separator",array('url' => status::url(),'val' => OLIVText::_('cut') . '/' . $source . ':' . $value),"cut");
-			$contextMenu->insert("copy",array('url' => status::url(),'val' => OLIVText::_('copy') . '/' . $source . ':' . $value),"copy");
-			$contextMenu->insert("paste",array('url' => status::url(),'val' => OLIVText::_('paste') . '/' . $source . ':' . $value),"paste");
+			$contextMenu->insert("move","move",$source . ':' . $value,"move");
+			$contextMenu->insert("edit","edit",$source . ':' . $value,"edit");
+			$contextMenu->insert("delete","remove",$source . ':' . $value,"remove");
+
+			$contextMenu->insert("cut separator","cut",$source . ':' . $value,"cut");
+			$contextMenu->insert("copy","copy",$source . ':' . $value,"copy");
+			$contextMenu->insert("paste","paste",$source . ':' . $value,"paste");
 
 			if (!$clipBoard)
 				$contextMenu->disable("paste");
 
-			echo $contextMenu->draw();
+// ouput content
+			$contextMenu->draw();
 
 
 // mark extern links
