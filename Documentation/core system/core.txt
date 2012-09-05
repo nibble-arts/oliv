@@ -11,6 +11,7 @@ path library/
 
 
 Class Attributes:
+-----------------
 
 	private object module
 	private object plugin

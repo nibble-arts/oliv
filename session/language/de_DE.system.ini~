@@ -50,7 +50,7 @@ EDIT_TEXT = "Text bearbeiten"
 EDIT_IMG = "Bild bearbeiten"
 SAVE = "Sichern"
 CANCEL = "Abbrechen"
-ADD = "Einfügen"
+ADD = "Neu"
 REMOVE = "Entfernen"
 MOVE = "Bewegen"
 

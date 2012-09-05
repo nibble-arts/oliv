@@ -178,7 +178,7 @@ foreach($_POST as $key => $value)
 	argv::set($key,$value);
 }
 
-echoall(argv::getAll());
+
 
 // set lang,url,val from GET/POST
 // remove these parameters from argv
@@ -209,7 +209,8 @@ if (array_key_exists('val',$pathInfo))
 	status::set('val',$pathInfo['val']);
 
 
-
+//------------------------------------------------------------------------------
+// update clipboard
 
 
 //------------------------------------------------------------------------------

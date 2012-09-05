@@ -1,6 +1,7 @@
 																Class OLIVCore
 																--------------
 
+
 The OLIV core class is the central interface for all classes used for the basic
 functions of the system. It provides methods for handling the script loading
 processes and is controlling the rendering process.

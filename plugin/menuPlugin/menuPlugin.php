@@ -123,7 +123,6 @@ class menuEditRender
 		$source = $content->attributes()->source;
 		$itemUrl = (string)$content->attributes()->url;
 
-		$clipBoard = argv::clipboard();
 
 // set link parameters for editor
 		$tagArray['link']['title'] = OLIVText::_("edit_menu_item");
@@ -148,43 +147,38 @@ class menuEditRender
 //------------------------------------------------------------------------------
 // save changes
 			case 'save':
-				echoall("save menu item '$partSource:$partItem' to " . argv::page());
 				break;
 
 
 //------------------------------------------------------------------------------
 // remove item
 			case 'remove':
-				echoall("remove $partSource:$partItem");
 				break;
 
 //------------------------------------------------------------------------------
 // insert new item
 			case 'add':
-				echoall("add item after $partSource:$partItem");
 				break;
 
 //------------------------------------------------------------------------------
 // cut item
 			case 'cut':
-				$clipBoard = "$partSource:$partItem";
 				break;
 
 //------------------------------------------------------------------------------
 // copy item
 			case 'copy':
-				$clipBoard = "$partSource:$partItem";
 				break;
 
 //------------------------------------------------------------------------------
 // paste item
 			case 'cut':
-				echoall("paste item after $partSource:$partItem");
 				break;
 
 
 			default:
 		}
+
 
 //------------------------------------------------------------------------------
 // start editor action
@@ -278,17 +272,17 @@ class menuEditRender
 // context menu content
 			$contextMenu = new OLIVContext("{$source}_{$value}");
 
-			$contextMenu->insert("add separator","add",$source . ':' . $value,"add");
+			$contextMenu->insert(status::url(),"add separator","add",$source . ':' . $value,"add");
 
-			$contextMenu->insert("move","move",$source . ':' . $value,"move");
-			$contextMenu->insert("edit","edit",$source . ':' . $value,"edit");
-			$contextMenu->insert("delete","remove",$source . ':' . $value,"remove");
+			$contextMenu->insert(status::url(),"move","move",$source . ':' . $value,"move");
+			$contextMenu->insert(status::url(),"edit","edit",$source . ':' . $value,"edit");
+			$contextMenu->insert(status::url(),"delete","delete",$source . ':' . $value,"delete");
 
-			$contextMenu->insert("cut separator","cut",$source . ':' . $value,"cut");
-			$contextMenu->insert("copy","copy",$source . ':' . $value,"copy");
-			$contextMenu->insert("paste","paste",$source . ':' . $value,"paste");
+			$contextMenu->insert(status::url(),"cut separator","cut",$source . ':' . $value,"cut");
+			$contextMenu->insert(status::url(),"copy","copy",$source . ':' . $value,"copy");
+			$contextMenu->insert(status::url(),"paste","paste",$source . ':' . $value,"paste");
 
-			if (!$clipBoard)
+			if (OlivClipboard::_())
 				$contextMenu->disable("paste");
 
 // ouput content

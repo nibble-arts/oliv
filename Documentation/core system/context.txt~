@@ -1,0 +1,55 @@
+														Class OlivContext
+														-----------------
+
+
+The class provides the methods to include a context menu to hyperlinks.
+
+
+
+path: /library
+
+
+Class attributes:
+-----------------
+
+	private	array	$contextArray   // array of context menu entries
+
+
+Class methods:
+--------------
+
+
+void public __construct (string $name)
+-----------------------------------------------
+
+Class constructor initializes the class array with the name of the context menu.
+It loads the javascript files for jQuery and jQuery.contextMenu as well as the
+css file for the jQuery.contextMenu. It initializes the jQuery event with the
+menu name.
+
+
+void public insert ($class,$command,$val,$text)
+-----------------------------------------------
+
+It inserts a menu entry with the parameters:
+
+	class			class for display in the menu
+	command		command string for the action to be done (languageID)
+	val				value for the action routine to get
+	text			text string for display in the menu (languageID)
+
+
+The strings for command and text are languageIDs, which have to be defined in
+the system.ini language file and are translated by the insert method.
+
+
+void public disable (string $name)
+----------------------------------
+
+Disables the menu entry with the name $name.
+
+
+void public draw (void)
+-----------------------
+
+
