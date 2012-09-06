@@ -6,6 +6,6 @@
 <!--  <oliv_search mod='search' />-->
   <oliv_title class='oliv_title'>title</oliv_title>
 <!--  <oliv_top mod='menu'>top</oliv_top>-->
-  <oliv_footer><p url='http://github.com/nibble-arts/oliv'>OLIV-CMS by Thomas Winkler: V0.2.4.afba111b - 2012-09-01 21:16:32</p></oliv_footer>
+  <oliv_footer url='http://github.com/nibble-arts/oliv'>OLIV-CMS by Thomas Winkler: V0.2.4.afba111b - 2012-09-01 21:16:32</oliv_footer>
   <oliv_contact />
 </content>
