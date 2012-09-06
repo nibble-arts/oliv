@@ -43,40 +43,42 @@ class OLIVClipboard
 	{
 		global $clipBoard;
 		$type = "";
+		$value = "";
 
 
 // set type parameter
 		if (isset($options[0]))
-			$type = $options[0];
+		{
+			$valArray = explode("_",$options[0]);
 
-// if no type, return if clipboard has entry
+			if (isset($valArray[0])) $type = $valArray[0];
+			if (isset($valArray[1])) $value = $valArray[1];
+
+			switch ($m)
+			{
+				case 'cut':
+				case 'copy':
+					OLIVClipboard::set($type,$value);
+					break;
+
+				case '_':
+					OLIVClipboard::set($type,$value);
+					break;
+			}
+		}
+		
+
+// return if clipboard has entry
 		elseif (!$clipBoard)
 			return FALSE;
 
-		
-		switch ($m)
-		{
-			case '_':
-				
-				break;
-		}
-	}
-
-
-//------------------------------------------------------------------------------
-// get clipboard entry
-	public static function get($type)
-	{
-		global $clipBoard;
-
-		if ($clipBoard)
-			return $clipBoard['type'];
+		return ($clipBoard['type'] . "_" . $clipBoard['value']);
 	}
 
 
 //------------------------------------------------------------------------------
 // set clipboard
-	public static function set($type,$value)
+	private static function set($type,$value)
 	{
 		global $clipBoard;
 

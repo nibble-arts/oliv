@@ -71,7 +71,7 @@ function menuPlugin_contextMenu(name)
 						break;
 
 					case 'copy':
-						alert ("copy " + value);
+						window.location=linkPath + "menuitem/" + value;
 						break;
 
 					case 'paste':

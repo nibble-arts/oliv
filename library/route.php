@@ -193,6 +193,12 @@ class OLIVRoute
 		  if ($val) $path .= $val . "/";
 		}
 
+
+// insert clipboard
+		if ($clipBoard = OLIVClipboard::_())
+			$clipBoard = "?clipboard=$clipBoard ";
+
+
 // create parameter string
     $param = OLIVRoute::makeParam($param);
 
@@ -201,7 +207,7 @@ class OLIVRoute
     if ($class) $class = "class='{$class}'";
 
 // return href string
-    return ("<a $class href='$path' $linkParamString $param>$text</a>");
+    return ("<a $class href='{$path}{$clipBoard}' $linkParamString $param>$text</a>");
   }
 
 

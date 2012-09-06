@@ -32,31 +32,41 @@ if (!system::OLIVERROR()) die ("context - OLIVError not present");
 
 class OLIVContext
 {
-	var $contextArray = array();
+	var $context = array();
 
 	
 //------------------------------------------------------------------------------
 // init context menu
-	public function __construct($name)
+	public function __construct($menuName,$name,$value = "")
 	{
-		if ($name)
+		if ($menuName and $name)
 		{
 // load javascripts
 			OLIVCore::loadScript("jquery-1.7.1.js",system::OLIV_JAVASCRIPT_PATH());
 			OLIVCore::loadScript("jquery.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
 
+// load css
 		  OLIVTemplate::link_css(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/","jquery.contextMenu.css");
+
+
+// load menu item definition
+			$this->context = olivxml_load_file(system::OLIV_CONTEXT_PATH() . "$menuName.xml",system::OLIV_CORE_PATH());
 
 
 // set javascript action for context display
 			OLIVCore::loadScript("menuPlugin.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
 ?>
+
 	<script language='javascript'>
 			menuPlugin_contextMenu('<?PHP echo $name; ?>');
 	</script>
+
 <?PHP
+
+
 // set context menu name
-		  $this->contextArray['name'] = $name;
+		  $this->context->addAttribute('name',$name);
+		  if ($value) $this->context->addAttribute('value',$value);
 		}
 		else
 			return FALSE;
@@ -64,32 +74,11 @@ class OLIVContext
 
 
 //------------------------------------------------------------------------------
-// insert entry in context menu
-// $class ... display class
-// $command ... command to be executed
-// $val ... value for execution -> format #$command/$val
-// $text ... text to be displayed
-	public function insert($url,$class,$command,$val,$text)
-	{
-		$entryArray = array(
-			'url' => $url,
-			'cmd' => $command,
-			'command' => OLIVText::_($command),
-			'val' => $val,
-			'text' => OLIVText::_($text),
-			'class' => $class,
-			'id' => $this->contextArray['name']
-		);
-
-		$this->contextArray['entry'][$class] = $entryArray;
-	}
-
-
-//------------------------------------------------------------------------------
 // disable context menu item
 	public function disable($name)
 	{
-		$this->contextArray['entry'][$name]['display'] = "disabled";
+		$this->context->$name->addAttribute('display','disabled');
+//		$this->contextArray['entry'][$name]['display'] = "disabled";
 	}
 
 
@@ -97,18 +86,35 @@ class OLIVContext
 // output context menu content
 	public function draw()
 	{
-		$o = "<ul id='" . $this->contextArray['name'] . "' class='contextMenu'>";
+		$o = "<ul id='" . $this->context->attributes()->name . "' class='contextMenu'>";
 
-// create ouput string from array
-			foreach ($this->contextArray['entry'] as $entry)
-			{
-				$class = $entry['class'];
-				if (array_key_exists('display',$entry)) $class .= " " . $entry['display'];
 
-				$o .= "<li class='$class'>";
-					$o .= "<a href='#" . $entry['cmd'] . ";" . $entry['command'] . ";" . OLIVRoute::url("",array("url" => $entry['url'])) . ";" . $entry['val'] . "'>" . $entry['text'] . "</a>";
-				$o .= "</li>";
-			}
+// create ouput string from xml
+		foreach($this->context as $entry)
+		{
+// disable entry
+			if ($display = (string)$entry->attributes()->display) $display = " " . $display;
+			else $display = "";
+			
+
+// set entry to url or status::url
+			if (($url = (string)$entry->attributes()->url) == "#CURRENT") $url = status::url();
+
+// set val
+			if ($val = (string)$this->context->attributes()->value);
+			else $val = (string)$this->context->attributes()->name;
+
+// set parameters
+			$class = (string)$entry->attributes()->class;
+			$cmd = (string)$entry->attributes()->cmd;
+			$command = OLIVText::_($cmd);
+			$text = OLIVText::_($entry->getName());
+
+			$o .= "<li class='{$class}{$display}'>";
+				$o .= "<a href='#{$cmd};{$command};" . OLIVRoute::url("",array("url" => $url)) . ";{$val}'>{$text}</a>";
+			$o .= "</li>";
+			
+		}
 
 		$o .= "</ul>";
 

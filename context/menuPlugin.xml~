@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<context>
+	<item url='#CURRENT' class='add separator' cmd='add'>text</item>
+	<item url='#CURRENT' class='move' cmd='move'>move</item>
+
+	<item url='#CURRENT' class='edit' cmd='edit'>edit</item>
+	<item url='#CURRENT' class='delete' cmd='delete'>delete</item>
+
+	<item url='#CURRENT' class='cut separator' cmd='cut'>cut</item>
+	<item url='#CURRENT' class='copy' cmd='copy'>copy</item>
+	<item url='#CURRENT' class='paste' cmd='paste'>paste</item>
+</context>
+

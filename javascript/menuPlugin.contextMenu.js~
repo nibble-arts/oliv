@@ -67,7 +67,7 @@ function menuPlugin_contextMenu(name)
 						break;
 
 					case 'cut':
-						window.location=linkPath + "clipboard/menuitem/" + value;
+						window.location=linkPath + "menuitem/" + value;
 						break;
 
 					case 'copy':

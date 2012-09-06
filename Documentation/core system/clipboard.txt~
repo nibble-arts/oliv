@@ -1,0 +1,42 @@
+																OLIVClipboard
+																-------------
+
+
+The clipboard class is used to store and recall data for copy, past actions
+inside the OLIV page structure. The clipboard is capable of storing different
+types of data.
+
+The clipboard data is stored in the global attributes by the class. The
+initialization is done at the end of the core init routine in core.php. if there
+is a clipboard parameter in the link, this data is used. If there is a copy or
+paste command found, the data is stored / rewritten.
+
+
+path: library/
+
+
+global Attributes:
+------------------
+
+	$ClipBoard				array('type','value')
+
+	type							definition of the data type, i.e. menuItem, menu, text,...
+	value							the value stored for this data
+
+Class methods:
+--------------
+
+
+mixed public static __callStatic(string $m,array $options)
+----------------------------------------------------------
+
+The method can be used to for storing and recalling of data, depending on the
+class method used and parameters given.
+
+	_					without parameter:	returns false, if the clipboard is empty
+																returns type_value
+	cut
+	copy			stores the data in $options[0] into the array as type and value.
+						The parameters must be in the format: type_value
+
+

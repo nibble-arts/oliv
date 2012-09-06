@@ -209,6 +209,7 @@ if (array_key_exists('val',$pathInfo))
 	status::set('val',$pathInfo['val']);
 
 
+
 //------------------------------------------------------------------------------
 // update clipboard
 

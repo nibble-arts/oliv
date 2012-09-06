@@ -139,24 +139,43 @@ class OLIVCore
 
 //------------------------------------------------------------------------------
 // set core status
+
+
 //------------------------------------------------------------------------------
-//TODO set page status
-
-
+// extract command and value
 		if (status::val())
 		{
 // extract cmd and param
 			$cmdArray = explode("/",cut_slash(status::val()));
 
+
 // retranslate command
 // and set status
 			if (count($cmdArray))
-				status::set('command',OLIVText::getId($cmdArray[0]));
+				status::set('command',OLIVText::getId($cmdArray[0])); // save command
 
 
 			if (count($cmdArray) > 1)
-				status::set('val',$cmdArray[1]);
+			{
+				array_shift($cmdArray); // remove command from val
+
+				status::set('val',implode("/",$cmdArray)); // save val
+			}
 		}
+
+
+//------------------------------------------------------------------------------
+// initialize clipboard
+// get content from clipboard parameter
+		if ($clipboard = argv::clipboard())
+			OLIVClipboard::_($clipboard);
+
+
+// get clipboard from cut/copy command
+		$command = status::command();
+		if ($command)
+			OLIVClipboard::$command(status::val());
+
   }
 
 

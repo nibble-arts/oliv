@@ -1,4 +1,3 @@
-//TODO get the menu definition from a xml file
 // use permissions to display menu and entries
 
 
@@ -16,35 +15,28 @@ path: /library
 Class attributes:
 -----------------
 
-	private	array	$contextArray   // array of context menu entries
+	private	object	$context   // simpleXml Element of context menu entries
 
 
 Class methods:
 --------------
 
 
-void public __construct (string $name)
------------------------------------------------
+void public __construct (string, $menuName,string $name,string $value[,string value])
+------------------------------------------------------------------------
 
-Class constructor initializes the class array with the name of the context menu.
+	$menuNname			name of the context menu xml definition file
+	$name						name of the contextMenu.js instance
+	$value					optional value parameter for all calls
+									if no $value is found, the name is used
+
+Class constructor initializes context menu with the name of the context menu and
+the optional value parameter.
+
 It loads the javascript files for jQuery and jQuery.contextMenu as well as the
 css file for the jQuery.contextMenu. It initializes the jQuery event with the
-menu name.
-
-
-void public insert ($class,$command,$val,$text)
------------------------------------------------
-
-It inserts a menu entry with the parameters:
-
-	class			class for display in the menu
-	command		command string for the action to be done (languageID)
-	val				value for the action routine to get
-	text			text string for display in the menu (languageID)
-
-
-The strings for command and text are languageIDs, which have to be defined in
-the system.ini language file and are translated by the insert method.
+menu name. It loads the definiton xml file from the /context/ subdirectory with
+the name {$menuName}.xml in the 
 
 
 void public disable (string $name)

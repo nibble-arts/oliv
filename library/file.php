@@ -45,9 +45,10 @@ function olivis_dir($path)
 
 function olivxml_load_file($file)
 {
-	$xml = @simplexml_load_file(system::OLIV_CORE_PATH() . $file);
-	if ($xml) return $xml;
-		die ("olivxml_load_file in file.php - fatal error: xml parse error in $file");
+	return simplexml_load_file(system::OLIV_CORE_PATH() . $file);
+//	$xml = @simplexml_load_file(system::OLIV_CORE_PATH() . $file);
+//	if ($xml) return $xml;
+//		die ("olivxml_load_file in file.php - fatal error: xml parse error in $file");
 }
 
 

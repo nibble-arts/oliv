@@ -260,8 +260,6 @@ class menuEditRender
 					break;
 
 			}
-//TODO
-
 		}
 		else
 
@@ -270,22 +268,13 @@ class menuEditRender
 // display item
 		{
 // context menu content
-			$contextMenu = new OLIVContext("{$source}_{$value}");
+//TODO change context class to load file from /context/
 
-			$contextMenu->insert(status::url(),"add separator","add",$source . ':' . $value,"add");
+			$contextMenu = new OLIVContext("menuPlugin","{$source}_{$value}","{$source}:{$value}");
 
-			$contextMenu->insert(status::url(),"move","move",$source . ':' . $value,"move");
-			$contextMenu->insert(status::url(),"edit","edit",$source . ':' . $value,"edit");
-			$contextMenu->insert(status::url(),"delete","delete",$source . ':' . $value,"delete");
-
-			$contextMenu->insert(status::url(),"cut separator","cut",$source . ':' . $value,"cut");
-			$contextMenu->insert(status::url(),"copy","copy",$source . ':' . $value,"copy");
-			$contextMenu->insert(status::url(),"paste","paste",$source . ':' . $value,"paste");
-
-			if (OlivClipboard::_())
+			if (!OLIVClipboard::_())
 				$contextMenu->disable("paste");
 
-// ouput content
 			$contextMenu->draw();
 
 
