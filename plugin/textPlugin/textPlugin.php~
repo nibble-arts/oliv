@@ -63,6 +63,12 @@ class textEditPlugin
 
     $tagArray = textRender::tagString($tag,$value,$content);
 
+
+// no source for editing found
+		if (!$source)
+			return $tagArray;
+
+			
 //------------------------------------------------------------------------------
 // get action parameters
 		$command = status::command();
@@ -90,7 +96,9 @@ class textEditPlugin
     }
 		else
 		{
-
+			$context = new OLIVContext("textPlugin",$value,$value);
+//echoall($context);
+			$context->draw();
 
 //------------------------------------------------------------------------------
 // render text

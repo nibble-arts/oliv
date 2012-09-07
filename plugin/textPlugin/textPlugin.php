@@ -96,7 +96,8 @@ class textEditPlugin
     }
 		else
 		{
-
+			$context = new OLIVContext("textPlugin",$value,$value);
+			$context->draw();
 
 //------------------------------------------------------------------------------
 // render text

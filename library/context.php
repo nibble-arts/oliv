@@ -54,11 +54,19 @@ class OLIVContext
 
 
 // set javascript action for context display
-			OLIVCore::loadScript("menuPlugin.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+			OLIVCore::loadScript("{$menuName}.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+
+//TODO use javascript with name: $menuName_contextMenu();
 ?>
 
 	<script language='javascript'>
-			menuPlugin_contextMenu('<?PHP echo $name; ?>');
+// get function name and parameters
+			menuFunc="<?PHP echo $menuName; ?>_contextMenu";
+			menuParam = "<?PHP echo $name; ?>";
+
+
+// call contextMenu script
+			window[menuFunc](menuParam);
 	</script>
 
 <?PHP

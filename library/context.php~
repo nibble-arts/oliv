@@ -54,11 +54,16 @@ class OLIVContext
 
 
 // set javascript action for context display
-			OLIVCore::loadScript("menuPlugin.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+			OLIVCore::loadScript("{$menuName}.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
+
+//TODO use javascript with name: $menuName_contextMenu();
 ?>
 
 	<script language='javascript'>
-			menuPlugin_contextMenu('<?PHP echo $name; ?>');
+			menuFunc="<?PHP echo $menuName; ?>_contextMenu";
+			menuParam = "<?PHP echo $name; ?>";
+
+			window[menuFunc](menuParam);
 	</script>
 
 <?PHP
@@ -86,15 +91,15 @@ class OLIVContext
 // output context menu content
 	public function draw()
 	{
-		$o = "<ul id='" . $this->context->attributes()->name . "' class='contextMenu'>";
+		$display = "";
 
+		$o = "<ul id='" . $this->context->attributes()->name . "' class='contextMenu'>";
 
 // create ouput string from xml
 		foreach($this->context as $entry)
 		{
 // disable entry
 			if ($display = (string)$entry->attributes()->display) $display = " " . $display;
-			else $display = "";
 			
 
 // set entry to url or status::url
