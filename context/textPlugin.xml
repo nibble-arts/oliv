@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <context>
-	<text url='#CURRENT' class='add separator' cmd='add' text='add' />
-	<move url='#CURRENT' class='move' cmd='move' text='move' />
+	<new url='#CURRENT' class='add' cmd='add' text='add' />
+	<move url='#CURRENT' class='move separator' cmd='move' text='move' />
 
 	<edit url='#CURRENT' class='edit' cmd='edit' text='edit' />
 	<delete url='#CURRENT' class='delete' cmd='delete' text='delete' />

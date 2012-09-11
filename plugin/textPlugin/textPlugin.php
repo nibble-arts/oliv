@@ -61,7 +61,7 @@ class textEditPlugin
     $value = (string)$template;
 		$source = $template->attributes()->source;
 
-    $tagArray = textRender::tagString($tag,$value,$content);
+    $tagArray = textRender::tagString($tag,$value,$content,TRUE);
 
 
 // no source for editing found
@@ -96,18 +96,20 @@ class textEditPlugin
     }
 		else
 		{
+//------------------------------------------------------------------------------
+// render text
+// create context menu for editing
 			$context = new OLIVContext("textPlugin",$value,$value);
 			$context->draw();
 
-//------------------------------------------------------------------------------
-// render text
+
 // set link to call editor
-			$tagArray['link'] = array(
+/*			$tagArray['link'] = array(
 				'url' => status::url(),
 				'title' => OLIVText::_("edit_text"),
       	'val' => OLIVText::_("edit") . "/" . (string)$value,
       	'value' => $value
-      );
+      );*/
 		}
 
 		return ($tagArray);
@@ -136,7 +138,7 @@ class textEditPlugin
 // render tag string
 class textRender
 {
-  static public function tagString($tag,$value,$options)
+  static public function tagString($tag,$value,$options,$edit = "")
   {
 		$class = "";	
     $retArray = array();
@@ -147,6 +149,9 @@ class textRender
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
 
+
+// add edit class cursor
+		if ($edit) $class .= " oliv_edit_cursor";
 
 
 // check for permissions
@@ -172,6 +177,7 @@ class textRender
 
 
 
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // text editor class
 class textEditor

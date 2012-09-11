@@ -55,6 +55,7 @@
 */
 
 .contextMenu LI.add A { background-image: url(images/oliv_add.png); }
+.contextMenu LI.move A { background-image: url(images/oliv_move.png); }
 .contextMenu LI.edit A { background-image: url(images/oliv_edit.png); }
 .contextMenu LI.cut A { background-image: url(images/oliv_cut.png); }
 .contextMenu LI.copy A { background-image: url(images/oliv_copy.png); }

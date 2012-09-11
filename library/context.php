@@ -53,28 +53,34 @@ class OLIVContext
 			$this->context = olivxml_load_file(system::OLIV_CONTEXT_PATH() . "$menuName.xml",system::OLIV_CORE_PATH());
 
 
-// set javascript action for context display
+//------------------------------------------------------------------------------
+// load context menu plugin script
 			OLIVCore::loadScript("{$menuName}.contextMenu.js",system::OLIV_JAVASCRIPT_PATH());
 
-//TODO use javascript with name: $menuName_contextMenu();
-?>
 
+// set javascript action for context display
+?>
 	<script language='javascript'>
 // get function name and parameters
 			menuFunc="<?PHP echo $menuName; ?>_contextMenu";
 			menuParam = "<?PHP echo $name; ?>";
-
 
 // call contextMenu script
 			window[menuFunc](menuParam);
 	</script>
 
 <?PHP
+//------------------------------------------------------------------------------
 
 
 // set context menu name
 		  $this->context->addAttribute('name',$name);
 		  if ($value) $this->context->addAttribute('value',$value);
+
+
+// disable paste
+			if (!OLIVClipboard::_())
+				$this->disable("paste");
 		}
 		else
 			return FALSE;
@@ -86,7 +92,6 @@ class OLIVContext
 	public function disable($name)
 	{
 		$this->context->$name->addAttribute('display','disabled');
-//		$this->contextArray['entry'][$name]['display'] = "disabled";
 	}
 
 

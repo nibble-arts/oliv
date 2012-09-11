@@ -127,6 +127,9 @@ input {
 	font-size:50%;
 }
 
+.oliv_edit_cursor {
+	cursor: wait;
+}
 
 /*----------------------------------------------------------------------------*/
 /* id definition */
@@ -283,8 +286,8 @@ input {
 
 #oliv_context_menu {
 	position:absolute;
-	top:250;
-	left:0;
+	top:250px;
+	left:0px;
 	z-index:999;
 }
 

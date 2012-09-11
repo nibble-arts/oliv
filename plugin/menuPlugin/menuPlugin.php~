@@ -68,7 +68,7 @@ class menuEditPlugin
 class menuRender
 {
 
-	static public function createTag($template,$content)
+	static public function createTag($template,$content,$edit = "")
 	{
 		$paramString = "";
 
@@ -81,9 +81,12 @@ class menuRender
 		}
 
 
-
 		$itemClass = (string)$content->attributes()->class;
 		$itemName = (string)$content->attributes()->name;
+
+
+// add edit class cursor
+		if ($edit) $itemClass .= " oliv_edit_cursor";
 
 
 // create template tag
@@ -118,14 +121,15 @@ class menuEditRender
 		$partSource = "";
 		$partItem = "";
 		
-		$tagArray = menuRender::createTag($template,$content);
+		$tagArray = menuRender::createTag($template,$content,TRUE);
+
 		$value = (string)$content;
 		$source = $content->attributes()->source;
 		$itemUrl = (string)$content->attributes()->url;
 
 
 // set link parameters for editor
-		$tagArray['link']['title'] = OLIVText::_("edit_menu_item");
+//		$tagArray['link']['title'] = OLIVText::_("edit_menu_item");
 //		$tagArray['link']['url'] = status::url();
 //		$tagArray['link']['val'] = OLIVText::_("edit") . "/$source:$value";
 //		$tagArray['link']['onMouseDown'] = "editClick(event)";
@@ -178,7 +182,6 @@ class menuEditRender
 
 			default:
 		}
-
 
 //------------------------------------------------------------------------------
 // start editor action
@@ -261,28 +264,20 @@ class menuEditRender
 
 			}
 		}
-		else
+		
 
 
 //------------------------------------------------------------------------------
 // display item
-		{
-// context menu content
-//TODO change context class to load file from /context/
-
-			$contextMenu = new OLIVContext("menuPlugin","{$source}_{$value}","{$source}:{$value}");
-
-			if (OLIVClipboard::_())
-				$contextMenu->disable("paste");
-
-			$contextMenu->draw();
+// create context menu
+		$contextMenu = new OLIVContext("menuPlugin","{$source}_{$value}","{$source}:{$value}");
+		$contextMenu->draw();
 
 
 // mark extern links
-			if (link_is_extern($itemUrl))
-			{
-				$tagArray['value'] = $tagArray['value'] . " <i class='oliv_small'>extern</i>";
-			}
+		if (link_is_extern($itemUrl))
+		{
+			$tagArray['value'] = $tagArray['value'] . " <i class='oliv_small'>extern</i>";
 		}
 
 

@@ -42,11 +42,9 @@ if(jQuery)( function() {
 						var srcElement = $(this);
 						$(this).unbind('mouseup');
 						if( evt.button == 2 ) {
-
-// Hide context menus that may be showing
+							// Hide context menus that may be showing
 							$(".contextMenu").hide();
-
-// Get this context menu
+							// Get this context menu
 							var menu = $('#' + o.menu);
 							
 							if( $(el).hasClass('disabled') ) return false;
@@ -73,11 +71,10 @@ if(jQuery)( function() {
 							(e.pageX) ? x = e.pageX : x = e.clientX + d.scrollLeft;
 							(e.pageY) ? y = e.pageY : y = e.clientY + d.scrollTop;
 							
-// Show the menu
+							// Show the menu
 							$(document).unbind('click');
 							$(menu).css({ top: y, left: x }).fadeIn(o.inSpeed);
-
-// Hover events
+							// Hover events
 							$(menu).find('A').mouseover( function() {
 								$(menu).find('LI.hover').removeClass('hover');
 								$(this).parent().addClass('hover');
@@ -85,7 +82,7 @@ if(jQuery)( function() {
 								$(menu).find('LI.hover').removeClass('hover');
 							});
 							
-// Keyboard
+							// Keyboard
 							$(document).keypress( function(e) {
 								switch( e.keyCode ) {
 									case 38: // up
@@ -113,7 +110,7 @@ if(jQuery)( function() {
 								}
 							});
 							
-// When items are selected
+							// When items are selected
 							$('#' + o.menu).find('A').unbind('click');
 							$('#' + o.menu).find('LI:not(.disabled) A').click( function() {
 								$(document).unbind('click').unbind('keypress');
@@ -123,7 +120,7 @@ if(jQuery)( function() {
 								return false;
 							});
 							
-// Hide bindings
+							// Hide bindings
 							setTimeout( function() { // Delay for Mozilla
 								$(document).click( function() {
 									$(document).unbind('click').unbind('keypress');
@@ -135,7 +132,7 @@ if(jQuery)( function() {
 					});
 				});
 				
-// Disable text selection
+				// Disable text selection
 				if( $.browser.mozilla ) {
 					$('#' + o.menu).each( function() { $(this).css({ 'MozUserSelect' : 'none' }); });
 				} else if( $.browser.msie ) {
@@ -143,19 +140,17 @@ if(jQuery)( function() {
 				} else {
 					$('#' + o.menu).each(function() { $(this).bind('mousedown.disableTextSelect', function() { return false; }); });
 				}
-
-// Disable browser context menu (requires both selectors to work in IE/Safari + FF/Chrome)
+				// Disable browser context menu (requires both selectors to work in IE/Safari + FF/Chrome)
 				$(el).add($('UL.contextMenu')).bind('contextmenu', function() { return false; });
 				
 			});
 			return $(this);
 		},
 		
-// Disable context menu items on the fly
+		// Disable context menu items on the fly
 		disableContextMenuItems: function(o) {
 			if( o == undefined ) {
-
-// Disable all
+				// Disable all
 				$(this).find('LI').addClass('disabled');
 				return( $(this) );
 			}
@@ -171,7 +166,7 @@ if(jQuery)( function() {
 			return( $(this) );
 		},
 		
-// Enable context menu items on the fly
+		// Enable context menu items on the fly
 		enableContextMenuItems: function(o) {
 			if( o == undefined ) {
 				// Enable all
@@ -190,7 +185,7 @@ if(jQuery)( function() {
 			return( $(this) );
 		},
 		
-// Disable context menu(s)
+		// Disable context menu(s)
 		disableContextMenu: function() {
 			$(this).each( function() {
 				$(this).addClass('disabled');
@@ -198,7 +193,7 @@ if(jQuery)( function() {
 			return( $(this) );
 		},
 		
-// Enable context menu(s)
+		// Enable context menu(s)
 		enableContextMenu: function() {
 			$(this).each( function() {
 				$(this).removeClass('disabled');
@@ -206,11 +201,11 @@ if(jQuery)( function() {
 			return( $(this) );
 		},
 		
-// Destroy context menu(s)
+		// Destroy context menu(s)
 		destroyContextMenu: function() {
-// Destroy specified context menus
+			// Destroy specified context menus
 			$(this).each( function() {
-// Disable action
+				// Disable action
 				$(this).unbind('mousedown').unbind('mouseup');
 			});
 			return( $(this) );

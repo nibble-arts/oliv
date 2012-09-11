@@ -28,9 +28,10 @@
 
 function menuPlugin_contextMenu(name)
 {
-	$(document).ready( function() {
-		$("div[name=" + name + "]").contextMenu({
-			menu: name
+	$(document).ready( function()
+		{
+			$("div[name=" + name + "]").contextMenu({
+				menu: name
 		},
 			function(action, el, pos)
 			{

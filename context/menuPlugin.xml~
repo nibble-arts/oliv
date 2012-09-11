@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <context>
-	<item url='#CURRENT' class='add separator' cmd='add'>text</item>
-	<item url='#CURRENT' class='move' cmd='move'>move</item>
+	<add url='#CURRENT' class='add separator' cmd='add' text='add' />
+	<move url='#CURRENT' class='move' cmd='move' text='move' />
 
-	<item url='#CURRENT' class='edit' cmd='edit'>edit</item>
-	<item url='#CURRENT' class='delete' cmd='delete'>delete</item>
+	<edit url='#CURRENT' class='edit' cmd='edit' text='edit' />
+	<delete url='#CURRENT' class='delete' cmd='delete' text='delete' />
 
-	<item url='#CURRENT' class='cut separator' cmd='cut'>cut</item>
-	<item url='#CURRENT' class='copy' cmd='copy'>copy</item>
-	<item url='#CURRENT' class='paste' cmd='paste'>paste</item>
+	<cut url='#CURRENT' class='cut separator' cmd='cut' text='cut' />
+	<copy url='#CURRENT' class='copy' cmd='copy' text='copy' />
+	<paste url='#CURRENT' class='paste' cmd='paste' text='paste' />
 </context>
 

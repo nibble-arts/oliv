@@ -15,6 +15,7 @@
 	margin-top:.3em;
 	margin-bottom:.3em;
 	border:1px solid;
+	color:red;
 	width:100%;
 	background-color:#ffd0d0;
 }
@@ -34,4 +35,8 @@
   color:grey;
   font-style:normal;
 	background-color:#dcdc78
+}
+
+.menu_edit {
+	cursor: text;
 }
