@@ -1,0 +1,13 @@
+RewriteEngine On
+
+
+# convert friendly url to parameters
+RewriteRule ^index.php/(.*?)/(.*?)/(.*?)$ index.php?lang=$1&url=$2&val=$3 [L]
+
+# suppres xml access
+RewriteRule ^.*?.$ index.php [L]
+
+# suppres ini access
+RewriteRule ^.*?.ini$ index.php [L]
+
+
