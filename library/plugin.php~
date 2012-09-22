@@ -76,7 +76,7 @@ class OLIVPlugin
 // write permission && edit plugin fourn && edit mode && source founr
 //				$source = (string)$options['template']->attributes()->source;
 				
-		    if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and system::OLIV_CONTENT_EDIT()); // and $source)
+		    if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and system::OLIV_CONTENT_EDIT()) // and $source)
 		    {
 		      $class = $pluginEditCall[0]; // set edit class
 				}
@@ -84,9 +84,10 @@ class OLIVPlugin
 				{
 		      $class = $pluginCall[0]; // set display class
 				}
-
 		    $func = $pluginCall[1];
 
+echoall($class);
+echoall($func);
 
 //------------------------------------------------------------------------------
 // call render class for tag

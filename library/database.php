@@ -33,7 +33,7 @@ system::set('OLIVDABA', 'alive');
 
 class OLIVDatabase extends OLIVCore
 {
-  private $recource;
+  private $resource;
   private $active;
   private $prefix;
 
@@ -45,7 +45,8 @@ class OLIVDatabase extends OLIVCore
       if (!$this->resource) die('no database connection');
 
     $this->select = @MYSQL_SELECT_DB($db['name']);
-    $this->prefix = $db['prefix'];
+    if (array_key_exists('prefix',$db))
+    	$this->prefix = $db['prefix'];
   }
 
   function __destruct()

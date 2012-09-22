@@ -84,9 +84,7 @@ class OLIVPlugin
 				{
 		      $class = $pluginCall[0]; // set display class
 				}
-
 		    $func = $pluginCall[1];
-
 
 //------------------------------------------------------------------------------
 // call render class for tag

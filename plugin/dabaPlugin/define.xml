@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<plugin>
+  <render>
+    <func>
+      <daba script='dabaPlugin' class='dabaPlugin::daba' editClass='dabaEditPlugin::daba' />
+    </func>
+  </render>
+</plugin>
