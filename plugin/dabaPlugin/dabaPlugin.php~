@@ -38,36 +38,7 @@ class dabaPlugin
 // render class
   static public function __callStatic($tag,$options)
   {
-  	$dbData = array();
-    $content = $options[0]['template'];
-
-
-		$table = $content->attributes()->table;
-		$field = $content->attributes()->field;
-
-
-//TODO get database connection data from xml file
-//		$mysql = mysql_connect("localhost","iggmp","grumblfurz34");
-//		$sqlData = mysql_query("SELECT * FROM $table");
-		$dbData['server'] = "localhost";
-		$dbData['name'] = $content->attributes()->db;
-		$dbData['user'] = "iggmp";
-		$dbData['password'] = "grumblfurz34";
-
-
-		$db = new OLIVDatabase($dbData);
-
-//echoall(mysql_num_rows($sqlData));
-$text = "render daba";
-//		$text = "render db=$db table=$table field=$field";
-
-		$tagArray = array(
-			'startTag' => '<daba>',
-			'endTag' => '</daba>',
-			'value' => $text
-		);
-
-    return ($tagArray);
+		return dabaRender::render($tag,$options);
   }
 }
 
@@ -78,6 +49,50 @@ class dabaEditPlugin
 {
   static public function __callStatic($tag,$options)
   {
+		$tagArray = dabaRender::render($tag,$options);
+		$tagArray['value'] .= " => EDIT";
+
+		return ($tagArray);
   }
+}
+
+
+class dabaRender
+{
+	static public function render($tag,$options)
+	{
+  	$dbData = array();
+    $content = $options[0]['template'];
+
+		$id = status::val();
+
+		$table = (string)$content->attributes()->table;
+		$field = (string)$content->attributes()->field;
+
+
+//TODO get database connection data from xml file
+//		$mysql = mysql_connect("localhost","iggmp","grumblfurz34");
+//		$sqlData = mysql_query("SELECT * FROM $table");
+		$dbData['server'] = "localhost";
+		$dbData['name'] = (string)$content->attributes()->db;
+		$dbData['user'] = "iggmp";
+		$dbData['password'] = "grumblfurz34";
+
+		$db = $dbData['name'];
+
+		$dbObject = new OLIVDatabase($dbData);
+
+//echoall(mysql_num_rows($sqlData));
+		$text = "render:<br>db=$db table=$table field=$field<br>daba id=" . $id;
+//		$text = "render db=$db table=$table field=$field";
+
+		$tagArray = array(
+			'startTag' => '<daba>',
+			'endTag' => '</daba>',
+			'value' => $text
+		);
+
+    return ($tagArray);
+	}
 }
 ?>

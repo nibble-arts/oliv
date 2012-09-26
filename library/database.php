@@ -31,27 +31,33 @@ if (!system::OLIVCORE()) die ("database.php - OLIVCore not present");
 system::set('OLIVDABA', 'alive');
 
 
-class OLIVDatabase extends OLIVCore
+class OLIVDatabase
 {
   private $resource;
   private $active;
   private $prefix;
 
-  // create database
-  // $database = array(server,name,user,password)
+
+// create database
+// $database = array(server,name,user,password)
   function __construct($db)
   {
     $this->resource = @MYSQL_CONNECT($db['server'],$db['user'],$db['password']);
-      if (!$this->resource) die('no database connection');
 
-    $this->select = @MYSQL_SELECT_DB($db['name']);
-    if (array_key_exists('prefix',$db))
-    	$this->prefix = $db['prefix'];
+    if (!$this->resource)
+    	OLIVError::fire('no database connection');
+		else
+		{
+		  $this->select = @MYSQL_SELECT_DB($db['name']);
+		  if (array_key_exists('prefix',$db))
+		  	$this->prefix = $db['prefix'];
+		}
   }
 
   function __destruct()
   {
-    return(mysql_close($this->resource));
+  	if ($this->resource)
+	    return(mysql_close($this->resource));
   }
 
 
