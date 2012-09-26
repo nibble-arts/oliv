@@ -128,7 +128,12 @@ input {
 }
 
 .oliv_edit_cursor {
-	cursor: wait;
+	cursor: text;
+}
+
+.daba-field {
+	font-decoration:italic;
+	background-color:lightyellow;
 }
 
 /*----------------------------------------------------------------------------*/

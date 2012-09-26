@@ -131,6 +131,11 @@ input {
 	cursor: text;
 }
 
+.daba-field {
+	font-style:italic;
+	background-color:lightyellow;
+}
+
 /*----------------------------------------------------------------------------*/
 /* id definition */
 #oliv_site {
