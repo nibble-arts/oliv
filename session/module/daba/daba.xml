@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<database>
+	<iggmp>
+		<server>localhost</server>
+		<user>iggmp</user>
+		<password>grumblfurz34</password>
+	</iggmp>
+</database>

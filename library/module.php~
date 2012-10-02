@@ -47,6 +47,7 @@ class OLIVModule
 
     // load module metadata
     $this->scan(system::OLIV_MODULE_PATH());
+//    echoall($_MODULES);
   }
   
 
@@ -69,10 +70,29 @@ class OLIVModule
       $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/default/"; // if no template use default
 
     // load template and link css
-    return (OLIVTemplate::load($path,$name));
+    return (OLIVTemplate::load($header,$path,$name));
   }
 
 
+//------------------------------------------------------------------------------
+// load file from module session
+// path ... path inside the module session directory
+// name ... name of the file with extension
+	public static function load_xml($header,$path,$name)
+	{
+		$filePath = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/";
+		$filePath .= $path . $name;
+
+// load file
+    if (sessionfile_exists($filePath))
+    {
+			return sessionxml_load_file($filePath);
+		}
+		else
+			OLIVError::fire("module.php::load_xml - $filePath not found");
+	}
+
+	
 //------------------------------------------------------------------------------
 // get module by name
   public function getModuleByName($name)
@@ -131,12 +151,30 @@ class OLIVModule
       {
         if (olivis_dir($path . $file) and $file != "." and $file != "..")
         {
-          $file .= "/";
-          // get define.xml
-          if (olivfile_exists($path . $file))
+          $filePath = "$file/";
+// get modules define.xml
+          if (olivfile_exists($path . $filePath))
           {
-            $xml = olivxml_load_file($path . $file . "define.xml");
+// load module information
+            $xml = olivxml_load_file($path . $filePath . "define.xml");
+
+
+// insert title and description in metadata
+						if (!($modText = OLIVText::_load("",$path . $filePath . "language/","_define")))
+							OLIVError::fire("module.php::scan - no language definition for module $file found");
+						else
+						{
+							$summary = $modText['MOD_' . strtoupper($file)]['MOD_SUMMARY']['text'];
+							$description = $modText['MOD_' . strtoupper($file)]['MOD_DESCRIPTION']['text'];
+
+							$xml->addChild("summary",$summary);
+							$xml->addChild("description",$description);
+						}
+
+
+// save module metadata
             $_MODULES[(string)$xml->name] = $xml;
+						
             $cnt++;
           }
         }

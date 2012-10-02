@@ -139,8 +139,6 @@ class OLIVCore
 
 //------------------------------------------------------------------------------
 // set core status
-
-
 //------------------------------------------------------------------------------
 // extract command and value
 		if (status::val())
@@ -149,13 +147,16 @@ class OLIVCore
 			$cmdArray = explode("/",cut_slash(status::val()));
 
 
-// retranslate command
-// and set status
+//TODO define commands in system section ???
+// search for command and retranslate
 			if (count($cmdArray))
-				status::set('command',OLIVText::getId($cmdArray[0])); // save command
+			{
+				$cmd = OLIVText::getId($cmdArray[0]);
+				status::set('command',$cmd); // save command
+			}
 
-
-			if (count($cmdArray) > 1)
+// if command found, extract command from val 
+			if ((count($cmdArray) > 1) and $cmd)
 			{
 				array_shift($cmdArray); // remove command from val
 

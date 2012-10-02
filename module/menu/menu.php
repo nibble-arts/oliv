@@ -47,8 +47,9 @@ class menu extends OLIVCore
 // load menu items
     $menuName = (string)$header;
 
+		$menu = OLIVModule::load_xml($header,"","menu.xml");
 
-		$menu = sessionxml_load_file(system::OLIV_MODULE_PATH() . "menu/menu.xml");
+//		$menu = sessionxml_load_file(system::OLIV_MODULE_PATH() . "menu/menu.xml");
 
 // permission to display menu
 		if (OLIVRight::r($menu->$menuName))

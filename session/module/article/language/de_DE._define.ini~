@@ -1,0 +1,3 @@
+[MOD_DABA]
+MOD_SUMMARY = 'Artikel Modul'
+MOD_DESCRIPTION = 'Das Artikel Modul verwaltet dynamische Inhalte. Es stellt sowohl die Anzeige-, als auch die Editierfunktion zur Verfügung'

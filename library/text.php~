@@ -36,6 +36,7 @@ if (!system::OLIVCORE()) die ("text.php - OLIVCore not present");
 
 system::set("OLIVTEXT","alive");
 
+
 // global static text array
 $_TEXT = array();
 
@@ -237,7 +238,9 @@ class OLIVText extends OLIVCore
   static public function _load($textArray,$path,$file,$default_language = "")
   {
 		if (!$default_language)
-			$default_language = status::OLIV_DEFAULT_LANG();
+			$default_language = system::OLIV_DEFAULT_LANG();
+
+echoall("PATH: $path, FILE: $file, DEFAULT_LANG: $default_language");
 
     if (!is_array($textArray)) $textArray = array();
     

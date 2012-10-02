@@ -45,7 +45,7 @@ function olivis_dir($path)
 
 function olivxml_load_file($file)
 {
-	simplexml_load_file(system::OLIV_CORE_PATH() . $file);
+	return simplexml_load_file(system::OLIV_CORE_PATH() . $file);
 //	$xml = @simplexml_load_file(system::OLIV_CORE_PATH() . $file);
 //	if ($xml) return $xml;
 //		die ("olivxml_load_file in file.php - fatal error: xml parse error in $file");
@@ -63,6 +63,7 @@ function session_path($file)
 
 function sessionfile_exists($file)
 {
+echoall("?" . session_path($file));
   return (file_exists(session_path($file)));
 }
 
@@ -84,6 +85,7 @@ function sessionparse_ini_file($file,$param="")
 // load from session directory
 function sessionxml_load_file($file)
 {
+echoall(session_path($file));
   return (simplexml_load_file(session_path($file)));
 }
 

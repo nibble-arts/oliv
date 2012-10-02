@@ -226,7 +226,8 @@ class OLIVRender extends OLIVCore
 
 //TODO
 // make syntax check of module output
-		  				$tempO .= $outputObj->o;
+							if ($outputObj)
+			  				$tempO .= $outputObj->o;
 		        }
 					}
 //------------------------------------------------------------------------------
@@ -299,6 +300,8 @@ class OLIVRender extends OLIVCore
 // call module and return module class object
   static private function callScript($module)
   {
+  	$outputObj = FALSE;
+  	
     if ($module->attributes()->main)
     {
       $tempArray = explode(".",$module->attributes()->main);

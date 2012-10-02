@@ -238,7 +238,7 @@ class OLIVText extends OLIVCore
   static public function _load($textArray,$path,$file,$default_language = "")
   {
 		if (!$default_language)
-			$default_language = status::OLIV_DEFAULT_LANG();
+			$default_language = system::OLIV_DEFAULT_LANG();
 
     if (!is_array($textArray)) $textArray = array();
     

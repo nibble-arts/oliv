@@ -81,6 +81,7 @@ class OLIVRoute
       status::set('url',system::OLIV_INDEX_PAGE());
 			status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url())); // set page title
     }
+echoall(status::getAll());
   }
 
 
@@ -207,7 +208,7 @@ class OLIVRoute
     if ($class) $class = "class='{$class}'";
 
 // return href string
-    return ("<a $class href='$path $clipBoard' $linkParamString $param>$text</a>");
+    return ("<a $class href='{$path}{$clipBoard}' $linkParamString $param>$text</a>");
   }
 
 

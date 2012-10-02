@@ -2,5 +2,5 @@
 
 <content id='index'>
   <oliv_login mod='login' />
-  <oliv_content><img src='admin_cancel' url='index' group='publisher' access='740'/><h2>Ein normaler Text</h2><span style='font-family:serif'><p>Direkt im Content gespeichert und ausgegeben.</p><p>Und das funktioniert direkt mit allen Plugin Funktionen</p></span></oliv_content>
+  <oliv_content mod='daba'>iggmp::title=DBC-GRAZ</oliv_content>
 </content>

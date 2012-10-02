@@ -54,9 +54,11 @@ class OLIVTemplate
     OLIVTemplate::link_css($path,$name);
 
 
-//echoall("template - load template: " . $path . $name);
+//echoall("template - load template: " . $path . $name . ".xml");
     if (sessionfile_exists($path . $name . ".xml"))
+    {
       return (sessionxml_load_file($path . $name . ".xml"));
+		}
   }
 
 

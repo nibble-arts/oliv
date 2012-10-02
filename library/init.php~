@@ -173,7 +173,6 @@ foreach($_POST as $key => $value)
 }
 
 
-
 // set status lang,url,val from argv
 // and remove these parameters from argv
 
@@ -189,8 +188,8 @@ argv::remove('val');
 
 
 
-// replaced by mod_rewrite
-// decode friendly url to parameters
+//------------------------------------------------------------------------------
+// decode friendly url to parameters without mod_rewrite
 /*if (isset($_SERVER['PATH_INFO']))
   $pathInfo = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
 else
@@ -291,7 +290,7 @@ else
   status::set('OLIV_SU',FALSE);
 
 
-//echoall(status::getAll());
+echoall(status::getAll());
 
 //------------------------------------------------------------------------------
 ?>

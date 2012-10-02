@@ -148,7 +148,7 @@ class menu extends OLIVCore
 
 
 // insert name and format
-					$paramString .= " name='menu_$itemName' class='$displayClass'";
+					$paramString .= " name='{$menuName}_{$itemName}' class='$displayClass'";
 
 
 // create menu item entry

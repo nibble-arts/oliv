@@ -58,7 +58,7 @@ class article extends OLIVCore
 
 
     // load index file
-    OLIVIndex::load($this->header->path,"article.idx");
+//    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
     $langPath = $this->header->path . "language/";
@@ -68,22 +68,19 @@ class article extends OLIVCore
 
 
 // load content
-    if (sessionfile_exists($contentPath . "$articleName.xml"))
-    {
-      $article = sessionxml_load_file($contentPath . "$articleName.xml");
+  	$article = OLIVModule::load_xml($header,(string)$header->attributes()->content,"$articleName.xml");
 
 
 // add source attribute recursive
+		if ($article)
+		{
 			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
 
-
 // render article
-      $this->o .= OLIVRender::template($article,"");
-
-//      $this->parse($article);
-    }
-    else
-      $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
+    	$this->o .= OLIVRender::template($article,"");
+		}
+	  else
+	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
   }
   
   

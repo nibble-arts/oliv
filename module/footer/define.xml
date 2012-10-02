@@ -8,6 +8,6 @@
     
   <script>
     <main>footer.php</main>
-    <default_language>de-DE</default_language>
+    <default_language>de_DE</default_language>
   </script>
 </module>  

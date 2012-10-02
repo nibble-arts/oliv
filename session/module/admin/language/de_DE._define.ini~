@@ -1,0 +1,3 @@
+[MOD_MENU]
+MOD_SUMMARY = 'Menü Modul'
+MOD_DESCRIPTION = 'Modul zur Darstellung komplexer Menüstrukturen für die Navigation innerhalb der Seite, oder auf externe Links. Das Layout wird durch Templates festgelegt.'

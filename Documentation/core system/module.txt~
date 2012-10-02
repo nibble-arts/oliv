@@ -47,4 +47,7 @@ bool scan(string path)
 ----------------------
 The method scans the given path for module definitions. Each module is stored
 in a subdirectory with the module name as name. Inside the module directory
-must be the define.xml definition file (see module documentation)
+must be the define.xml definition file (see module documentation).
+
+If the module path don' exist, FALSE is returned. In the case of success,
+the number of registered modules is returned.

@@ -91,12 +91,9 @@ function olivxml_addAttribute_recursive(&$xml,$name,$value)
 	{
 		foreach ($xml as $entry)
 		{
-echo "<hr>";
-echoall("insert $name=$value");
 			$tag = $entry->getName();
 			if (!$xml->$tag->attributes()->$name)
 				$xml->$tag->addAttribute($name,$value);
-echoall($xml->$tag);
 		}
 	}
 }

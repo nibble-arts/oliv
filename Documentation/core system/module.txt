@@ -26,7 +26,7 @@ OLIV_MODULE_PATH for installed modules. All modules found with a valid
 definition file (define.xml) are registered in the _MODULES variable.
 
 
-object public stativ load_template(object header[,string namg])
+object public static load_template(object header[,string namg])
 ---------------------------------------------------------------
 The method loades the template from the calling module, identified by the
 module header object. If no template name is given, the default template

@@ -33,19 +33,21 @@ system::set('OLIVDABA', 'alive');
 
 class OLIVDatabase
 {
-  private $resource;
+  private $dbResource;
+  private $sqlResource;
   private $active;
   private $prefix;
+  private $insertId;
 
 
 // create database
-// $database = array(server,name,user,password)
-  function __construct($db)
+// $database = simpleXmlElement(server,name,user,password)
+  public function __construct($db)
   {
-    $this->resource = @MYSQL_CONNECT($db['server'],$db['user'],$db['password']);
+    $this->dbResource = @MYSQL_CONNECT($db->server,$db->user,$db->password);
 
-    if (!$this->resource)
-    	OLIVError::render('no database connection');
+    if (!$this->dbResource)
+    	OLIVError::fire('no database connection');
 		else
 		{
 		  $this->select = @MYSQL_SELECT_DB($db['name']);
@@ -54,31 +56,83 @@ class OLIVDatabase
 		}
   }
 
-  function __destruct()
+  public function __destruct()
   {
-  	if ($this->resource)
-	    return(mysql_close($this->resource));
+  	if ($this->dbResource)
+	    return(mysql_close($this->dbResource));
   }
 
 
 //------------------------------------------------------------------------------
+// create query and return resource
+	private function query($func,$field,$table,$where,$data,$sort)
+	{
+		$queryString = "";
+		
+		switch (strtolower($func))
+		{
+			case 'select':
+				$queryString = "SELECT $field FROM $tabel $data $sort";
+				break;
 
+			case 'insert':
+				$queryString = "INSERT INTO $tabel SET $data";
+				break;
+
+			case 'update':
+				$queryString = "UPDATE $table SET $data WHERE $where";
+				break;
+
+			case 'delete':
+				$queryString = "DELETE FROM $table WHERE $where";
+				break;
+		}
+
+		if ($queryString)
+		{
+			$this->sqlResource = mysql_query($queryString);
+			$this->insertId = mysql_insert_id;
+		}
+	}
+
+
+//------------------------------------------------------------------------------
+// get count of found elements
+	public function num_rows()
+	{
+		if ($this->sqlResource)
+		{
+			return (mysql_num_rows($this->sqlResource));
+		}
+	}
+
+
+//------------------------------------------------------------------------------
+// get field content from table->field
+	public function getField($field)
+	{
+		if ($this->sqlResource)
+		{
+		echoall($this->num_rows());
+			return mysql_fetch_array($this->sqlResource);
+		}
+	}
 
 
 
 //------------------------------------------------------------------------------
 // return daba values
-  function prefix()
+  public function prefix()
   {
     return ($this->prefix);
   }
 
-  function resource()
+  public function resource()
   {
-    return ($this->resource);
+    return ($this->dbResource);
   }
 
-  function active()
+  public function active()
   {
     return ($this->active);
   }

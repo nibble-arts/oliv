@@ -8,8 +8,6 @@
     
   <script>
     <main>menu.php</main>
-    <template>template/</template>
-    <language>language/</language>
     <default_language>de-DE</default_language>
   </script>
 </module>  

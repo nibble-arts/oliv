@@ -50,7 +50,7 @@ class dabaEditPlugin
   static public function __callStatic($tag,$options)
   {
 		$tagArray = dabaRender::render($tag,$options);
-		$tagArray['value'] .= " => EDIT";
+		$tagArray['value'] .= "<br>for editing";
 
 		return ($tagArray);
   }
@@ -62,28 +62,22 @@ class dabaRender
 	static public function render($tag,$options)
 	{
   	$dbData = array();
-    $content = $options[0]['template'];
 
 		$id = status::val();
-
+    $content = $options[0]['template'];
+		$name = (string)$content->attributes()->db;
 		$table = (string)$content->attributes()->table;
 		$field = (string)$content->attributes()->field;
 
+  	$database = sessionxml_load_file(system::OLIV_MODULE_PATH() . "daba/daba.xml");
 
-//TODO get database connection data from xml file
-//		$mysql = mysql_connect("localhost","iggmp","grumblfurz34");
-//		$sqlData = mysql_query("SELECT * FROM $table");
-		$dbData['server'] = "localhost";
-		$dbData['name'] = (string)$content->attributes()->db;
-		$dbData['user'] = "iggmp";
-		$dbData['password'] = "grumblfurz34";
+		$database = $database->$name;
 
-		$db = $dbData['name'];
-
-		$dbObject = new OLIVDatabase($dbData);
+		$dbObject = new OLIVDatabase($database);
+		$field = $dbObject->getField($table,$field);
 
 //echoall(mysql_num_rows($sqlData));
-		$text = "render:<br>db=$db table=$table field=$field<br>daba id=" . $id;
+		$text = "render:<br>db=$name table=$table field=$field<br>daba id=" . $id;
 //		$text = "render db=$db table=$table field=$field";
 
 		$tagArray = array(

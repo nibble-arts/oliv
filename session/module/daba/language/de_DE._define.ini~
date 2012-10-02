@@ -1,0 +1,3 @@
+[MOD_DABA]
+MOD_TITLE = 'Relationales Datenbank Modul'
+MOD_COMMENT = 'Das relationale Datenbank Modul dient dazu dynamische Inhalte aus einer MySQL Datenbank auf der Seite zu rendern.'

@@ -192,7 +192,6 @@ class OLIVRender extends OLIVCore
 // call plugin
 //echo "<hr>";
 //echoall($areaTag);
-echoall($content);
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 //echoall($pluginArray);
 
@@ -227,7 +226,8 @@ echoall($content);
 
 //TODO
 // make syntax check of module output
-		  				$tempO .= $outputObj->o;
+							if ($outputObj)
+			  				$tempO .= $outputObj->o;
 		        }
 					}
 //------------------------------------------------------------------------------
@@ -300,6 +300,9 @@ echoall($content);
 // call module and return module class object
   static private function callScript($module)
   {
+echoall($module);
+  	$outputObj = FALSE;
+  	
     if ($module->attributes()->main)
     {
       $tempArray = explode(".",$module->attributes()->main);
