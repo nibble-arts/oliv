@@ -208,7 +208,7 @@ class OLIVText extends OLIVCore
         }
         else
         {
-          if ($value['text'] == $text)
+          if (strtolower($value['text']) == strtolower($text)) // not case sensitive
           {
             $retKey = $key;
             break;
@@ -239,8 +239,6 @@ class OLIVText extends OLIVCore
   {
 		if (!$default_language)
 			$default_language = system::OLIV_DEFAULT_LANG();
-
-echoall("PATH: $path, FILE: $file, DEFAULT_LANG: $default_language");
 
     if (!is_array($textArray)) $textArray = array();
     

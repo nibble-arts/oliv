@@ -3,11 +3,8 @@
 <plugin>
   <render>
     <func>
-      <p script='textPlugin' class='textPlugin::p' editClass='textEditPlugin::p' />
-      <h1 script='textPlugin' class='textPlugin::h1' editClass='textEditPlugin::h1' />
-      <h2 script='textPlugin' class='textPlugin::h2' editClass='textEditPlugin::h2' />
-      <h3 script='textPlugin' class='textPlugin::h3' editClass='textEditPlugin::h3' />
-      <li script='textPlugin' class='textPlugin::li' editClass='textEditPlugin::li' />
+      <daba_init script='dabaPlugin' class='dabaInit::daba' />
+      <daba script='dabaPlugin' class='dabaPlugin::daba' editClass='dabaEditPlugin::daba' />
     </func>
   </render>
 </plugin>

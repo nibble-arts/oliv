@@ -33,6 +33,12 @@ module header object. If no template name is given, the default template
 is loaded.
 
 
+object public load_xml(object header,string path,string name)
+-------------------------------------------------------------
+Loads and returns the xml file "name" from the path "path" inside the session module
+subdirectory.
+
+
 string public getModuleByName(string name)
 ------------------------------------------
 Searches the module with the given name and returns the module object.

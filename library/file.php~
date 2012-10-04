@@ -63,7 +63,6 @@ function session_path($file)
 
 function sessionfile_exists($file)
 {
-echoall("?" . session_path($file));
   return (file_exists(session_path($file)));
 }
 
@@ -85,7 +84,7 @@ function sessionparse_ini_file($file,$param="")
 // load from session directory
 function sessionxml_load_file($file)
 {
-echoall(session_path($file));
+echoall($file);
   return (simplexml_load_file(session_path($file)));
 }
 

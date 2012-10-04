@@ -22,49 +22,71 @@
 //
 
 //------------------------------------------------------------------------------
-// Article module
+// debug methods
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("mod_search::search.php - OLIVCore not present");
-if (!system::OLIVINDEX()) die ("mod_search::search.php - OLIVIndext not present");
-if (!system::OLIVERROR()) die ("mod_search::search.php - OLIVError not present");
 
-class daba
+
+//------------------------------------------------------------------------------
+// intelligent display for debug
+function echoall($string)
 {
-  var $o;
-  public function __construct($header)
-  {
- 		$this->o = "<h1>Database Module</h1>";
-
- 		$dabaParam = (string)$header;
-		$dabaArray = explode("::",$dabaParam);
-		$dabaName = $dabaArray[0];
-
- 		$dabaId = status::val();
-
-//TODO
-// parse daba parameters
-// load daba definitions
-		$daba = OLIVModule::load_xml($header,"","daba.xml");
-echoall($daba);
-
-//TODO
-// load field in global variable
-
-//TODO
-// load template
-
-//TODO
-// render content
-
-//    OLIVIndex::load(OLIV_MODULE_PATH,"daba.xml");
-  }
-
-
-
+	echo renderall($string);
 }
 
+
+function echoall($string)
+{
+	$o = "";
+	
+//  echo "<div id='oliv_debug'>";  
+  if (is_array($string))
+  {
+    $o .= count($string) . " elements";
+    echoarray($string);
+  }
+
+  elseif (is_object($string))
+  {
+    echoarray($string);
+  }
+
+  else
+  {
+    switch ($string)
+    {
+      case 'NULL':
+        echo "*NULL";
+        break;
+  
+      case "":
+        echo "*empty";
+        break;
+  
+      case 'FALSE':
+        echo "*FALSE";
+        break;
+  
+      default:
+        echo $string;
+        break;
+    }
+  }
+  $o .= "<br>";
+//  echo "</span>";
+}
+
+
+// displays array in code-style
+function echoarray($entry)
+{
+	$o = "";
+	
+  $o .= "<pre>";
+    print_r($entry);
+  $o .= "</pre>";
+}
 
 ?>

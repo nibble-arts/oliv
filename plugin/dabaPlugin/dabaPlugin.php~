@@ -57,36 +57,99 @@ class dabaEditPlugin
 }
 
 
+//------------------------------------------------------------------------------
 class dabaRender
 {
 	static public function render($tag,$options)
 	{
-  	$dbData = array();
+		$tagArray = array();
+    $content = (string)$options[0]['template'];
 
-		$id = status::val();
-    $content = $options[0]['template'];
-		$name = (string)$content->attributes()->db;
-		$table = (string)$content->attributes()->table;
-		$field = (string)$content->attributes()->field;
+		if (status::daba())
+		{
+			$dabaArray = status::daba();
 
-  	$database = sessionxml_load_file(system::OLIV_MODULE_PATH() . "daba/daba.xml");
-
-		$database = $database->$name;
-
-		$dbObject = new OLIVDatabase($database);
-		$field = $dbObject->getField($table,$field);
-
-//echoall(mysql_num_rows($sqlData));
-		$text = "render:<br>db=$name table=$table field=$field<br>daba id=" . $id;
-//		$text = "render db=$db table=$table field=$field";
-
-		$tagArray = array(
-			'startTag' => '<daba>',
-			'endTag' => '</daba>',
-			'value' => $text
-		);
-
+			$tagArray = array(
+				'startTag' => '<daba>',
+				'endTag' => '</daba>',
+				'value' => $dabaArray[$content]
+			);
+		}
+		
     return ($tagArray);
 	}
+}
+
+
+//------------------------------------------------------------------------------
+class dabaInit
+{
+// init database connection
+// load field
+
+  public static function __callStatic($tag,$options)
+  {
+// load daba definitions
+		$daba = sessionxml_load_file(system::OLIV_PLUGIN_PATH() . "daba/daba.xml");
+    $content = $options[0]['template'];
+
+		if ($content)
+		{
+// get parameters from header
+	 		$dabaParam = (string)$content;
+			$dabaArray = explode(";",$dabaParam);
+
+
+// TODO translate field with request entry in daba definition
+// get val parameter
+			$dabaId = status::val();
+			$idArray = explode("/",$dabaId);
+
+
+
+// parse parameters
+			foreach ($dabaArray as $entry)
+			{
+				$entryArray = explode("=",$entry);
+			
+				switch ($entryArray[0])
+				{
+					case 'db':
+						$dabaName = $entryArray[1];
+						break;
+
+					case 'table':
+						$dabaTable = $entryArray[1];
+						break;
+				}
+			}
+
+//echoall("db: $dabaName, table: $dabaTable");
+// the field used for the id parameter is defined in the daba.xml in the
+// request section
+
+// get field from request list
+//		$request = OLIVText::getId($idArray[0]);
+
+			$request = $idArray[0];
+			$dabaField = (string)$daba->$dabaName->request->$request;
+
+
+// if field found in request -> 
+			if ($dabaField)
+			{
+				$dabaId =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
+// get connection to database
+				$db = new OLIVDatabase($daba->$dabaName,status::lang());
+
+// load field and set set status
+				status::set("daba",$db->get($dabaTable,$dabaId));
+			}
+
+// no request defined -> abbort daba init
+			else
+				OLIVError::fire("daba.php::__construct - field in request definition not found");
+		}
+  }
 }
 ?>

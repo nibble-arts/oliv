@@ -182,6 +182,7 @@ class OLIVRender extends OLIVCore
 		        }
 		      }
 
+echoall($mod);
 // end content sequenz
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -300,7 +301,6 @@ class OLIVRender extends OLIVCore
 // call module and return module class object
   static private function callScript($module)
   {
-echoall($module);
   	$outputObj = FALSE;
   	
     if ($module->attributes()->main)

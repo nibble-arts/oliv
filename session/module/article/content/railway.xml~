@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article>
+	<daba_init>db=iggmp;table=railway</daba_init>
+  <h3><daba>title</daba></h3>
+  <p><daba>summary</daba></p>
+</article>

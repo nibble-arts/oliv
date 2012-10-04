@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<database>
+	<iggmp>
+		<server>localhost</server>
+		<user>iggmp</user>
+		<password>grumblfurz34</password>
+
+		<relation>
+			<title table='lang_railway_title' id='_id' display='content' />
+			<summary table='lang_railway_summary' id='_id' display='content' />
+		</relation>
+
+		<request>
+			<request_railway>title</request_railway>
+			<request_number>_id</request_number>
+		</request>
+	</iggmp>
+</database>

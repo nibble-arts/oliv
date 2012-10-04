@@ -181,6 +181,7 @@ class OLIVText extends OLIVCore
 
 //-------------------------------------------------------------------------------------------
 // get text id
+//TODO extend also to default language
   static public function getId($text)
   {
     global $_TEXT;
@@ -208,7 +209,7 @@ class OLIVText extends OLIVCore
         }
         else
         {
-          if ($value['text'] == $text)
+          if (strtolower($value['text']) == strtolower($text)) // not case sensitive
           {
             $retKey = $key;
             break;
