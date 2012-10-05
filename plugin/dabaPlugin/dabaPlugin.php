@@ -134,21 +134,28 @@ class dabaInit
 			$request = $idArray[0];
 			$dabaField = (string)$daba->$dabaName->request->$request;
 
-
-// if field found in request -> 
+echoall($idArray);
+// request found 
 			if ($dabaField)
 			{
-				$dabaId =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
+// 
+				if (count($idArray) > 1)
+				{
+					$dabaId =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
 // get connection to database
-				$db = new OLIVDatabase($daba->$dabaName,status::lang());
+					$db = new OLIVDatabase($daba->$dabaName,status::lang());
 
 // load field and set set status
-				status::set("daba",$db->get($dabaTable,$dabaId));
+					status::set("daba",$db->get($dabaTable,$dabaId));
+				}
+				else
+					OLIVError::fire("database.php::__construct - no search id found");
+				
 			}
 
 // no request defined -> abbort daba init
 			else
-				OLIVError::fire("daba.php::__construct - field in request definition not found");
+				OLIVError::fire("database.php::__construct - field in request definition not found");
 		}
   }
 }
