@@ -89,6 +89,11 @@ class OLIVDatabase
 	{
 		$this->query(status::lang(),"SELECT",$table,"",$filter);
 
+/*		while ($entry = $this->fetch())
+		{
+echoall($entry);
+		}*/
+
 		return ($this->fetch());
 	}
 
@@ -152,12 +157,9 @@ echoall("data: $data, sort: $sort");*/
 					array_push($filterArray,"{$table}.{$whereField}{$whereOp}{$whereValue}");
 				}
 			}
-
-			if ($filterArray);
-				$queryWhere = implode(" and ",$filterArray);
 		}
 
-//echoall($queryWhere);
+
 //------------------------------------------------------------------------------
 // create field relation list
 // get field list
@@ -178,7 +180,13 @@ echoall("data: $data, sort: $sort");*/
 					$relationId = $this->relation->$fieldName->attributes()->id;
 					$relationTable = $this->relation->$fieldName->attributes()->table;
 
+// insert alias for relation
 					array_push($fieldArray,$relationTable . ".content AS " . $fieldName);
+					array_push($fieldArray,$relationTable . ".lang AS " . $fieldName . "_lang"); // language referenz
+
+					array_push($fieldArray,$relationTable . ".own AS " . $fieldName . "_own"); // access referenz
+					array_push($fieldArray,$relationTable . ".grp AS " . $fieldName . "_grp"); // access referenz
+					array_push($fieldArray,$relationTable . ".acc AS " . $fieldName . "_acc"); // access referenz
 
 // insert filter parameters for relation
 					array_push($filterArray,"{$relationTable}.{$relationId}={$table}.{$fieldName}");
@@ -186,15 +194,18 @@ echoall("data: $data, sort: $sort");*/
 
 //------------------------------------------------------------------------------
 // check for language
-					$langQuery = "SELECT * FROM {$table},{$relationTable} WHERE {$relationTable}.{$relationId}={$table}.{$fieldName} and lang='{$lang}' and $queryWhere";
+// create where clause for language check
+/*					if ($filterArray);
+						$queryWhere = implode(" and ",$filterArray);
 
+					$langQuery = "SELECT * FROM {$table},{$relationTable} WHERE {$relationTable}.{$relationId}={$table}.{$fieldName} and lang='{$lang}' and $queryWhere";
 
 					$langRes = mysql_query($langQuery);
 
 					if(mysql_num_rows($langRes))
 						array_push($filterArray,"{$relationTable}.lang='{$lang}'");
 					else
-						array_push($filterArray,"{$relationTable}.lang='" . system::OLIV_DEFAULT_LANG() . "'");
+						array_push($filterArray,"{$relationTable}.lang='" . system::OLIV_DEFAULT_LANG() . "'");*/
 				}
 // no relation
 				else
@@ -206,6 +217,12 @@ echoall("data: $data, sort: $sort");*/
 		}
 
 
+// recreate where clause for query
+		if ($filterArray);
+			$queryWhere = implode(" and ",$filterArray);
+
+
+//echoall($queryWhere);
 //------------------------------------------------------------------------------
 // parse command
 		if ($queryWhere) $queryWhere = "WHERE " . $queryWhere;
@@ -233,7 +250,7 @@ echoall("data: $data, sort: $sort");*/
 		{
 
 
-echoall($queryString);
+//echoall($queryString);
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // mysql query call

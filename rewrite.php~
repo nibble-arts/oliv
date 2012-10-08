@@ -2,24 +2,27 @@
 <html>
 <head>
 	<title>Test ModRewrite</title>	
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 </head>
 <body>
 
 <?PHP
-	date_default_timezone_set('Europe/Paris');
-	$lang = "";
-	$url = "";
-	
-	echo "<pre>";
-		print_r($_GET);
 
-//	print_r($_SERVER);
-	echo "</pre>";
+@MYSQL_CONNECT("localhost","iggmp","grumblfurz34");
+@MYSQL_SELECT_DB("iggmp");
 
-	echo "$1: $lang<br>";
-	echo "$2: $url<br>";
+$res = mysql_query("SELECT * FROM lang_railway_summary");
+
+echo mysql_num_rows($res);
+
+while ($entry = mysql_fetch_array($res))
+{
+	$text = utf8_encode($entry['content']);
+
+	echo $entry['content'] . " -> " . $text . "<hr>";
+}
+
 ?>
-	<a href='/oliv/editor/rewrite.php/ich/bins'>fire link</a>
 
 </body>
 </html>

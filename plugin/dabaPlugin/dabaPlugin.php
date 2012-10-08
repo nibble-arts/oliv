@@ -69,6 +69,11 @@ class dabaRender
 		{
 			$dabaArray = status::daba();
 
+
+echoall($content);
+echoall($dabaArray);
+
+
 			$tagArray = array(
 				'startTag' => '<daba>',
 				'endTag' => '</daba>',
@@ -134,19 +139,20 @@ class dabaInit
 			$request = $idArray[0];
 			$dabaField = (string)$daba->$dabaName->request->$request;
 
-echoall($idArray);
+
+//echoall($idArray);
 // request found 
 			if ($dabaField)
 			{
 // 
 				if (count($idArray) > 1)
 				{
-					$dabaId =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
+					$filterArray =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
 // get connection to database
 					$db = new OLIVDatabase($daba->$dabaName,status::lang());
 
 // load field and set set status
-					status::set("daba",$db->get($dabaTable,$dabaId));
+					status::set("daba",$db->get($dabaTable,$filterArray));
 				}
 				else
 					OLIVError::fire("database.php::__construct - no search id found");
