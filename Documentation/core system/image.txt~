@@ -26,18 +26,19 @@ is used, but can be overloaded by the lang parameter.
 
 The image is searched on the following places and in this order:
 
-	1. the full path is definde -> take what is defined
+	1. the full path is defined -> take what is defined
 	2. look in the system image path
 	3. look in the template image path
 	4. look in the module image path of all loaded modules
 
 
-string static public img(string image[,string lang])
+string static public img(object image[,string lang])
 ----------------------------------------------------
 
-Creates an correct html image tag out of an image xml, using different format
-options:
+Creates an correct html image tag out of an image xml object, using different
+format options:
 
+	src						name of the image
 	lang					language
 	alt						alternative text when the browser don't display images
 	width					width of the image

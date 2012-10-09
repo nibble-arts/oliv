@@ -5,6 +5,7 @@
     <func>
       <daba_init script='dabaPlugin' class='dabaInit::init' />
       <daba script='dabaPlugin' class='dabaPlugin::daba' editClass='dabaEditPlugin::daba' />
+      <dabaimg script='dabaPlugin' class='dabaPlugin::dabaimg' editClass='dabaEditPlugin::dabaimg' />
     </func>
   </render>
 </plugin>

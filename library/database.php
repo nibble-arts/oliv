@@ -39,14 +39,14 @@ class OLIVDatabase
   private $prefix;
   private $insertId;
 	private $relation;
-	
+	private $id;
+		
 
 // create database
 // $database = simpleXmlElement(server,name,user,password)
   public function __construct($db)
   {
 		$this->name = $db->getName();
-
 
 // load relation list for table
 		$this->relation = $db->relation;
@@ -95,6 +95,35 @@ echoall($entry);
 		}*/
 
 		return ($this->fetch());
+	}
+
+
+//------------------------------------------------------------------------------
+// get filter array
+	public function whereArray()
+	{
+		$tempArray = array();
+		
+		if ($this->id)
+		{
+			foreach($this->id as $entry)
+			{
+				$field = $entry->attributes()->field;
+				$value = $entry->attributes()->value;
+				$op = $entry->attributes()->operator;
+
+				array_push($tempArray,"{$field}{$op}{$value}");
+			}
+		}
+		return $tempArray;
+	}
+
+
+//------------------------------------------------------------------------------
+// get filter string
+	public function whereString()
+	{
+		return (implode(" and ",$this->whereArray()));
 	}
 
 
@@ -157,6 +186,8 @@ echoall("data: $data, sort: $sort");*/
 					array_push($filterArray,"{$table}.{$whereField}{$whereOp}{$whereValue}");
 				}
 			}
+
+			$idFilter = implode(" and ",$filterArray);
 		}
 
 
@@ -180,6 +211,7 @@ echoall("data: $data, sort: $sort");*/
 					$relationId = $this->relation->$fieldName->attributes()->id;
 					$relationTable = $this->relation->$fieldName->attributes()->table;
 
+
 // insert alias for relation
 					array_push($fieldArray,$relationTable . ".content AS " . $fieldName);
 					array_push($fieldArray,$relationTable . ".lang AS " . $fieldName . "_lang"); // language referenz
@@ -190,18 +222,33 @@ echoall("data: $data, sort: $sort");*/
 
 //------------------------------------------------------------------------------
 // check for language
+// filter string for entry filtering
+					$filterString = "{$relationTable}.{$relationId}={$table}.{$fieldName} and " . $idFilter;
+
 // create where clause for language check
-/*					if ($filterArray);
-						$queryWhere = implode(" and ",$filterArray);
+					if ($filterString)
+					{
+// get database entry default language
+						$langQuery = "SELECT {$table}.lang FROM {$table},{$relationTable} WHERE $filterString";// and lang='{$lang}'";
+						$langRes = mysql_query($langQuery);
+						$defaultLang = mysql_fetch_array($langRes);
+						$defaultLang = $defaultLang['lang'];
 
-					$langQuery = "SELECT * FROM {$table},{$relationTable} WHERE {$relationTable}.{$relationId}={$table}.{$fieldName} and lang='{$lang}' and $queryWhere";
 
-					$langRes = mysql_query($langQuery);
+// check if lang entry is present
+// if not use entry default language
+						$langQuery = "SELECT {$table}.lang FROM {$table},{$relationTable} WHERE $filterString and {$relationTable}.lang='{$lang}'";
+						$langRes = mysql_query($langQuery);
 
-					if(mysql_num_rows($langRes))
-						array_push($filterArray,"{$relationTable}.lang='{$lang}'");
-					else
-						array_push($filterArray,"{$relationTable}.lang='" . system::OLIV_DEFAULT_LANG() . "'");*/
+
+// load current language
+						if(mysql_num_rows($langRes))
+							array_push($filterArray,"{$relationTable}.lang='{$lang}'");
+
+// load default language
+						else
+							array_push($filterArray,"{$relationTable}.lang='$defaultLang'");
+					}
 				}
 // no relation
 				else
@@ -213,6 +260,7 @@ echoall("data: $data, sort: $sort");*/
 		}
 
 
+//------------------------------------------------------------------------------
 // recreate where clause for query
 		if ($filterArray);
 			$queryWhere = implode(" and ",$filterArray);

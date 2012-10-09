@@ -58,26 +58,40 @@ class dabaEditPlugin
 
 
 //------------------------------------------------------------------------------
+// render database tag
 class dabaRender
 {
 	static public function render($tag,$options)
 	{
 		$tagArray = array();
-    $content = (string)$options[0]['template'];
+    $content = $options[0]['template'];
 
 		if (status::daba())
 		{
 			$dabaArray = status::daba();
 
 
+			switch ($tag)
+			{
+				case 'daba':
+					$value = $dabaArray[(string)$content];
+					break;
+
+				case 'dabaimg':
+					if ($src = $content->attributes()->src)
+					{
+// set the source
+						$content->attributes()->src = $src . "/" . $dabaArray[(string)$content];
 echoall($content);
-echoall($dabaArray[$content]);
-
-
+						$value = OLIVImage::img($content);
+					}
+					break;
+			}
+			
 			$tagArray = array(
 				'startTag' => '<daba>',
 				'endTag' => '</daba>',
-				'value' => $dabaArray[$content]
+				'value' => OLIVText::_($value)
 			);
 		}
 		
@@ -111,7 +125,6 @@ class dabaInit
 			$idArray = explode("/",$dabaId);
 
 
-
 // parse parameters
 			foreach ($dabaArray as $entry)
 			{
@@ -133,7 +146,7 @@ class dabaInit
 // the field used for the id parameter is defined in the daba.xml in the
 // request section
 
-// get field from request list
+// retranslate and get field from request list
 //		$request = OLIVText::getId($idArray[0]);
 
 			$request = $idArray[0];
@@ -148,8 +161,12 @@ class dabaInit
 				if (count($idArray) > 1)
 				{
 					$filterArray =  array(new simpleXmlElement("<where field='$dabaField' value='$idArray[1]' operator='=' />"));
+					$idString = $idArray[0];
+
+
 // get connection to database
 					$db = new OLIVDatabase($daba->$dabaName,status::lang());
+
 
 // load field and set set status
 					status::set("daba",$db->get($dabaTable,$filterArray));

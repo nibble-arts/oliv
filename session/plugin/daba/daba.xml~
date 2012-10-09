@@ -7,8 +7,9 @@
 		<password>grumblfurz34</password>
 
 		<relation>
-			<title table='lang_railway_title' id='_id' display='content' />
-			<summary table='lang_railway_summary' id='_id' display='content' />
+			<title table='lang_railway_title' id='relation' display='content' />
+			<summary table='lang_railway_summary' id='relation' display='content' />
+			<land table='land' id='relation' display='name' />
 		</relation>
 
 		<request>

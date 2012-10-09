@@ -2,6 +2,24 @@
 
 <article>
 	<daba_init>db=iggmp;table=railway</daba_init>
+
+	<dabaimg src='images' float='right' width='300em'  margin_left='0.5em' margin_bottom='0.5em'>_id</dabaimg>
+
   <h3><daba>title</daba></h3>
   <p><daba>summary</daba></p>
+
+	<dabaimg src='images' float='left' width='40em' margin_side='0.5em'>_id</dabaimg>
+
+	<h3>address</h3>
+  <p>
+  	<div><daba>address</daba></div>
+  	<div><daba>zip</daba><daba>city</daba></div>
+  	<div><daba>land</daba></div>
+  </p>
+
+  <h3>operator</h3>
+	<p>
+  	<daba>operator</daba>
+  </p>
+
 </article>

@@ -1,0 +1,8 @@
+[PAGE]
+ID = "test"
+NAME = "Testseite"
+FRIENDLY_NAME = "Testseite"
+TITLE = "Testseite für die Render-Engine"
+
+[IGGMP]
+OPERATOR = "Betreiberverein"
