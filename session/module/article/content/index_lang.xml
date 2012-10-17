@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article>
+  <h2 owner='admin' group='editor' access='774' lang='de_DE' index='1336633758'>
+  	<text lang='de'>Das OLIV Kontrollzentrum</text>
+  	<text lang='en'>The OLIV System Control</text>
+  </h2>
+  <p owner='tom' group='editor' access='774' lang='de_DE' index='1336633758'>
+  	<text lang='de'>An dieser Stelle kann Ihre Einzel-Session-Seite stehen. Rufen Sie die Dokumentation für mehr Informationen auf. Oder gehen sie in die Core-Administration und legen sie eine neue Session an.</text>
+  	<text lang='en'>Here you can place your single-session page. Call the documentation for more informations, or call the core administration to set up a new session.</text>
+  </p>
+  <span class='daba-field'><daba db='iggmp' table='railway' field='title' /></span>
+
+<!--    <p><daba owner='tom' group='admin' access='770'>field:name</daba></p>-->
+</article>
