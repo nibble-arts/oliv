@@ -81,20 +81,29 @@ class OLIVText extends OLIVCore
   {
     global $_TEXT;
     $retText = "";
+    $origin = FALSE;
+
+		switch ($option)
+		{
+			case 'lang':
+				$origin = TRUE;
+				break;
+		}
 
     if (isset($_TEXT))
     {
 			// look in root nameSpace
-      $retText = OLIVText::fetchText(strtoupper($text),"",$option);
+      $retText = OLIVText::fetchText($_TEXT,strtoupper($text),"",$option,$origin);
       
-			if ($retText) return ($retText);
+			if ($retText)
+				return ($retText);
 
 // TODO change to xml
 			// look in namespaces
 			foreach($_TEXT as $key => $value)
 			{
 				if (is_array($value))
-				  if (($retText = OLIVText::fetchText(strtoupper($text),strtoupper($key),$option)))
+				  if (($retText = OLIVText::fetchText($_TEXT,strtoupper($text),strtoupper($key),$option)))
             return ($retText);
 			}
       return ($text); // return text value
@@ -150,26 +159,44 @@ class OLIVText extends OLIVCore
 
 
 //-------------------------------------------------------------------------------------------
-// fetch text from array
-  static private function fetchText($text,$nameSpace="")
+// fetch text from text-xml
+// return text string in language or default language
+  static public function fetchText($textXml,$text,$nameSpace="",$origin="")
   {
-  	global $_TEXT;
-
     if ($nameSpace) // look in nameSpace
     {
-      if (isset($_TEXT->$nameSpace))
-				return ($_TEXT->$nameSpace); // return string
+      if (isset($textXml->$nameSpace))
+				return ($textXml->$nameSpace); // return string
       else
         return false;
     }
 
     else // look in root
     {
-      if (isset($_TEXT->$text)) // and !count($_TEXT->$text)) // text found and not namespace
+      if (isset($textXml->$text)) // and !count($_TEXT->$text)) // text found and not namespace
       {
-				$result = $_TEXT->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
+				$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
+				$lang = OLIVLang::family(status::lang());
 
-				return (string)$result[0];
+
+// if no lang found, return default lang
+				if (!$result)
+				{
+					$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(system::oliv_default_lang()) . "']");
+					$lang = OLIVLang::family(system::oliv_default_lang());
+				}
+
+
+// return text string
+				if (count($result))
+				{
+					if ($origin) // return origin language
+						return $lang;
+					else // return text string
+						return (string)$result[0];
+				}
+				else
+					return false;
 			}
 			
       else return false;
@@ -237,12 +264,12 @@ class OLIVText extends OLIVCore
 
 // insert text xml into global xml
 		if ($xmlText)
+// TODO insert but overwrite existing entries
 			olivxml_insert($_TEXT,$xmlText);
   }
   
 
-// TODO change to xml
-// load text from file, add to $textArray and return array
+// load text from xml file
   static public function _load($path,$file)
   {
 		return sessionxml_load_file($path . $file);

@@ -218,7 +218,7 @@ class OLIVRoute
 		if (array_key_exists($url,$_PAGES)) // url defined
 			if (array_key_exists('text',$_PAGES[$url])) // text passage found
 			{
-				return ($_PAGES[$url]['text']['TITLE']['text']);
+				return (OLIVText::fetchText($_PAGES[$url]['text'],"TITLE"));
 			}
 	}
 	
@@ -294,7 +294,7 @@ class OLIVRoute
     global $_PAGES;
 
 		if (array_key_exists($url,$_PAGES))
-	    return ($_PAGES[$url]['text']['FRIENDLY_NAME']['text']);
+			return (OLIVText::fetchText($_PAGES[$url]['text'],"FRIENDLY_NAME"));
 		else
 // return untranslated
 			return $url;

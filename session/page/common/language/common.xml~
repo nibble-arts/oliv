@@ -1,2 +1,7 @@
-[PAGE]
-ID = "common"
+<?xml version='1.0' encoding='utf-8'?>
+
+<PAGE>
+	<ID>
+		<text>common</text>
+	</ID>
+</PAGE>

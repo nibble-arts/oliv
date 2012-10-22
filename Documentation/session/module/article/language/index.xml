@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<ARTICLE_INDEX>
+	<ARTICLE_INDEX_001>
+		<text lang='de'>Willkommen</text>
+		<text lang='en'>Welcome</text>
+	</ARTICLE_INDEX_001>
+	<ARTICLE_INDEX_002>
+		<text lang='de'>beim OLIV Content Management System</text>
+		<text lang='en'>at the OLIV Content Management System</text>
+	</ARTICLE_INDEX_002>
+	<ARTICLE_INDEX_003>
+		<text lang='de'>OLIV ist ein Content-Management-System, das eigentlich für den Ersatz einer bestehenden Internet-Präsentation begonnen wurde, die auf sehr unsauber programmierten und unflexieblen Scripten basierte. Um den gewünschten Anforderungen gerecht zu werden, entstanden einige Vorgaben:</text>
+	</ARTICLE_INDEX_003>
+	<ARTICLE_INDEX_004>
+		<text lang='de'>Multilingualität in allen Funktionen</text>
+		<text lang='en'>Multilinguality in all functions</text>
+	</ARTICLE_INDEX_004>
+	<ARTICLE_INDEX_005>
+		<text lang='de'>Multisessionfähigkeit</text>
+		<text lang='en'>Multi session capable</text>
+	</ARTICLE_INDEX_005>
+	<ARTICLE_INDEX_006>
+		<text lang='de'>Erweiterbarkeit durch Module</text>
+		<text lang='en'>Simple extension via modules</text>
+	</ARTICLE_INDEX_006>
+	<ARTICLE_INDEX_007>
+		<text lang='de'>Nur PHP > 5.3 aber keine Datenbank nötig</text>
+		<text lang='en'>Only PHP > 5.3 but no database necessary</text>
+	</ARTICLE_INDEX_007>
+	<ARTICLE_INDEX_008>
+		<text lang='de'>Einfachste Bedienung</text>
+		<text lang='en'>Simple usage</text>
+	</ARTICLE_INDEX_008>
+	<ARTICLE_INDEX_009>
+		<text lang='de'>Multilingualtiät</text>
+		<text lang='en'>Multi lingual</text>
+	</ARTICLE_INDEX_009>
+	<ARTICLE_INDEX_010>
+		<text lang='de'>Auch andere CM-Systeme beherrschen die Darstellung in mehreren Sprachen. Der Wunsch bei OLIV war jedoch die Integration der Mehrsprachigkeit tief im Grundsystem zu verankern und auf alle Funktionen anzuwenden. So werden zum Beispiel auch die klar lesbaren URLs in die jeweilige Sprache übersetzt.</text>
+	</ARTICLE_INDEX_010>
+	<ARTICLE_INDEX_011>
+		<text lang='de'>Eine Besonderheit ist auch der mehrsprachige Umgang mit Texten. So wird ein Text von dem ursprünglichen Autor in seiner Sprache verfasst. Der Übersetzer kann nun die einzelnen Teile, wie Überschriften, Absätze, Aufzählungen, etc. einzeln übersetzten. Die Grundstruktur bleibt dabei aber unverändert und ist nur einmal definiert. Wird vom Ursprungsautor eine Änderung vorgenommen, so wird der Übersetzer durch ein internes Messaging-System über diese Änderung benachrichtigt.</text>
+	</ARTICLE_INDEX_011>
+	<ARTICLE_INDEX_012>
+		<text lang='de'>Bei der Suche ist es so möglich bei der Anzeige der deutschen Version auch anderssprachige Begriffe zu finden, und den entsprechenden deutschen Text anzuzeigen (mit einem Hinweis auf den gesuchten Begriff).</text>
+	</ARTICLE_INDEX_012>
+	<ARTICLE_INDEX_013>
+		<text lang='de'>Multisession</text>
+	</ARTICLE_INDEX_013>
+	<ARTICLE_INDEX_014>
+		<text lang='de'>Obwohl OLIV relativ schlank ist, bestand der Wunsch mit einer Installation mehrere Seiten betreiben zu können. Daraus ist ein Session-Modell entstanden. Jede Website kann innerhalb seiner Session alle Inhalte, Templates und Bilder selbst verwalten, nutzt jedoch den nur einmal installierten Core von OLIV.</text>
+	</ARTICLE_INDEX_014>
+	<ARTICLE_INDEX_015>
+		<text lang='de'>Systemanforderungen</text>
+	</ARTICLE_INDEX_015>
+	<ARTICLE_INDEX_016>
+		<text lang='de'>OLIV benötigt zum Betrieb lediglich PHP in einer Version nach 5.3. Es ist so ausgelegt, dass jegliche Daten in XML oder INI Files abgelegt werden und somit keine Datenbank benötigt wird. Die Einbindung von Datenbanken ist für Module natürlich möglich und wird in Form eines relationalen Datenbankmoduls auch realisiert.</text>
+	</ARTICLE_INDEX_016>
+	<ARTICLE_INDEX_017>
+		<text lang='de'>Das OLIV-Grundsystem verzichtet primär auf den Einsatz von JavaScript für die reine Anzeige der Seite. Solche Erweiterungen können nachtrüglich eingeführt werden. Für den Administrator ist JavaScript für die komfortable Bearbeitung der Texte vorgesehen und nutzt den TinyMCE Editor.</text>
+	</ARTICLE_INDEX_017>
+	<ARTICLE_INDEX_018>
+		<text lang='de'>Bedienung</text>
+	</ARTICLE_INDEX_018>
+	<ARTICLE_INDEX_019>
+		<text lang='de'>Das Bedienungskonzept ist auf weitestgehende Einfachheit ausgelegt. Ein UNIX/LINUX-artiges Rechtesystem ermöglicht auf Modul- und Seiten- und Artikelebene ein direktes Editieren auf der Seite. Es wird nur für die Systemeinstellungen eine Art Backend genutzt, alle sonstigen Einstellungen erfolgen in der normalen Seitenansicht.</text>
+	</ARTICLE_INDEX_019>
+</ARTICLE_INDEX>

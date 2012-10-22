@@ -3,7 +3,7 @@
 <menu>
   <main template='side'>
   	<index />
-    <documentation owner='admin' group='editor' access='774' url='http://localhost/oliv/documentation/index.php' title='extern_documentation' name='extern_documentation' />
+    <documentation owner='admin' group='editor' access='774' url='http://localhost/oliv_xml/documentation/index.php' title='extern_documentation' name='extern_documentation' />
 		<iggmp owner='tom' access='470' url='http://www.iggmp.net' title='iggmp' target='_blank' name='IG-GmP'/>
 		<test />
   </main>

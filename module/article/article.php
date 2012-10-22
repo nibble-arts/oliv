@@ -57,7 +57,7 @@ class article extends OLIVCore
 //    $this->scan();
 
 
-    // load index file
+// load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;

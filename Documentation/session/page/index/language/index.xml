@@ -2,7 +2,7 @@
 
 <PAGE>
 	<ID>
-		<text lang='de'>index</text>
+		<text>index</text>
 	</ID>
 	<NAME>
 		<text lang='de'>Startseite</text>
@@ -13,7 +13,7 @@
 		<text lang='en'>Home</text>
 	</FRIENDLY_NAME>
 	<TITLE>
-		<text lang='de'>Das Omni-Linguale CMS</text>
-		<text lang='en'>The Omni-Lingual CMS</text>
+		<text lang='de'>OLIV - Das Omni-Linguale CMS</text>
+		<text lang='en'>OLIV - The Omni-Lingual CMS</text>
 	</TITLE>
 </PAGE>

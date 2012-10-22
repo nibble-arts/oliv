@@ -49,8 +49,7 @@ class menu extends OLIVCore
 
 		$menu = OLIVModule::load_xml($header,"","menu.xml");
 
-//		$menu = sessionxml_load_file(system::OLIV_MODULE_PATH() . "menu/menu.xml");
-
+//echoall($menu->$menuName);
 // permission to display menu
 		if (OLIVRight::r($menu->$menuName))
 		{
@@ -100,6 +99,7 @@ class menu extends OLIVCore
 				if ($entry->attributes()->url)
 				{
 					$itemUrl = (string)$entry->attributes()->url;
+
 					if ($entry->attributes()->name)
 						$itemName = OLIVText::_((string)$entry->attributes()->name);
 				}

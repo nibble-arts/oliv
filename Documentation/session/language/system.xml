@@ -260,51 +260,67 @@
 	<LANGUAGE>
 		<en>
 			<text land='de'>Englisch</text>
+			<text land='en'>English</text>
 		</en>
 		<nl>
 			<text land='de'>Niederländisch</text>
+			<text land='en'>Dutch</text>
 		</nl>
 		<fr>
 			<text land='de'>Französisch</text>
+			<text land='en'>French</text>
 		</fr>
 		<de>
 			<text land='de'>Deutsch</text>
+			<text land='en'>German</text>
 		</de>
 		<el>
 			<text land='de'>Griechisch</text>
+			<text land='en'>Greek</text>
 		</el>
 		<it>
 			<text land='de'>Italienisch</text>
+			<text land='en'>Italian</text>
 		</it>
 		<pt>
 			<text land='de'>Portugisisch</text>
+			<text land='en'>Portuguese</text>
 		</pt>
 		<es>
 			<text land='de'>Spanisch</text>
+			<text land='en'>Spanish</text>
 		</es>
 		<zh>
 			<text land='de'>Vereinfachtes Chinesisch</text>
+			<text land='en'>simplified Chinese</text>
 		</zh>
 		<zt>
 			<text land='de'>Traditionelles Chinesisch</text>
+			<text land='en'>traditional Chinese</text>
 		</zt>
 		<ko>
 			<text land='de'>Koreanisch</text>
+			<text land='en'>Korean</text>
 		</ko>
 		<ja>
 			<text land='de'>Japanisch</text>
+			<text land='en'>Japanese</text>
 		</ja>
 		<ru>
 			<text land='de'>Russisch</text>
+			<text land='en'>Russian</text>
 		</ru>
 		<pl>
 			<text land='de'>Polnisch</text>
+			<text land='en'>Polish</text>
 		</pl>
 		<se>
 			<text land='de'>Schwedisch</text>
+			<text land='en'>Swedish</text>
 		</se>
 		<cs>
 			<text land='de'>Tschechisch</text>
+			<text land='en'>Cech</text>
 		</cs>
 	</LANGUAGE>
 
