@@ -93,6 +93,8 @@ class OLIVText extends OLIVCore
 			// look in namespaces
 			foreach($_TEXT as $key => $value)
 			{
+echoall($key);
+echoall($value);
 				if (is_array($value))
 				  if (($retText = OLIVText::fetchText(strtoupper($text),strtoupper($key),$option)))
             return ($retText);
@@ -157,16 +159,14 @@ class OLIVText extends OLIVCore
 
     if ($nameSpace) // look in nameSpace
     {
-// TODO change to xml
-/*      if (isset($_TEXT[$nameSpace][$text][$part]))
-				return ($_TEXT[$nameSpace][$text][$part]); // return string
+      if (isset($_TEXT->$nameSpace))
+				return ($_TEXT->$nameSpace); // return string
       else
-        return false;*/
+        return false;
     }
 
     else // look in root
     {
-echoall($_TEXT);
       if (isset($_TEXT->$text)) // and !count($_TEXT->$text)) // text found and not namespace
       {
 				$result = $_TEXT->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");

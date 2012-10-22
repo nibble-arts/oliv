@@ -157,11 +157,10 @@ class OLIVText extends OLIVCore
 
     if ($nameSpace) // look in nameSpace
     {
-// TODO change to xml
-/*      if (isset($_TEXT[$nameSpace][$text][$part]))
-				return ($_TEXT[$nameSpace][$text][$part]); // return string
+      if (isset($_TEXT->$nameSpace))
+				return ($_TEXT->$nameSpace); // return string
       else
-        return false;*/
+        return false;
     }
 
     else // look in root

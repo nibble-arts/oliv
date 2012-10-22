@@ -1,7 +1,0 @@
-[PAGE]
-ID = "test"
-NAME = "Testpage"
-FRIENDLY_NAME = "Testpage"
-TITLE = "Test page for render engine"
-
-OPERATOR = "Operation society"
