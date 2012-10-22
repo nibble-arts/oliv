@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<MOD_LOGIN>
+	<MOD_SUMMARY>
+		<text lang='de'>Login Modul</text>
+		<text lang='de'>Login module</text>
+	<MOD_SUMMARY>
+	<MOD_DESCRIPTION>
+		<text lang='de'>Das Login Modul stellt ein Feld zur Anmeldung am System dar. Das Layout wird durch ein Template gestaltet.</text>
+		<text lang='de'>The login module displays a field for the user login. The layout is defined in a template.</text>
+	</MOD_DESCRIPTION>
+</MOD_LOGIN>

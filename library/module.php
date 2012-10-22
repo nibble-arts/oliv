@@ -160,10 +160,13 @@ class OLIVModule
 
 
 // insert title and description in metadata
-						if (!($modText = OLIVText::_load("",$path . $filePath . "language/","_define")))
+
+						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define")))
 							OLIVError::fire("module.php::scan - no language definition for module $file found");
 						else
 						{
+// TODO change to xml
+
 							$summary = $modText['MOD_' . strtoupper($file)]['MOD_SUMMARY']['text'];
 							$description = $modText['MOD_' . strtoupper($file)]['MOD_DESCRIPTION']['text'];
 

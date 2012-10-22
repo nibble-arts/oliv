@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- IG-CMS
+
+ This file is part of the IG Content Management System.
+
+ Copyright(c) 2012 Thomas H Winkler
+ thomas.winkler@iggmp.net
+
+ This file may be licensed under the terms of of the
+ GNU General Public License Version 3 (the ``GPL'').
+
+ Software distributed under the License is distributed
+ on an ``AS IS'' basis, WITHOUT WARRANTY OF ANY KIND, either
+ express or implied. See the GPL for the specific language
+ governing rights and limitations.
+
+ You should have received a copy of the GPL along with this
+ program. If not, go to http://www.gnu.org/licenses/gpl.html
+ or write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+ system language file
+ de_DE
+ file must be saved as utf8
+
+ Version 0.1
+
+ systen text
+ german V 1.0
+ 2012-03-04
+ Thomas H Winkler
+ coding utf8-->
+
+<SYSTEM>
+	<PAGE>
+		<SITE_TITLE>
+			<text lang='de'>IG-GmP Gartenbahn Datenbank</text>
+			<text lang='en'>IG-GmP Miniature Railway Database</text>
+		</SITE_TITLE>
+		<HOME>
+			<text lang='de'>Startseite</text>
+			<text lang='en'>Home</text>
+		</HOME>
+		<BACK_HOME>
+			<text lang='de'>Zurück an den Start</text>
+			<text lang='en'>Back to Start</text>
+		</BACK_HOME>
+		<CONTACT>
+			<text lang='de'>Kontakt</text>
+			<text lang='en'>Contact</text>
+		</CONTACT>
+		<GET_CONTACT>
+			<text land='de'>Nehmen Sie mit uns Kontakt auf</text>
+			<text land='en'>Get in contact with us</text>
+		</GET_CONTACT>
+		<NEW>
+			<text land='de'>Neu auf der Seite</text>
+			<text land='en'>New on the site</text>
+		</NEW>
+		<NEWS>
+			<text land='de'>Neuigkeiten</text>
+			<text land='en'>News</text>
+		</NEWS>
+		<SEARCH>
+			<text land='de'>suchen</text>
+			<text land='en'>search</text>
+		</SEARCH>
+		<MAP>
+			<text land='de'>Karte</text>
+			<text land='en'>Map</text>
+		</MAP>
+		<WORLD_MAP>
+			<text land='de'>Weltkarte</text>
+			<text land='en'>World Map</text>
+		</WORLD_MAP>
+
+		<CUT>
+			<text land='de'>Ausschneiden</text>
+			<text land='en'>Cut</text>
+		</CUT>
+		<COPY>
+			<text land='de'>Kopieren</text>
+			<text land='en'>Copy</text>
+		</COPY>
+		<PASTE>
+			<text land='de'>Einfügen</text>
+			<text land='en'>Paste</text>
+		</PASTE>
+		<EDIT>
+			<text land='de'>Bearbeiten</text>
+			<text land='en'>Edit</text>
+		</EDIT>
+		<EDIT_TEXT>
+			<text land='de'>Text bearbeiten</text>
+			<text land='en'>Edit text</text>
+		</EDIT_TEXT>
+		<EDIT_IMG>
+			<text land='de'>Bild bearbeiten</text>
+			<text land='en'>Edit image</text>
+		</EDIT_IMG>
+		<SAVE>
+			<text land='de'>Sichern</text>
+			<text land='en'>Save</text>
+		</SAVE>
+		<CANCEL>
+			<text land='de'>Abbrechen</text>
+			<text land='en'>Cancel</text>
+		</CANCEL>
+		<ADD>
+			<text land='de'>Neu</text>
+			<text land='en'>New</text>
+		</ADD>
+		<DELETE>
+			<text land='de'>Löschen</text>
+			<text land='en'>Delete</text>
+		</DELETE>
+		<REMOVE>
+			<text land='de'>Entfernen</text>
+		</REMOVE>
+		<MOVE>
+			<text land='de'>Bewegen</text>
+		</MOVE>
+	</PAGE>
+
+	<LOCATION>
+		<ADDRESS>
+			<text land='de'>Adresse</text>
+		</ADDRESS>
+		<CITY>
+			<text land='de'>Stadt</text>
+		</CITY>
+		<ZIP>
+			<text land='de'>Postleitzahl</text>
+		</ZIP>
+		<LAND>
+			<text land='de'>Land</text>
+		</LAND>
+	</LOCATION>
+
+	<TIME>
+		<FROM>
+			<text land='de'>von</text>
+		</FROM>
+		<TO>
+			<text land='de'>bis</text>
+		</TO>
+		<CLOCK>
+			<text land='de'>Uhr</text>
+		</CLOCK>
+
+		<YEAR>
+			<text land='de'>Jahr</text>
+		</YEAR>
+		<MONTH>
+			<text land='de'>Monat</text>
+		</MONTH>
+		<DAY>
+			<text land='de'>Tag</text>
+		</DAY>
+	</TIME>
+
+	<DAY>
+		<MON>
+			<text land='de'>Monday</text>
+		</MON>
+		<TUE>
+			<text land='de'>Tuesday</text>
+		</TUE>
+		<WED>
+			<text land='de'>Wednesday</text>
+		</WED>
+		<THU>
+			<text land='de'>Thursday</text>
+		</THU>
+		<FRI>
+			<text land='de'>Friday</text>
+		</FRI>
+		<SAT>
+			<text land='de'>Saturday</text>
+		</SAT>
+		<SUN>
+			<text land='de'>Sunday</text>
+		</SUN>
+	</DAY>
+
+	<MONTH>
+		<JAN>
+			<text land='de'>January</text>
+		</JAN>
+		<FEB>
+			<text land='de'>February</text>
+		</FEB>
+		<MAR>
+			<text land='de'>March</text>
+		</MAR>
+		<MAY>
+			<text land='de'>Mai</text>
+		</MAY>
+		<JUN>
+			<text land='de'>June</text>
+		</JUN>
+		<JUL>
+			<text land='de'>July</text>
+		</JUL>
+		<AUG>
+			<text land='de'>August</text>
+		</AUG>
+		<SEP>
+			<text land='de'>September</text>
+		</SEP>
+		<OCT>
+			<text land='de'>October</text>
+		</OCT>
+		<NOV>
+			<text land='de'>November</text>
+		</NOV>
+		<DEC>
+			<text land='de'>Dezember</text>
+		</DEC>
+	</MONTH>
+
+	<LANGUAGE>
+		<en>
+			<text land='de'>Englisch</text>
+		</en>
+		<nl>
+			<text land='de'>Niederländisch</text>
+		</nl>
+		<fr>
+			<text land='de'>Französisch</text>
+		</fr>
+		<de>
+			<text land='de'>Deutsch</text>
+		</de>
+		<el>
+			<text land='de'>Griechisch</text>
+		</el>
+		<it>
+			<text land='de'>Italienisch</text>
+		</it>
+		<pt>
+			<text land='de'>Portugisisch</text>
+		</pt>
+		<es>
+			<text land='de'>Spanisch</text>
+		</es>
+		<zh>
+			<text land='de'>Vereinfachtes Chinesisch</text>
+		</zh>
+		<zt>
+			<text land='de'>Traditionelles Chinesisch</text>
+		</zt>
+		<ko>
+			<text land='de'>Koreanisch</text>
+		</ko>
+		<ja>
+			<text land='de'>Japanisch</text>
+		</ja>
+		<ru>
+			<text land='de'>Russisch</text>
+		</ru>
+		<pl>
+			<text land='de'>Polnisch</text>
+		</pl>
+		<se>
+			<text land='de'>Schwedisch</text>
+		</se>
+		<cs>
+			<text land='de'>Tschechisch</text>
+		</cs>
+	</LANGUAGE>
+
+	<LAND>
+	</LAND>
+</SYSTEM>
+

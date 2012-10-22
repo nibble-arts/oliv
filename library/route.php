@@ -391,10 +391,10 @@ class OLIVRoute
           if (sessionfile_exists($path . $file . "/$file.xml"))
           {
             $xml = sessionxml_load_file($path . $file . "/$file.xml");
-            $pageText = OLIVText::_load("",$path . "$file/language/",$file);
+            $pageText = OLIVText::_load($path . "$file/language/",$file);
 
             $_PAGES[$file]['define'] = $xml;
-            $_PAGES[$file]['text'] = $pageText['PAGE'];
+            $_PAGES[$file]['text'] = $pageText;
           }
         }
       }

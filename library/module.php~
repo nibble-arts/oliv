@@ -70,7 +70,7 @@ class OLIVModule
       $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/default/"; // if no template use default
 
     // load template and link css
-    return (OLIVTemplate::load($header,$path,$name));
+    return (OLIVTemplate::load($path,$name));
   }
 
 
@@ -160,7 +160,9 @@ class OLIVModule
 
 
 // insert title and description in metadata
-						if (!($modText = OLIVText::_load("",$path . $filePath . "language/","_define")))
+// TODO change to xml
+
+						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define")))
 							OLIVError::fire("module.php::scan - no language definition for module $file found");
 						else
 						{

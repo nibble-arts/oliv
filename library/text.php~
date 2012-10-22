@@ -38,8 +38,8 @@ system::set("OLIVTEXT","alive");
 
 
 // global static text array
-$_TEXT = array();
-
+//$_TEXT = array();
+$_TEXT = new simpleXmlElement("<text></text>");
 // method name = nameSpace
 //  Text::text ... uses entries in [Text] namespace
 //
@@ -74,6 +74,7 @@ $_TEXT = array();
 class OLIVText extends OLIVCore
 {
 
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // return text string
   static public function _($text,$option = "")
@@ -81,13 +82,14 @@ class OLIVText extends OLIVCore
     global $_TEXT;
     $retText = "";
 
-    if (is_array($_TEXT))
+    if (isset($_TEXT))
     {
 			// look in root nameSpace
       $retText = OLIVText::fetchText(strtoupper($text),"",$option);
       
 			if ($retText) return ($retText);
 
+// TODO change to xml
 			// look in namespaces
 			foreach($_TEXT as $key => $value)
 			{
@@ -102,7 +104,7 @@ class OLIVText extends OLIVCore
 
 
 
-
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // fetch namespace to array
   static public function fetchNameSpace($nameSpace)
@@ -114,11 +116,12 @@ class OLIVText extends OLIVCore
   }
 
 
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // update text file
 	static public function update($updateArray,$nameSpace,$path,$file,$lang)
 	{
-  	$textArray = array();
+/*  	$textArray = array();
   	$tempTextArray = array();
 
 		$textArray = OLIVText::_load($textArray,$path,$file,$lang);
@@ -142,45 +145,45 @@ class OLIVText extends OLIVCore
 		OLIVText::write($textArray,$path,$file,$lang);
 
 // reload altered text
-		OLIVText::load($path,$file,$lang);
+		OLIVText::load($path,$file,$lang);*/
 	}
 
 
 //-------------------------------------------------------------------------------------------
 // fetch text from array
-  static private function fetchText($text,$nameSpace="",$option="")
+  static private function fetchText($text,$nameSpace="")
   {
   	global $_TEXT;
 
-		switch($option)
-		{
-			case 'lang':
-				$part = "lang";
-				break;
-			default:
-				$part = "text";
-				break;
-		}
-
     if ($nameSpace) // look in nameSpace
     {
-      if (isset($_TEXT[$nameSpace][$text][$part]))
+// TODO change to xml
+/*      if (isset($_TEXT[$nameSpace][$text][$part]))
 				return ($_TEXT[$nameSpace][$text][$part]); // return string
       else
-        return false;
+        return false;*/
     }
 
     else // look in root
     {
-      if (isset($_TEXT[$text][$part]) and !is_array($_TEXT[$text])) // text found and not namespace
-				return($_TEXT[$text][$part]); // return string
+echoall($_TEXT);
+      if (isset($_TEXT->$text)) // and !count($_TEXT->$text)) // text found and not namespace
+      {
+				$result = $_TEXT->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
+
+				return (string)$result[0];
+			}
+			
       else return false;
     }
   }
 
 
+
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // get text id
+//TODO extend also to default language
   static public function getId($text)
   {
     global $_TEXT;
@@ -189,6 +192,7 @@ class OLIVText extends OLIVCore
   }
 
 
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // scan text array for text
 // return ID
@@ -223,55 +227,45 @@ class OLIVText extends OLIVCore
 //-------------------------------------------------------------------------------------------
 // load text file from path
 // to global _TEXT
-  static public function load($path,$file,$default_language = "")
+  static public function load($path,$file)
   {
     global $_TEXT;
 
-		if (!$default_language)
-			$default_language = status::OLIV_DEFAULT_LANG();
-			
-    $_TEXT = OLIVText::_load($_TEXT,$path,$file,$default_language);
+// initialize global xml if not done jet
+		if (!isset($_TEXT)) $_TEXT = new simpleXmlElement("<text></text>");
+
+// load xml text file
+		$xmlText = OLIVText::_load($path,$file . ".xml");
+
+// insert text xml into global xml
+		if ($xmlText)
+			olivxml_insert($_TEXT,$xmlText);
   }
   
 
+// TODO change to xml
 // load text from file, add to $textArray and return array
-  static public function _load($textArray,$path,$file,$default_language = "")
+  static public function _load($path,$file)
   {
-		if (!$default_language)
-			$default_language = system::OLIV_DEFAULT_LANG();
-
-    if (!is_array($textArray)) $textArray = array();
-    
-    $defaultText = OLIVText::loadText($default_language,$path,$file);
-    $langText = OLIVText::loadText(status::lang(),$path,$file);
-
-
-// insert default text
-    if (is_array($defaultText))
-      $textArray = array_replace_recursive($textArray,$defaultText);
-
-// insert language text
-    if (is_array($langText))
-      $textArray = array_replace_recursive($textArray,$langText);
-
-    return ($textArray);
+		return sessionxml_load_file($path . $file);
   }
   
   
+// TODO change to xml
 //-------------------------------------------------------------------------------------------
 // write text array to ini file
 	static public function write($textArray,$path,$file,$lang)
 	{
-		if (is_array($textArray))
+/*		if (is_array($textArray))
 		{
 			olivini_writeFile($textArray,$path,$file,$lang);
-		}
+		}*/
 	}
 
 
 //-------------------------------------------------------------------------------------------
 // load text array
-  static private function loadText($lang,$path,$fileName="")
+/*  static private function loadText($lang,$path,$fileName="")
   {
 // create filename
     if (!$fileName)
@@ -292,12 +286,12 @@ class OLIVText extends OLIVCore
       return ($langArray);
     }
     return (false);
-  }
+  }*/
 
 
 
 //-------------------------------------------------------------------------------------------
-  static private function _insertLang($textArray,$lang)
+/*  static private function _insertLang($textArray,$lang)
   {
     $retArray = array();
     
@@ -310,7 +304,7 @@ class OLIVText extends OLIVCore
         $retArray[$key] = array('lang' => $lang,'text' => $value);
     }
     return $retArray;
-  }
+  }*/
 
 
 //-------------------------------------------------------------------------------------------

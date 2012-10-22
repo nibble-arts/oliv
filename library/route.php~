@@ -81,7 +81,6 @@ class OLIVRoute
       status::set('url',system::OLIV_INDEX_PAGE());
 			status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url())); // set page title
     }
-echoall(status::getAll());
   }
 
 
@@ -392,10 +391,11 @@ echoall(status::getAll());
           if (sessionfile_exists($path . $file . "/$file.xml"))
           {
             $xml = sessionxml_load_file($path . $file . "/$file.xml");
-            $pageText = OLIVText::_load("",$path . "$file/language/",$file);
-
+            $pageText = OLIVText::_load($path . "$file/language/",$file);
+// TODO change to xml
             $_PAGES[$file]['define'] = $xml;
-            $_PAGES[$file]['text'] = $pageText['PAGE'];
+            $_PAGES[$file]['text'] = $pageText;
+echoall($_PAGES[$file]);
           }
         }
       }

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<PAGE>
+	<ID>
+		<text>test</text>
+	</ID>
+	<NAME>
+		<text lang='de'>Testseite</text>
+	</NAME>
+	<FRIENDLY_NAME>
+		<text lang='de'>Testseite</text>
+	</FRIENDLY_NAME>
+	<TITLE>
+		<text lang='de'>Testseite für die Render-Engine</text>
+	</TITLE>
+
+	<OPERATOR>
+		<text lang='de'>Betreiberverein</text>
+	</OPERATOR>
+</PAGE>
