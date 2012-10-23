@@ -39,7 +39,7 @@ system::set("OLIVTEXT","alive");
 
 // global static text array
 //$_TEXT = array();
-$_TEXT = new simpleXmlElement("<text></text>");
+$_TEXT;
 // method name = nameSpace
 //  Text::text ... uses entries in [Text] namespace
 //
@@ -92,21 +92,16 @@ class OLIVText extends OLIVCore
 
     if (isset($_TEXT))
     {
-			// look in root nameSpace
+// get text string
       $retText = OLIVText::fetchText($_TEXT,strtoupper($text),"",$option,$origin);
-      
+
+// return text
 			if ($retText)
 				return ($retText);
 
-// TODO change to xml
-			// look in namespaces
-			foreach($_TEXT as $key => $value)
-			{
-				if (is_array($value))
-				  if (($retText = OLIVText::fetchText($_TEXT,strtoupper($text),strtoupper($key),$option)))
-            return ($retText);
-			}
-      return ($text); // return text value
+// nothing found -> return id
+			else
+	      return ($text);
 		}
   }
 
@@ -159,48 +154,66 @@ class OLIVText extends OLIVCore
 
 
 //-------------------------------------------------------------------------------------------
-// fetch text from text-xml
-// return text string in language or default language
+// return language text string
+// search recursive in $textXml
+//
+// if $nameSpace, return nameSpace xml
+
   static public function fetchText($textXml,$text,$nameSpace="",$origin="")
   {
-    if ($nameSpace) // look in nameSpace
-    {
-      if (isset($textXml->$nameSpace))
-				return ($textXml->$nameSpace); // return string
-      else
-        return false;
-    }
-
-    else // look in root
-    {
-      if (isset($textXml->$text)) // and !count($_TEXT->$text)) // text found and not namespace
-      {
-				$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
-				$lang = OLIVLang::family(status::lang());
+		if ($text)
+		{
+		  if ($nameSpace) // look in nameSpace
+		  {
+		    if (isset($textXml->$nameSpace))
+					return ($textXml->$nameSpace); // return string
+		    else
+		      return false;
+		  }
 
 
-// if no lang found, return default lang
-				if (!$result)
-				{
-					$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(system::oliv_default_lang()) . "']");
-					$lang = OLIVLang::family(system::oliv_default_lang());
+// search for entry
+		  else
+		  {
+// text found
+		    if (isset($textXml->$text->text))
+		    {
+	// get lang text
+					$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
+					$lang = OLIVLang::family(status::lang());
+
+
+	// if no lang found, return default lang
+					if (!$result)
+					{
+						$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(system::oliv_default_lang()) . "']");
+						$lang = OLIVLang::family(system::oliv_default_lang());
+					}
+
+
+	// return text string
+					if (count($result))
+					{
+						if ($origin) // return origin language
+							return $lang;
+						else // return text string
+							return (string)$result[0];
+					}
+					else
+						return false;
 				}
-
-
-// return text string
-				if (count($result))
-				{
-					if ($origin) // return origin language
-						return $lang;
-					else // return text string
-						return (string)$result[0];
-				}
+// look for subtree
 				else
-					return false;
-			}
-			
-      else return false;
-    }
+				{
+					foreach($textXml as $entry)
+					{
+						$recText = OLIVText::fetchText($entry,$text,$nameSpace,$origin);
+						if ($recText)
+							return ($recText);
+					}
+				}
+		  }
+		}
   }
 
 
@@ -257,21 +270,28 @@ class OLIVText extends OLIVCore
     global $_TEXT;
 
 // initialize global xml if not done jet
-		if (!isset($_TEXT)) $_TEXT = new simpleXmlElement("<text></text>");
+		if (!isset($_TEXT)) $_TEXT = new simpleXmlElement("<TEXT></TEXT>");
 
 // load xml text file
-		$xmlText = OLIVText::_load($path,$file . ".xml");
+		$xmlText = OLIVText::_load($path,$file);
 
 // insert text xml into global xml
 		if ($xmlText)
+		{
 // TODO insert but overwrite existing entries
-			olivxml_insert($_TEXT,$xmlText);
+			olivxml_insert($_TEXT,$xmlText,'ALL_UNIQUE');
+		}
   }
   
 
+//-------------------------------------------------------------------------------------------
 // load text from xml file
   static public function _load($path,$file)
   {
+// check if xml extension and add if necessary
+  	if (substr($file,strlen($file)-4) != ".xml")
+  		$file .= ".xml";
+
 		return sessionxml_load_file($path . $file);
   }
   

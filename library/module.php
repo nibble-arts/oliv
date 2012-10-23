@@ -159,7 +159,7 @@ class OLIVModule
             $xml = olivxml_load_file($path . $filePath . "define.xml");
 
 
-// insert title and description in metadata
+// insert module title and description in metadata
 						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define.xml")))
 							OLIVError::fire("module.php::scan - no language definition for module $file found");
 						else
