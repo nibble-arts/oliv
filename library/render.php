@@ -105,7 +105,6 @@ class OLIVRender extends OLIVCore
 // get template name
 //      $templateName = (string)$template->attributes()->name;
 
-
 //------------------------------------------------------------------------------
 // loop over children of template
       foreach($template->children() as $entry)
@@ -123,7 +122,6 @@ class OLIVRender extends OLIVCore
 		      $areaName = (string)$entry->attributes()->id;
 		      $areaTag = $entry->getName();
 
-
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // if content present and permissiongs
@@ -135,7 +133,6 @@ class OLIVRender extends OLIVCore
 		        $areaContent = $content->$areaName;
 		        $value = (string)$areaContent;
 		        $contentName = $areaContent->getName();
-
 
 // area present in content definition
 		        if (($areaName == $contentName))

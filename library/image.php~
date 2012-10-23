@@ -31,6 +31,7 @@ if (!system::OLIVCORE()) die ("image.php - OLIVCore not present");
 if (!system::OLIVTEXT()) die ("image.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("image.php - OLIVError not present");
 
+
 class OLIVImage
 {
 //------------------------------------------------------------------------------
@@ -109,7 +110,7 @@ class OLIVImage
 		  $margin_top = (string)$image->attributes()->margin_top; // margin distance
 		  $margin_bottom = (string)$image->attributes()->margin_bottom; // margin distance
 		  $margin_side = (string)$image->attributes()->margin_side; // margin distance
-
+echoall($lang);
 		  $path = OLIVImage::_($src,$lang);
 		  
 		  $style = "";

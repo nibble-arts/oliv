@@ -150,6 +150,11 @@ class textRender
     $ownerLang = $content->attributes()->lang;
 
 
+// get languages of text
+		$langArray = OLIVText::_($value,'languages');
+
+//echoall($value);
+
 // add edit class cursor
 		if ($edit) $class .= " oliv_edit_cursor";
 

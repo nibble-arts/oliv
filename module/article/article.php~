@@ -57,27 +57,65 @@ class article extends OLIVCore
 //    $this->scan();
 
 
-    // load index file
+// load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
     $langPath = $this->header->path . "language/";
     $contentPath = $this->header->path . (string)$header->attributes()->content;
 
-    OLIVText::load($langPath,$articleName);
+		$textXml = OLIVText::_load($langPath,$articleName);
+    OLIVText::insert($textXml);
+
+
+// get article languages
+		$langXml = OLIVText::getLanguages($textXml);
 
 
 // load content
   	$article = OLIVModule::load_xml($header,(string)$header->attributes()->content,"$articleName.xml");
-
 
 // add source attribute recursive
 		if ($article)
 		{
 			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
 
+
+
+//------------------------------------------------------------------------------
+// create temporary template
+// TODO load template from file
+			$template = new simpleXmlElement("<template name='article'><div id='articlelang' /></template>");
+
+
+// create lang selector
+			$langSelector = new simpleXmlElement("<article><articlelang /></article>");
+
+
+			foreach($langXml as $entry)
+			{
+// make current language bigger
+				$size = 15;
+				
+				if ($entry->getName() == status::lang())
+					$size = 25;
+
+// create image
+				$img = new simpleXmlElement("<img src='flag' width='{$size}px' margin_left='0.1em' float='right' lang='" . $entry->getName() . "' />");
+
+// insert image
+				olivxml_insert($langSelector->articlelang,$img,'ALL');
+			}
+
+
+// insert langselector, langtext into content
+//			olivxml_insert($temp,$langSelector,'ALL');
+    	$this->o .= OLIVRender::template($template,$langSelector);
+
+
+//------------------------------------------------------------------------------
 // render article
-    	$this->o .= OLIVRender::template($article,"");
+    	$this->o .= OLIVRender::template($article);
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");

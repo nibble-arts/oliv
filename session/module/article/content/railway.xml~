@@ -8,8 +8,6 @@
   <h3><daba>title</daba></h3>
   <p><daba>summary</daba></p>
 
-	<dabaimg src='images' float='left' width='40em' margin_side='0.5em'>_id</dabaimg>
-
 	<h3>address</h3>
   <p>
   	<div><daba>address</daba></div>

@@ -54,7 +54,6 @@ class OLIVRoute
 // get link id from language coded /module/value
   private function route()
   {
-
 		$tempArray = $this->parseUrl(status::url()); // extract values from url
 
 		status::set('url',$tempArray['url']);
@@ -306,6 +305,7 @@ class OLIVRoute
   static public function getUrl($name)
   {
     global $_PAGES;
+    $id = "";
 
     foreach($_PAGES as $entry)
     {
@@ -320,9 +320,10 @@ class OLIVRoute
 				{
 					status::set('url',(string)$langName[0]);
 				}
-				
+
+//echoall((string)$entry['define']->attributes()->id);				
 // return page id
-				return ((string)$entry['define']->attributes()->id);
+				return ((string)$entry['text']->ID->text);
 			}
     }
   }
