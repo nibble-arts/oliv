@@ -265,6 +265,7 @@ class OLIVRender extends OLIVCore
 		      if (array_key_exists('link',$pluginArray))
 		      {
 		        $linkArray = $pluginArray['link'];
+//echoall($pluginArray['link']);
 		        $paramArray['id'] = $areaName;
 
 

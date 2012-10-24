@@ -56,7 +56,6 @@ class article extends OLIVCore
 
 //    $this->scan();
 
-
 // load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
 
@@ -64,12 +63,6 @@ class article extends OLIVCore
     $langPath = $this->header->path . "language/";
     $contentPath = $this->header->path . (string)$header->attributes()->content;
 
-		$textXml = OLIVText::_load($langPath,$articleName);
-    OLIVText::insert($textXml);
-
-
-// get article languages
-		$langXml = OLIVText::getLanguages($textXml);
 
 
 // load content
@@ -80,6 +73,14 @@ class article extends OLIVCore
 		{
 			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
 
+// load text
+		$textXml = OLIVText::_load($langPath,$articleName);
+    OLIVText::insert($textXml);
+
+
+// get article languages
+			$langXml = OLIVText::getLanguages($textXml);
+			$langSelector = OLIVLang::selector($langXml);
 
 
 //------------------------------------------------------------------------------
@@ -87,25 +88,6 @@ class article extends OLIVCore
 // TODO load template from file
 			$template = new simpleXmlElement("<template name='article'><div id='articlelang' /></template>");
 
-
-// create lang selector
-			$langSelector = new simpleXmlElement("<article><articlelang /></article>");
-
-
-			foreach($langXml as $entry)
-			{
-// make current language bigger
-				$size = 15;
-				
-				if ($entry->getName() == status::lang())
-					$size = 25;
-
-// create image
-				$img = new simpleXmlElement("<img src='flag' width='{$size}px' margin_left='0.1em' float='right' lang='" . $entry->getName() . "' />");
-
-// insert image
-				olivxml_insert($langSelector->articlelang,$img,'ALL');
-			}
 
 
 // insert langselector, langtext into content

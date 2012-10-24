@@ -147,8 +147,6 @@ class OLIVRender extends OLIVCore
 
 							if (count($areaContent->children()))
 			        {
-			        echoall($areaName);
-			        echoall($content);
 			        	$tempO .= OLIVRender::_template($content,"");
 		  	      }
 
@@ -267,6 +265,7 @@ class OLIVRender extends OLIVCore
 		      if (array_key_exists('link',$pluginArray))
 		      {
 		        $linkArray = $pluginArray['link'];
+echoall($pluginArray['link']);
 		        $paramArray['id'] = $areaName;
 
 

@@ -157,6 +157,10 @@ class OLIVRoute
 
 					break;
 
+				case 'lang':
+					$lang = $entry;
+					break;
+					
 				case 'val':
 					$val = $entry;
 					break;
@@ -171,7 +175,6 @@ class OLIVRoute
 // get common parameters
     if (isset($options['param'])) $param = $options['param'];
     if (isset($options['class'])) $class = $options['class'];
-    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = status::lang(); // if no language use current
 
@@ -287,8 +290,22 @@ class OLIVRoute
   
 
 //------------------------------------------------------------------------------
-// translate url to lang.pageName
+// translate url to lang pageName
   static public function translatePageName($lang,$url)
+  {
+    global $_PAGES;
+
+		if (array_key_exists($url,$_PAGES))
+			return (OLIVText::fetchText($_PAGES[$url]['text'],"NAME"));
+		else
+// return untranslated
+			return $url;
+  }
+
+
+//------------------------------------------------------------------------------
+// translate url to lang pageName
+  static public function translateFriendlyName($lang,$url)
   {
     global $_PAGES;
 

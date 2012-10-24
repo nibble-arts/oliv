@@ -105,8 +105,8 @@ class menu extends OLIVCore
 				}
 
 
+//------------------------------------------------------------------------------
 // is intern link
-//TODO get title from page definition
 				else
 				{
 		      $itemUrl = $entry->getName();

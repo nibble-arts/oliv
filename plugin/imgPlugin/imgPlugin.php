@@ -84,8 +84,15 @@ class imgRender
 // set link if permission granted
 		if (OLIVRight::x($content) and $url = $content->attributes()->url)
 		{
-			$retArray['link']['url'] = $url;
-			$retArray['link']['lang'] = status::lang();
+			$retArray['link']['url'] = (string)$url;
+
+			if ($urlLang = $content->attributes()->urllang)
+				$retArray['link']['lang'] = (string)$urlLang;
+			else
+				$retArray['link']['lang'] = (string)status::lang();
+
+			if ($urlTitle = $content->attributes()->urltitle)
+				$retArray['link']['title'] = OLIVText::_((string)$urlTitle,"lang=" . $urlLang);
 		}
 
 

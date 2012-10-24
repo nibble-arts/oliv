@@ -157,6 +157,10 @@ class OLIVRoute
 
 					break;
 
+				case 'lang':
+					$lang = $entry;
+					break;
+					
 				case 'val':
 					$val = $entry;
 					break;
@@ -171,7 +175,6 @@ class OLIVRoute
 // get common parameters
     if (isset($options['param'])) $param = $options['param'];
     if (isset($options['class'])) $class = $options['class'];
-    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = status::lang(); // if no language use current
 
@@ -319,12 +322,11 @@ class OLIVRoute
 				if ($langName = $entry['text']->FRIENDLY_NAME->xpath("text[@lang='" . status::lang() . "']"))
 				{
 					status::set('url',(string)$langName[0]);
-echoall((string)$entry['text']->ID->text);
 				}
 
 //echoall((string)$entry['define']->attributes()->id);				
 // return page id
-				return ((string)$entry['define']->attributes()->id);
+				return ((string)$entry['text']->ID->text);
 			}
     }
   }

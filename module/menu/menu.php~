@@ -99,11 +99,13 @@ class menu extends OLIVCore
 				if ($entry->attributes()->url)
 				{
 					$itemUrl = (string)$entry->attributes()->url;
+
 					if ($entry->attributes()->name)
 						$itemName = OLIVText::_((string)$entry->attributes()->name);
 				}
 
 
+//------------------------------------------------------------------------------
 // is intern link
 //TODO get title from page definition
 				else

@@ -275,8 +275,8 @@ class menuEditRender
 </script>
 <?PHP*/
 
-		$contextMenu = new OLIVContext("menuPlugin","{$source}_{$value}","{$source}:{$value}");
-		$contextMenu->draw();
+//		$contextMenu = new OLIVContext("menuPlugin","{$source}_{$value}","{$source}:{$value}");
+//		$contextMenu->draw();
 
 
 // mark extern links

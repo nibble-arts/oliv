@@ -99,8 +99,8 @@ class textEditPlugin
 //------------------------------------------------------------------------------
 // render text
 // create context menu for editing
-			$context = new OLIVContext("textPlugin",$value,$value);
-			$context->draw();
+//			$context = new OLIVContext("textPlugin",$value,$value);
+//			$context->draw();
 
 
 // set link to call editor

@@ -52,13 +52,27 @@ class OLIVText extends OLIVCore
   {
     global $_TEXT;
     $retText = "";
-    $origin = FALSE;
+		$lang = "";
 
 
+// parse option
+		$paramArray = explode("=",$option);
+		if (count($paramArray) > 1)
+		{
+			switch ($paramArray[0])
+			{
+				case 'lang':
+					$lang = $paramArray[1];
+					break;
+			}
+		}
+
+
+// get text
     if (isset($_TEXT))
     {
 // get text string
-      $retText = OLIVText::fetchText($_TEXT,strtoupper($text),"",$option,$option);
+      $retText = OLIVText::fetchText($_TEXT,strtoupper($text),"",$option,$lang);
 
 // return text
 			if ($retText)
@@ -127,8 +141,12 @@ class OLIVText extends OLIVCore
 //
 // if $nameSpace, return nameSpace xml
 
-  static public function fetchText($textXml,$text,$nameSpace="",$option="")
+  static public function fetchText($textXml,$text,$nameSpace="",$option="",$langParam="")
   {
+  	if (!$langParam)
+			$langParam = OLIVLang::family(status::lang());
+
+
 		if ($text)
 		{
 		  if ($nameSpace) // look in nameSpace
@@ -146,12 +164,11 @@ class OLIVText extends OLIVCore
 // text found
 		    if (isset($textXml->$text->text))
 		    {
-	// 
-	// get lang text
-					$result = $textXml->$text->xpath("text[@lang='" . OLIVLang::family(status::lang()) . "']");
-					$lang = OLIVLang::family(status::lang());
-					$languages = $textXml->$text;
 
+	// get lang text
+					$result = $textXml->$text->xpath("text[@lang='" . $langParam . "']");
+					$lang = $langParam;
+					$languages = $textXml->$text;
 
 	// if no lang found, return default lang
 					if (!$result)
@@ -162,9 +179,11 @@ class OLIVText extends OLIVCore
 					}
 
 
-	// return text string
+// return text string
+// parse option string
 					if (count($result))
 					{
+
 						switch (strtolower($option))
 						{
 // return lang code
@@ -206,7 +225,7 @@ class OLIVText extends OLIVCore
 				{
 					foreach($textXml as $entry)
 					{
-						$recText = OLIVText::fetchText($entry,$text,$nameSpace,$option);
+						$recText = OLIVText::fetchText($entry,$text,$nameSpace,$option,$langParam);
 						if ($recText)
 							return ($recText);
 					}

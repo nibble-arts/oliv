@@ -70,8 +70,7 @@ class imgRender
 		$class = "";	
     $retArray = array();
 
-echoall($value);
-echoall(OLIVImage::img($value));
+
 //echoall($options);
     $content = $options['template'];
 
@@ -85,8 +84,15 @@ echoall(OLIVImage::img($value));
 // set link if permission granted
 		if (OLIVRight::x($content) and $url = $content->attributes()->url)
 		{
-			$retArray['link']['url'] = $url;
-			$retArray['link']['lang'] = status::lang();
+			$retArray['link']['url'] = (string)$url;
+
+			if ($urlLang = $content->attributes()->urllang)
+				$retArray['link']['lang'] = (string)$urlLang;
+			else
+				$retArray['link']['lang'] = (string)status::lang();
+
+			if ($urlTitle = $content->attributes()->urltitle)
+				$retArray['link']['title'] = OLIVText::_((string)$urlTitle);
 		}
 
 
@@ -99,9 +105,11 @@ echoall(OLIVImage::img($value));
   			$class = "oliv_not_translated";
     }
 
-    $retArray['startTag'] = "<img src='$imgUrl'>";
-    $retArray['value'] = ""; // textPlugin::getText($value,$header);
-    $retArray['endTag'] = "</img>";
+		$imgUrl = OLIVImage::img($value);
+		
+    $retArray['startTag'] = "";
+    $retArray['value'] = $imgUrl; // textPlugin::getText($value,$header);
+    $retArray['endTag'] = "";
 
     return ($retArray);
   }
