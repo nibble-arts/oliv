@@ -137,18 +137,11 @@ class OLIVRender extends OLIVCore
 // area present in content definition
 		        if (($areaName == $contentName))
 		        {
-
-
-//TODO
-// extract content
-//		if tag_name == template_area_name => insert content in template and render
-//		else
-//			if content part has children => render content recursive in $areaName
-
 							if (count($areaContent->children()))
 			        {
 			        	$tempO .= OLIVRender::_template($content,"");
 		  	      }
+// TODO hier irgendwo sollte der content tag gegen einen sinnvollen ersetzt werden.
 
 
 //------------------------------------------------------------------------------
@@ -188,9 +181,8 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // call plugin
 //echo "<hr>";
-//echoall($areaTag);
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
-//echoall($pluginArray);
+
 
 // if no plugin found
 // output default div clause

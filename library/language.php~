@@ -52,20 +52,25 @@ class OLIVLang
 		$langSelector = new simpleXmlElement("<article><articlelang /></article>");
 
 
-		foreach($langXml as $entry)
+		if ($langXml)
 		{
+			foreach($langXml as $entry)
+			{
 // make current language bigger
-			$size = 15;
+				$size = 15;
 			
-			if ($entry->getName() == status::lang())
-				$size = 25;
+				if ($entry->getName() == status::lang())
+					$size = 25;
 
 
 // create image
-			$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' width='{$size}px' margin_left='0.1em' float='right' lang='" . $entry->getName() . "' />");
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' width='{$size}px' margin='0.1em' lang='" . $entry->getName() . "' />");
 
 // insert image
-			olivxml_insert($langSelector->articlelang,$img,'ALL');
+				olivxml_insert($langSelector->articlelang,$img);
+			}
+echoall($langSelector);
+			return $langSelector;
 		}
 	}
 }

@@ -64,11 +64,12 @@ class OLIVLang
 
 
 // create image
-				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' width='{$size}px' margin_left='0.1em' float='right' lang='" . $entry->getName() . "' />");
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' width='{$size}px' margin='0.1em' lang='" . $entry->getName() . "' />");
 
 // insert image
-				olivxml_insert($langSelector->articlelang,$img,'ALL');
+				olivxml_insert($langSelector->articlelang,$img);
 			}
+
 			return $langSelector;
 		}
 	}

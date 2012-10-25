@@ -54,6 +54,7 @@ class article extends OLIVCore
     $this->header = $header;
     $this->header->path = system::OLIV_MODULE_PATH() . "article/";
 
+		$template = OLIVModule::load_template($header);
 //    $this->scan();
 
 // load index file
@@ -86,10 +87,11 @@ class article extends OLIVCore
 //------------------------------------------------------------------------------
 // create temporary template
 // TODO load template from file
-			$template = new simpleXmlElement("<template name='article'><div id='articlelang' /></template>");
+//			$template = new simpleXmlElement("<template name='article'><div id='articlelang' /></template>");
 
 
-
+//echoall($template);
+//echoall($langSelector->asXML());
 // insert langselector, langtext into content
 //			olivxml_insert($temp,$langSelector,'ALL');
     	$this->o .= OLIVRender::template($template,$langSelector);
