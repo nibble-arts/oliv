@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<template name='common'>
+<!--  <header_background background_image="green_line.png" />-->
+  <div id='header_img' url='index' background-image="mrdb_logo.png" />
+</template>

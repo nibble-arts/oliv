@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <content id='index'>
-  <oliv_login mod='login' />
+	<masterpage>common</masterpage>
   <oliv_content mod='article'>railway</oliv_content>
 </content>

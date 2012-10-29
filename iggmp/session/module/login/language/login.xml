@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<MOD_LOGIN>
+	<LOGIN>
+		<text lang='de'>Benutzername</text>
+		<text lang='en'>Username</text>
+	</LOGIN>
+	<PASSWORD>
+		<text lang='de'>Passwort</text>
+		<text lang='en'>Password</text>
+	</PASSWORD>
+	<LOG_IN>
+		<text lang='de'>Anmelden</text>
+		<text lang='en'>Login</text>
+	</LOG_IN>
+	<LOG_OUT>
+		<text lang='de'>Abmelden</text>
+		<text lang='en'>Logout</text>
+	</LOG_OUT>
+	<LOGIN_INCORRECT>
+		<text lang='de'>Benutzername oder Passwort falsch</text>
+		<text lang='en'>Login or password wrong</text>
+	</LOGIN_INCORRECT>
+</MOD_LOGIN>

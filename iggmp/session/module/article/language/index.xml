@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<ARTICLE_INDEX>
+	<ARTICLE_INDEX_001>
+		<text lang='de'>Neustart</text>
+		<text lang='en'>Relaunch</text>
+	</ARTICLE_INDEX_001>
+	<ARTICLE_INDEX_002>
+		<text lang='de'>Neustart der Gartenbahn Datenbank!</text>
+		<text lang='en'>Relaunch of the Miniature Railway Database!</text>
+	</ARTICLE_INDEX_002>
+	<ARTICLE_INDEX_003>
+		<text lang='de'>Die IG-GmP Seiten sind in die Jahre gekommen. Durch ein technische Gebrechen ist die Seite derzeit nicht funktionsfähig. Die Daten der zahlreichen Anlagen sind jedoch in sicherer Verwahrung.</text>
+		<text lang='en'>The pages of the IG-GmP became a bit long in the tooth. Due to a software problem the site presently is not working.The data of the railways are saved.</text>
+	</ARTICLE_INDEX_003>
+	<ARTICLE_INDEX_004>
+		<text lang='de'>Wir arbeiten an einer vollkommen neuen Seite, mit einer neuen Bedienung und Optik. Da alle Arbeit in unserer Freizeit geleistet wird, kann es noch ein bischen dauern, bis wir wieder online sind. Dafür wird die neue Seite einiges bieten:</text>
+		<text lang='en'>We are working on a completely new site, with a new user experience and design. All our work is done free of charge, so it will last for a little while until we will be online again. In return the new pages will bring some new features:</text>
+	</ARTICLE_INDEX_004>
+	<ARTICLE_INDEX_005>
+		<text lang='de'>Die Seite kann alle Sprachen der Welt verwalten. Übersetzungen können von jedem, der als Redakteur mitarbeiten will, leicht erstellt werden.</text>
+		<text lang='en'>The pages can manage all languages of the world. Translations can be written by everyone who want to work as an editor.</text>
+	</ARTICLE_INDEX_005>
+	<ARTICLE_INDEX_006>
+		<text lang='de'>Die Programmbasis wurde als Open-Source Projekt komplett neu programmiert. Das System heißt 'OLIV' und wurde speziell für die vielsprachigen Aufgaben dieser internationalen Seite konzipiert. ====Diese Vorschau arbeitet schon mit der neuen Software====.</text>
+		<text lang='en'>The software basis is newly programmed as an open-source-project. The system named 'OLIV' was specialy designed for the oportunities of a international internet site. ====This preview already uses the new Software====.</text>
+	</ARTICLE_INDEX_006>
+	<ARTICLE_INDEX_007>
+		<text lang='de'>Als Content-Management-System sind Änderungen am Inhalt nun eine einfache Angelegenheit.</text>
+		<text lang='en'>Being a content-management-system all changes of the content is a simple task.</text>
+	</ARTICLE_INDEX_007>
+	<ARTICLE_INDEX_008>
+		<text lang='de'>Schlußendlich wurde auch der Name der Seite verändert. Die 'Gartenbahn-Datenbank' konzentriert sich von nun an ganz auf die Verwaltung der Anlagen- und Veranstaltungsdaten.</text>
+		<text lang='en'>Finally the title of the site was changed. The 'Miniature-Railway-Database' is now focusing on the management of the railways informations and events.</text>
+	</ARTICLE_INDEX_008>
+</ARTICLE_INDEX>

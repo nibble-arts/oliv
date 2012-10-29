@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<template name='tabs'>
+  <div id='menu_background_tabs' style='background-color:#dcdc78'>
+    <span id='menu_item_tabs' repeat='row' style='float:left;width:150px;margin-right:2px;' />
+  </div>
+</template>

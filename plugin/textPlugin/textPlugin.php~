@@ -99,8 +99,8 @@ class textEditPlugin
 //------------------------------------------------------------------------------
 // render text
 // create context menu for editing
-			$context = new OLIVContext("textPlugin",$value,$value);
-			$context->draw();
+//			$context = new OLIVContext("textPlugin",$value,$value);
+//			$context->draw();
 
 
 // set link to call editor
@@ -164,17 +164,61 @@ class textRender
     {
 
 
-  // mark for no translation
+// mark for no translation
   		if (($lang != status::lang()) and OLIVText::_((string)$value))
   			$class = "oliv_not_translated";
     }
 
+// call markup parser
+    $retArray['value'] = textRender::markup(OLIVText::_((string)$value));
+
+
+// write tags
     $retArray['startTag'] = "<$tag name='$value' class='$class'>";
-    $retArray['value'] = OLIVText::_((string)$value); // textPlugin::getText($value,$header);
     $retArray['endTag'] = "</$tag>";
 
     return ($retArray);
   }
+
+
+
+// parse markup
+	static private function markup($text)
+	{
+//TODO load from configuration file
+		$markup = array("'''" => "b","''" => "i","====" => "h3","===" => "h2","==" => "h1");
+
+		foreach ($markup as $key=>$entry)
+		{
+			$o = "";
+			
+			$pattern = "/(?<prepart>.*)(?<mark>{$key})(?<innerpart>.*){$key}(?<postpart>.*)/";
+			preg_match_all($pattern,$text,$matches,PREG_SET_ORDER);
+
+
+//		preg_match_all("|(?<vor>.*)<(?<tag>[^>]+)>(?<inner>.*)</[^>]+>(?<hinter>.*)|U",
+//    "Vordertext<b>Beispiel: </b>Mitteltext<div align=left>das ist ein Test</div>Hintertext",
+//    $ausgabe, PREG_SET_ORDER);
+//echoall($ausgabe);
+
+			if (count($matches))
+			{
+//TODO loop over all matches
+				$tag = $markup[$matches[0]['mark']];
+
+				if ($matches[0]['mark'] == $key)
+				{
+//echoall($matches);
+
+					$o .= $matches[0]['prepart'];
+					$o .= "<$tag>" . $matches[0]['innerpart'] . "</$tag>";
+
+					$text = $o;
+				}
+			}
+		}
+		return ($text);
+	}
 }
 
 
