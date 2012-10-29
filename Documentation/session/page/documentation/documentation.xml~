@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<content id='download'>
+<content id='documentation'>
   <masterpage>common</masterpage>
-  <oliv_content mod='article'>download</oliv_content>
+  <oliv_header mod='header' />
+  <oliv_content mod='article'>documentation</oliv_content>
   <oliv_left1 mod='menu'>main</oliv_left1>
 </content>

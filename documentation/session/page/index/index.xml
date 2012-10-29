@@ -2,7 +2,6 @@
 
 <content id='index'>
   <masterpage>common</masterpage>
-  <oliv_header mod='header' />
   <oliv_content mod='article'>index</oliv_content>
   <oliv_left1 mod='menu'>main</oliv_left1>
 </content>
