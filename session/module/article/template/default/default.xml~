@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <template>
-  <div id='article'>
-  	<div id='articlelang' />
-  	<div id='articletext' />
-  </div>
+	<div id='articlelang' />
+	<div id='articletext' />
+	<div id='articlelang' />
 </template>

@@ -86,8 +86,7 @@ class OLIVRender extends OLIVCore
 //   style ... style expression
 //   link ... hyperlink on area
 //   title ... hyperlink-title
-//   script ... script in module to be executed
-  static private function _template($template,$content)
+  static private function _template($template,$content = "")
   {
     global $_PLUGIN;
 
@@ -124,8 +123,9 @@ class OLIVRender extends OLIVCore
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// if content present and permissiongs
+// if content present and permissions
 // get parameters and collect content parameters
+
 // start content sequenz
 
 		      if ($content and OLIVRight::r($content))
@@ -135,13 +135,15 @@ class OLIVRender extends OLIVCore
 		        $contentName = $areaContent->getName();
 
 // area present in content definition
+// render matching content part inside of areaTag
 		        if (($areaName == $contentName))
 		        {
+
 							if (count($areaContent->children()))
 			        {
-			        	$tempO .= OLIVRender::_template($content,"");
+// render content as template
+			        	$value .= OLIVRender::_template($content->$areaName);
 		  	      }
-// TODO hier irgendwo sollte der content tag gegen einen sinnvollen ersetzt werden.
 
 
 //------------------------------------------------------------------------------
@@ -177,13 +179,13 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 
 
-
 //------------------------------------------------------------------------------
 // call plugin
 //echo "<hr>";
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
 
 
+//echoall($pluginArray);
 // if no plugin found
 // output default div clause
 		      if (!$pluginArray)
@@ -199,7 +201,6 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag sequenz
  	       $tempO .= $pluginArray['startTag'];
-
 
 
 //------------------------------------------------------------------------------

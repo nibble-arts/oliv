@@ -1,8 +1,8 @@
-#article_lang {
+#articlelang {
 	float:right;
 }
 
-#article_text {
+#articletext {
   width:100%;
 }
 
