@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <content id='common'>
+  <oliv_header mod='header' />
   <oliv_login mod='login' />
 <!--  <oliv_search mod='search' />-->
   <oliv_title class='oliv_title'>title</oliv_title>

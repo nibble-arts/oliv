@@ -22,7 +22,7 @@
 //
 
 //------------------------------------------------------------------------------
-// extending simple_xml_functionality
+// extending simplexml_functionality
 //
 // Version 0.1
 //------------------------------------------------------------------------------
@@ -31,33 +31,70 @@
 
 //------------------------------------------------------------------------------
 // insert complex xml structure to xml object
-function olivxml_insert(&$xml_to,$xml_from)
-{
-// insert complex structure
-	if (count($xml_from->children()))
-	{
-    foreach ($xml_from->children() as $xml_child)
-    {
-      $xml_temp = $xml_to->addChild($xml_child->getName(), (string) $xml_child);
-      foreach ($xml_child->attributes() as $attr_key => $attr_value)
-      {
-          $xml_temp->addAttribute($attr_key, $attr_value);
-      }
+//
+// option = ALL ... insert starting at xml basis
+// option = ALL_UNIQUE ... insert starting at xml basis if node does not exist
+// option = UNIQUE ... insert if node does not exist
 
-// add recursive
-			if (count($xml_child->children()))
-	      olivxml_insert($xml_temp, $xml_child);
-    }
+function olivxml_insert(&$xml_to,$xml_from,$option = "")
+{
+	if ($xml_from)
+	{
+		$option = strtoupper($option);
+		$name = $xml_from->getName();
+
+// parse options
+		switch ($option)
+		{
+// insert starting at xml basis if node does not exists
+			case 'ALL_UNIQUE':
+				if ($xml_to->$name->getName() == $name)
+				break;
+				
+// insert starting at xml basis
+			case 'ALL':
+				$option = ""; // clear option for recursion
+				$xml_to->addChild($name);
+
+				// recursion
+				olivxml_insert($xml_to->$name,$xml_from);
+				break;
+
+// insert if node does not exist
+			case 'UNIQUE':
+				if ($xml_to->$name->getName() == $name)
+				break;
+
+			default:
+//------------------------------------------------------------------------------
+// insert complex structure
+				if (count($xml_from->children()))
+				{
+					foreach ($xml_from->children() as $xml_child)
+					{
+						$xml_temp = $xml_to->addChild($xml_child->getName(), (string) $xml_child);
+						foreach ($xml_child->attributes() as $attr_key => $attr_value)
+						{
+						    $xml_temp->addAttribute($attr_key, $attr_value);
+						}
+
+		// add recursive
+						if (count($xml_child->children()))
+							olivxml_insert($xml_temp, $xml_child);
+					}
+				}
+				else
+		// insert single entry
+				{
+					$xml_temp = $xml_to->addChild($xml_from->getName(), (string) $xml_from);
+					foreach ($xml_from->attributes() as $attr_key => $attr_value)
+					{
+							$xml_temp->addAttribute($attr_key, $attr_value);
+					}
+				}
+				break;
+		}
 	}
-  else
-// insert single entry
-  {
-    $xml_temp = $xml_to->addChild($xml_from->getName(), (string) $xml_from);
-    foreach ($xml_from->attributes() as $attr_key => $attr_value)
-    {
-        $xml_temp->addAttribute($attr_key, $attr_value);
-    }
-  }
 } 
 
 

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<MOD_ADMIN>
+	<MOD_SUMMARY>
+		<text lang='de'>Administrations Modul</text>
+		<text lang='de'>Administration module</text>
+	</MOD_SUMMARY>
+	<MOD_DESCRIPTION>
+		<text lang='de'>Mit dem Modul werden die Systemeinstellungen vorgenommen, sowie neue Sessions angelegt.</text>
+		<text lang='de'>This module is for the basic system configuration and the definition of new sessions.</text>
+	</MOD_DESCRIPTION>
+</MOD_ADMIN>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<MOD_ARTICLE>
+	<MOD_SUMMARY>
+		<text lang='de'>Artikel Modul</text>
+	</MOD_SUMMARY>
+	<MOD_DESCRIPTION>
+		<text lang='de'>Das Artikel Modul verwaltet dynamische Inhalte. Es stellt sowohl die Anzeige-, als auch die Editierfunktion zur Verfügung</text>
+	</MOD_DESCRIPTION>
+</MOD_ARTICLE>

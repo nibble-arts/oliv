@@ -3,7 +3,7 @@
 <article>
   <h2 owner='admin' group='editor' access='774' lang='de_DE' index='1336633758'>ARTICLE_INDEX_001</h2>
   <p owner='tom' group='editor' access='774' lang='de_DE' index='1336633758'>ARTICLE_INDEX_002</p>
-  <p class='daba-field'><daba db='iggmp' table='railway' field='title' /></p>
+  <span class='daba-field'><daba db='iggmp' table='railway' field='title' /></span>
 
 <!--    <p><daba owner='tom' group='admin' access='770'>field:name</daba></p>-->
 </article>
