@@ -97,6 +97,7 @@ class OLIVImage
 
 		if (is_object($image))
 		{
+		  $id = (string)$image->attributes()->id; // tag id
 		  $src = (string)$image->attributes()->src; // image name -> src path via OLIVImage
 		  $lang = (string)$image->attributes()->lang; // image language
 		  $alt = (string)$image->attributes()->alt; // alternative text
@@ -119,7 +120,7 @@ class OLIVImage
 		  {
 		    $style .= "float:$float;";
 		    
-		    // intelligent side margin
+// intelligent side margin
 		    if ($margin_side)
 		    {
 		      switch ($float)
@@ -141,22 +142,21 @@ class OLIVImage
 
 
 		  if ($margin) $style .= "margin:$margin;";
-		  if ($margin_left) $style .= "margin:$margin_left;";
-		  if ($margin_right) $style .= "margin:$margin_right;";
-		  if ($margin_top) $style .= "margin:$margin_top;";
-		  if ($margin_bottom) $style .= "margin:$margin_bottom;";
+		  if ($margin_left) $style .= "margin-left:$margin_left;";
+		  if ($margin_right) $style .= "margin-right:$margin_right;";
+		  if ($margin_top) $style .= "margin-top:$margin_top;";
+		  if ($margin_bottom) $style .= "margin-bottom:$margin_bottom;";
 
-		  // insert style if defined
-		  if ($style) $o .= "<span style='$style'>";
 
-		    $o .= "<img src='$path'";
-		      if ($alt) $o .= " alt='$alt'";
-		      if ($height) $o .= " height='$height'";
-		      if ($width) $o .= " width='$width'";
-		    $o .= ">";
-
-		  // end style
-		  if ($style) $o .= "</span>";
+// insert data in parameter string
+	    $o .= "<img src='$path'";
+	      if ($alt) $o .= " alt='$alt'";
+	      if ($height) $o .= " height='$height'";
+	      if ($width) $o .= " width='$width'";
+				if ($style) $o .= " style='$style'";
+				if ($id) $o .= " id='$id'";
+	    $o .= ">";
+// end style
 
 		  return ($o);
 		}

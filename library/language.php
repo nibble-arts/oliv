@@ -57,16 +57,17 @@ class OLIVLang
 			foreach($langXml as $entry)
 			{
 // make current language bigger
-				$size = 15;
+				$id = "oliv_lang_flag";
 			
 				if ($entry->getName() == status::lang())
-					$size = 25;
+					$id = "oliv_lang_flag_selected";
 
 
-// create image
-				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' width='{$size}px' margin='0.1em' lang='" . $entry->getName() . "' />");
+// create flag image
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' id='{$id}' lang='" . $entry->getName() . "' />");
 
 // insert image
+
 				olivxml_insert($langSelector->articlelang,$img);
 			}
 

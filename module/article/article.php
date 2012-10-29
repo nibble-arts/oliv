@@ -88,23 +88,10 @@ class article extends OLIVCore
 			olivxml_insert($articleXml->articletext,$article);
 			olivxml_insert($articleXml,$langSelector);
 
-//------------------------------------------------------------------------------
-// create temporary template
-// TODO load template from file
-//			$template = new simpleXmlElement("<template name='article'><div id='articlelang' /></template>");
-
-
-//echoall($template);
-//echoall($langSelector->asXML());
-// insert langselector, langtext into content
-//			olivxml_insert($temp,$langSelector,'ALL');
-
-    	$this->o .= OLIVRender::template($template,$articleXml);
-
 
 //------------------------------------------------------------------------------
 // render article
-//    	$this->o .= OLIVRender::template($article);
+    	$this->o .= OLIVRender::template($template,$articleXml);
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
