@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<PAGE>
+	<ID>
+		<text lang='de'>download</text>
+	</ID>
+	<NAME>
+		<text lang='de'>Herunterladen</text>
+		<text lang='en'>Download</text>
+	</NAME>
+	<FRIENDLY_NAME>
+		<text lang='de'>Herunterladen</text>
+		<text lang='en'>Download</text>
+	</FRIENDLY_NAME>
+	<TITLE>
+		<text lang='de'>OLIV Herunterladen</text>
+		<text lang='en'>Download OLIV</text>
+	</TITLE>
+</PAGE>

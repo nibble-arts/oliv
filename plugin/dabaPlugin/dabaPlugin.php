@@ -50,7 +50,9 @@ class dabaEditPlugin
   static public function __callStatic($tag,$options)
   {
 		$tagArray = dabaRender::render($tag,$options);
-		$tagArray['value'] .= "<br>for editing";
+
+		if ($tagArray)
+			$tagArray['value'] .= "<br>for editing";
 
 		return ($tagArray);
   }

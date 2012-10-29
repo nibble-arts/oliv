@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<PAGE>
+	<ID>
+		<text>index</text>
+	</ID>
+	<NAME>
+		<text lang='de'>Dokumentation</text>
+		<text lang='en'>Documentation</text>
+	</NAME>
+	<FRIENDLY_NAME>
+		<text lang='de'>Dokumentation</text>
+		<text lang='en'>Documentation</text>
+	</FRIENDLY_NAME>
+	<TITLE>
+		<text lang='de'>OLIV Dokumentation</text>
+		<text lang='en'>OLIV Documentation</text>
+	</TITLE>
+</PAGE>

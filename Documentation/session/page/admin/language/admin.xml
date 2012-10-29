@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<PAGE>
+	<ID>
+		<text>admin</text>
+	</ID>
+	<NAME>
+		<text lang='de'>Administration</text>
+		<text lang='en'>Administration</text>
+	</NAME>
+	<FRIENDLY_NAME>
+		<text lang='de'>OLIV_Administration</text>
+		<text lang='en'>OLIV_Administration</text>
+	</FRIENDLY_NAME>
+	<TITLE>
+		<text lang='de'>OLIV Administration</text>
+		<text lang='en'>OLIV Administration</text>
+	</TITLE>
+</PAGE>

@@ -54,30 +54,44 @@ class article extends OLIVCore
     $this->header = $header;
     $this->header->path = system::OLIV_MODULE_PATH() . "article/";
 
+		$template = OLIVModule::load_template($header);
 //    $this->scan();
 
-
-    // load index file
+// load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
 
     $articleName = (string)$header;
     $langPath = $this->header->path . "language/";
     $contentPath = $this->header->path . (string)$header->attributes()->content;
 
-    OLIVText::load($langPath,$articleName);
-
 
 // load content
   	$article = OLIVModule::load_xml($header,(string)$header->attributes()->content,"$articleName.xml");
-
 
 // add source attribute recursive
 		if ($article)
 		{
 			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
 
+// load text language file
+		$textXml = OLIVText::_load($langPath,$articleName);
+    OLIVText::insert($textXml);
+
+
+// get article languages
+			$langXml = OLIVText::getLanguages($textXml);
+			$langSelector = OLIVLang::selector($langXml);
+
+
+// create temporary article content for rendering
+			$articleXml = new simpleXmlElement("<article></article>");
+			olivxml_insert($articleXml->articletext,$article);
+			olivxml_insert($articleXml,$langSelector);
+
+
+//------------------------------------------------------------------------------
 // render article
-    	$this->o .= OLIVRender::template($article,"");
+    	$this->o .= OLIVRender::template($template,$articleXml);
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");

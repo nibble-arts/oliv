@@ -54,7 +54,6 @@ class OLIVRoute
 // get link id from language coded /module/value
   private function route()
   {
-
 		$tempArray = $this->parseUrl(status::url()); // extract values from url
 
 		status::set('url',$tempArray['url']);
@@ -77,7 +76,6 @@ class OLIVRoute
 // no site defined -> call OLIV_INDEX
     else
     {
-//echoall("INDEX");
       status::set('url',system::OLIV_INDEX_PAGE());
 			status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url())); // set page title
     }
@@ -146,7 +144,6 @@ class OLIVRoute
     $linkParamString = "";
 
 
-//echoall($options['link']);
 // link parameters
 		foreach ($options['link'] as $key => $entry)
 		{
@@ -160,6 +157,10 @@ class OLIVRoute
 
 					break;
 
+				case 'lang':
+					$lang = $entry;
+					break;
+					
 				case 'val':
 					$val = $entry;
 					break;
@@ -174,7 +175,6 @@ class OLIVRoute
 // get common parameters
     if (isset($options['param'])) $param = $options['param'];
     if (isset($options['class'])) $class = $options['class'];
-    if (isset($options['lang'])) $lang = $param['lang']; // get link language
 
     if (!$lang) $lang = status::lang(); // if no language use current
 
@@ -220,7 +220,7 @@ class OLIVRoute
 		if (array_key_exists($url,$_PAGES)) // url defined
 			if (array_key_exists('text',$_PAGES[$url])) // text passage found
 			{
-				return ($_PAGES[$url]['text']['TITLE']['text']);
+				return (OLIVText::fetchText($_PAGES[$url]['text'],"TITLE"));
 			}
 	}
 	
@@ -290,13 +290,27 @@ class OLIVRoute
   
 
 //------------------------------------------------------------------------------
-// translate url to lang.pageName
+// translate url to lang pageName
   static public function translatePageName($lang,$url)
   {
     global $_PAGES;
 
 		if (array_key_exists($url,$_PAGES))
-	    return ($_PAGES[$url]['text']['FRIENDLY_NAME']['text']);
+			return (OLIVText::fetchText($_PAGES[$url]['text'],"NAME"));
+		else
+// return untranslated
+			return $url;
+  }
+
+
+//------------------------------------------------------------------------------
+// translate url to lang pageName
+  static public function translateFriendlyName($lang,$url)
+  {
+    global $_PAGES;
+
+		if (array_key_exists($url,$_PAGES))
+			return (OLIVText::fetchText($_PAGES[$url]['text'],"FRIENDLY_NAME"));
 		else
 // return untranslated
 			return $url;
@@ -308,19 +322,26 @@ class OLIVRoute
   static public function getUrl($name)
   {
     global $_PAGES;
+    $id = "";
 
-
-    foreach($_PAGES as $key => $entry)
+    foreach($_PAGES as $entry)
     {
-      if(array_key_exists("FRIENDLY_NAME",$entry['text']))
-      {
-        $friendlyName = $entry['text']['FRIENDLY_NAME']['text'];
+			$xml = $entry['text']->FRIENDLY_NAME;
 
-        if ($friendlyName == $name)
-        {
-          return ($entry['text']['ID']['text']);
-        }
-      }
+
+// look for all translations
+			if ($entry['text']->FRIENDLY_NAME->xpath("text[.='" . $name . "']"))
+			{
+// set pagename to name defined by status::lang
+				if ($langName = $entry['text']->FRIENDLY_NAME->xpath("text[@lang='" . status::lang() . "']"))
+				{
+					status::set('url',(string)$langName[0]);
+				}
+
+//echoall((string)$entry['define']->attributes()->id);				
+// return page id
+				return ((string)$entry['text']->ID->text);
+			}
     }
   }
 
@@ -391,10 +412,10 @@ class OLIVRoute
           if (sessionfile_exists($path . $file . "/$file.xml"))
           {
             $xml = sessionxml_load_file($path . $file . "/$file.xml");
-            $pageText = OLIVText::_load("",$path . "$file/language/",$file);
+            $pageText = OLIVText::_load($path . "$file/language/",$file . ".xml");
 
             $_PAGES[$file]['define'] = $xml;
-            $_PAGES[$file]['text'] = $pageText['PAGE'];
+            $_PAGES[$file]['text'] = $pageText;
           }
         }
       }
@@ -402,7 +423,8 @@ class OLIVRoute
     }
     else
       OLIVError::fire("page::scan - directory $path not found");
-  }}
+  }
+}
 
 
 

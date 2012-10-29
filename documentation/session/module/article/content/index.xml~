@@ -1,27 +1,28 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <article>
-  <h2 owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX001</h2>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX002</p>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX003</p>
-  <ul owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>
-    <li owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX004</li>
-    <li owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX005</li>
-    <li owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX006</li>
-    <li owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX007</li>
-    <li owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX008</li>
+	<lang>
+  <h2 owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_001</h2>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_002</p>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_003</p>
+  <ul owner='tom' group='admin' access='444' lang='de' index='1336633758'>
+    <li owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_004</li>
+    <li owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_005</li>
+    <li owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_006</li>
+    <li owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_007</li>
+    <li owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_008</li>
   </ul>
-  <h3 owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX009</h3>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX010</p>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX011</p>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX012</p>
-  <h3 owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX013</h3>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX014</p>
-  <h3 owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX015</h3>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX016</p>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX017</p>
-  <h3 owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX018</h3>
-  <p owner='tom' group='admin' access='444' lang='de_DE' index='1336633758'>ARTICLE_INDEX019</p>
+  <h3 owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_009</h3>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_010</p>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_011</p>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_012</p>
+  <h3 owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_013</h3>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_014</p>
+  <h3 owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_015</h3>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_016</p>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_017</p>
+  <h3 owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_018</h3>
+  <p owner='tom' group='admin' access='444' lang='de' index='1336633758'>ARTICLE_INDEX_019</p>
 
 <!--    <p><daba owner='tom' group='admin' access='770'>field:name</daba></p>-->
 </article>

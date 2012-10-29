@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'>
+
+<MOD_MENU>
+	<MOD_SUMMARY>
+		<text lang='de'>Menü Modul</text>
+		<text lang='en'>Menu module</text>
+	</MOD_SUMMARY>
+	<MOD_DESCRIPTION>
+		<text lang='de'>Modul zur Darstellung komplexer Menüstrukturen für die Navigation innerhalb der Seite, oder auf externe Links. Das Layout wird durch Templates festgelegt.</text>
+		<text lang='de'>Module to display complex menu structures and navigate to intern and extern pages. The layout is defined by templates.</text>
+	</MOD_DESCRIPTION>
+</MOD_MENU>

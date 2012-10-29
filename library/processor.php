@@ -75,8 +75,8 @@ class OLIVProcessor extends OLIVCore
               $path = system::OLIV_MODULE_PATH() . $script->name . "/language/";
               $file = $script->name;
               $default_language = $script->script->default_language;
-              
-              OLIVText::load($path,$file,$default_language);
+
+              OLIVText::load($path,$file);
   
   //------------------------------------------------------------------------------
             }
@@ -89,6 +89,9 @@ class OLIVProcessor extends OLIVCore
       else
         OLIVError::fire("processor::process - page is empty");
     }
+
+global $_TEXT;
+//echoall($_TEXT);
   }
 }
 

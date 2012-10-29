@@ -86,8 +86,7 @@ class OLIVRender extends OLIVCore
 //   style ... style expression
 //   link ... hyperlink on area
 //   title ... hyperlink-title
-//   script ... script in module to be executed
-  static private function _template($template,$content)
+  static private function _template($template,$content = "")
   {
     global $_PLUGIN;
 
@@ -104,7 +103,6 @@ class OLIVRender extends OLIVCore
     {
 // get template name
 //      $templateName = (string)$template->attributes()->name;
-
 
 //------------------------------------------------------------------------------
 // loop over children of template
@@ -123,11 +121,11 @@ class OLIVRender extends OLIVCore
 		      $areaName = (string)$entry->attributes()->id;
 		      $areaTag = $entry->getName();
 
-
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// if content present and permissiongs
+// if content present and permissions
 // get parameters and collect content parameters
+
 // start content sequenz
 
 		      if ($content and OLIVRight::r($content))
@@ -136,21 +134,15 @@ class OLIVRender extends OLIVCore
 		        $value = (string)$areaContent;
 		        $contentName = $areaContent->getName();
 
-
 // area present in content definition
+// render matching content part inside of areaTag
 		        if (($areaName == $contentName))
 		        {
 
-
-//TODO
-// extract content
-//		if tag_name == template_area_name => insert content in template and render
-//		else
-//			if content part has children => render content recursive in $areaName
-
 							if (count($areaContent->children()))
 			        {
-			        	$tempO .= OLIVRender::_template($content,"");
+// render content as template
+			        	$value .= OLIVRender::_template($content->$areaName);
 		  	      }
 
 
@@ -187,14 +179,13 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 
 
-
 //------------------------------------------------------------------------------
 // call plugin
 //echo "<hr>";
-//echoall($areaTag);
 	        $pluginArray = OLIVPlugin::call($areaTag,"render",array("template" => $entry,"content" => $content,"value" => $value));
-//echoall($pluginArray);
 
+
+//echoall($pluginArray);
 // if no plugin found
 // output default div clause
 		      if (!$pluginArray)
@@ -210,7 +201,6 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
 // start tag sequenz
  	       $tempO .= $pluginArray['startTag'];
-
 
 
 //------------------------------------------------------------------------------
@@ -268,6 +258,7 @@ class OLIVRender extends OLIVCore
 		      if (array_key_exists('link',$pluginArray))
 		      {
 		        $linkArray = $pluginArray['link'];
+//echoall($pluginArray['link']);
 		        $paramArray['id'] = $areaName;
 
 

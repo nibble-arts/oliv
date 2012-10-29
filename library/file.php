@@ -84,7 +84,8 @@ function sessionparse_ini_file($file,$param="")
 // load from session directory
 function sessionxml_load_file($file)
 {
-  return (simplexml_load_file(session_path($file)));
+	if (file_exists(session_path($file)))
+	  return (simplexml_load_file(session_path($file)));
 }
 
 

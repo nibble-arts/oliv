@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<MOD_LOGIN>
+	<LOGIN>
+		<text lang='de'>Benutzername</text>
+		<text lang='en'>Username</text>
+	</LOGIN>
+	<PASSWORD>
+		<text lang='de'>Passwort</text>
+		<text lang='en'>Password</text>
+	</PASSWORD>
+	<LOG_IN>
+		<text lang='de'>Anmelden</text>
+		<text lang='en'>Login</text>
+	</LOG_IN>
+	<LOG_OUT>
+		<text lang='de'>Abmelden</text>
+		<text lang='en'>Logout</text>
+	</LOG_OUT>
+</MOD_LOGIN>

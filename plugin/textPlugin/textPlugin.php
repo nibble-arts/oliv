@@ -99,8 +99,8 @@ class textEditPlugin
 //------------------------------------------------------------------------------
 // render text
 // create context menu for editing
-			$context = new OLIVContext("textPlugin",$value,$value);
-			$context->draw();
+//			$context = new OLIVContext("textPlugin",$value,$value);
+//			$context->draw();
 
 
 // set link to call editor
@@ -149,6 +149,11 @@ class textRender
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
 
+
+// get languages of text
+		$langArray = OLIVText::_($value,'languages');
+
+//echoall($value);
 
 // add edit class cursor
 		if ($edit) $class .= " oliv_edit_cursor";

@@ -73,6 +73,7 @@ class imgRender
 
 //echoall($options);
     $content = $options['template'];
+
 // get language code of text snippet and mark field if not translated
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
@@ -83,8 +84,15 @@ class imgRender
 // set link if permission granted
 		if (OLIVRight::x($content) and $url = $content->attributes()->url)
 		{
-			$retArray['link']['url'] = $url;
-			$retArray['link']['lang'] = status::lang();
+			$retArray['link']['url'] = (string)$url;
+
+			if ($urlLang = $content->attributes()->urllang)
+				$retArray['link']['lang'] = (string)$urlLang;
+			else
+				$retArray['link']['lang'] = (string)status::lang();
+
+			if ($urlTitle = $content->attributes()->urltitle)
+				$retArray['link']['title'] = OLIVText::_((string)$urlTitle,"lang=" . $urlLang);
 		}
 
 
@@ -97,9 +105,11 @@ class imgRender
   			$class = "oliv_not_translated";
     }
 
-    $retArray['startTag'] = "<img src='$imgUrl'>";
-    $retArray['value'] = ""; // textPlugin::getText($value,$header);
-    $retArray['endTag'] = "</img>";
+		$imgUrl = OLIVImage::img($value);
+		
+    $retArray['startTag'] = "";
+    $retArray['value'] = $imgUrl; // textPlugin::getText($value,$header);
+    $retArray['endTag'] = "";
 
     return ($retArray);
   }

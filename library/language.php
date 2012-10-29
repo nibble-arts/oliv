@@ -36,10 +36,43 @@ class OLIVLang
 {
 
 
+//------------------------------------------------------------------------------
 // get the language family from a lang string
 	static public function family($lang)
 	{
 		return (substr($lang,0,2));
+	}
+
+
+//------------------------------------------------------------------------------
+// create language selector from lang xml definition
+	static public function selector($langXml)
+	{
+		// create lang selector
+		$langSelector = new simpleXmlElement("<article><articlelang /></article>");
+
+
+		if ($langXml)
+		{
+			foreach($langXml as $entry)
+			{
+// make current language bigger
+				$id = "oliv_lang_flag";
+			
+				if ($entry->getName() == status::lang())
+					$id = "oliv_lang_flag_selected";
+
+
+// create flag image
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' id='{$id}' lang='" . $entry->getName() . "' />");
+
+// insert image
+
+				olivxml_insert($langSelector->articlelang,$img);
+			}
+
+			return $langSelector;
+		}
 	}
 }
 

@@ -50,7 +50,9 @@ class dabaEditPlugin
   static public function __callStatic($tag,$options)
   {
 		$tagArray = dabaRender::render($tag,$options);
-		$tagArray['value'] .= "<br>for editing";
+
+		if ($tagArray)
+			$tagArray['value'] .= "<br>for editing";
 
 		return ($tagArray);
   }
@@ -82,7 +84,6 @@ class dabaRender
 					{
 // set the source
 						$content->attributes()->src = $src . "/" . $dabaArray[(string)$content];
-echoall($content);
 						$value = OLIVImage::img($content);
 					}
 					break;
@@ -111,7 +112,7 @@ class dabaInit
 // load daba definitions
 		$daba = sessionxml_load_file(system::OLIV_PLUGIN_PATH() . "daba/daba.xml");
     $content = $options[0]['template'];
-
+echoall($daba);
 		if ($content)
 		{
 // get parameters from header

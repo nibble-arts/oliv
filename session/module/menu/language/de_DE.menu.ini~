@@ -1,6 +1,0 @@
-[MOD_MENU]
-EXTERN_DOCUMENTATION = 'Dokumentation'
-IGGMP = 'IG - Gartenbahnem mit Personenebeförderung'
-
-MENU_NAME = "Seiten Name"
-MENU_LINK = "Link Ziel"

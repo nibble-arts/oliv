@@ -3,7 +3,6 @@
 <plugin>
   <render>
     <func>
-      <img script='textPlugin' class='textPlugin::img' editClass='textEditPlugin::img' />
       <p script='textPlugin' class='textPlugin::p' editClass='textEditPlugin::p' />
       <h1 script='textPlugin' class='textPlugin::h1' editClass='textEditPlugin::h1' />
       <h2 script='textPlugin' class='textPlugin::h2' editClass='textEditPlugin::h2' />
