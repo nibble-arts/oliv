@@ -22,15 +22,23 @@
 		<text lang='en'>The pages can manage all languages of the world. Translations can be written by everyone who want to work as an editor.</text>
 	</ARTICLE_INDEX_005>
 	<ARTICLE_INDEX_006>
-		<text lang='de'>Die Programmbasis wurde als Open-Source Projekt komplett neu programmiert. Das System heißt 'OLIV' und wurde speziell für die vielsprachigen Aufgaben dieser internationalen Seite konzipiert. ====Diese Vorschau arbeitet schon mit der neuen Software====.</text>
-		<text lang='en'>The software basis is newly programmed as an open-source-project. The system named 'OLIV' was specialy designed for the oportunities of a international internet site. ====This preview already uses the new Software====.</text>
+		<text lang='de'>Die Programmbasis wurde als Open-Source Projekt komplett neu programmiert. Das System heißt 'OLIV' und wurde speziell für die vielsprachigen Aufgaben dieser internationalen Seite konzipiert. {b}Diese Vorschau arbeitet schon mit der neuen Software{/b}.</text>
+		<text lang='en'>The software basis is newly programmed as an open-source-project. The system named 'OLIV' was specialy designed for the oportunities of a international internet site. {b}This preview already uses the new Software{/b}.</text>
 	</ARTICLE_INDEX_006>
 	<ARTICLE_INDEX_007>
 		<text lang='de'>Als Content-Management-System sind Änderungen am Inhalt nun eine einfache Angelegenheit.</text>
 		<text lang='en'>Being a content-management-system all changes of the content is a simple task.</text>
 	</ARTICLE_INDEX_007>
 	<ARTICLE_INDEX_008>
-		<text lang='de'>Schlußendlich wurde auch der Name der Seite verändert. Die 'Gartenbahn-Datenbank' konzentriert sich von nun an ganz auf die Verwaltung der Anlagen- und Veranstaltungsdaten.</text>
-		<text lang='en'>Finally the title of the site was changed. The 'Miniature-Railway-Database' is now focusing on the management of the railways informations and events.</text>
+		<text lang='de'>Wie schon vorher können Veränderungen an den Anlagentexten und Bildern von den Anlagenbetreibern selbst durchgeführt werden.</text>
+		<text lang='en'>As before the textes and photos in the railway description can be edited by the operators of the railways themself.</text>
 	</ARTICLE_INDEX_008>
+	<ARTICLE_INDEX_009>
+		<text lang='de'>Die neue Seite wird eine Programmschnittstelle bieten, mit der z.B. der MRDB-Kalender auf der eigenen Internetseite eingebunden werden kann. Die Daten werden dabei in der "Cload" gespeichert und sind für alle abrufbar.</text>
+		<text lang='en'>The new page will offer an API (a program interface). As an example it will be possible to link the MRDB-Calendar to your own internet site. The data will be stored in the "cload" and can be accessed by everyone.</text>
+	</ARTICLE_INDEX_009>
+	<ARTICLE_INDEX_010>
+		<text lang='de'>Schlußendlich wurde auch der Name der Seite verändert. Die {b}'Gartenbahn-Datenbank'{/b} konzentriert sich von nun an ganz auf die Verwaltung der Anlagen- und Veranstaltungsdaten.</text>
+		<text lang='en'>Finally the title of the site was changed. The {b}'Miniature-Railway-Database'{/b} is now focusing on the management of the railways informations and events.</text>
+	</ARTICLE_INDEX_010>
 </ARTICLE_INDEX>

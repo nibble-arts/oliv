@@ -116,7 +116,6 @@ class OLIVRender extends OLIVCore
 		      $class = "";
 		      $script = "";
 		      $mod = "";
-		      $background_image = "";
 
 		      $areaName = (string)$entry->attributes()->id;
 		      $areaTag = $entry->getName();

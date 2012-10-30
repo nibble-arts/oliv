@@ -31,15 +31,11 @@
     <div id='oliv_page'>
       <div id='oliv_space' />
 
-      <div id='oliv_header'>
-        <div id='oliv_login' />
-        <div id='oliv_title' />
-      </div>
+      <div id='oliv_header' />
   
       <div id='oliv_space' />
 
       <div id='oliv_top'>
-        <div id='oliv_search' />
       </div>
       
       <div id='oliv_space' />
@@ -48,7 +44,6 @@
         <div id='oliv_left'>
           <div id='oliv_left1' />
           <div id='oliv_left2' />
-          <div id='oliv_left3' />
         </div>
 
         <div id='oliv_center'>
@@ -56,7 +51,8 @@
         </div>
 
       </div>
-      <div id='oliv_footer' />
+      <div id='oliv_space' />
+      <div id='oliv_footer' url='http://github.com/nibble-arts/oliv'/>
     </div>
   </div>
 </template>

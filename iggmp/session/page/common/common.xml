@@ -2,10 +2,9 @@
 
 <content id='common'>
   <oliv_header mod='header' />
-<!--    <oliv_login mod='login' />-->
-<!--  <oliv_search mod='search' />-->
-	<oliv_title class='oliv_title'><h1>title</h1></oliv_title>
-<!--  <oliv_top mod='menu'>top</oliv_top>-->
-  <oliv_footer mod='footer'>Powered by OLIV V0.3.1 - 2012 Thomas Winkler</oliv_footer>
+  <oliv_footer >
+   	<img src='oliv_logo' width='70px' />
+		Powered by OLIV V0.3.1 - 2012
+	</oliv_footer>
   <oliv_contact />
 </content>

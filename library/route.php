@@ -65,7 +65,6 @@ class OLIVRoute
     {
       if ($newVal = OLIVRoute::getUrl(status::url()))
 			{
-				status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . status::url()); // set page title
         status::set('url',$newVal);
 			}
       else
@@ -77,8 +76,8 @@ class OLIVRoute
     else
     {
       status::set('url',system::OLIV_INDEX_PAGE());
-			status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url())); // set page title
     }
+		status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url()));
   }
 
 
@@ -261,7 +260,9 @@ class OLIVRoute
 		  else
 		    $lang = status::lang();
 
-		  $val = OLIVRoute::translatePageName($lang,$url);
+// use friendly name for url
+		  $val = OLIVRoute::translateFriendlyName($lang,$url);
+
 		  
 		  if ($url[strtolower($val)]) array_push($routeArray,$val);
 		  return (implode("/",$routeArray));
@@ -310,7 +311,7 @@ class OLIVRoute
     global $_PAGES;
 
 		if (array_key_exists($url,$_PAGES))
-			return (OLIVText::fetchText($_PAGES[$url]['text'],"FRIENDLY_NAME"));
+			return (OLIVText::fetchText($_PAGES[$url]['text'],"FRIENDLY_NAME","","",$lang));
 		else
 // return untranslated
 			return $url;

@@ -143,9 +143,10 @@ class OLIVText extends OLIVCore
 
   static public function fetchText($textXml,$text,$nameSpace="",$option="",$langParam="")
   {
+  echoall($text . " " . $langParam);
   	if (!$langParam)
 			$langParam = OLIVLang::family(status::lang());
-		else echoall($langParam);
+
 
 		if ($text)
 		{

@@ -149,11 +149,16 @@ class textRender
 		$lang = OLIVText::_($value,"lang");
     $ownerLang = $content->attributes()->lang;
 
+    $tagClass = (string)$content->attributes()->class;
+
 
 // get languages of text
 		$langArray = OLIVText::_($value,'languages');
 
-//echoall($value);
+
+// add class definition
+		if ($tagClass) $class .= " " . $tagClass;
+
 
 // add edit class cursor
 		if ($edit) $class .= " oliv_edit_cursor";
@@ -166,7 +171,7 @@ class textRender
 
 // mark for no translation
   		if (($lang != status::lang()) and OLIVText::_((string)$value))
-  			$class = "oliv_not_translated";
+  			$class .= " oliv_not_translated";
     }
 
 // call markup parser
@@ -185,39 +190,12 @@ class textRender
 // parse markup
 	static private function markup($text)
 	{
-//TODO load from configuration file
-		$markup = array("'''" => "b","''" => "i","====" => "h3","===" => "h2","==" => "h1");
+		$search = array("{","}");
+		$replace = array("<",">");
+		
+		$text = str_replace($search,$replace,$text);
 
-		foreach ($markup as $key=>$entry)
-		{
-			$o = "";
-			
-			$pattern = "/(?<prepart>.*)(?<mark>{$key})(?<innerpart>.*){$key}(?<postpart>.*)/";
-			preg_match_all($pattern,$text,$matches,PREG_SET_ORDER);
-
-
-//		preg_match_all("|(?<vor>.*)<(?<tag>[^>]+)>(?<inner>.*)</[^>]+>(?<hinter>.*)|U",
-//    "Vordertext<b>Beispiel: </b>Mitteltext<div align=left>das ist ein Test</div>Hintertext",
-//    $ausgabe, PREG_SET_ORDER);
-//echoall($ausgabe);
-
-			if (count($matches))
-			{
-//TODO loop over all matches
-				$tag = $markup[$matches[0]['mark']];
-
-				if ($matches[0]['mark'] == $key)
-				{
-//echoall($matches);
-
-					$o .= $matches[0]['prepart'];
-					$o .= "<$tag>" . $matches[0]['innerpart'] . "</$tag>";
-
-					$text = $o;
-				}
-			}
-		}
-		return ($text);
+		return $text;
 	}
 }
 

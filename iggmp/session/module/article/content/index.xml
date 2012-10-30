@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <article>
-  <h2 owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_001</h2>
-  <p owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_002</p>
+  <h2 owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_002</h2>
+<!--  <p owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_002</p>-->
   <p owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_003</p>
   <p owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_004</p>
   <ul owner='tom' group='admin' access='774' lang='de' index='1336633758'>
@@ -10,5 +10,7 @@
     <li owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_006</li>
     <li owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_007</li>
     <li owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_008</li>
+    <li owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_009</li>
   </ul>
+  <p owner='tom' group='admin' access='774' lang='de' index='1336633758'>ARTICLE_INDEX_010</p>
 </article>

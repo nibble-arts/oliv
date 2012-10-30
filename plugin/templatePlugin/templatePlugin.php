@@ -54,7 +54,6 @@ class templatePlugin
     $startTag = "<$tag " . templatePlugin::paramToString($startTagArray['param']) . ">";
     $endTag = "</$tag>";
 
-
 //echoall($startTagArray);
 // return plugin array
     $tagArray = (array(

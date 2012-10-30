@@ -86,7 +86,7 @@ class OLIVRender extends OLIVCore
 //   style ... style expression
 //   link ... hyperlink on area
 //   title ... hyperlink-title
-  static private function _template($template,$content)
+  static private function _template($template,$content = "")
   {
     global $_PLUGIN;
 

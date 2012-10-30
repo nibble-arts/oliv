@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <template name='common'>
-<!--  <header_background background_image="green_line.png" />-->
-  <div id='header_img' url='index' background-image="mrdb_logo.png" />
+	<div id='header_background'>
+		<img src="mrdb_logo.png" id='header_img' urltitle='test' width='200px'/>
+		<img src='iggmp_logo.png' id='header_logo' width='80px' url='mailto:office@iggmp.net' urltitle='get_contact' />
+		<div id='header_title'><p class='header_title'>title</p></div>
+	</div>
 </template>
