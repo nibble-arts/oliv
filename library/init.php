@@ -45,6 +45,9 @@ array_pop($pathArray);
 if (!$pathArray[0]) array_shift($pathArray);
 
 system::set('OLIV_BASE', implode("/",$pathArray) . "/");
+// clear / if base is root directory
+if (system::OLIV_BASE() == "/") system::set('OLIV_BASE',"");
+
 system::set('OLIV_HOST', $_SERVER['HTTP_HOST'] . "/");
 
 
@@ -290,6 +293,7 @@ else
   status::set('OLIV_SU',FALSE);
 
 
+//echoall(system::getAll());
 //echoall(status::getAll());
 
 //------------------------------------------------------------------------------
