@@ -98,6 +98,13 @@ if ($coreXml)
   }
   else
     die ("init.php - no include definitions found");
+
+
+//------------------------------------------------------------------------------
+// country definitions
+	if (count($coreXml->country))
+		system::set('country',$coreXml->country);
+
 }
 else
   die ("init.php - configure.xml not found");

@@ -57,7 +57,10 @@ class OLIVLang
 			foreach($langXml as $entry)
 			{
 				$langCode = $entry->getName();
-				
+
+//echoall($langCode);
+//echoall(OLIVLang::countryOfLanguage($langCode));
+
 // make current language bigger
 				$id = "oliv_lang_flag";
 			
@@ -70,7 +73,7 @@ class OLIVLang
 
 
 // create flag image
-				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='flag' id='{$id}' lang='" . $langCode . "' />");
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='langflag' id='{$id}' lang='" . $langCode . "' />");
 
 // insert image
 
@@ -79,6 +82,31 @@ class OLIVLang
 
 			return $langSelector;
 		}
+	}
+
+
+//------------------------------------------------------------------------------
+// get languages of country
+	static public function languageOfCountry($country)
+	{
+	}
+	
+
+
+//------------------------------------------------------------------------------
+// get countries of language
+	static public function countryOfLanguage($lang)
+	{
+		$retArray = array();
+		
+		$countryXml = system::country();
+		
+		foreach ($countryXml->children() as $entry)
+		{
+			if ($entry->$lang)
+				array_push($retArray,$entry->getName());
+		}
+		return $retArray;
 	}
 }
 

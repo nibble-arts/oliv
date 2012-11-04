@@ -232,6 +232,7 @@
 		<MAR>
 			<text lang='de'>März</text>
 			<text lang='en'>March</text>
+			<text lang='cs'>Březen</text>
 		</MAR>
 		<APR>
 			<text lang='de'>April</text>
@@ -274,6 +275,12 @@
 	</MONTH>
 
 	<LANGUAGE>
+		<AR>
+			<text lang='de'>Arabisch</text>
+		</AR>
+		<SQ>
+			<text lang='de'>Albanisch</text>
+		</SQ>
 		<EN>
 			<text lang='de'>Englisch</text>
 			<text lang='en'>English</text>
@@ -281,6 +288,9 @@
 		<NL>
 			<text lang='de'>Niederländisch</text>
 		</NL>
+		<FA>
+			<text lang='de'>Persisch</text>
+		</FA>
 		<FR>
 			<text lang='de'>Französisch</text>
 			<text lang='en'>French</text>
@@ -298,6 +308,9 @@
 			<text lang='en'>Italian</text>
 			<text lang='it'>Italiano</text>
 		</IT>
+		<PS>
+			<text lang='de'>Pashto</text>
+		</PS>
 		<PR>
 			<text lang='de'>Portugisisch</text>
 		</PR>
@@ -325,6 +338,9 @@
 		<SE>
 			<text lang='de'>Schwedisch</text>
 		</SE>
+		<UI>
+			<text lang='de'>Uigurusch</text>
+		</UI>
 		<CS>
 			<text lang='de'>Tschechisch</text>
 			<text lang='en'>Cech</text>
@@ -333,6 +349,24 @@
 	</LANGUAGE>
 
 	<LAND>
+		<AD>
+			<text lang='de'>Andorra</text>
+		</AD>
+		<AE>
+			<text lang='de'>Vereinigte Arabische Emirate</text>
+		</AE>
+		<AF>
+			<text lang='de'>Afganistan</text>
+		</AF>
+		<AG>
+			<text lang='de'>Antigua und Barbados</text>
+		</AG>
+		<AI>
+			<text lang='de'>Anguilla</text>
+		</AI>
+		<AL>
+			<text lang='de'>Albanien</text>
+		</AL>
 	</LAND>
 </SYSTEM>
 

@@ -70,9 +70,248 @@
     <file>clipboard.php</file>
   </includes>
   
+<!-- accepted file types for images -->
   <image>
     <imgtype>png</imgtype>
     <imgtype>gif</imgtype>
     <imgtype>jpg</imgtype>
   </image>
+  
+<!-- reference from countries to languages -->
+  <country>
+  	<AD><ca /><fr /></AD>
+  	<AE><ar /></AE>
+  	<AF><fa /><ps /><ug /><uz /></AF>
+  	<AG><en /></AG>
+  	<AI><en /></AI>
+  	<AL><sq /></AL>
+  	<AM><hy /></AM>
+  	<AN><nl /></AN>
+  	<AO><kg /><kj /><pt /></AO>
+  	<AR><cy /><es /><gn /></AR>
+  	<AS><en /><sm /></AS>
+  	<AT><de /></AT>
+  	<AU><en /></AU>
+  	<AW><nl /></AW>
+  	<AX><sv /></AX>
+  	<AZ><av /><az /><os /></AZ>
+  	<BA><bs /><hr /><sr /></BA>
+  	<BB><en /></BB>
+  	<BD><bn /></BD>
+  	<BE><de /><en /><fr /><nl /><wa /></BE>
+  	<BF><bm /><fr /><ha /></BF>
+  	<BG><bg /><cu /><tr /></BG>
+  	<BH><ar /></BH>
+  	<BI><fr /><rn /></BI>
+  	<BJ><fr /></BJ>
+  	<BM><en /></BM>
+  	<BN><en /><ms /></BN>
+  	<BO><ay /><es /></BO>
+  	<BR><pt /></BR>
+  	<BS><en /></BS>
+  	<BT><dz /><ne /></BT>
+  	<BW><en /><sn /><tn /></BW>
+  	<BY><be /><cu /></BY>
+  	<BZ><en /></BZ>
+  	<CA><ce /><en /><fr /><iu /><oj /></CA>
+  	<CC><ms /></CC>
+  	<CD><fr /><kg /><ln /><lu /></CD>
+  	<CF><fr /><sg /></CF>
+  	<CG><fr /><kg /><ln /></CG>
+  	<CH><de /><fr /><it /><rm /></CH>
+  	<CI><ak /><bm /><fr /></CI>
+  	<CK><en /></CK>
+  	<CL><ay /><es /></CL>
+  	<CM><en /><fr /></CM>
+  	<CN><bo /><za /><zh /></CN>
+  	<CO><es /></CO>
+  	<CR><es /></CR>
+  	<CS><cu /><hu /><sq /><sr /></CS>
+  	<CU><es /></CU>
+  	<CV><pt /></CV>
+  	<CX><ms /></CX>
+  	<CY><el /><tr /></CY>
+  	<CZ><cs /></CZ>
+  	<DE><de /></DE>
+  	<DJ><aa /><fr /><so /></DJ>
+  	<DK><dk /><de /></DK>
+  	<DM><en /></DM>
+  	<DO><es /></DO>
+  	<DZ><ar /></DZ>
+  	<EC><es /></EC>
+  	<EE><et /></EE>
+  	<EG><ar /></EG>
+  	<ER><aa /><en /><ti /></ER>
+  	<ES><an /><ca /><es /><eu /><gl /></ES>
+  	<ET><aa /><am /><en /><om /><so /><ti /></ET>
+  	<FI><fi /><sv /></FI>
+  	<FJ><en /><fj /></FJ>
+  	<FK><en /></FK>
+  	<FM><en /></FM>
+  	<FO><de /><fo /></FO>
+  	<FR><br /><co /><fr /><oc /></FR>
+  	<GA><fr /></GA>
+  	<GB><cy /><en /><ga /><gd /><gv /><kw /></GB>
+  	<GD><en /></GD>
+  	<GE><ab /><ka /><os /></GE>
+  	<GF><fr /></GF>
+  	<GH><ak /><ee /><en /><tw /></GH>
+  	<GI><en /></GI>
+  	<GL><da /><kl /></GL>
+  	<GM><bm /><en /><wo /></GM>
+  	<GN><fr /></GN>
+  	<GP><fr /></GP>
+  	<GQ><es /></GQ>
+  	<GR><es /></GR>
+  	<GT><es /></GT>
+  	<GU><ch /><en /></GU>
+  	<GW><pt /></GW>
+  	<GY><en /></GY>
+  	<HK><en /><zh /></HK>
+  	<HN><es /></HN>
+  	<HR><hr /><it /></HR>
+  	<HT><fr /><ht /></HT>
+  	<HU><de /><hu /><sk /><sr /></HU>
+  	<ID><id /><jv /><su /></ID>
+  	<IE><en /><ga /></IE>
+  	<IL><ar /><en /><he /><yi /></IL>
+  	<IN><ar /><as /><bh /><bn /><en /><gu /><hi /><kn /><ks /><ml /><mr /><ne /><or /><pa /><pi /><sa /><sd /><ta /><te /><ur /></IN>
+  	<IO><en /></IO>
+  	<IQ><ar /><ku /></IQ>
+  	<IR><ae /><fa /><ku /></IR>
+  	<IS><is /></IS>
+  	<IT><co /><de /><fr /><it /><sc /></IT>
+  	<JM><en /></JM>
+  	<JO><ar /></JO>
+  	<JP><ja /></JP>
+  	<KE><en /><ki /><OM /><so /><sw /></KE>
+  	<KG><ky /><ug /></KG>
+  	<KH><km /></KH>
+  	<KI><en /></KI>
+  	<KM><fr /></KM>
+  	<KN><en /></KN>
+  	<KP><ko /></KP>
+  	<KR><ko /></KR>
+  	<KW><ar /></KW>
+  	<KY><en /></KY>
+  	<KZ><av /><kk /><os /><ug /></KZ>
+  	<LA><lo /></LA>
+  	<LB><ar /><fr /></LB>
+  	<LC><en /></LC>
+  	<LI><de /></LI>
+  	<LK><si /></LK>
+  	<LR><en /></LR>
+  	<LS><en /><st /><xh /></LS>
+  	<LT><lt /><yi /></LT>
+  	<LU><de /><fr /><lb /></LU>
+  	<LV><lv /><yi /></LV>
+  	<LY><ar /></LY>
+  	<MA><ar /></MA>
+  	<MC><fr /></MC>
+  	<MD><mo /><ro /><tr /><uk /><yi /></MD>
+  	<MG><fr /><mg /></MG>
+  	<MH><en /><mh /></MH>
+  	<MK><cu /><mk /></MK>
+  	<ML><bm /><fr /></ML>
+  	<MM><my /></MM>
+  	<MN><mn /></MN>
+  	<MO><zh /></MO>
+  	<MP><ch /><en /></MP>
+  	<MQ><fr /></MQ>
+  	<MR><ar /><wo /></MR>
+  	<MS><en /></MS>
+  	<MT><en /><mt /></MT>
+  	<MU><en /></MU>
+  	<MV><dv /></MV>
+  	<MW><en /><ny /></MW>
+  	<MX><es /></MX>
+  	<MY><jv /><ms /></MY>
+  	<MZ><pt /><sn /></MZ>
+  	<NA><en /><hz /><ng /></NA>
+  	<NC><fr /></NC>
+  	<NE><ff /><fr /><ha /><kr /></NE>
+  	<NF><en /></NF>
+  	<NG><en /><ff /><ha /><ig /><kr /><yo /></NG>
+  	<NI><es /></NI>
+  	<NL><fy /><li /><nl /></NL>
+  	<NO><nb /><nn /><no /></NO>
+  	<NP><ne /></NP>
+  	<NR><en /><na /></NR>
+  	<NU><en /></NU>
+  	<NZ><en /><mi /></NZ>
+  	<OM><ar /></OM>
+  	<PA><es /></PA>
+  	<PE><ay /><es /><qu /></PE>
+  	<PF><fr /><ty /></PF>
+  	<PG><en /><ho /></PG>
+  	<PH><en /><tl /></PH>
+  	<PK><en /><sd /><ur /></PK>
+  	<PL><de /><pl /><yi /></PL>
+  	<PM><fr /></PM>
+  	<PN><en /></PN>
+  	<PR><en /><es /></PR>
+  	<PS><ar /></PS>
+  	<PT><pt /></PT>
+  	<PW><en /></PW>
+  	<PY><es /><gn /></PY>
+  	<QA><ar /></QA>
+  	<RE><fr /></RE>
+  	<RO><cu /><hu /><ro /><yi /></RO>
+  	<RU><av /><ba /><ce /><cu /><cv /><kv /><os /><ru /><tt /><yi /></RU>
+  	<RW><en /><fr /><rw /></RW>
+  	<SA><ar /></SA>
+  	<SB><en /></SB>
+  	<SC><en /><fr /></SC>
+  	<SD><ar /><ha /></SD>
+  	<SE><fi /><se /><sv /></SE>
+  	<SG><bn /><en /><ms /><ta /><zh /></SG>
+  	<SH><en /></SH>
+  	<SI><hu /><it /><si /></SI>
+  	<SK><hu /><sk /></SK>
+  	<SL><en /></SL>
+  	<SM><it /></SM>
+  	<SN><ff /><wo /></SN>
+  	<SO><ar /><en /><so /></SO>
+  	<SR><jv /><nl /></SR>
+  	<ST><pt /></ST>
+  	<SV><es /></SV>
+  	<SY><ar /><syr /></SY>
+  	<SZ><en /><ss /></SZ>
+  	<TC><en /></TC>
+  	<TD><ar /><fr /></TD>
+  	<TG><ee /><fr /><ha /></TG>
+  	<TH><si /><th /></TH>
+  	<TJ><os /><tg /><ug /></TJ>
+  	<TK><en /></TK>
+  	<TL><pt /></TL>
+  	<TM><os /><tk /></TM>
+  	<TN><ar /></TN>
+  	<TO><en /><to /></TO>
+  	<TR><ab /><av /><ku /><tr /><ug /></TR>
+  	<TT><en /></TT>
+  	<TV><gil /><tvl /></TV>
+  	<TW><zh /></TW>
+  	<TZ><sw /></TZ>
+  	<UA><ab /><cu /><hu /><os /><pl /><ro /><ru /><uk /><yi /></UA>
+  	<UG><eg /><lg /></UG>
+  	<UM><en /></UM>
+  	<US><en /><haw /><ik /><nv /><oj /><yi /></US>
+  	<UY><es /></UY>
+  	<UZ><os /><ug /><uz /></UZ>
+  	<VA><fr /><it /><la /></VA>
+  	<VC><en /></VC>
+  	<VE><es /></VE>
+  	<VG><en /></VG>
+  	<VI><en /></VI>
+  	<VN><en /></VN>
+  	<VU><bi /><en /><fr /></VU>
+  	<WF><fr /></WF>
+  	<WS><en /><sm /></WS>
+  	<YE><ar /></YE>
+  	<YT><fr /></YT>
+  	<YU><sr /></YU>
+  	<ZA><af /><en /><nr /><ss /><tn /><ts /><ve /><xh /><yi /><zu /></ZA>
+  	<ZM><en /></ZM>
+  	<ZW><en /><nd /><sn /><ve /><zu /></ZW>
+  </country>
 </core>
