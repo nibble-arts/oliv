@@ -77,7 +77,10 @@
 		<CHANGE_LANGUAGE>
 			<text lang='de'>Sprache umschalten</text>
 			<text lang='en'>Change Language</text>
-			<text lang='cs'>Prepojit jasik</text>
+			<text lang='cs'>Přepnout jazyk</text>
+			<text lang='fr'>Changer la langue</text>
+			<text lang='it'>Cambia lingua</text>
+			<text lang='es'>Cambiar el idioma</text>
 		</CHANGE_LANGUAGE>
 
 		<CUT>

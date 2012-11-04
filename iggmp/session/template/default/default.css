@@ -60,17 +60,17 @@ p,li {
 
 h1 {
   font-size:130%;
-  line-height:0em;
+  line-height:130%;
 }
 
 h2 {
   font-size:120%;
-  line-height:0em;
+  line-height:120%;
 }
 
 h3 {
   font-size:110%;
-  line-height:0em;
+  line-height:110%;
 }
 
 input {
