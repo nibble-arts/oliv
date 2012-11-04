@@ -231,28 +231,17 @@ function img_lang_exists($path,$image,$lang)
   // check for language code
   if (!$lang) $lang = status::lang();
 
+//look directory with image name exist -> language versions
   // language code subdirectory found
-  if (sessionis_dir($path . $lang))
-  {
-    $langPath = $path . $lang . "/";
+	if (sessionis_dir($path . $image))
+	{
+		$langPath = $path . $image . "/";
     $langImage = $lang . "." . $image;
 
-
 		// language version found
 		if (sessionfile_exists($langPath . $langImage))
 		  return($langPath . $langImage);
-  }
-
-	// look for default language subdirectory
-  elseif (sessionis_dir($path . system::OLIV_DEFAULT_LANG() . "/"))
-  {
-    $langPath = $path . system::OLIV_DEFAULT_LANG() . "/";
-    $langImage = "default." . $image;
-
-		// language version found
-		if (sessionfile_exists($langPath . $langImage))
-		  return($langPath . $langImage);
-  }
+	}
 
 	// no language subdirektory
 	// use normal image

@@ -51,27 +51,31 @@ class OLIVLang
 		// create lang selector
 		$langSelector = new simpleXmlElement("<article><articlelang /></article>");
 
-		$selectorText = "Verfügbare Sprachen";
-		
-		olivxml_insert($langSelector->articlelang,new simpleXmlElement("<p><span>$selectorText</span></p>"));
 
 		if ($langXml)
 		{
 			foreach($langXml as $entry)
 			{
+				$langCode = $entry->getName();
+				
 // make current language bigger
 				$id = "oliv_lang_flag";
 			
-				if ($entry->getName() == status::lang())
+				if ($langCode == status::lang())
 					$id = "oliv_lang_flag_selected";
+
+//TODO
+//get full language name
+				$title = OLIVText::_("change_language","lang=$langCode");
+				$title .= " - " . OLIVText::_($langCode,"lang=$langCode");
 
 
 // create flag image
-				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $entry->getName() . "' urltitle='change_language' src='flag' id='{$id}' lang='" . $entry->getName() . "' />");
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='flag' id='{$id}' lang='" . $langCode . "' />");
 
 // insert image
 
-				olivxml_insert($langSelector->articlelang->p,$img);
+				olivxml_insert($langSelector->articlelang,$img);
 			}
 
 			return $langSelector;

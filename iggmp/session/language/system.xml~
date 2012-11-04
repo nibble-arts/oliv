@@ -51,277 +51,285 @@
 			<text lang='en'>Contact</text>
 		</CONTACT>
 		<GET_CONTACT>
-			<text land='de'>Nehmen Sie mit uns Kontakt auf</text>
-			<text land='en'>Get in contact with us</text>
+			<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
+			<text lang='en'>Get in contact with us</text>
 		</GET_CONTACT>
 		<NEW>
-			<text land='de'>Neu auf der Seite</text>
-			<text land='en'>New on the site</text>
+			<text lang='de'>Neu auf der Seite</text>
+			<text lang='en'>New on the site</text>
 		</NEW>
 		<NEWS>
-			<text land='de'>Neuigkeiten</text>
-			<text land='en'>News</text>
+			<text lang='de'>Neuigkeiten</text>
+			<text lang='en'>News</text>
 		</NEWS>
 		<SEARCH>
-			<text land='de'>suchen</text>
-			<text land='en'>search</text>
+			<text lang='de'>suchen</text>
+			<text lang='en'>search</text>
 		</SEARCH>
 		<MAP>
-			<text land='de'>Karte</text>
-			<text land='en'>Map</text>
+			<text lang='de'>Karte</text>
+			<text lang='en'>Map</text>
 		</MAP>
 		<WORLD_MAP>
-			<text land='de'>Weltkarte</text>
-			<text land='en'>World Map</text>
+			<text lang='de'>Weltkarte</text>
+			<text lang='en'>World Map</text>
 		</WORLD_MAP>
+		<CHANGE_LANGUAGE>
+			<text lang='de'>Sprache umschalten</text>
+			<text lang='en'>Change Language</text>
+			<text lang='cs'>Přepnout jazyk</text>
+			<text lang='fr'>Changer la langue</text>
+			<text lang='it'>Cambia lingua</text>
+			<text lang='es'>Cambiar el idioma</text>
+		</CHANGE_LANGUAGE>
 
 		<CUT>
-			<text land='de'>Ausschneiden</text>
-			<text land='en'>Cut</text>
+			<text lang='de'>Ausschneiden</text>
+			<text lang='en'>Cut</text>
 		</CUT>
 		<COPY>
-			<text land='de'>Kopieren</text>
-			<text land='en'>Copy</text>
+			<text lang='de'>Kopieren</text>
+			<text lang='en'>Copy</text>
 		</COPY>
 		<PASTE>
-			<text land='de'>Einfügen</text>
-			<text land='en'>Paste</text>
+			<text lang='de'>Einfügen</text>
+			<text lang='en'>Paste</text>
 		</PASTE>
 		<EDIT>
-			<text land='de'>Bearbeiten</text>
-			<text land='en'>Edit</text>
+			<text lang='de'>Bearbeiten</text>
+			<text lang='en'>Edit</text>
 		</EDIT>
 		<EDIT_TEXT>
-			<text land='de'>Text bearbeiten</text>
-			<text land='en'>Edit text</text>
+			<text lang='de'>Text bearbeiten</text>
+			<text lang='en'>Edit text</text>
 		</EDIT_TEXT>
 		<EDIT_IMG>
-			<text land='de'>Bild bearbeiten</text>
-			<text land='en'>Edit image</text>
+			<text lang='de'>Bild bearbeiten</text>
+			<text lang='en'>Edit image</text>
 		</EDIT_IMG>
 		<SAVE>
-			<text land='de'>Sichern</text>
-			<text land='en'>Save</text>
+			<text lang='de'>Sichern</text>
+			<text lang='en'>Save</text>
 		</SAVE>
 		<CANCEL>
-			<text land='de'>Abbrechen</text>
-			<text land='en'>Cancel</text>
+			<text lang='de'>Abbrechen</text>
+			<text lang='en'>Cancel</text>
 		</CANCEL>
 		<ADD>
-			<text land='de'>Neu</text>
-			<text land='en'>New</text>
+			<text lang='de'>Neu</text>
+			<text lang='en'>New</text>
 		</ADD>
 		<DELETE>
-			<text land='de'>Löschen</text>
-			<text land='en'>Delete</text>
+			<text lang='de'>Löschen</text>
+			<text lang='en'>Delete</text>
 		</DELETE>
 		<REMOVE>
-			<text land='de'>Entfernen</text>
-			<text land='en'>Remove</text>
+			<text lang='de'>Entfernen</text>
+			<text lang='en'>Remove</text>
 		</REMOVE>
 		<MOVE>
-			<text land='de'>Bewegen</text>
-			<text land='en'>Move</text>
+			<text lang='de'>Bewegen</text>
+			<text lang='en'>Move</text>
 		</MOVE>
 	</PAGE>
 
 	<LOCATION>
 		<ADDRESS>
-			<text land='de'>Adresse</text>
-			<text land='en'>Address</text>
+			<text lang='de'>Adresse</text>
+			<text lang='en'>Address</text>
 		</ADDRESS>
 		<CITY>
-			<text land='de'>Stadt</text>
-			<text land='en'>City</text>
+			<text lang='de'>Stadt</text>
+			<text lang='en'>City</text>
 		</CITY>
 		<ZIP>
-			<text land='de'>Postleitzahl</text>
-			<text land='en'>ZIP</text>
+			<text lang='de'>Postleitzahl</text>
+			<text lang='en'>ZIP</text>
 		</ZIP>
 		<LAND>
-			<text land='de'>Land</text>
-			<text land='en'>Land</text>
+			<text lang='de'>Land</text>
+			<text lang='en'>Land</text>
 		</LAND>
 	</LOCATION>
 
 	<TIME>
 		<FROM>
-			<text land='de'>von</text>
-			<text land='en'>from</text>
+			<text lang='de'>von</text>
+			<text lang='en'>from</text>
 		</FROM>
 		<TO>
-			<text land='de'>bis</text>
-			<text land='en'>to</text>
+			<text lang='de'>bis</text>
+			<text lang='en'>to</text>
 		</TO>
 		<CLOCK>
-			<text land='de'>Uhr</text>
-			<text land='en'>o'clock</text>
+			<text lang='de'>Uhr</text>
+			<text lang='en'>o'clock</text>
 		</CLOCK>
 
 		<YEAR>
-			<text land='de'>Jahr</text>
-			<text land='en'>Year</text>
+			<text lang='de'>Jahr</text>
+			<text lang='en'>Year</text>
 		</YEAR>
 		<MONTH>
-			<text land='de'>Monat</text>
-			<text land='en'>Month</text>
+			<text lang='de'>Monat</text>
+			<text lang='en'>Month</text>
 		</MONTH>
 		<DAY>
-			<text land='de'>Tag</text>
-			<text land='en'>Day</text>
+			<text lang='de'>Tag</text>
+			<text lang='en'>Day</text>
 		</DAY>
 	</TIME>
 
 	<DAY>
 		<MON>
-			<text land='de'>Montag</text>
-			<text land='en'>Monday</text>
-			<text land='cs'>Pondely</text>
+			<text lang='de'>Montag</text>
+			<text lang='en'>Monday</text>
+			<text lang='cs'>Pondely</text>
 		</MON>
 		<TUE>
-			<text land='de'>Dienstag</text>
-			<text land='en'>Tuesday</text>
-			<text land='cs'>Útery</text>
+			<text lang='de'>Dienstag</text>
+			<text lang='en'>Tuesday</text>
+			<text lang='cs'>Útery</text>
 		</TUE>
 		<WED>
-			<text land='de'>Mittwoch</text>
-			<text land='en'>Wednesday</text>
-			<text land='cs'>Streda</text>
+			<text lang='de'>Mittwoch</text>
+			<text lang='en'>Wednesday</text>
+			<text lang='cs'>Streda</text>
 		</WED>
 		<THU>
-			<text land='de'>Donnerstag</text>
-			<text land='en'>Thursday</text>
-			<text land='cs'>Ctvrtek</text>
+			<text lang='de'>Donnerstag</text>
+			<text lang='en'>Thursday</text>
+			<text lang='cs'>Ctvrtek</text>
 		</THU>
 		<FRI>
-			<text land='de'>Freitag</text>
-			<text land='en'>Friday</text>
-			<text land='cs'>Pátek</text>
+			<text lang='de'>Freitag</text>
+			<text lang='en'>Friday</text>
+			<text lang='cs'>Pátek</text>
 		</FRI>
 		<SAT>
-			<text land='de'>Samstag</text>
-			<text land='en'>Saturday</text>
-			<text land='cs'>Sobota</text>
+			<text lang='de'>Samstag</text>
+			<text lang='en'>Saturday</text>
+			<text lang='cs'>Sobota</text>
 		</SAT>
 		<SUN>
-			<text land='de'>Sonntag</text>
-			<text land='en'>Sunday</text>
-			<text land='cs'>Nedeli</text>
+			<text lang='de'>Sonntag</text>
+			<text lang='en'>Sunday</text>
+			<text lang='cs'>Nedeli</text>
 		</SUN>
 	</DAY>
 
 	<MONTH>
 		<JAN>
-			<text land='de'>Jänner</text>
-			<text land='en'>January</text>
+			<text lang='de'>Jänner</text>
+			<text lang='en'>January</text>
+			<text lang='cs'>Leden</text>
 		</JAN>
 		<FEB>
-			<text land='de'>Februar</text>
-			<text land='en'>February</text>
+			<text lang='de'>Februar</text>
+			<text lang='en'>February</text>
+			<text lang='cs'>Unor</text>
 		</FEB>
 		<MAR>
-			<text land='de'>März</text>
-			<text land='en'>March</text>
+			<text lang='de'>März</text>
+			<text lang='en'>March</text>
 		</MAR>
+		<APR>
+			<text lang='de'>April</text>
+			<text lang='en'>April</text>
+			<text lang='cs'>Duben</text>
+		</APR>
 		<MAY>
-			<text land='de'>Mai</text>
-			<text land='en'>May</text>
+			<text lang='de'>Mai</text>
+			<text lang='en'>May</text>
+			<text lang='cs'>Kveten</text>
 		</MAY>
 		<JUN>
-			<text land='de'>Juni</text>
-			<text land='en'>June</text>
+			<text lang='de'>Juni</text>
+			<text lang='en'>June</text>
 		</JUN>
 		<JUL>
-			<text land='de'>Juli</text>
-			<text land='en'>July</text>
+			<text lang='de'>Juli</text>
+			<text lang='en'>July</text>
 		</JUL>
 		<AUG>
-			<text land='de'>August</text>
-			<text land='en'>August</text>
+			<text lang='de'>August</text>
+			<text lang='en'>August</text>
 		</AUG>
 		<SEP>
-			<text land='de'>September</text>
-			<text land='en'>September</text>
+			<text lang='de'>September</text>
+			<text lang='en'>September</text>
 		</SEP>
 		<OCT>
-			<text land='de'>Oktober</text>
-			<text land='en'>October</text>
+			<text lang='de'>Oktober</text>
+			<text lang='en'>October</text>
 		</OCT>
 		<NOV>
-			<text land='de'>November</text>
-			<text land='en'>November</text>
+			<text lang='de'>November</text>
+			<text lang='en'>November</text>
 		</NOV>
 		<DEC>
-			<text land='de'>Dezember</text>
-			<text land='en'>December</text>
+			<text lang='de'>Dezember</text>
+			<text lang='en'>December</text>
 		</DEC>
 	</MONTH>
 
 	<LANGUAGE>
-		<en>
-			<text land='de'>Englisch</text>
-			<text land='en'>English</text>
-		</en>
-		<nl>
-			<text land='de'>Niederländisch</text>
-			<text land='en'>Dutch</text>
-		</nl>
-		<fr>
-			<text land='de'>Französisch</text>
-			<text land='en'>French</text>
-		</fr>
-		<de>
-			<text land='de'>Deutsch</text>
-			<text land='en'>German</text>
-		</de>
-		<el>
-			<text land='de'>Griechisch</text>
-			<text land='en'>Greek</text>
-		</el>
-		<it>
-			<text land='de'>Italienisch</text>
-			<text land='en'>Italian</text>
-		</it>
-		<pt>
-			<text land='de'>Portugisisch</text>
-			<text land='en'>Portuguese</text>
-		</pt>
-		<es>
-			<text land='de'>Spanisch</text>
-			<text land='en'>Spanish</text>
-		</es>
-		<zh>
-			<text land='de'>Vereinfachtes Chinesisch</text>
-			<text land='en'>simplified Chinese</text>
-		</zh>
-		<zt>
-			<text land='de'>Traditionelles Chinesisch</text>
-			<text land='en'>traditional Chinese</text>
-		</zt>
-		<ko>
-			<text land='de'>Koreanisch</text>
-			<text land='en'>Korean</text>
-		</ko>
-		<ja>
-			<text land='de'>Japanisch</text>
-			<text land='en'>Japanese</text>
-		</ja>
-		<ru>
-			<text land='de'>Russisch</text>
-			<text land='en'>Russian</text>
-		</ru>
-		<pl>
-			<text land='de'>Polnisch</text>
-			<text land='en'>Polish</text>
-		</pl>
-		<se>
-			<text land='de'>Schwedisch</text>
-			<text land='en'>Swedish</text>
-		</se>
-		<cs>
-			<text land='de'>Tschechisch</text>
-			<text land='en'>Cech</text>
-		</cs>
+		<EN>
+			<text lang='de'>Englisch</text>
+			<text lang='en'>English</text>
+		</EN>
+		<NL>
+			<text lang='de'>Niederländisch</text>
+		</NL>
+		<FR>
+			<text lang='de'>Französisch</text>
+			<text lang='en'>French</text>
+			<text lang='fr'>Francais</text>
+		</FR>
+		<DE>
+			<text lang='de'>Deutsch</text>
+			<text lang='en'>German</text>
+		</DE>
+		<EL>
+			<text lang='de'>Griechisch</text>
+		</EL>
+		<IT>
+			<text lang='de'>Italienisch</text>
+			<text lang='en'>Italian</text>
+			<text lang='it'>Italiano</text>
+		</IT>
+		<PR>
+			<text lang='de'>Portugisisch</text>
+		</PR>
+		<ES>
+			<text lang='de'>Spanisch</text>
+		</ES>
+		<ZH>
+			<text lang='de'>Vereinfachtes Chinesisch</text>
+		</ZH>
+		<ZT>
+			<text lang='de'>Traditionelles Chinesisch</text>
+		</ZT>
+		<KO>
+			<text lang='de'>Koreanisch</text>
+		</KO>
+		<JA>
+			<text lang='de'>Japanisch</text>
+		</JA>
+		<RU>
+			<text lang='de'>Russisch</text>
+		</RU>
+		<PL>
+			<text lang='de'>Polnisch</text>
+		</PL>
+		<SE>
+			<text lang='de'>Schwedisch</text>
+		</SE>
+		<CS>
+			<text lang='de'>Tschechisch</text>
+			<text lang='en'>Cech</text>
+			<text lang='cs'>Cesko</text>
+		</CS>
 	</LANGUAGE>
 
 	<LAND>

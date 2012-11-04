@@ -48,6 +48,10 @@ class OLIVText extends OLIVCore
 
 //-------------------------------------------------------------------------------------------
 // return text string
+// option ... an sting of optional parameters
+// format: paramName=paramValue
+//
+//				lang=langCode  : chose translation of this language
   static public function _($text,$option = "")
   {
     global $_TEXT;
