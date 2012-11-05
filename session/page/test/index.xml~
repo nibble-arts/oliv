@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf8'?>
-
-<content id='index'>
-  <oliv_header mod='header' />
-  <oliv_content mod='article'>index</oliv_content>
-  <oliv_left1 mod='menu'>main</oliv_left1>
-</content>
