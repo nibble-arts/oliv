@@ -225,26 +225,30 @@ function img_exists($path,$image,$lang)
 
 //------------------------------------------------------------------------------
 // checks if a language version exists
+// language version: directory is image name
+//									 imagename = langCode.extension
 // return path imageName
 function img_lang_exists($path,$image,$lang)
 {
-  // check for language code
+// check for language code
   if (!$lang) $lang = status::lang();
 
 //look directory with image name exist -> language versions
-  // language code subdirectory found
+// language code subdirectory found
 	if (sessionis_dir($path . $image))
 	{
+// create path and filename for language version
 		$langPath = $path . $image . "/";
-    $langImage = $lang . "." . $image;
+		$ext = pathinfo($image, PATHINFO_EXTENSION);
+    $langImage = strtolower($lang) . "." . $ext;
 
 		// language version found
 		if (sessionfile_exists($langPath . $langImage))
 		  return($langPath . $langImage);
 	}
 
-	// no language subdirektory
-	// use normal image
+// no language subdirektory
+// use normal image
   return($path . $image);
 }
 ?>

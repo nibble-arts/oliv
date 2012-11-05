@@ -2,13 +2,13 @@
 
 <content id='index'>
   <masterpage>common</masterpage>
-  <oliv_left>
-	  <oliv_left1>
-			<img src='loco1' width='200px' />
-		</oliv_left1>
-		<oliv_left2>
-			<img src='loco2' width='200px' />
-		</oliv_left2>
-  </oliv_left>
+  <oliv_left1>
+		<img src='loco1' width='200px' />
+		<p>image1_text</p>
+	</oliv_left1>
+	<oliv_left2>
+		<img src='loco2' width='200px' />
+		<p>image2_text</p>
+	</oliv_left2>
   <oliv_content mod='article'>index</oliv_content>
 </content>

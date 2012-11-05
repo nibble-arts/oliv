@@ -53,6 +53,11 @@
 		<GET_CONTACT>
 			<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
 			<text lang='en'>Get in contact with us</text>
+			<text lang='cs'>Dostat do kontaktu s námi</text>
+			<text lang='fr'>Prenez contact avec nous</text>
+			<text lang='it'>Mettetevi in contatto con noi</text>
+			<text lang='es'>Póngase en contacto con nosotros</text>
+			<text lang='jp'>私たちと連絡を取って</text>
 		</GET_CONTACT>
 		<NEW>
 			<text lang='de'>Neu auf der Seite</text>
@@ -81,6 +86,7 @@
 			<text lang='fr'>Changer la langue</text>
 			<text lang='it'>Cambia lingua</text>
 			<text lang='es'>Cambiar el idioma</text>
+			<text lang='jp'>言語を変更</text>
 		</CHANGE_LANGUAGE>
 
 		<CUT>
@@ -281,6 +287,9 @@
 		<SQ>
 			<text lang='de'>Albanisch</text>
 		</SQ>
+		<HY>
+			<text lang='de'>Armenisch</text>
+		</HY>
 		<EN>
 			<text lang='de'>Englisch</text>
 			<text lang='en'>English</text>
@@ -294,7 +303,7 @@
 		<FR>
 			<text lang='de'>Französisch</text>
 			<text lang='en'>French</text>
-			<text lang='fr'>Francais</text>
+			<text lang='fr'>Français</text>
 		</FR>
 		<DE>
 			<text lang='de'>Deutsch</text>
@@ -316,6 +325,8 @@
 		</PR>
 		<ES>
 			<text lang='de'>Spanisch</text>
+			<text lang='en'>Spanish</text>
+			<text lang='es'>Español</text>
 		</ES>
 		<ZH>
 			<text lang='de'>Vereinfachtes Chinesisch</text>
@@ -344,7 +355,7 @@
 		<CS>
 			<text lang='de'>Tschechisch</text>
 			<text lang='en'>Cech</text>
-			<text lang='cs'>Cesko</text>
+			<text lang='cs'>český</text>
 		</CS>
 	</LANGUAGE>
 
@@ -369,4 +380,5 @@
 		</AL>
 	</LAND>
 </SYSTEM>
+
 

@@ -1,18 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <ARTICLE_INDEX>
-<!--	<ARTICLE_INDEX_001>
-		<text lang='de'>Neustart</text>
-		<text lang='en'>Relaunch</text>
-		<text lang='cs'>Oživení</text>
-		<text lang='fr'>Relancer</text>
-	</ARTICLE_INDEX_001>-->
 	<ARTICLE_INDEX_002>
 		<text lang='de'>Neustart der Gartenbahn Datenbank!</text>
 		<text lang='en'>Relaunch of the Miniature Railway Database!</text>
 		<text lang='cs'>Oživení miniaturní železnice databáze!</text>
 		<text lang='fr'>Relance de la base de données dechemin de fer miniature!</text>
 		<text lang='it'>Rilancio del database Miniature Railway!</text>
+		<text lang='es'>Relanzamiento de la Base de Datos de trenes en miniatura!</text>
+		<text lang='jp'>ミニチュア鉄道データベースのリニューアル!</text>
 	</ARTICLE_INDEX_002>
 	<ARTICLE_INDEX_003>
 		<text lang='de'>Die IG-GmP Seiten sind in die Jahre gekommen. Durch ein technische Gebrechen ist die Seite derzeit nicht funktionsfähig. Die Daten der zahlreichen Anlagen sind jedoch in sicherer Verwahrung.</text>
@@ -20,6 +16,8 @@
 		<text lang='cs'>Na stránkách společnosti IG-GMP se stal trochu dlouho v zubu. Vzhledem k softwarového problému stránky v současné době není working.The údaje železnic jsou uloženy.</text>
 		<text lang='fr'>Les pages de l'IG-GMP est devenu un peu long dans la dent. En raison d'un problème de logiciel sur le site n'est actuellement pas de données working.The des chemins de fer sont enregistrés.</text>
 		<text lang='it'>Le pagine del IG-GMP è diventato un po 'lungo nel dente. A causa di un problema di software del sito attualmente non sono dati working.The delle ferrovie sono salvati.</text>
+		<text lang='es'>Las páginas de la IG-GMP se hizo un poco largo en el diente. Debido a un problema de software del sitio actualmente no hay datos working.The de los ferrocarriles se guardan.</text>
+		<text lang='jp'>IG-GMPのページでは、歯に少し長くなりました。ソフトウェアの問題に起因するサイトでは、現在の鉄道のworking.Theデータが保存されていません。.</text>
 	</ARTICLE_INDEX_003>
 	<ARTICLE_INDEX_004>
 		<text lang='de'>Wir arbeiten an einer vollkommen neuen Seite, mit einer neuen Bedienung und Optik. Da alle Arbeit in unserer Freizeit geleistet wird, kann es noch ein bischen dauern, bis wir wieder online sind. Dafür wird die neue Seite einiges bieten:</text>
@@ -27,6 +25,8 @@
 		<text lang='cs'>Pracujeme na zcela novém místě, s novou zkušeností uživatele a designu. Veškerá naše práce se provádí zdarma, tak to bude trvat chvíli, dokud budeme zase online. Na oplátku nové stránky přinese některé nové funkce:</text>
 		<text lang='fr'>Nous travaillons actuellement sur un tout nouveau site, avec une nouvelle expérience utilisateur et de design. Tout notre travail est fait gratuitement, donc ça va durer pendant un certain temps jusqu'à ce que nous serons de nouveau en ligne. En retour, les nouvelles pages apportera quelques nouvelles fonctionnalités:</text>
 		<text lang='it'>Stiamo lavorando su un sito completamente nuovo, con una nuova esperienza utente e design. Tutto il nostro lavoro è fatto a titolo gratuito, in modo che durerà per un po 'fino a quando non sarà di nuovo online. In cambio le nuove pagine porterà alcune nuove funzionalità:</text>
+		<text lang='es'>Estamos trabajando en un sitio completamente nuevo, con una nueva experiencia de usuario y diseño. Todo nuestro trabajo se realiza de forma gratuita, por lo que tendrá una duración de un poco de tiempo hasta que nos será de nuevo en línea. A cambio, las nuevas páginas traerá algunas novedades:</text>
+		<text lang='jp'>私たちは、新しいユーザーエクスペリエンスとデザインで、完全に新しいサイトに取り組んでいる。すべての我々の仕事は無料で行われますので、我々は再びオンラインになりますまで、それはしばらく続く。リターンでは新しいページにはいくつかの新機能をもたらすでしょう：</text>
 	</ARTICLE_INDEX_004>
 	<ARTICLE_INDEX_005>
 		<text lang='de'>Die Seite kann alle Sprachen der Welt verwalten. Übersetzungen können von jedem, der als Redakteur mitarbeiten will, leicht erstellt werden.</text>
@@ -34,6 +34,8 @@
 		<text lang='cs'>Tyto stránky mohou spravovat všechny jazyky světa. Překlady lze zapsat každý, kdo chtějí pracovat jako redaktor.</text>
 		<text lang='fr'>Les pages peuvent gérer toutes les langues du monde. Les traductions peuvent être écrit par tous ceux qui veulent travailler en tant que rédacteur.</text>
 		<text lang='it'>Le pagine in grado di gestire tutte le lingue del mondo. Le traduzioni possono essere scritti da tutti coloro che vogliono lavorare come editor.</text>
+		<text lang='es'>Las páginas se pueden gestionar todos los idiomas del mundo. Las traducciones pueden ser escritos por todos los que quieran trabajar como editor.</text>
+		<text lang='jp'>ページには、世界のすべての言語を管理することができます。翻訳は編集者として仕事をしたい誰も書き込むことができます。</text>
 	</ARTICLE_INDEX_005>
 	<ARTICLE_INDEX_006>
 		<text lang='de'>Die Programmbasis wurde als Open-Source Projekt komplett neu programmiert. Das System heißt 'OLIV' und wurde speziell für die vielsprachigen Aufgaben dieser internationalen Seite konzipiert. {b}Diese Vorschau arbeitet schon mit der neuen Software{/b}.</text>
@@ -41,6 +43,8 @@
 		<text lang='cs'>Software Základem je nově naprogramován jako open-source-projektu.Systém s názvem "Oliv 'byla speciálně navržena pro a přehledné o mezinárodní internetové stránky. {b}Tento náhled již používá nový software.{/b}</text>
 		<text lang='fr'>La base du logiciel est nouvellement programmé comme un open-source-projet. Le système nommé 'OLIV' a été spécialement conçu pour les Opportunités d'un site internet international. {b}Cet aperçu utilise déjà le nouveau logiciel.{/b}</text>
 		<text lang='it'>La base software è stato recentemente programmato come un open-source-progetto. Il sistema denominato 'OLIV' stato appositamente progettato per le oportunities di un sito internet internazionale. {b}Questa anteprima già utilizza il nuovo software.{/b}</text>
+		<text lang='es'>La base del software está recién programado como un código abierto-proyecto. El sistema llamado 'OLIV "fue diseñado especialmente para las oportunidades de un sitio de Internet internacional. {b}Esta vista previa ya utiliza el nuevo software.{/b}</text>
+		<text lang='jp'>ソフトウェアの基礎を新たにオープンソース·プロジェクトとしてプログラムされています。 'OLIV' という名前のシステムがspecialy国際インターネットサイトのoportunitiesのために設計されました。 {b}このプレビューは、すでに新しいソフトウェア{/b}を使用しています。</text>
 	</ARTICLE_INDEX_006>
 	<ARTICLE_INDEX_007>
 		<text lang='de'>Als Content-Management-System sind Änderungen am Inhalt nun eine einfache Angelegenheit.</text>
@@ -48,6 +52,8 @@
 		<text lang='cs'>Být Content-Systém managementu veškeré změny obsahu je jednoduchý úkol.</text>
 		<text lang='fr'>Être un contenu-gestion-système, toutes les modifications de la teneur est une tâche simple.</text>
 		<text lang='it'>Essendo un content-management-sistema di tutti i cambiamenti del contenuto è un compito semplice.</text>
+		<text lang='es'>Siendo un contenido de gestión del sistema de todos los cambios de los contenidos es una tarea simple.</text>
+		<text lang='jp'>コンテンツ管理システムのすべてのコンテンツの変更があることは簡単な作業です。</text>
 	</ARTICLE_INDEX_007>
 	<ARTICLE_INDEX_008>
 		<text lang='de'>Wie schon vorher können Veränderungen an den Anlagentexten und Bildern von den Anlagenbetreibern selbst durchgeführt werden.</text>
@@ -55,6 +61,8 @@
 		<text lang='cs'>Stejně jako dříve lze textes a fotografie v železniční popisu upravovat provozovatelé železnic.</text>
 		<text lang='fr'>Comme avant que les textes et les photos dans la description de chemin de fer peuvent être modifiés par les opérateurs des chemins de fer eux-même.</text>
 		<text lang='it'>Come prima i testi e le foto nella descrizione ferroviaria può essere modificato dagli operatori delle ferrovie loro auto.</text>
+		<text lang='es'>Al igual que antes los textos y fotos en la descripción de ferrocarril pueden ser editados por los operadores de los ferrocarriles de los propios.</text>
+		<text lang='jp'>前と同じように鉄道の説明のテキストと写真は、彼らが自己の鉄道事業者で編集することができます。</text>
 	</ARTICLE_INDEX_008>
 	<ARTICLE_INDEX_009>
 		<text lang='de'>Die neue Seite wird eine Programmschnittstelle bieten, mit der z.B. der MRDB-Kalender auf der eigenen Internetseite eingebunden werden kann. Die Daten werden dabei in der "Cload" gespeichert und sind für alle abrufbar.</text>
@@ -62,6 +70,8 @@
 		<text lang='cs'>Nová stránka bude nabízet API (programové rozhraní). Jako příklad bude možné spojit MRDB-kalendář na vaše vlastní internetové stránky. Tyto údaje budou uloženy v "Clowd" a mohou být přístupné všem.</text>
 		<text lang='fr'>La nouvelle page proposera une API (interface de programmation). A titre d'exemple, il sera possible de relier le MRDB-Calendrier sur votre propre site internet. Les données seront stockées dans le "clowd" et peut être consulté par tout le monde.</text>
 		<text lang='it'>La nuova pagina offrirà una API (interfaccia del programma). Ad esempio, sarà possibile collegare il MRDB-calendario al tuo sito internet personale. I dati vengono memorizzati nel "clowd" e può accedere a tutti.</text>
+		<text lang='es'>La nueva página ofrece una API (interfaz del programa). A modo de ejemplo, será posible vincular el MRDB-calendario para su propio sitio de Internet. Los datos se almacenan en la "clowd" y se puede acceder por todo el mundo.</text>
+		<text lang='jp'>新しいページでは、API（プログラム·インタフェース）を提供します。例として、それはあなた自身のインターネットサイトにMRDB-カレンダーをリンクすることが可能となります。データは、 'clowd' に格納され、誰もがアクセスすることができます。</text>
 	</ARTICLE_INDEX_009>
 	<ARTICLE_INDEX_010>
 		<text lang='de'>Schlußendlich wurde auch der Name der Seite verändert. Die {b}'Gartenbahn-Datenbank'{/b} konzentriert sich von nun an ganz auf die Verwaltung der Anlagen- und Veranstaltungsdaten.</text>
@@ -69,5 +79,7 @@
 		<text lang='cs'>Nakonec název místa byl změněn.{b}'Miniaturní železnice-Database'{/b} se nyní soustředí na řízení informací železničních a akcí.</text>
 		<text lang='fr'>Enfin, le titre du site a été modifiée. Le {b}'miniature chemin de fer et la base de données'{/b} se concentre maintenant sur la gestion des chemins de fer les informations et les événements.</text>
 		<text lang='it'>Infine il titolo del sito è stato cambiato. Il {b}'in miniatura-Ferrovia-database'{/b} si sta ora concentrando sulla gestione delle informazioni ferrovie e gli eventi.</text>
+		<text lang='es'>Finalmente, el título de la página ha sido cambiado. El {b}'Miniature-Ferrocarril-Base de datos'{/b} se centra ahora en la gestión de la información de los ferrocarriles y eventos.</text>
+		<text lang='jp'>最後にサイトのタイトルを変更しました。 {b}'ミニチュア·鉄道 - データベース'{/b} は現在、鉄道情報とイベントの管理に焦点を当てている。</text>
 	</ARTICLE_INDEX_010>
 </ARTICLE_INDEX>

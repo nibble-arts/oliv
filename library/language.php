@@ -59,7 +59,8 @@ class OLIVLang
 				$langCode = $entry->getName();
 
 //echoall($langCode);
-//echoall(OLIVLang::countryOfLanguage($langCode));
+				$countryCode = OLIVLang::defaultCountry($langCode);
+
 
 // make current language bigger
 				$id = "oliv_lang_flag";
@@ -73,7 +74,7 @@ class OLIVLang
 
 
 // create flag image
-				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='langflag' id='{$id}' lang='" . $langCode . "' />");
+				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='oliv_flag' id='{$id}' lang='" . $countryCode . "' />");
 
 // insert image
 
@@ -89,6 +90,10 @@ class OLIVLang
 // get languages of country
 	static public function languageOfCountry($country)
 	{
+		$countryXml = system::country();
+
+		$country = strtoupper($country);
+		return $countryXml->$country;
 	}
 	
 
@@ -97,16 +102,31 @@ class OLIVLang
 // get countries of language
 	static public function countryOfLanguage($lang)
 	{
-		$retArray = array();
-		
 		$countryXml = system::country();
-		
-		foreach ($countryXml->children() as $entry)
+
+		return $countryXml->xpath("//country/*/{$lang}");
+	}
+
+
+//------------------------------------------------------------------------------
+// get default country for language
+	static public function defaultCountry($lang)
+	{
+		$countryXml = system::country();
+
+// look for default value
+		$retArray = $countryXml->xpath("//country/*/{$lang}[@default='TRUE']");
+
+// if no default, take first entry
+		if (!count($retArray))
+			$retArray = $countryXml->xpath("//country/*/{$lang}");
+
+
+		if (count($retArray))
 		{
-			if ($entry->$lang)
-				array_push($retArray,$entry->getName());
+			$parent = $retArray[0]->xpath("..");
+			return $parent[0]->getName();
 		}
-		return $retArray;
 	}
 }
 

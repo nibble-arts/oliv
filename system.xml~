@@ -78,6 +78,9 @@
   </image>
   
 <!-- reference from countries to languages -->
+<!-- country code must be upper case -->
+<!-- language codes must be lower case -->
+<!-- the default attribute in a language defines the default country for display --> 
   <country>
   	<AD><ca /><fr /></AD>
   	<AE><ar /></AE>
@@ -132,7 +135,7 @@
   	<CX><ms /></CX>
   	<CY><el /><tr /></CY>
   	<CZ><cs /></CZ>
-  	<DE><de /></DE>
+  	<DE><de default='TRUE'/></DE>
   	<DJ><aa /><fr /><so /></DJ>
   	<DK><dk /><de /></DK>
   	<DM><en /></DM>
@@ -142,16 +145,16 @@
   	<EE><et /></EE>
   	<EG><ar /></EG>
   	<ER><aa /><en /><ti /></ER>
-  	<ES><an /><ca /><es /><eu /><gl /></ES>
+  	<ES><an /><ca /><es default='TRUE' /><eu /><gl /></ES>
   	<ET><aa /><am /><en /><om /><so /><ti /></ET>
   	<FI><fi /><sv /></FI>
   	<FJ><en /><fj /></FJ>
   	<FK><en /></FK>
   	<FM><en /></FM>
   	<FO><de /><fo /></FO>
-  	<FR><br /><co /><fr /><oc /></FR>
+  	<FR><br /><co /><fr default='TRUE' /><oc /></FR>
   	<GA><fr /></GA>
-  	<GB><cy /><en /><ga /><gd /><gv /><kw /></GB>
+  	<GB><cy /><en default='TRUE' /><ga /><gd /><gv /><kw /></GB>
   	<GD><en /></GD>
   	<GE><ab /><ka /><os /></GE>
   	<GF><fr /></GF>
@@ -180,7 +183,7 @@
   	<IQ><ar /><ku /></IQ>
   	<IR><ae /><fa /><ku /></IR>
   	<IS><is /></IS>
-  	<IT><co /><de /><fr /><it /><sc /></IT>
+  	<IT><co /><de /><fr /><it default='TRUE' /><sc /></IT>
   	<JM><en /></JM>
   	<JO><ar /></JO>
   	<JP><ja /></JP>
@@ -234,7 +237,7 @@
   	<NG><en /><ff /><ha /><ig /><kr /><yo /></NG>
   	<NI><es /></NI>
   	<NL><fy /><li /><nl /></NL>
-  	<NO><nb /><nn /><no /></NO>
+  	<NO><nb /><nn /><no default='TRUE' /></NO>
   	<NP><ne /></NP>
   	<NR><en /><na /></NR>
   	<NU><en /></NU>
@@ -256,8 +259,8 @@
   	<PY><es /><gn /></PY>
   	<QA><ar /></QA>
   	<RE><fr /></RE>
-  	<RO><cu /><hu /><ro /><yi /></RO>
-  	<RU><av /><ba /><ce /><cu /><cv /><kv /><os /><ru /><tt /><yi /></RU>
+  	<RO><cu /><hu /><ro default='TRUE' /><yi /></RO>
+  	<RU><av /><ba /><ce /><cu /><cv /><kv /><os /><ru default='TRUE' /><tt /><yi /></RU>
   	<RW><en /><fr /><rw /></RW>
   	<SA><ar /></SA>
   	<SB><en /></SB>
@@ -305,6 +308,13 @@
   	<VI><en /></VI>
   	<VN><en /></VN>
   	<VU><bi /><en /><fr /></VU>
-  	
+  	<WF><fr /></WF>
+  	<WS><en /><sm /></WS>
+  	<YE><ar /></YE>
+  	<YT><fr /></YT>
+  	<YU><sr /></YU>
+  	<ZA><af /><en /><nr /><ss /><tn /><ts /><ve /><xh /><yi /><zu /></ZA>
+  	<ZM><en /></ZM>
+  	<ZW><en /><nd /><sn /><ve /><zu /></ZW>
   </country>
 </core>
