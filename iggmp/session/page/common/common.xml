@@ -4,7 +4,7 @@
   <oliv_header mod='header' />
   <oliv_footer >
    	<img src='oliv_logo' width='70px' />
-		Powered by OLIV V0.3.1 - 2012
+		Powered by OLIV <version />
 	</oliv_footer>
   <oliv_contact />
 </content>

@@ -3,9 +3,7 @@
 <content id='common'>
   <oliv_header mod='header' />
   <oliv_login mod='login' />
-<!--  <oliv_search mod='search' />-->
   <oliv_title class='oliv_title'>title</oliv_title>
-<!--  <oliv_top mod='menu'>top</oliv_top>-->
-  <oliv_footer mod='footer'>OLIV-CMS V0.1 - (c) 2012 Thomas Winkler</oliv_footer>
+  <oliv_footer url='http://github.com/nibble-arts/oliv'>OLIV-CMS by Thomas Winkler: <version /></oliv_footer>
   <oliv_contact />
 </content>

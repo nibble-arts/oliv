@@ -170,12 +170,12 @@ class textRender
 
 
 // mark for no translation
-  		if (($lang != status::lang()) and OLIVText::_((string)$value))
+  		if (($lang != status::lang()) and OLIVText::_($value))
   			$class .= " oliv_not_translated";
     }
 
 // call markup parser
-    $retArray['value'] = textRender::markup(OLIVText::_((string)$value));
+    $retArray['value'] = textRender::markup(OLIVText::_($value));
 
 
 // write tags

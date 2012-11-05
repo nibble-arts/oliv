@@ -176,7 +176,6 @@ class templatePlugin
     			$paramArray['param']['style'] = "background-image:url($background_image);";
         break;
 
-
 // set url parameters for link
       case 'url':
         $paramArray['link']['url'] = (string)$value;
