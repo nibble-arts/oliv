@@ -53,6 +53,11 @@
 		<GET_CONTACT>
 			<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
 			<text lang='en'>Get in contact with us</text>
+			<text lang='cs'>Dostat do kontaktu s námi</text>
+			<text lang='fr'>Prenez contact avec nous</text>
+			<text lang='it'>Mettetevi in contatto con noi</text>
+			<text lang='es'>Póngase en contacto con nosotros</text>
+			<text lang='jp'>私たちと連絡を取って</text>
 		</GET_CONTACT>
 		<NEW>
 			<text lang='de'>Neu auf der Seite</text>
@@ -77,7 +82,11 @@
 		<CHANGE_LANGUAGE>
 			<text lang='de'>Sprache umschalten</text>
 			<text lang='en'>Change Language</text>
-			<text lang='cs'>Prepojit jasik</text>
+			<text lang='cs'>Přepnout jazyk</text>
+			<text lang='fr'>Changer la langue</text>
+			<text lang='it'>Cambia lingua</text>
+			<text lang='es'>Cambiar el idioma</text>
+			<text lang='jp'>言語を変更</text>
 		</CHANGE_LANGUAGE>
 
 		<CUT>
@@ -219,18 +228,27 @@
 		<JAN>
 			<text lang='de'>Jänner</text>
 			<text lang='en'>January</text>
+			<text lang='cs'>Leden</text>
 		</JAN>
 		<FEB>
 			<text lang='de'>Februar</text>
 			<text lang='en'>February</text>
+			<text lang='cs'>Unor</text>
 		</FEB>
 		<MAR>
 			<text lang='de'>März</text>
 			<text lang='en'>March</text>
+			<text lang='cs'>Březen</text>
 		</MAR>
+		<APR>
+			<text lang='de'>April</text>
+			<text lang='en'>April</text>
+			<text lang='cs'>Duben</text>
+		</APR>
 		<MAY>
 			<text lang='de'>Mai</text>
 			<text lang='en'>May</text>
+			<text lang='cs'>Kveten</text>
 		</MAY>
 		<JUN>
 			<text lang='de'>Juni</text>
@@ -263,57 +281,109 @@
 	</MONTH>
 
 	<LANGUAGE>
-		<en>
+		<AR>
+			<text lang='de'>Arabisch</text>
+		</AR>
+		<SQ>
+			<text lang='de'>Albanisch</text>
+		</SQ>
+		<HY>
+			<text lang='de'>Armenisch</text>
+		</HY>
+		<EN>
 			<text lang='de'>Englisch</text>
-		</en>
-		<nl>
+			<text lang='en'>English</text>
+		</EN>
+		<NL>
 			<text lang='de'>Niederländisch</text>
-		</nl>
-		<fr>
+		</NL>
+		<FA>
+			<text lang='de'>Persisch</text>
+		</FA>
+		<FR>
 			<text lang='de'>Französisch</text>
-		</fr>
-		<de>
+			<text lang='en'>French</text>
+			<text lang='fr'>Français</text>
+		</FR>
+		<DE>
 			<text lang='de'>Deutsch</text>
-		</de>
-		<el>
+			<text lang='en'>German</text>
+		</DE>
+		<EL>
 			<text lang='de'>Griechisch</text>
-		</el>
-		<it>
+		</EL>
+		<IT>
 			<text lang='de'>Italienisch</text>
-		</it>
-		<pt>
+			<text lang='en'>Italian</text>
+			<text lang='it'>Italiano</text>
+		</IT>
+		<PS>
+			<text lang='de'>Pashto</text>
+		</PS>
+		<PR>
 			<text lang='de'>Portugisisch</text>
-		</pt>
-		<es>
+		</PR>
+		<ES>
 			<text lang='de'>Spanisch</text>
-		</es>
-		<zh>
+			<text lang='en'>Spanish</text>
+			<text lang='es'>Español</text>
+		</ES>
+		<ZH>
 			<text lang='de'>Vereinfachtes Chinesisch</text>
-		</zh>
-		<zt>
+		</ZH>
+		<ZT>
 			<text lang='de'>Traditionelles Chinesisch</text>
-		</zt>
-		<ko>
+		</ZT>
+		<KO>
 			<text lang='de'>Koreanisch</text>
-		</ko>
-		<ja>
+		</KO>
+		<JA>
 			<text lang='de'>Japanisch</text>
-		</ja>
-		<ru>
+		</JA>
+		<RU>
 			<text lang='de'>Russisch</text>
-		</ru>
-		<pl>
+		</RU>
+		<PL>
 			<text lang='de'>Polnisch</text>
-		</pl>
-		<se>
+		</PL>
+		<SE>
 			<text lang='de'>Schwedisch</text>
-		</se>
-		<cs>
+		</SE>
+		<UI>
+			<text lang='de'>Uigurusch</text>
+		</UI>
+		<CS>
 			<text lang='de'>Tschechisch</text>
-		</cs>
+			<text lang='en'>Cech</text>
+			<text lang='cs'>český</text>
+		</CS>
+		<JP>
+			<text lang='de'>Japanisch</text>
+			<text lang='en'>Japanese</text>
+			<text lang='jp'>日本語</text>
+		</JP>
 	</LANGUAGE>
 
 	<LAND>
+		<AD>
+			<text lang='de'>Andorra</text>
+		</AD>
+		<AE>
+			<text lang='de'>Vereinigte Arabische Emirate</text>
+		</AE>
+		<AF>
+			<text lang='de'>Afganistan</text>
+		</AF>
+		<AG>
+			<text lang='de'>Antigua und Barbados</text>
+		</AG>
+		<AI>
+			<text lang='de'>Anguilla</text>
+		</AI>
+		<AL>
+			<text lang='de'>Albanien</text>
+		</AL>
 	</LAND>
 </SYSTEM>
+
 
