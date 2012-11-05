@@ -7,13 +7,16 @@
 	<NAME>
 		<text lang='de'>Startseite</text>
 		<text lang='en'>Home</text>
+		<text lang='cs'>Domácí</text>
 	</NAME>
 	<FRIENDLY_NAME>
 		<text lang='de'>Startseite</text>
 		<text lang='en'>Home</text>
+		<text lang='cs'>Domácí</text>
 	</FRIENDLY_NAME>
 	<TITLE>
 		<text lang='de'>Das Omni-Linguale CMS</text>
 		<text lang='en'>The Omni-Lingual CMS</text>
+		<text lang='cs'>Vícejazyčné CMS</text>
 	</TITLE>
 </PAGE>

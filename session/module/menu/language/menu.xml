@@ -4,10 +4,12 @@
 	<EXTERN_DOCUMENTATION>
 		<text lang='de'>Dokumentation</text>
 		<text lang='en'>Documentation</text>
+		<text lang='cs'>Dokumentace</text>
 	</EXTERN_DOCUMENTATION>
 	<IGGMP>
-		<text lang='de'>IG - Gartenbahnem mit Personenbeförderung</text>
+		<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
 		<text lang='en'>Society for Railways with Person Transport</text>
+		<text lang='cs'>Zájem Společenství - parkoví dráha s osobní železniční dopravy</text>
 	</IGGMP>
 
 	<MENU_NAME>
