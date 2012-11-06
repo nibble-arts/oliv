@@ -37,6 +37,7 @@ body {
 a {
   font-weight:normal;
   text-decoration:none;
+  border:none;
 }
 
 a:link {
@@ -52,6 +53,9 @@ a:hover {
 }
 
 /* */
+img {
+  border:none;
+}
 
 p,li {
   line-height:1.2em;

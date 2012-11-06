@@ -30,7 +30,7 @@
 // system functions
 function olivfile_exists($file)
 {
-  return (file_exists(system::OLIV_CORE_PATH() . $file));
+	return (file_exists(system::OLIV_CORE_PATH() . $file));
 }
 
 function olivopendir($path)
@@ -63,7 +63,7 @@ function session_path($file)
 
 function sessionfile_exists($file)
 {
-  return (file_exists(session_path($file)));
+	return (file_exists(session_path($file)));
 }
 
 function sessionopendir($file)
@@ -73,7 +73,12 @@ function sessionopendir($file)
 
 function sessionis_dir($file)
 {
-  return (is_dir(session_path($file)));
+  if (is_dir(session_path($file)))
+  {
+  	return TRUE;
+	}
+	else
+		return FALSE;
 }
 
 function sessionparse_ini_file($file,$param="")

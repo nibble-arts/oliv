@@ -40,52 +40,58 @@ class OLIVImage
 	public static function _($image,$lang = "")
 	{
 		global $_MODULES;
+		$o = FALSE;
+
 
     if ($image)
     {
 //------------------------------------------------------------------------------
-// image is correct path
-  		if ($tempImage = img_exists("",$image,$lang))
-  		{
-  			return (session_path($tempImage));
-  		}
+// look in imagepaths defined in system.xml
+			$imagePath = system::imagepath();
 
+			if ($imagePath)
+			{
+				foreach($imagePath->children() as $entry)
+				{
+					$tempPath = explode(".",(string)$entry);
 
-//------------------------------------------------------------------------------
-// look in system image path
-    	if ($tempImage = img_exists(system::OLIV_IMAGES_PATH(),$image,$lang))
-      {
-  			return (session_path($tempImage));
-      }
-
-
-//------------------------------------------------------------------------------
-// look in system template path
-    	if ($tempImage = img_exists(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/images/",$image,$lang))
-        return (session_path($tempImage));
-      elseif ($tempImage = img_exists(system::OLIV_TEMPLATE_PATH() . "/default/images/",$image,$lang))
-        return (session_path($tempImage));
+					$tempVal = "";
+					foreach($tempPath as $pathPart)
+					{
+// use system variables
+						if (system::$pathPart())
+							$tempVal .= system::$pathPart();
+						else
+							$tempVal .= $pathPart;
+					}
+					if ($tempImage = img_exists($tempVal,(string)$image,$lang))
+					{
+		  			$o = session_path($tempImage);
+		  			break;
+					}
+				}
+			}
 
 
 //------------------------------------------------------------------------------
 // look in module paths
       if (is_array($_MODULES))
       {
-      
         foreach ($_MODULES as $entry)
   			{
   				$path = OLIVModule::getImagePath((string)$entry->name);
 
   				if ($tempImage = img_exists($path,$image,$lang))
-					{
-						return (session_path($tempImage));
-	  			}
+  				{
+						$o = session_path($tempImage);
+						break;
+					}
   			}
   		}
     }
 
-// image not found
-		return false;
+// return image path-name
+		return $o;
 	}
 
 
@@ -112,52 +118,55 @@ class OLIVImage
 		  $margin_bottom = (string)$image->attributes()->margin_bottom; // margin distance
 		  $margin_side = (string)$image->attributes()->margin_side; // margin distance
 
-		  $path = OLIVImage::_($src,$lang);
-		  
-		  $style = "";
-		  // create inline style
-		  if ($float)
+		  if ($path = OLIVImage::_($src,$lang))
 		  {
-		    $style .= "float:$float;";
-		    
+
+				$style = "";
+				// create inline style
+				if ($float)
+				{
+				  $style .= "float:$float;";
+				  
 // intelligent side margin
-		    if ($margin_side)
-		    {
-		      switch ($float)
-		      {
-		        case 'left':
-		          $style .= "margin-right:$margin_side";
-		          break;
-		        case 'right':
-		          $style .= "margin-left:$margin_side";
-		          break;
-		      }
-		    } 
-		  }
-		  else
-		  {
-		    if ($margin_side)
-		      $style .= "margin-right:$margin_side;margin-left:$margin_side";
-		  }
+				  if ($margin_side)
+				  {
+				    switch ($float)
+				    {
+				      case 'left':
+				        $style .= "margin-right:$margin_side";
+				        break;
+				      case 'right':
+				        $style .= "margin-left:$margin_side";
+				        break;
+				    }
+				  } 
+				}
+				else
+				{
+				  if ($margin_side)
+				    $style .= "margin-right:$margin_side;margin-left:$margin_side";
+				}
 
 
-		  if ($margin) $style .= "margin:$margin;";
-		  if ($margin_left) $style .= "margin-left:$margin_left;";
-		  if ($margin_right) $style .= "margin-right:$margin_right;";
-		  if ($margin_top) $style .= "margin-top:$margin_top;";
-		  if ($margin_bottom) $style .= "margin-bottom:$margin_bottom;";
+				if ($margin) $style .= "margin:$margin;";
+				if ($margin_left) $style .= "margin-left:$margin_left;";
+				if ($margin_right) $style .= "margin-right:$margin_right;";
+				if ($margin_top) $style .= "margin-top:$margin_top;";
+				if ($margin_bottom) $style .= "margin-bottom:$margin_bottom;";
 
 
 // insert data in parameter string
-	    $o .= "<img src='$path'";
-	      if ($alt) $o .= " alt='$alt'";
-	      if ($height) $o .= " height='$height'";
-	      if ($width) $o .= " width='$width'";
-				if ($style) $o .= " style='$style'";
-				if ($id) $o .= " id='$id'";
-	    $o .= ">";
+			  $o .= "<img src='$path'";
+			    if ($alt) $o .= " alt='$alt'";
+			    if ($height) $o .= " height='$height'";
+			    if ($width) $o .= " width='$width'";
+					if ($style) $o .= " style='$style'";
+					if ($id) $o .= " id='$id'";
+			  $o .= ">";
+			}
 // end style
-
+//echoall($path);
+//echoall($o);
 		  return ($o);
 		}
   }
@@ -169,22 +178,21 @@ class OLIVImage
 //------------------------------------------------------------------------------
 // GLOBAL FUNCTIONS
 //
-// looks if image exists
+// looks if image exists in path
 // check if language coded images exist
 // if no extension, look throught defined extensions
+
 function img_exists($path,$image,$lang)
 {
   global $_imgType;
-
   $imgType = "";
+  $o = FALSE;
 
-// extract extension
-	$parts = explode(".",$image);
 
-  if (isset($parts[0]))
-   	$image = $parts[0];
-  if (isset($parts[1]))
-   	$imgType = $parts[1];
+// extract extension and basename
+	$imgType = pathinfo($image,PATHINFO_EXTENSION);
+	$image = pathinfo($image,PATHINFO_FILENAME);
+
 
 // extension found
 	if ($imgType)
@@ -193,33 +201,36 @@ function img_exists($path,$image,$lang)
 
     // try language version
     $tempImage = img_lang_exists($path,$image,$lang);
-  	if (sessionfile_exists($tempImage))
-  		return ($tempImage);
 
-    // use normal version
-    $tempImage = $path . $image;
   	if (sessionfile_exists($tempImage))
-  		return ($tempImage);
+		{
+  		$o = $tempImage;
+		}
+		
+    // use normal version
+  	elseif (sessionfile_exists($tempImage = $path . $image))
+  	{
+  		$o = $tempImage;
+		}
 	}
 
+
 // no image type defined
+// call with extensions recursive
 	else
 	{
     if (count($_imgType->imgtype))
     {
       foreach($_imgType->imgtype as $entry)
       {
-	 		  $tempImage = img_lang_exists($path,$image . "." . (string)$entry,$lang);
+				$o = img_exists($path,$image . "." . (string)$entry,$lang);
 
-        // match found
-        if (sessionfile_exists($tempImage))
-        {
-          return ($tempImage);
-        }
+				if ($o) break;
       }
     }
 	}
-  return false;
+//echoall($o);
+  return $o;
 }
 
 
@@ -228,10 +239,15 @@ function img_exists($path,$image,$lang)
 // language version: directory is image name
 //									 imagename = langCode.extension
 // return path imageName
+//				of FALSE if not found
 function img_lang_exists($path,$image,$lang)
 {
+	$o = $path . $image;
+
+
 // check for language code
   if (!$lang) $lang = status::lang();
+
 
 //look directory with image name exist -> language versions
 // language code subdirectory found
@@ -240,15 +256,19 @@ function img_lang_exists($path,$image,$lang)
 // create path and filename for language version
 		$langPath = $path . $image . "/";
 		$ext = pathinfo($image, PATHINFO_EXTENSION);
+
     $langImage = strtolower($lang) . "." . $ext;
 
 		// language version found
 		if (sessionfile_exists($langPath . $langImage))
-		  return($langPath . $langImage);
+		  $o = $langPath . $langImage;
+		else
+			$o = "";
 	}
 
+
 // no language subdirektory
-// use normal image
-  return($path . $image);
+// return unchanged parameters
+  return($o);
 }
 ?>

@@ -49,8 +49,10 @@ class OLIVHtml
 
 	public function header()
 	{
+    $base = system::OLIV_PROTOCOL() . system::OLIV_HOST() . system::OLIV_BASE();
+
     $o = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"; // set page to utf-8
-		$o .= "<base href='/" . system::OLIV_BASE() . "'>"; // link base referenz
+		$o .= "<base href='{$base}'>"; // link base referenz
 		$o .= "<title>" . status::oliv_page() . "</title>"; // page title in browser
     $o .= "<link href='" . OLIVImage::_(system::OLIV_ICON()) . "' type='image/x-icon' rel='shortcut icon'>"; // icon in browser
 

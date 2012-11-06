@@ -105,6 +105,11 @@ if ($coreXml)
 	if (count($coreXml->country))
 		system::set('country',$coreXml->country);
 
+
+//------------------------------------------------------------------------------
+// imagepath definitions
+	if (count($coreXml->imagepath))
+		system::set('imagepath',$coreXml->imagepath);
 }
 else
   die ("init.php - configure.xml not found");

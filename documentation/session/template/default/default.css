@@ -52,6 +52,9 @@ a:hover {
 }
 
 /* */
+img {
+  border:none;
+}
 
 p {
   line-height:1.2em;
@@ -214,6 +217,8 @@ input {
 }
 
 #oliv_footer {
+	font-size:0.9em;
+	color:grey;
   float:left;
   margin:0 auto;
   width:900px;

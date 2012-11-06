@@ -79,6 +79,13 @@
     <imgtype>gif</imgtype>
     <imgtype>jpg</imgtype>
   </image>
+
+  <imagepath>
+  	<path></path>
+  	<path>OLIV_IMAGES_PATH</path>
+  	<path>OLIV_TEMPLATE_PATH.OLIV_TEMPLATE./images/</path>
+  	<path>OLIV_TEMPLATE_PATH.default/images/</path>
+  </imagepath>
   
 <!-- reference from countries to languages -->
 <!-- country code must be upper case -->
