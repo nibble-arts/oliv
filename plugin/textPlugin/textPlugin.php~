@@ -72,7 +72,7 @@ class textEditPlugin
 //------------------------------------------------------------------------------
 // get action parameters
 		$command = status::command();
-		$partName = status::cmdval();
+		$partName = status::val();
 
 
 //------------------------------------------------------------------------------

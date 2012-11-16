@@ -212,6 +212,7 @@ if (argv::val())
 status::set('val',argv::val());
 argv::remove('val');
 
+echoall(status::getAll());
 
 //------------------------------------------------------------------------------
 // decode friendly url to parameters without mod_rewrite

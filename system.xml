@@ -37,6 +37,7 @@
     <OLIV_TEMPLATE_PATH>template/</OLIV_TEMPLATE_PATH>
     <OLIV_IMAGES_PATH>images/</OLIV_IMAGES_PATH>
     <OLIV_LANGUAGE_PATH>language/</OLIV_LANGUAGE_PATH>
+		<OLIV_OLIVSCRIPT>olivscript/</OLIV_OLIVSCRIPT>
     <OLIV_CONTEXT_PATH>context/</OLIV_CONTEXT_PATH>
     <OLIV_CORE_TEXT>system</OLIV_CORE_TEXT>
 		<OLIV_NAME>OLIV-CMS</OLIV_NAME>
@@ -71,6 +72,7 @@
     <file>plugin.php</file>
     <file>context.php</file>
     <file>clipboard.php</file>
+    <file>olivscript.php</file>
   </includes>
   
 <!-- accepted file types for images -->

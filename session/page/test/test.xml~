@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <content id='index'>
-	<redirect> if (status::command() == "") { return("redirect"); } </redirect>
+	<redirect> if (status::command() == "") { return("documentation"); } </redirect>
 	<masterpage>common</masterpage>
   <oliv_content mod='article'>railway</oliv_content>
 </content>

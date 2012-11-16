@@ -12,14 +12,8 @@
 		</relation>
 
 		<request>
-			<_id>
-				<text lang='de'>Anlagennummer</text>
-				<text lang='en'>Railway ID</text>
-			</_id>
-			<title>
-				<text lang='de'>Anlagenname</text>
-				<text lang='en'>Railway name</text>
-			</title>
+			<request_railway>title</request_railway>
+			<request_number>_id</request_number>
 		</request>
 	</iggmp>
 </database>

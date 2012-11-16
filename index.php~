@@ -60,7 +60,7 @@ else
 
       $core = new OLIVCore($corePath);
       $core->init("oliv");
-
+echoall(status::getAll());
 
 // load page content
       $core->loadContent();

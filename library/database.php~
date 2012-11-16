@@ -230,7 +230,7 @@ echoall("data: $data, sort: $sort");*/
 					{
 // get database entry default language
 						$langQuery = "SELECT {$table}.lang FROM {$table},{$relationTable} WHERE $filterString";// and lang='{$lang}'";
-
+echoall($langQuery);
 						$langRes = mysql_query($langQuery);
 						if ($langRes)
 						{

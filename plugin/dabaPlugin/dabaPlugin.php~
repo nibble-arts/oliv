@@ -157,7 +157,7 @@ class dabaInit
 			if ($dabaField)
 			{
 // 
-				if ($dabaValue)
+				if (count($idArray) > 1)
 				{
 					$filterArray =  array(new simpleXmlElement("<where field='$dabaField' value='$dabaValue' operator='=' />"));
 					$idString = $dabaId;

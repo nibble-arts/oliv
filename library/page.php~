@@ -73,7 +73,8 @@ class OLIVPage
 			foreach($xml as $entry)
 			{
 				$tag = $entry->getName();
-				OLIVPlugin::call($tag,"page",array("template" => $xml));
+				$tempXml = OLIVPlugin::call($tag,"page",array("template" => $xml));
+echoall($tempXml);
 			}
 //------------------------------------------------------------------------------
 
