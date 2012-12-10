@@ -111,7 +111,6 @@ class OLIVProcessor extends OLIVCore
 										{
 											echoall($outputObj->o['template']);
 
-
 //TODO insert the module stylesheet into the page stylesheet
 											$template->stylesheet->importStylesheet($outputObj->o['template']);
 										}

@@ -22,42 +22,25 @@
 //
 
 //------------------------------------------------------------------------------
-// script language
+// Header module
 //
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("page.php - OLIVCore not present");
+if (!system::OLIVCORE()) die ("mod_header::header.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("mod_header::header.php - OLIVText not present");
+if (!system::OLIVERROR()) die ("mod_header::header.php - OLIVError not present");
 
-$_OSCODE;
-	
-class OLIVScript
+class header extends OLIVCore
 {
-// initialize olivscript functionality
-	public function __construct()
-	{
-		global $_OSCODE;
-		
-		if (olivfile_exists(system::OLIV_OLIVSCRIPT() . "define.xml"))
-			$_OSCODE = olivxml_load_file(system::OLIV_OLIVSCRIPT() . "define.xml");
-		else
-			OLIVError::fire("OLIVScript::construct - olivscript definition not found");
-	}
+  private $header; // module header metadata
+  public $o;
 
-
-	public static function call($code)
-	{
-		global $_OSCODE;
-		
-		$pattern = "/\/\*(.*?)\*\//";
-
-		preg_match_all($pattern,$code,$matches);
-//echoall($matches);
-
-// execute code
-		eval($code);
-	}
+  function __construct($header)
+  {
+    // load header template
+    $this->o['template'] = OLIVModule::load_template($header);
+  }
 }
-
 
 ?>

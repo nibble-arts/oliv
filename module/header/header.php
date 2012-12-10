@@ -39,18 +39,8 @@ class header extends OLIVCore
   function __construct($header)
   {
     // load header template
-    $template = OLIVModule::load_template($header);
-
-// render header
-    $this->renderHeader($template);
+    $this->o['template'] = OLIVModule::load_template($header);
   }
-  
-  
-  function renderHeader($template)
-  {
-//  	$this->o .= "#ig_header_news { visibility:visible; } "; // make new visible
-    $this->o .= OLIVRender::template($template);
-	}
 }
 
 ?>

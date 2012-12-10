@@ -143,29 +143,7 @@ class OLIVCore
 //------------------------------------------------------------------------------
 // set core status
 //------------------------------------------------------------------------------
-// extract command and value
-/*		if (status::val())
-		{
-// extract cmd and param
-			$cmdArray = explode("/",cut_slash(status::val()));
 
-
-//TODO define commands in system section ???
-// search for command and retranslate
-			if (count($cmdArray))
-			{
-				$cmd = OLIVText::getId($cmdArray[0]);
-				status::set('command',$cmd); // save command
-			}
-
-// if command found, extract command from val 
-			if ((count($cmdArray) > 1) and $cmd)
-			{
-				array_shift($cmdArray); // remove command from val
-
-				status::set('val',implode("/",$cmdArray)); // save val
-			}
-		}*/
 
 
 //------------------------------------------------------------------------------
@@ -195,14 +173,20 @@ class OLIVCore
 // start preprocessor
   public function preProcessor()
   {
-    $this->processor->process($this->page,$this->template,$this->module);
+    $this->processor->process($this->page,$this->template);
   }
 
 // start render engine
   public function render()
   {
-    $this->render->page($this->template,$this->page,$this->processor);
+
+//TODO playing with XSLT
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+		$text = $this->template->stylesheet->transformToXML($this->page->structure());
+
+		print_r($text);
   }
+
 
 // display render result
   public function display()

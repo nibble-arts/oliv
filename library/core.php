@@ -173,14 +173,21 @@ class OLIVCore
 // start preprocessor
   public function preProcessor()
   {
-    $this->processor->process($this->page,$this->template,$this->module);
+    $this->processor->process($this->page,$this->template);
   }
 
 // start render engine
   public function render()
   {
-    $this->render->page($this->template,$this->page,$this->processor);
+
+//TODO playing with XSLT
+// set language for stylesheet display
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+		$text = $this->template->stylesheet->transformToXML($this->page->structure());
+
+		print_r($text);
   }
+
 
 // display render result
   public function display()

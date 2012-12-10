@@ -43,6 +43,7 @@ class OLIVTemplate
   {
   	$this->stylesheet = new XSLTProcessor();
     $template = OLIVTemplate::load($path,$name);
+echoall($template->asXML());
 		$this->stylesheet->importStylesheet($template);
   }
 

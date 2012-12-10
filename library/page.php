@@ -67,7 +67,6 @@ class OLIVPage
 // load content xml
 			$xml = sessionxml_load_file($path);
 
-
 //------------------------------------------------------------------------------
 // search for plugins and call methods
 			foreach($xml as $entry)
@@ -114,4 +113,12 @@ class OLIVPage
   {
     return ($this->structure);
   }
+
+
+//------------------------------------------------------------------------------
+// insert xml in page structure
+	public function insert($xml)
+	{
+		olivxml_insert($this->structure,$xml);
+	}
 }

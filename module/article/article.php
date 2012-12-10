@@ -40,7 +40,6 @@ class article extends OLIVCore
 {
 	var $o = "";
   var $path;
-  var $header;
   var $editExclude;
   var $paramArray;
   
@@ -50,47 +49,32 @@ class article extends OLIVCore
   {
     global $_argv;
 
-    $this->header = $header;
-    $this->header->path = system::OLIV_MODULE_PATH() . "article/";
+    $header->path = system::OLIV_MODULE_PATH() . "article/";
 
-		$template = OLIVModule::load_template($header);
+//		$template = OLIVModule::load_template($header);
 //    $this->scan();
 
 // load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
 
-    $articleName = (string)$header;
-    $langPath = $this->header->path . "language/";
-    $contentPath = $this->header->path . (string)$header->attributes()->content;
+    $articleName = (string)$header->param;
+    $contentPath = $header->script->content;
 
-
-// load content
-  	$article = OLIVModule::load_xml($header,(string)$header->attributes()->content,"$articleName.xml");
+// load content and template
+  	$article = OLIVModule::load_xml($header,$contentPath,"$articleName.xml");
+  	$template = OLIVModule::load_xml($header,$contentPath,"$articleName.xslt");
 
 // add source attribute recursive
 		if ($article)
 		{
-			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
+			olivxml_addAttribute_recursive($article,'source',$header->path . "content/$articleName");
 
-// load text language file
-		$textXml = OLIVText::_load($langPath,$articleName);
-    OLIVText::insert($textXml);
-
+			$this->o['template'] = $template;
+			$this->o['content'] = $article;
 
 // get article languages
-			$langXml = OLIVText::getLanguages($textXml);
-			$langSelector = OLIVLang::selector($langXml);
-
-
-// create temporary article content for rendering
-			$articleXml = new simpleXmlElement("<article></article>");
-			olivxml_insert($articleXml->articletext,$article);
-			olivxml_insert($articleXml,$langSelector);
-
-
-//------------------------------------------------------------------------------
-// render article
-    	$this->o .= OLIVRender::template($template,$articleXml);
+//			$langXml = OLIVText::getLanguages($textXml);
+//			$langSelector = OLIVLang::selector($langXml);
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");

@@ -67,14 +67,13 @@ class OLIVPage
 // load content xml
 			$xml = sessionxml_load_file($path);
 
-
+echoall($xml->asXML());
 //------------------------------------------------------------------------------
 // search for plugins and call methods
 			foreach($xml as $entry)
 			{
 				$tag = $entry->getName();
-				$tempXml = OLIVPlugin::call($tag,"page",array("template" => $xml));
-echoall($tempXml);
+				OLIVPlugin::call($tag,"page",array("template" => $xml));
 			}
 //------------------------------------------------------------------------------
 
@@ -115,4 +114,12 @@ echoall($tempXml);
   {
     return ($this->structure);
   }
+
+
+//------------------------------------------------------------------------------
+// insert xml in page structure
+	public function insert($xml)
+	{
+		olivxml_insert($this->structure,$xml);
+	}
 }
