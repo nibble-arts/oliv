@@ -37,7 +37,7 @@
     <OLIV_TEMPLATE_PATH>template/</OLIV_TEMPLATE_PATH>
     <OLIV_IMAGES_PATH>images/</OLIV_IMAGES_PATH>
     <OLIV_LANGUAGE_PATH>language/</OLIV_LANGUAGE_PATH>
-		<OLIV_SCRIPT>olivscript/</OLIV_SCRIPT>
+		<OLIV_OLIVSCRIPT>olivscript/</OLIV_OLIVSCRIPT>
     <OLIV_CONTEXT_PATH>context/</OLIV_CONTEXT_PATH>
     <OLIV_CORE_TEXT>system</OLIV_CORE_TEXT>
 		<OLIV_NAME>OLIV-CMS</OLIV_NAME>
@@ -57,7 +57,7 @@
     <file>html.php</file>
     <file>file.php</file>
     <file>module.php</file>
-    <file>render.php</file>
+<!--    <file>render.php</file> changed to XSLT support -->
     <file>user.php</file>
     <file>right.php</file>
     <file>route.php</file>

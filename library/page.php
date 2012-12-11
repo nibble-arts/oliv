@@ -69,17 +69,18 @@ class OLIVPage
 
 //------------------------------------------------------------------------------
 // search for plugins and call methods
-			foreach($xml as $entry)
+//TODO change to XSLT plugins
+/*			foreach($xml as $entry)
 			{
 				$tag = $entry->getName();
 				OLIVPlugin::call($tag,"page",array("template" => $xml));
-			}
+			}*/
 //------------------------------------------------------------------------------
 
 
 // save content in page structure
 	    $this->structure = new simpleXmlElement("<page></page>"); // create empty page
-			olivxml_insert($this->structure,$xml);
+			olivxml_insert($this->structure,$xml->content);
 
 //echoall($this->structure);
 

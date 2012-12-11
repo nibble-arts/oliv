@@ -26,7 +26,7 @@
 //
 // Version 0.1
 //------------------------------------------------------------------------------
-//TODO the whole class is unused, due to change to XSLT support
+
 
 if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
 if (!system::OLIVTEXT()) die ("render.php - OLIVText not present");
@@ -60,6 +60,9 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
   public function page()
   {
+  echoall($this->template);
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
 
 // output rendered page
 /*    if ($template)

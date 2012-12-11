@@ -42,108 +42,116 @@ class OLIVProcessor extends OLIVCore
 //------------------------------------------------------------------------------
 // parse page/template/module
 //------------------------------------------------------------------------------
-  public function process($page,$template)
+  public function process($page,$stylesheet,$templatePath)
   {
     $i = 0;
+    $templates = array();
 
 //------------------------------------------------------------------------------
 // parse site
-//TODO change processor functionality
-//TODO parse and execute module
  
     if (count($page->structure()))
     {
-
       $areas = $page->structure()->children();
 
       if (count($areas))
       {
         foreach($areas as $entry)
         {
-          if ($mod = $entry->attributes()->mod)
-          {
-            $script = OLIVModule::getModuleByName($mod);
+// check for read access rights
+					if(OLIVRight::r($entry))
+					{
+		        if ($mod = $entry->attributes()->mod)
+		        {
+		          $script = OLIVModule::getModuleByName($mod);
 
       // script found
-            if (isset($script->script))
-            {
+		          if (isset($script->script))
+		          {
       // link modules to page elements
-      				$script->param = (string)$entry;
+	      				$script->param = (string)$entry;
 
-//              $page->setScript((string)$entry->getName(),$script->script);
-
-  //------------------------------------------------------------------------------
-  // load module script
-              $this->loadScript($script->script->main,system::OLIV_MODULE_PATH() . $script->name . "/");
-
-      // load module text
-/*              $path = system::OLIV_MODULE_PATH() . $script->name . "/language/";
-              $file = $script->name;
-              $default_language = $script->script->default_language;
-
-              OLIVText::load($path,$file);*/
-  
-//TODO execute module
-//TODO get template XSLTand add to template
-//TODO get content XML and add to page
+//------------------------------------------------------------------------------
+// load module script
+ 	             $this->loadScript($script->script->main,system::OLIV_MODULE_PATH() . $script->name . "/");
 
 //------------------------------------------------------------------------------
 // call module class and merge template and content
-							$outputObj = FALSE;
+								$outputObj = FALSE;
 
-							if ($script->script->main)
-							{
-								$tempArray = explode(".",$script->script->main);
-
-								$class = $tempArray[0];
-
-								if (class_exists($class))
+								if ($script->script->main)
 								{
-					        $outputObj = new $class($script);
+									$tempArray = explode(".",$script->script->main);
 
-									if (is_object($outputObj))
+									$class = $tempArray[0];
+
+									if (class_exists($class))
 									{
-										$tempTemplate = $outputObj->o['template'];
+							      $outputObj = new $class($script);
 
-
-// insert module template in page template
-										if (array_key_exists("template",$outputObj->o))
+										if (is_object($outputObj))
 										{
-											echoall($outputObj->o['template']);
+											$tempTemplate = $outputObj->o['template'];
 
 
-//TODO insert the module stylesheet into the page stylesheet
-											$template->stylesheet->importStylesheet($outputObj->o['template']);
-										}
-
-
-//echoall($template->template->asXML());
+// insert module template
+											if (array_key_exists("template",$outputObj->o))
+											{
+//												array_push($templates,$outputObj->o['template']);
+											}
 
 // insert module content in page content
-										if (array_key_exists("content",$outputObj->o))
-											$page->insert($outputObj->o['content']);
-
-//echoall($page->structure());
-									}
-								} 
-							}
-							else
-								OLIVError::fire("render::callModule - no main script declared");
-            }
-            else
-              OLIVError::warning("processor::process - required module '" . $mod . "' not found");
-          }
+											if (array_key_exists("content",$outputObj->o))
+												$page->insert($outputObj->o['content']);
+										}
+									} 
+								}
+								else
+									OLIVError::fire("render::callModule - no main script declared");
+		          }
+		          else
+		            OLIVError::warning("processor::process - required module '" . $mod . "' not found");
+		        }
 //------------------------------------------------------------------------------
 
+					}
         }
 //echoall($page->structure());
-      }
-      else
-        OLIVError::fire("processor::process - page is empty");
-    }
+	    }
+	    else
+	      OLIVError::fire("processor::process - page is empty");
+	  }
+// include module templates in page template
 
-//global $_TEXT;
-//echoall($_TEXT);
+// create temporary xslt for include process
+		$tempXsl = new XSLTProcessor();
+
+
+// include page template
+		if (sessionfile_exists($templatePath . ".xslt"))
+		{
+			$xmlString = "<xsl:include href='" . session_path($templatePath) . ".xslt'/>";
+			OLIVTemplate::link_css($templatePath);
+		}
+		else
+			OLIVError::fire("processor.php::process - no page template found");
+
+
+// include module templates
+		foreach ($templates as $entry)
+		{
+			if (sessionfile_exists($entry . ".xslt"))
+			{
+				$xmlString .= "<xsl:include href='" . session_path($entry) . ".xslt'/>";
+// link css file
+				OLIVTemplate::link_css($entry);
+			}
+		}
+
+		$xmlString = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>" . $xmlString . "</xsl:stylesheet>";
+
+		$tempXml = new simpleXmlElement($xmlString);
+		$stylesheet->importStylesheet($tempXml);
   }
 }
 

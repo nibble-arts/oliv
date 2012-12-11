@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<article>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:variable name="lang" select="'de'"/>
+
 	<daba_init>db=iggmp;table=railway</daba_init>
 
 	<dabaimg src='images' float='right' width='300em'  margin_left='0.5em' margin_bottom='0.5em'>_id</dabaimg>
@@ -23,4 +25,4 @@
   	<daba>operator</daba>
   </p>
 
-</article>
+</xsl:stylesheet>

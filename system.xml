@@ -57,7 +57,7 @@
     <file>html.php</file>
     <file>file.php</file>
     <file>module.php</file>
-    <file>render.php</file>
+<!--    <file>render.php</file> changed to XSLT support -->
     <file>user.php</file>
     <file>right.php</file>
     <file>route.php</file>

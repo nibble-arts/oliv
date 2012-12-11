@@ -211,7 +211,7 @@ div {
 	color:grey;
   float:left;
   margin:0 auto;
-  width:100%;
+  width:900px;
   height:30px;
   text-align:center;
   background-color:#dcdc78;

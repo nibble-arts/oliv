@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:variable name="lang" select="'en'"/>
+	<xsl:variable name="lang" select="'de'"/>
 	
 	<xsl:template match="oliv_content">
+		<h1>content area</h1>
 
 		<xsl:apply-templates select="article_index_001"/>
 		<xsl:apply-templates select="article_index_002"/>

@@ -37,24 +37,27 @@
 		    <div id='oliv_space' />
 
 				<div id='oliv_header'>
-<h1>Header</h1>
 			    <xsl:apply-templates select='oliv_header'/>
-
-		      <div id='oliv_login' />
-		      <div id='oliv_title' />
+		      <div id='oliv_login'>
+				    <xsl:apply-templates select='oliv_login'/>
+					</div>
+		      <div id='oliv_title'>
+				    <xsl:apply-templates select='oliv_title'/>
+					</div>
 		    </div>
 		
 		    <div id='oliv_space' />
 
 		    <div id='oliv_top'>
-		      <div id='oliv_search' />
+		      <div id='oliv_search'>
+				    <xsl:apply-templates select='oliv_search'/>
+			    </div>
 		    </div>
 		    
 		    <div id='oliv_space' />
 		  
 		    <div id='oliv_main'>
 		      <div id='oliv_left'>
-<h1>Left</h1>
 		        <div id='oliv_left1' />
 		        <div id='oliv_left2' />
 		        <div id='oliv_left3' />
@@ -62,17 +65,23 @@
 
 		      <div id='oliv_center'>
 		      	<div id="oliv_content">
-<h1>Content</h1>
 			        <xsl:apply-templates select='oliv_content'/>
 			      </div>
 		      </div>
 
 		    </div>
-		    <div id='oliv_footer' />
+		    <div id='oliv_footer'>
+	        <xsl:apply-templates select='oliv_footer'/>
+			  </div>
 		  </div>
 
 		  <div style="clear:both;"/>
 		</div>
+
+	</xsl:template>
+
+	<xsl:template match="oliv_content">
+		<h1>content area</h1>
 	</xsl:template>
 
 </xsl:stylesheet>

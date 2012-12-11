@@ -42,8 +42,8 @@ class OLIVTemplate
   public function __construct($path,$name)
   {
   	$this->stylesheet = new XSLTProcessor();
-    $template = OLIVTemplate::load($path,$name);
-		$this->stylesheet->importStylesheet($template);
+//    $template = OLIVTemplate::load($path,$name);
+//		$this->stylesheet->importStylesheet($template);
   }
 
 
@@ -73,21 +73,21 @@ class OLIVTemplate
   
 // load css file from path
 // look for name.xml - if not exists load default.xml
-  public static function link_css($path,$name)
+  public static function link_css($name)
   {
-// remove .css ending
-		if (substr($name,strlen($name)-4) == ".css") $name = substr($name,0,strlen($name)-4);
+		$path = pathinfo($name);
+		$cssPath = $path['dirname'] . "/";
+		$cssName = $path['filename'] . ".css";
 
-    if (sessionfile_exists($path . $name . ".css"))
-      $cssPath = $path . $name . ".css"; // named css.php class
-    else
-      $cssPath = $path . "default.css"; // default.css class
-
+    if (!sessionfile_exists($cssPath . $cssName))
+    {
+      $cssName = "default.css"; // default.css class
+    }
 
 // css file found
     if (sessionfile_exists($cssPath))
     {
-      echo "<link href='" . session_path($cssPath) . "' rel='stylesheet' type='text/css'>"; // link css to site
+      echo "<link href='" . session_path($cssPath . $cssName) . "' rel='stylesheet' type='text/css'>"; // link css to site
     }
 // no css found
     else

@@ -42,11 +42,14 @@ class OLIVCore
   private $module; // module object
   private $plugin; // plugin object
   private $template; // template object
+  private $templatePath; // path to page template
   private $page; // page object
   private $route; // router object
   private $processor; // registered plugins
   private $render; // renderer engine
   private $html; // html class
+
+  private $o; // ouput string
 
 
   public function __construct($corePath)
@@ -125,6 +128,7 @@ class OLIVCore
     $this->plugin = new OLIVPlugin();
 
 // load site template
+    $this->templatePath = system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/" . system::OLIV_TEMPLATE();
     $this->template = new OLIVTemplate(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",system::OLIV_TEMPLATE());
 
 // initialise page
@@ -134,7 +138,7 @@ class OLIVCore
     $this->processor = new OLIVProcessor();
 
 // initialise renderer
-    $this->render = new OLIVRender();
+//    $this->render = new OLIVRender(); changed to XSLT support
 
 // initialise olivscript
     $this->olivscript = new OLIVScript();
@@ -173,26 +177,29 @@ class OLIVCore
 // start preprocessor
   public function preProcessor()
   {
-    $this->processor->process($this->page,$this->template);
+// call content preprocessor
+    $this->processor->process($this->page,$this->template->stylesheet,$this->templatePath);
+
+
+//TODO call plugin processor
+		$this->plugin->call($this->page,"render");
   }
 
 // start render engine
   public function render()
   {
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
 
 //TODO playing with XSLT
 // set language for stylesheet display
-		$this->template->stylesheet->setParameter("","lang",status::lang());
-		$text = $this->template->stylesheet->transformToXML($this->page->structure());
-
-		print_r($text);
   }
 
 
 // display render result
   public function display()
   {
-    echo $this->render->display();
+    echo $this->o;
   }
  
 
