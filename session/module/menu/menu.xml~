@@ -3,9 +3,39 @@
 <menu>
   <main template='side'>
   	<index />
-    <documentation url='http://localhost/oliv/documentation/index.php' title='extern_documentation' name='extern_documentation' />
-		<iggmp url='http://www.iggmp.net' title='iggmp' target='_blank' name='IG-GmP'/>
+
+    <documentation>
+    	<url>http://localhost/oliv/documentation/index.php</url>
+			<target>_blank</target>
+    	<name>
+				<text lang='de'>Dokumentation</text>
+				<text lang='en'>Documentation</text>
+				<text lang='cs'>Dokumentace</text>
+			</name>
+    	<title>
+				<text lang='de'>Dokumentation</text>
+				<text lang='en'>Documentation</text>
+				<text lang='cs'>Dokumentace</text>
+			</title>
+		</documentation>
+
+		<iggmp>
+			<url>http://www.iggmp.net</url>
+			<target>_blank</target>
+			<name>
+				<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
+				<text lang='en'>Society for Railways with Person Transport</text>
+				<text lang='cs'>Zájem Společenství - parkoví dráha s osobní železniční dopravy</text>
+			</name>
+			<title>
+				<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
+				<text lang='en'>Society for Railways with Person Transport</text>
+				<text lang='cs'>Zájem Společenství - parkoví dráha s osobní železniční dopravy</text>
+			</title>
+		</iggmp>
+		
 		<test owner='admin' group='user' access='440' />
+		<redirect />
   </main>
 
   <admin template='side' group='edit' access='770'>

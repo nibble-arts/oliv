@@ -47,18 +47,17 @@ class OLIVText extends OLIVCore
 {
 	public static function xml($text)
 	{
-// multilingual text
+echoall($text);
 		if ($text->text)
 		{
 			$xpath = "text[@lang='" . status::lang() . "']";
-
+echoall($xpath);
 			$tempText = $text->XPath($xpath);
-			return (String)$tempText[0];
+			echoall((String)$tempText[0]);
 		}
 		else
-// fixed text
 		{
-			return (string)$text;
+			echoall((string)$text);
 		}
 	}
 	

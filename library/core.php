@@ -102,10 +102,8 @@ class OLIVCore
 //------------------------------------------------------------------------------
 
 // load system language
-    if (!system::OLIVTEXT())
-    	die ("INIT: OLIVTEXT not found");
-    	
-    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
+//TODO define system text
+//    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
 
 
 //------------------------------------------------------------------------------

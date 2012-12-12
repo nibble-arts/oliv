@@ -97,7 +97,7 @@ class OLIVProcessor extends OLIVCore
 // insert module template
 											if (array_key_exists("template",$outputObj->o))
 											{
-//												array_push($templates,$outputObj->o['template']);
+												array_push($templates,$outputObj->o['template']);
 											}
 
 // insert module content in page content

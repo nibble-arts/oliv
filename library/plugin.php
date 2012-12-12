@@ -60,7 +60,6 @@ class OLIVPlugin
 
 //echoall($page->structure());
 
-				echo($tempXsl->transformToXML($page->structure()));
 // echoall($page->structure());
 			}
 		}

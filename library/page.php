@@ -82,13 +82,6 @@ class OLIVPage
 	    $this->structure = new simpleXmlElement("<page></page>"); // create empty page
 			olivxml_insert($this->structure,$xml->content);
 
-//echoall($this->structure);
-
-// load content text
-			$langPath = system::OLIV_PAGE_PATH() . $pageName . "/language/";
-			$langFile = $pageName;
-
-			OLIVText::load($langPath,$langFile);
 		}
 		else
 			OLIVError::fire("page::load - page not found");

@@ -102,10 +102,8 @@ class OLIVCore
 //------------------------------------------------------------------------------
 
 // load system language
-    if (!system::OLIVTEXT())
-    	die ("INIT: OLIVTEXT not found");
-    	
-    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
+//TODO define system text
+//    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
 
 
 //------------------------------------------------------------------------------
@@ -182,12 +180,13 @@ class OLIVCore
 
 
 //TODO call plugin processor
-		$this->plugin->call($this->page);
+		$this->plugin->call($this->page,"render");
   }
 
 // start render engine
   public function render()
   {
+  echoall($this->page->structure());
 		$this->template->stylesheet->setParameter("","lang",status::lang());
 		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
 

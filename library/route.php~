@@ -217,7 +217,8 @@ class OLIVRoute
 		global $_PAGES;
 
 		if (array_key_exists($url,$_PAGES)) // url defined
-			return (OLIVText::xml($_PAGES[$url]->define->title));
+			echoall($_PAGES[$url]->define->title);
+				return (OLIVText::xml($_PAGES[$url]->define->title));
 	}
 	
 

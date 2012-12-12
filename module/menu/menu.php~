@@ -84,7 +84,7 @@ class menu extends OLIVCore
     {
 // get name of menu
 			$menuName = $menu->getName();
-
+echoall($menuName);
 //------------------------------------------------------------------------------
 // loop over menu entries
       foreach ($menu->children() as $entry)

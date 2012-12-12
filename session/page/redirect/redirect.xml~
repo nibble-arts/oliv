@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<content id='index'>
-	<redirect> if (status::command() == "") { return("documentation"); } </redirect>
+<content id='redirect'>
 	<masterpage>common</masterpage>
-  <oliv_content mod='article'>railway</oliv_content>
+  <oliv_content>No dataset. Page redirected</oliv_content>
 </content>
