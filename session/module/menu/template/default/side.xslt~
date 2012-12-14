@@ -4,16 +4,23 @@
 
 	<xsl:template match="menu">
 		Seiten-Menü anzeigen
+
+		<xsl:for-each select=".">
+			<xsl:value-of select="position()"/>
+		</xsl:for-each>
+
+<!--		<xsl:apply-templates select="url"/>-->
+
 		<div id='menu_background_side' style='background-color:#dcdc78;padding:3px'>
 			<xsl:apply-templates select="//menu_item_side"/>
 		</div>
 	</xsl:template>
 
-	<xsl:template match="menu_item_side">
-    <div id='menu_item_side'>
-Seitenmenü
-    	<xsl:value-of select="./url"/>
-    </div>
+	<xsl:template match="url">
+		<p>
+			<xsl:value-of select="position()"/>
+			<xsl:value-of select="."/>
+		</p>
 	</xsl:template>
 
 </xsl:stylesheet>

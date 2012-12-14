@@ -113,6 +113,6 @@ class OLIVPage
 // insert xml in page structure
 	public function insert($xml)
 	{
-		olivxml_insert($this->structure,$xml);
+		olivxml_insert($this->structure,$xml,"ALL");
 	}
 }

@@ -186,11 +186,11 @@ class OLIVCore
 // start render engine
   public function render()
   {
-		$this->template->stylesheet->setParameter("","lang",status::lang());
-		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
-
-//TODO playing with XSLT
 // set language for stylesheet display
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+
+//echoall($this->page->structure());
+		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
   }
 
 

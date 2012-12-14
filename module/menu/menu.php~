@@ -84,7 +84,7 @@ class menu extends OLIVCore
     {
 // get name of menu
 			$menuName = $menu->getName();
-echoall($menuName);
+
 //------------------------------------------------------------------------------
 // loop over menu entries
       foreach ($menu->children() as $entry)
@@ -129,7 +129,7 @@ echoall($menuName);
 						$entry->class = "menu_{$templateName}_disabled";
 
 // insert into new menu structure
-						olivxml_insert($menuXml->menu,$entry,"ALL");
+						olivxml_insert($menuXml,$entry);
 
 	//TODO
 	// sub menus foun
@@ -143,7 +143,7 @@ echoall($menuName);
 //		      olivxml_insert($menuXml,$tempXml);
 		    }
 			}
- 
+
 echoall($menuXml);
       return ($menuXml);
     }

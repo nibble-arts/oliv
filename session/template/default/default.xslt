@@ -83,7 +83,10 @@
 
 		  <div style="clear:both;"/>
 		</div>
+	</xsl:template>
 
+	<xsl:template match="oliv_content">
+		<h1>content area</h1>
 	</xsl:template>
 
 </xsl:stylesheet>

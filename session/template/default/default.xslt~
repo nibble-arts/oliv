@@ -62,10 +62,10 @@
 		        	<xsl:apply-templates select='//oliv_left1'/>
 						</div>
 		        <div id='oliv_left2'>
-		        	<xsl:apply-templates select='//oliv_left1'/>
+		        	<xsl:apply-templates select='//oliv_left2'/>
 						</div>
 		        <div id='oliv_left3'>
-		        	<xsl:apply-templates select='//oliv_left1'/>
+		        	<xsl:apply-templates select='//oliv_left3'/>
 						</div>
 		      </div>
 

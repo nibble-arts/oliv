@@ -36,12 +36,13 @@
 // option = ALL_UNIQUE ... insert starting at xml basis if node does not exist
 // option = UNIQUE ... insert if node does not exist
 
-function olivxml_insert(&$xml_to,$xml_from,$option = "")
+function olivxml_insert(&$xml_to,$xml_from,$option = "",$namespace="")
 {
 	if ($xml_from)
 	{
 		$option = strtoupper($option);
 		$name = $xml_from->getName();
+
 
 // parse options
 		switch ($option)
@@ -54,10 +55,10 @@ function olivxml_insert(&$xml_to,$xml_from,$option = "")
 // insert starting at xml basis
 			case 'ALL':
 				$option = ""; // clear option for recursion
-				$xml_to->addChild($name);
+				$xml_to->addChild($name,"",$namespace);
 
 				// recursion
-				olivxml_insert($xml_to->$name,$xml_from);
+				olivxml_insert($xml_to->$name,$xml_from,$namespace);
 				break;
 
 // insert if node does not exist
@@ -66,29 +67,62 @@ function olivxml_insert(&$xml_to,$xml_from,$option = "")
 				break;
 
 			default:
+
 //------------------------------------------------------------------------------
 // insert complex structure
+
+// insert nodes without namespace
 				if (count($xml_from->children()))
 				{
 					foreach ($xml_from->children() as $xml_child)
 					{
-echo ".";
-						$xml_temp = $xml_to->addChild($xml_child->getName(), (string) $xml_child);
+						$xml_temp = $xml_to->addChild($xml_child->getName(), (string)$xml_child,"");
 						foreach ($xml_child->attributes() as $attr_key => $attr_value)
 						{
-						    $xml_temp->addAttribute($attr_key, $attr_value);
+					    $xml_temp->addAttribute($attr_key, $attr_value);
 						}
 
 		// add recursive
 						if (count($xml_child->children()))
+						{
 							olivxml_insert($xml_temp, $xml_child);
+						}
 					}
 				}
 				else
 		// insert single entry
 				{
-					$xml_temp = $xml_to->addChild($xml_from->getName(), (string) $xml_from);
-					foreach ($xml_from->attributes() as $attr_key => $attr_value)
+					$xml_temp = $xml_to->addChild($xml_from->getName(),(string) $xml_from);
+					foreach ($xml_from->attributes($namespace) as $attr_key => $attr_value)
+					{
+							$xml_temp->addAttribute($attr_key, $attr_value);
+					}
+				}
+
+
+// insert nodes in namespace
+				if (count($xml_from->children($namespace)))
+				{
+					foreach ($xml_from->children($namespace) as $xml_child)
+					{
+						$xml_temp = $xml_to->addChild($xml_child->getName(), (string)$xml_child,$namespace);
+						foreach ($xml_child->attributes() as $attr_key => $attr_value)
+						{
+					    $xml_temp->addAttribute($attr_key, $attr_value);
+						}
+
+		// add recursive
+						if (count($xml_child->children($namespace)))
+						{
+							olivxml_insert($xml_temp, $xml_child,"",$namespace);
+						}
+					}
+				}
+				else
+		// insert single entry
+				{
+					$xml_temp = $xml_to->addChild($xml_from->getName(),(string) $xml_from);
+					foreach ($xml_from->attributes($namespace) as $attr_key => $attr_value)
 					{
 							$xml_temp->addAttribute($attr_key, $attr_value);
 					}
@@ -97,6 +131,45 @@ echo ".";
 		}
 	}
 } 
+
+
+//------------------------------------------------------------------------------
+//TODO testfunction for simpleXmlElement namespace access
+function olivxml_test($xml,$ns="")
+{
+	echo "<hr>";
+	echoall("NS is: " . $ns);
+	echoall("count no NS");
+	echoall(count($xml->children()));
+
+	foreach($xml->children() as $entry)
+	{
+		echoall($entry->getName());
+		echoall($entry->attributes());
+		if (count($entry->children()))
+		{
+			echoall("rec -->");
+			olivxml_test($entry,$ns);
+			echoall("--> rec");
+		}
+	}
+	echo("<br>");
+
+	echoall("Count NS");
+	echoall(count($xml->children($ns)));
+
+	foreach($xml->children($ns) as $entry)
+	{
+		echoall($entry->getName());
+		echoall($entry->attributes());
+		if (count($entry->children($ns)))
+		{
+			echoall("ns rec -->");
+			olivxml_test($entry,$ns);
+			echoall("--> ns rec");
+		}
+	}
+}
 
 
 //------------------------------------------------------------------------------

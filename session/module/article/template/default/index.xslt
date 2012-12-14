@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:template match="oliv_content">
+	<xsl:template match="article_index">
 		<xsl:apply-templates select="//article_index_001"/>
 		<xsl:apply-templates select="//article_index_002"/>
 		<xsl:apply-templates select="//daba"/>
+
 		<span class='daba-field'>
 		</span>
 	</xsl:template>

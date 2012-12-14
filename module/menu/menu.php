@@ -129,7 +129,7 @@ class menu extends OLIVCore
 						$entry->class = "menu_{$templateName}_disabled";
 
 // insert into new menu structure
-						olivxml_insert($menuXml->menu,$entry,"ALL");
+						olivxml_insert($menuXml,$entry,"ALL");
 
 	//TODO
 	// sub menus foun
@@ -143,7 +143,7 @@ class menu extends OLIVCore
 //		      olivxml_insert($menuXml,$tempXml);
 		    }
 			}
- 
+
 echoall($menuXml);
       return ($menuXml);
     }

@@ -93,11 +93,10 @@ class OLIVProcessor extends OLIVCore
 										{
 											$tempTemplate = $outputObj->o['template'];
 
-
 // insert module template
 											if (array_key_exists("template",$outputObj->o))
 											{
-												array_push($templates,$outputObj->o['template']);
+												$templates[$entry->getName() . "::" . $outputObj->o['content']->getName()] = $outputObj->o['template'];
 											}
 
 // insert module content in page content
@@ -138,16 +137,44 @@ class OLIVProcessor extends OLIVCore
 
 
 // include module templates
-		foreach ($templates as $entry)
+		foreach ($templates as $key=>$entry)
 		{
 			if (sessionfile_exists($entry . ".xslt"))
 			{
+				$linkArray = explode("::",$key);
+			
+// create stylesheet to link module template to page area
+				$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
+				$tempSting .= "<xsl:template match='" . $linkArray[0] . "'>";
+				$tempSting .= "<xsl:apply-templates select='../" . $linkArray[1] . "'/>";
+				$tempSting .= "</xsl:template>";
+				$tempSting .= "</xsl:stylesheet>";
+
+				$tempXsl = new simpleXmlElement($tempSting);
+
+// write template to disk
+				$fileName = explode("/",$entry);
+				array_pop($fileName);
+				$fileName = implode("/",$fileName);
+
+				$filePath = session_path($fileName) . "/link_" . $linkArray[0] . ".xslt";
+			
+				$fileHandle = fopen($filePath,"w");
+				if ($fileHandle)
+				{
+					fputs($fileHandle,$tempXsl->asXML());
+					fclose($fileHandle);
+				}
+
+				$xmlString .= "<xsl:include href='" . $filePath . "'/>";
 				$xmlString .= "<xsl:include href='" . session_path($entry) . ".xslt'/>";
 // link css file
 				OLIVTemplate::link_css($entry);
 			}
 		}
 
+
+//TODO create temporary include template 
 		$xmlString = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>" . $xmlString . "</xsl:stylesheet>";
 
 		$tempXml = new simpleXmlElement($xmlString);
