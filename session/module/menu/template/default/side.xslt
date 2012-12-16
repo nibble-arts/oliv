@@ -5,6 +5,8 @@
 	<xsl:template match="menu">
 		Seiten-Menü anzeigen
 
+		<xsl:value-of select="count(.)"/>
+
 		<xsl:for-each select="menu">
 			<xsl:value-of select="position()"/>
 		</xsl:for-each>

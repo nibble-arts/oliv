@@ -157,7 +157,7 @@ class OLIVProcessor extends OLIVCore
 				array_pop($fileName);
 				$fileName = implode("/",$fileName);
 
-				$filePath = session_path($fileName) . "/link_" . $linkArray[0] . ".xslt";
+				$filePath = session_path($fileName) . "/link_" . $linkArray[0] . "_to_" . $linkArray[1] . ".xslt";
 			
 				$fileHandle = fopen($filePath,"w");
 				if ($fileHandle)

@@ -146,7 +146,6 @@ class OLIVProcessor extends OLIVCore
 // create stylesheet to link module template to page area
 				$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
 				$tempSting .= "<xsl:template match='" . $linkArray[0] . "'>";
-				$tempSting .= "<p>link template</p>";
 				$tempSting .= "<xsl:apply-templates select='../" . $linkArray[1] . "'/>";
 				$tempSting .= "</xsl:template>";
 				$tempSting .= "</xsl:stylesheet>";
