@@ -3,15 +3,27 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match="menu">
-		Seiten-Menü anzeigen
-
-		<xsl:for-each select="menu">
-			<xsl:value-of select="position()"/>
-		</xsl:for-each>
-
-<!--		<xsl:apply-templates select="url"/>-->
-
 		<div id='menu_background_side' style='background-color:#dcdc78;padding:3px'>
+			<xsl:for-each select="./*">
+				<xsl:if test="url">
+					<a>
+						<xsl:attribute name="href">
+							<xsl:value-of select="url"/>
+						</xsl:attribute>
+
+						<xsl:attribute name="title">
+							<xsl:value-of select="title"/>
+						</xsl:attribute>
+
+						<xsl:attribute name="title">
+							<xsl:value-of select="title/text[@lang=$lang]"/>
+						</xsl:attribute>
+
+						<div id="menu_item_side"><xsl:value-of select="name/text[@lang=$lang]"/></div>
+					</a>
+				</xsl:if>
+			</xsl:for-each>
+
 			<xsl:apply-templates select="//menu_item_side"/>
 		</div>
 	</xsl:template>
