@@ -1,6 +1,6 @@
 #menu_background_side {
   margin-top:10px;
-  float:left;
+  float:right;
   width:200px;
 }
 

@@ -89,11 +89,7 @@ class menu extends OLIVCore
 // loop over menu entries
       foreach ($menu->children() as $entry)
       {
-				$itemName = "";
-				$itemUrl = "";
-				$itemTitle = "";
-				$itemTarget = "";
-		    $paramString = "";
+				$internUrl = "";
 
 				$menuItemName = $entry->getName();
 				
@@ -101,36 +97,48 @@ class menu extends OLIVCore
 // is intern link
 				if (!$entry->url)
 				{
-//TODO create correct url
-echoall("create url " . OLIVRoute::translateTitle($itemUrl));
-		      $entry->url = $entry->getName();
+	// create correct url
+					$internUrl = (string)$entry->getName();
+					$entry->url = (string)OLIVRoute::url(status::lang(),$internUrl,status::val());
 
-					$entry->title = OLIVRoute::translateTitle($itemUrl);
-		      $entry->name = OLIVRoute::translatePageName(status::lang(),$itemUrl);
+					$entry->title = OLIVRoute::translateTitle($internUrl);
+		      $entry->name = OLIVRoute::translatePageName(status::lang(),$internUrl);
 				}
 
+//------------------------------------------------------------------------------
+// translate name and title
+				$entry->title = OLIVText::xml($entry->title);				
+				$entry->name = OLIVText::xml($entry->name);				
+
+//------------------------------------------------------------------------------
 // set display class aktive / inactive
-	      if ($itemUrl == $url)
+	      if ($internUrl == $url)
 	        $entry->class = "menu_{$templateName}_active";
 	      else
 	        $entry->class = "menu_{$templateName}_inactive";
-        
+
 
 //------------------------------------------------------------------------------
 // display item if read permission
 				if (OLIVRight::r($entry))
 				{
-// insert link if x permission
+// remove link if no x permission
 					if (!OLIVRight::x($entry))
 					{
 						$entry->url = "";
 					}
 // set display class to disabled
 					else
+					{
 						$entry->class = "menu_{$templateName}_disabled";
+					}
 
-// insert into new menu structure
-						olivxml_insert($menuXml,$entry,"ALL");
+// create menu_item xml
+						$menu_item = new simpleXmlElement("<menu_item></menu_item>");
+						olivxml_insert($menu_item,$entry);
+
+// insert menu_item into new menu structure
+						olivxml_insert($menuXml,$menu_item,"ALL");
 
 	//TODO
 	// sub menus foun
@@ -144,7 +152,6 @@ echoall("create url " . OLIVRoute::translateTitle($itemUrl));
 //		      olivxml_insert($menuXml,$tempXml);
 		    }
 			}
-
 //echoall($menuXml);
       return ($menuXml);
     }

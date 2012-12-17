@@ -24,7 +24,6 @@
 
 	<xsl:template match="daba">
 		<p>
-			Database value
 			<xsl:value-of select="."/>
 		</p>
 	</xsl:template>

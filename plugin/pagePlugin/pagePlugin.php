@@ -44,7 +44,6 @@ class pagePlugin
 //TODO remove $func entry from $pageXml entry
 		$pageXml->$func = "";
 		
-echoall($func);
 // call methods
 		switch ($func)
 		{

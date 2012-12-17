@@ -47,7 +47,7 @@
   
   <includes>
 <!-- static classes -->
-<!--    <file>text.php</file> changed to file intern text definition -->
+    <file>text.php</file>
     <file>language.php</file>
     <file>error.php</file>
     <file>xml.php</file>

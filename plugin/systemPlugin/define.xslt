@@ -1,16 +1,12 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:template match="system_name">
-		<xsl:value-of select="."/>
-	</xsl:template>
+<plugin>
+	<class>textPlugin</class>
 
-	<xsl:template match="system_autor">
-		<xsl:value-of select="."/>
-	</xsl:template>
-
-	<xsl:template match="system_version">
-		<xsl:value-of select="."/>
-	</xsl:template>
-</xsl:stylesheet>
+	<method>
+		<system_name>name"</system_name>
+		<system_autor>autor</system_autor>
+		<system_version>version</system_version>
+	</method>
+</plugin>
 

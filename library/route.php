@@ -216,23 +216,16 @@ class OLIVRoute
 	{
 		global $_PAGES;
 
-		if (array_key_exists($url,$_PAGES)) // url defined
-			return (OLIVText::xml($_PAGES[$url]->define->title));
+		return (OLIVText::xml($_PAGES->$url->title));
 	}
 	
 
 //------------------------------------------------------------------------------
 //TODO make url basis for intern, extern, form, e.i.
 // create form url
-  static public function url($text,$options="")
+  static public function url($lang,$url,$val)
   {
-    $url = "";
-    $val = "";
-    $lang = "";
-
-    if (array_key_exists('url',$options)) $url = strtolower($options['url']);
-    if (array_key_exists('val',$options)) $val = $options['val'];
-    if (array_key_exists('lang',$options)) $lang = $options['lang']; // get link language
+    $url = strtolower($url);
 
     if (!$lang) $lang = status::lang(); // if no language use current
     
@@ -293,10 +286,10 @@ class OLIVRoute
   {
     global $_PAGES;
 
-// return translated page
-		if (array_key_exists($url,$_PAGES))
-			return OLIVText::xml($_PAGES[$url]->define->name);
 
+// return translated page
+		if ($name = OLIVText::xml($_PAGES->$url->name))
+			return $name;
 		else
 // return untranslated
 			return $url;
@@ -310,7 +303,7 @@ class OLIVRoute
     global $_PAGES;
 
 		if (array_key_exists($url,$_PAGES))
-			return (OLIVText::xml($_PAGES[$url]->define->friendly_name,$lang));
+			return (OLIVText::xml($_PAGES->$url->friendly_name,$lang));
 		else
 // return untranslated
 			return $url;
@@ -400,8 +393,13 @@ class OLIVRoute
   {
 		global $_PAGES;
 
+		if (sessionfile_exists(system::OLIV_PAGE_PATH() . "page.xml"))
+			$_PAGES = sessionxml_load_file(system::OLIV_PAGE_PATH() . "page.xml");
+		else
+      OLIVError::fire("page::scan - page.xml not found -> rescan");
+			
+/*    $path = system::OLIV_PAGE_PATH();
 
-    $path = system::OLIV_PAGE_PATH();
     if ($pageDir = sessionopendir ($path))
     {
       while ($file = readdir($pageDir))
@@ -420,7 +418,7 @@ class OLIVRoute
       closedir ($pageDir);
     }
     else
-      OLIVError::fire("page::scan - directory $path not found");
+      OLIVError::fire("page::scan - directory $path not found");*/
 
 //    echoall($_PAGES);
   }

@@ -25,8 +25,9 @@
 //
 // Version 0.1 -->
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:php="http://php.net/xsl" exclude-result-prefixes="php">
+
+  <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 	<xsl:param name="lang"/>
 
@@ -85,9 +86,6 @@
 		</div>
 	</xsl:template>
 
-	<xsl:template match="oliv_content">
-		<h1>content area</h1>
-	</xsl:template>
 
 </xsl:stylesheet>
 

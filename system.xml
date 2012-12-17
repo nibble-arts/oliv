@@ -64,7 +64,8 @@
     <file>search.php</file>
     <file>database.php</file>
     <file>template.php</file>
-    <file>processor.php</file>
+    <file>preprocessor.php</file>
+    <file>postprocessor.php</file>
     <file>page.php</file>
     <file>image.php</file>
     <file>index.php</file>

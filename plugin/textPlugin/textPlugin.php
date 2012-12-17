@@ -39,10 +39,12 @@ class textPlugin
 // render class
   static public function __callStatic($tag,$options)
   {
-    $content = $options[0];
-    $value = $options[0]['template'];
+echoall($tag);
 
-    return (textRender::tagString($tag,$value,$content));
+//    $content = $options[0];
+//    $value = $options[0]['template'];
+
+//    return (textRender::tagString($tag,$value,$content));
   }
 }
 
@@ -53,6 +55,7 @@ class textEditPlugin
 {
   static public function __callStatic($tag,$options)
   {
+/*
 		$command = "";
 		$partName = "";
 
@@ -100,7 +103,7 @@ class textEditPlugin
 // render text
 // create context menu for editing
 //			$context = new OLIVContext("textPlugin",$value,$value);
-//			$context->draw();
+//			$context->draw();*/
 
 
 // set link to call editor
@@ -112,7 +115,7 @@ class textEditPlugin
       );*/
 		}
 
-		return ($tagArray);
+//		return ($tagArray);
   }
 
 

@@ -45,7 +45,8 @@ class OLIVCore
   private $templatePath; // path to page template
   private $page; // page object
   private $route; // router object
-  private $processor; // registered plugins
+  private $preProcessor; // preprocessor object
+  private $postProcessor; // postprocessor object
   private $render; // renderer engine
   private $html; // html class
 
@@ -133,7 +134,10 @@ class OLIVCore
     $this->page = new OLIVPage();
 
 // initialise preprocessor
-    $this->processor = new OLIVProcessor();
+    $this->preProcessor = new OLIVPreProcessor();
+
+// initialise preprocessor
+    $this->postProcessor = new OLIVPostProcessor();
 
 // initialise renderer
 //    $this->render = new OLIVRender(); changed to XSLT support
@@ -172,16 +176,20 @@ class OLIVCore
     $this->page->load();
   }
 
-// start preprocessor
+
+// call content pre processor
   public function preProcessor()
   {
-// call content preprocessor
-    $this->processor->process($this->page,$this->template->stylesheet,$this->templatePath);
-
-
-//TODO call plugin processor
-		$this->plugin->call($this->page,"render");
+    $this->preProcessor->process($this->page,$this->template->stylesheet,$this->templatePath);
   }
+
+
+// call content post processor
+  public function postProcessor()
+  {
+    $this->o = $this->postProcessor->process($this->o);
+  }
+
 
 // start render engine
   public function render()
@@ -189,7 +197,7 @@ class OLIVCore
 // set language for stylesheet display
 		$this->template->stylesheet->setParameter("","lang",status::lang());
 
-echoall($this->page->structure());
+//echoall($this->page->structure());
 		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
   }
 

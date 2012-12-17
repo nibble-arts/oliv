@@ -4,36 +4,41 @@
 
 	<xsl:template match="menu">
 		<div id='menu_background_side' style='background-color:#dcdc78;padding:3px'>
-			<xsl:for-each select="./*">
-				<xsl:if test="url">
-					<a>
-						<xsl:attribute name="href">
-							<xsl:value-of select="url"/>
-						</xsl:attribute>
-
-						<xsl:attribute name="title">
-							<xsl:value-of select="title"/>
-						</xsl:attribute>
-
-						<xsl:attribute name="title">
-							<xsl:value-of select="title/text[@lang=$lang]"/>
-						</xsl:attribute>
-
-						<div id="menu_item_side"><xsl:value-of select="name/text[@lang=$lang]"/></div>
-					</a>
-				</xsl:if>
-			</xsl:for-each>
-
-			<xsl:apply-templates select="//menu_item_side"/>
+			<xsl:apply-templates select="menu_item"/>
 		</div>
 	</xsl:template>
 
-	<xsl:template match="url">
-		<p>
-			<xsl:value-of select="position()"/>
-			<xsl:value-of select="."/>
-		</p>
-	</xsl:template>
 
+	<xsl:template match="menu_item">
+		<div id="menu_item_side">
+			<xsl:attribute name="class">
+				<xsl:value-of select="./class"/>
+			</xsl:attribute>
+
+				<a>
+					<xsl:if test="./url = ''">
+						<xsl:attribute name="href">
+							<xsl:value-of select="./url"/>
+						</xsl:attribute>
+
+						<xsl:attribute name="target">
+							<xsl:value-of select="./target"/>
+						</xsl:attribute>
+
+						<xsl:attribute name="title">
+							<xsl:value-of select="./title"/>
+						</xsl:attribute>
+					</xsl:if>
+
+					<span>
+						<xsl:attribute name="class">
+							<xsl:value-of select="./class"/>
+						</xsl:attribute>
+
+						<xsl:value-of select="./name"/>
+					</span>
+				</a>
+			</div>
+	</xsl:template>
 </xsl:stylesheet>
 

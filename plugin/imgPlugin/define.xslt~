@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<render>
-	<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-		<xsl:template match="img">
-			<xsl:value-of select="."/>
-		</xsl:template>
-	</xsl:stylesheet>
-</render>
+<plugin>
+	<script>imgPlugin</script>
+
+	<func>
+		<img class="img"/>
+	</func>
+</plugin>

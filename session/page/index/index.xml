@@ -21,7 +21,7 @@
 
 
 	<content>
-	<!--	<masterpage>common</masterpage>-->
+		<masterpage>common</masterpage>
 
 		<oliv_content mod='article'>index</oliv_content>
 

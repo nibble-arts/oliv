@@ -31,7 +31,7 @@ if (!system::OLIVCORE()) die ("processor.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("processor.php - OLIVError not present");
 
 
-class OLIVProcessor extends OLIVCore
+class OLIVPreProcessor extends OLIVCore
 {
   // constructor
   public function __construct()
@@ -124,7 +124,7 @@ class OLIVProcessor extends OLIVCore
 
 // create temporary xslt for include process
 		$tempXsl = new XSLTProcessor();
-
+		$tempXsl->registerPHPFunctions();
 
 // include page template
 		if (sessionfile_exists($templatePath . ".xslt"))
@@ -179,7 +179,12 @@ class OLIVProcessor extends OLIVCore
 
 		$tempXml = new simpleXmlElement($xmlString);
 		$stylesheet->importStylesheet($tempXml);
+
+
+//echoall($page->structure());
   }
+
+
 }
 
 

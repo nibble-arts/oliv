@@ -48,18 +48,34 @@ class OLIVText extends OLIVCore
 	public static function xml($text)
 	{
 // multilingual text
-		if ($text->text)
+		if ($text)
 		{
-			$xpath = "text[@lang='" . status::lang() . "']";
+			if ($text->text)
+			{
+				$xpath = "text[@lang='" . status::lang() . "']";
+				$default_xpath = "text[@lang='" . system::OLIV_DEFAULT_LANG() . "']";
 
-			$tempText = $text->XPath($xpath);
-			return (String)$tempText[0];
+				$tempText = $text->XPath($xpath);
+				$defaultTempText = $text->XPath($default_xpath);
+
+	// return language test
+				if (count($tempText) > 0)
+				{
+					return (String)$tempText[0];
+				}
+	// return default language
+				else
+				{
+					return (String)$defaultTempText[0];
+				}
+			}
+			else
+	// fixed text
+			{
+				return (string)$text;
+			}
 		}
-		else
-// fixed text
-		{
-			return (string)$text;
-		}
+		return FALSE;
 	}
 	
 //-------------------------------------------------------------------------------------------

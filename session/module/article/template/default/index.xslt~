@@ -22,13 +22,4 @@
 		</p>
 	</xsl:template>
 
-	<xsl:template match="daba">
-		<p>
-			Database value
-			<xsl:value-of select="."/>
-		</p>
-	</xsl:template>
-
-	<h1></h1>
-
 </xsl:stylesheet>

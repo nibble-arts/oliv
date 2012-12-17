@@ -40,6 +40,7 @@ class OLIVPlugin
   }
 
 
+
 //------------------------------------------------------------------------------
 // call plugin
 // $func ... function name (in render plugin normally the tag name)
@@ -51,7 +52,7 @@ class OLIVPlugin
     global $_PLUGIN;
 
 //echoall($_PLUGIN);
-		if (is_object($page))
+/*		if (is_object($page))
 		{
 			foreach($_PLUGIN as $entry)
 			{
@@ -59,11 +60,17 @@ class OLIVPlugin
 				$tempXsl->importStylesheet($entry);
 
 //echoall($page->structure());
+//echoall($_PLUGIN);
+				foreach ($_PLUGIN as $entry)
+				{
+					echo "<hr>";
+//					echoall($page->structure());
+					echoall($entry->children("http://www.w3.org/1999/XSL/Transform")->asXML());
 
-				echo($tempXsl->transformToXML($page->structure()));
-// echoall($page->structure());
+					
+				}
 			}
-		}
+		}*/
 /*    if (isset($_PLUGIN->$type->func->$func))
     {
   // get render plugin if registered
@@ -128,7 +135,7 @@ class OLIVPlugin
     global $_PLUGIN;
 
 //    $_PLUGIN = new simpleXmlElement("<plugin></plugin>");
-    $_PLUGIN = array();
+    $_PLUGIN = new simpleXmlElement("<plugins></plugins>");
 
     if ($pluginDir = olivopendir ($path))
     {
@@ -144,10 +151,8 @@ class OLIVPlugin
           {
             $xml = olivxml_load_file($path . $file . "define.xslt");
 
-
             // get type of plugin
-            $type = $xml->getName();
-            array_push($_PLUGIN,$xml);
+						olivxml_insert($_PLUGIN,$xml,"ALL");
           }
         }
       }

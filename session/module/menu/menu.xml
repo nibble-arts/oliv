@@ -13,20 +13,16 @@
 				<text lang='cs'>Dokumentace</text>
 			</name>
     	<title>
-				<text lang='de'>Dokumentation</text>
-				<text lang='en'>Documentation</text>
-				<text lang='cs'>Dokumentace</text>
+				<text lang='de'>OLIV Dokumentation</text>
+				<text lang='en'>OLIV documentation</text>
+				<text lang='cs'>OLIV dokumentace</text>
 			</title>
 		</documentation>
 
 		<iggmp>
 			<url>http://www.iggmp.net</url>
 			<target>_blank</target>
-			<name>
-				<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
-				<text lang='en'>Society for Railways with Person Transport</text>
-				<text lang='cs'>Zájem Společenství - parkoví dráha s osobní železniční dopravy</text>
-			</name>
+			<name>IG-GmP</name>
 			<title>
 				<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
 				<text lang='en'>Society for Railways with Person Transport</text>
@@ -34,7 +30,7 @@
 			</title>
 		</iggmp>
 		
-		<test owner='admin' group='user' access='000' />
+		<test owner='admin' group='user' access='774' />
 		<redirect />
   </main>
 

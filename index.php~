@@ -60,20 +60,24 @@ else
 
       $core = new OLIVCore($corePath);
       $core->init("oliv");
-echoall(status::getAll());
+
 
 // load page content
       $core->loadContent();
-  
+
 // call preprocessor
       $core->preProcessor();
+
+// call postprocessor
+      $core->postProcessor();
+
+// render site
+	    $core->render(); // render site
     ?>
   </head>
   
   <body>
     <?PHP
-// render site
-    $core->render(); // render site
 //echoall(value::getAll());
     $core->display(); // display site
     

@@ -54,10 +54,12 @@ function olivxml_insert(&$xml_to,$xml_from,$option = "")
 // insert starting at xml basis
 			case 'ALL':
 				$option = ""; // clear option for recursion
-				$xml_to->addChild($name);
 
-				// recursion
-				olivxml_insert($xml_to->$name,$xml_from);
+				$new_child = $xml_to->addChild($name);
+
+				// recursion to new entry
+				olivxml_insert($new_child,$xml_from);
+
 				break;
 
 // insert if node does not exist

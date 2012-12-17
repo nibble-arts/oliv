@@ -59,8 +59,6 @@ echoall($func);
 					$pageXml->load($redirect);
 //					$pageXml = $page->structure();
 				}
-
-				return $pageXml;
 				break;
 
 

@@ -64,16 +64,20 @@ else
 
 // load page content
       $core->loadContent();
-  
+
 // call preprocessor
       $core->preProcessor();
+
+// render site
+	    $core->render(); // render site
+
+// call postprocessor
+      $core->postProcessor();
     ?>
   </head>
   
   <body>
     <?PHP
-// render site
-    $core->render(); // render site
 //echoall(value::getAll());
     $core->display(); // display site
     
