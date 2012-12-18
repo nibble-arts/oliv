@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <plugin>
-	<script>textPlugin</script>
+	<class>textPlugin</class>
 
-	<func>
-		<p class="p"/>
-	</func>
+	<method>
+		<p>p</p>
+	</method>
 </plugin>

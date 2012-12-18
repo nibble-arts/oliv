@@ -36,9 +36,10 @@ class dabaPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($tag,$options)
+  static public function __callStatic($func,$options)
   {
-		return dabaRender::render($tag,$options);
+		return($options[0]);
+//		return dabaRender::render($tag,$options);
   }
 }
 
@@ -157,7 +158,7 @@ class dabaInit
 			if ($dabaField)
 			{
 // 
-				if (count($idArray) > 1)
+				if ($dabaValue)
 				{
 					$filterArray =  array(new simpleXmlElement("<where field='$dabaField' value='$dabaValue' operator='=' />"));
 					$idString = $dabaId;

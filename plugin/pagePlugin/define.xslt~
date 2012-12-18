@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <plugin>
-	<script>textPlugin</script>
+	<class>textPlugin</class>
 
-	<func>
-		<redirect class="redirect"/>
-		<redirect class="masterpage"/>
-	</func>
+	<method>
+		<redirect>redirect"</redirect>
+		<masterpage>masterpage"</masterpage>
+	</method>
 </plugin>

@@ -35,9 +35,9 @@ class imgPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($tag,$options)
   {
-		return($options[0]);
+		return("img plugin started");
   }
 }
 

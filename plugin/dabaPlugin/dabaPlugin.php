@@ -36,9 +36,9 @@ class dabaPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($tag,$options)
+  static public function __callStatic($func,$options)
   {
-		return dabaRender::render($tag,$options);
+		return($options[0]);
   }
 }
 

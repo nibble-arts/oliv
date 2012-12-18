@@ -53,38 +53,11 @@ class OLIVPostProcessor extends OLIVCore
 // loop methods
 		foreach($methods as $entry)
 		{
-			$class = $entry->XPath("../class");
-			$class = (string)$class[0];
-
-			foreach($entry as $method)
-			{
-				$name = $method->getName();
-				$classMethod = (string)$method;
-
-echoall("$class -> $classMethod - $name");
-
-				$class::$classMethod($page);
-
-			}
+//TODO call plugin class
+			OLIVPlugin::call($entry,$page);
 		}
 
-
-echoall($funcs);
-//echoall($_PLUGIN);
-		$func = "p";
-
-		$pageXml = new simpleXmlElement($page);
-		$test = $pageXml->XPath("//$func");
-
-		for ($i = 0;$i < count($test);$i++)
-		{
-			$text = (string)$test[$i][0];
-			$test[$i][0] = "";
-			$test[$i]->addChild("i",$text);
-//echoall($test[$i]->getName());
-		}
-
-//echoall($pageXml->XPath("//p"));
+echoall($pageXml);
 
 //------------------------------------------------------------------------------
 // convert page xml to html

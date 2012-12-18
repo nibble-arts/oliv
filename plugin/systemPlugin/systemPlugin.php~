@@ -22,7 +22,7 @@
 //
 
 //------------------------------------------------------------------------------
-// Preprocessor object
+// plugin for render system informations
 //
 // Version 0.1
 //------------------------------------------------------------------------------
@@ -31,46 +31,35 @@ if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
 
-class pagePlugin
+class systemPlugin
 {
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($tag,$options)
   {
-		$pluginData = (string)$options[0]['template']->$func;
-		$pageXml = $options[0]['template'];
+    $content = $options[0];
+    $value = $options[0]['template'];
 
-//TODO remove $func entry from $pageXml entry
-		$pageXml->$func = "";
-		
-// call methods
-		switch ($func)
-		{
-			case 'redirect':
-// run script for condition check for redirect
-				$redirect = OLIVScript::call($pluginData);
-
-// get redirected page
-				if ($redirect)
-				{
-					$pageXml = new OLIVPage;
-					$pageXml->load($redirect);
-//					$pageXml = $page->structure();
-				}
-				break;
-
-
-// add masterpage content to page
-			case 'masterpage':
-				$masterPage = new OLIVPage;
-				$masterPage->load($pluginData);
-
-				olivxml_insert($pageXml,$masterPage->structure());
-				break;
-		}
-	}
+    return (systemRender::tagString($tag,$value,$content));
+  }
 }
 
 
+//------------------------------------------------------------------------------
+// render tag string
+class systemRender
+{
+  static public function tagString($tag,$value,$options)
+  {
+// get system parameter
+    $retArray['value'] = system::$tag();
+
+// write tags
+    $retArray['startTag'] = "<span>";
+    $retArray['endTag'] = "</span>";
+
+    return ($retArray);
+  }
+}
 ?>

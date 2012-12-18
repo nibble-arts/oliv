@@ -2,6 +2,7 @@
 
 <plugin>
 	<class>textPlugin</class>
+	<editclass>textEditPlugin</editclass>
 
 	<method>
 		<p>p</p>

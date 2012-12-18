@@ -38,7 +38,9 @@ class pagePlugin
 // render class
   static public function __callStatic($func,$options)
   {
-		$pluginData = (string)$options[0]['template']->$func;
+		return($options[0]);
+		
+/*		$pluginData = (string)$options[0]['template']->$func;
 		$pageXml = $options[0]['template'];
 
 //TODO remove $func entry from $pageXml entry
@@ -68,7 +70,7 @@ class pagePlugin
 
 				olivxml_insert($pageXml,$masterPage->structure());
 				break;
-		}
+		}*/
 	}
 }
 

@@ -37,14 +37,22 @@ class textPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($tag,$options)
+  static public function __callStatic($func,$options)
   {
-echoall($tag);
+  echoall($options);
+  return($options[0]);
+/*		$func = "p";
 
-//    $content = $options[0];
-//    $value = $options[0]['template'];
+		$pageXml = new simpleXmlElement($page);
+		$test = $pageXml->XPath("//$func");
 
-//    return (textRender::tagString($tag,$value,$content));
+		for ($i = 0;$i < count($test);$i++)
+		{
+			$text = (string)$test[$i][0];
+			$test[$i][0] = "";
+			$test[$i]->addChild("i",$text);
+//echoall($test[$i]->getName());
+		}*/
   }
 }
 
@@ -103,19 +111,19 @@ class textEditPlugin
 // render text
 // create context menu for editing
 //			$context = new OLIVContext("textPlugin",$value,$value);
-//			$context->draw();*/
+//			$context->draw();
 
 
 // set link to call editor
-/*			$tagArray['link'] = array(
+			$tagArray['link'] = array(
 				'url' => status::url(),
 				'title' => OLIVText::_("edit_text"),
       	'val' => OLIVText::_("edit") . "/" . (string)$value,
       	'value' => $value
-      );*/
+      );
 		}
 
-//		return ($tagArray);
+//		return ($tagArray);*/
   }
 
 

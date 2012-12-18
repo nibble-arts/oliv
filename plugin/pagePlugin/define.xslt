@@ -4,7 +4,7 @@
 	<class>textPlugin</class>
 
 	<method>
-		<redirect>redirect"</redirect>
-		<masterpage>masterpage"</masterpage>
+		<redirect>redirect</redirect>
+		<masterpage>masterpage</masterpage>
 	</method>
 </plugin>

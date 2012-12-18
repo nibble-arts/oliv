@@ -4,6 +4,6 @@
 	<class>imgPlugin</class>
 
 	<method>
-		<img>img"</img>
+		<img>img</img>
 	</method>
 </plugin>

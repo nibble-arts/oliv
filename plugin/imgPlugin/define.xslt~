@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <plugin>
-	<script>imgPlugin</script>
+	<class>imgPlugin</class>
 
-	<func>
-		<img class="img"/>
-	</func>
+	<method>
+		<img>img"</img>
+	</method>
 </plugin>

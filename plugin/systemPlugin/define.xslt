@@ -4,7 +4,7 @@
 	<class>textPlugin</class>
 
 	<method>
-		<system_name>name"</system_name>
+		<system_name>name</system_name>
 		<system_autor>autor</system_autor>
 		<system_version>version</system_version>
 	</method>

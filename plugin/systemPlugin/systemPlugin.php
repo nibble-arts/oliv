@@ -38,10 +38,7 @@ class systemPlugin
 // render class
   static public function __callStatic($tag,$options)
   {
-    $content = $options[0];
-    $value = $options[0]['template'];
-
-    return (systemRender::tagString($tag,$value,$content));
+  	return($options[0]);
   }
 }
 
