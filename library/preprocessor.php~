@@ -71,8 +71,8 @@ class OLIVPreProcessor extends OLIVCore
 		          {
       // link modules to page elements
 	      				$script->param = (string)$entry;
-
-								$script->access->r = OLIVRight::r($entry);
+echoall(OLIVRight::_($entry));
+//								$script->access = OLIVRight::_($entry);
 								$script->access->w = OLIVRight::w($entry);
 								$script->access->x = OLIVRight::x($entry);
 

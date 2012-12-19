@@ -36,7 +36,7 @@ class systemPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($tag,$options)
+  static public function __callStatic($method,$options)
   {
   	return($options[0]);
   }

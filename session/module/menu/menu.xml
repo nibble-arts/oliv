@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <menu>
-  <main template='side'>
+  <main>
   	<index />
 
     <documentation>
@@ -34,7 +34,7 @@
 		<redirect />
   </main>
 
-  <admin template='side' group='edit' access='770'>
+  <admin template='side' group='edit' access='744'>
   	<test />
   </admin>
 </menu>

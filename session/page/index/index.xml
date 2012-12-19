@@ -21,13 +21,18 @@
 
 
 	<content>
-		<masterpage>common</masterpage>
+<!--		<masterpage>common</masterpage>-->
 
-		<oliv_content mod='article'>index</oliv_content>
+<!--		<oliv_header mod='header'></oliv_header>
+		<oliv_admin mod='admin' />
+		<oliv_login mod='login' />-->
 
-	  <oliv_left1 mod='menu'>main</oliv_left1>
-<!--		<oliv_left2 mod='menu' group='edit' access='770'>admin</oliv_left2>-->
+		<oliv_content mod='article'>name:index;</oliv_content>
 
-		<daba>db='iggmp' table='railway' field='title'</daba>
+	  <oliv_left1 mod='menu'>name:main;template:side;</oliv_left1>
+		<oliv_left2 mod='menu'>name:admin;template:side;</oliv_left2>
+
+		<daba_init>name:railway;db:iggmp;</daba_init>
+		<daba name='railway'>table:railway;field:title;</daba>
 	</content>
 </page>

@@ -35,13 +35,33 @@ class dabaPlugin
 {
   
 //------------------------------------------------------------------------------
-// render class
-  static public function __callStatic($func,$options)
+// init database
+  static public function init($content,$tag)
   {
-		return($options[0]);
-  }
-}
+//TODO initialize database
+  	$nodes = $content->XPath("//$tag");
 
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+// get node and clear init string from page
+			$initString = (string)$nodes[$i];
+			$nodes[$i][0] = "";
+		}
+
+
+		return($content);
+  }
+
+//------------------------------------------------------------------------------
+// init database
+  static public function field($content,$tag)
+  {
+		return($content);
+  }
+
+
+
+}
 
 //------------------------------------------------------------------------------
 // edit render class

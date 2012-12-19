@@ -53,9 +53,11 @@ class article extends OLIVCore
 
 // load index file
 //    OLIVIndex::load($this->header->path,"article.idx");
+    $param = (string)$header->param;
+    $paramArray = oliv_parse_param($param);
 
-    $articleName = (string)$header->param;
-		
+		$articleName = $paramArray['name'];
+
 // load content
   	$article = OLIVModule::load_xml($header,$header->script->content,"$articleName.xml");
 
@@ -63,14 +65,13 @@ class article extends OLIVCore
 // add source attribute recursive
 		if ($article)
 		{
-			olivxml_addAttribute_recursive($article,'source',$header->path . "content/$articleName");
+			olivxml_addAttribute_toNodes($article,"text","source",$header->path . "content/$articleName");
 
+// set param in header to articleName and load template path
+			$header->param = $articleName;
 			$this->o['template'] = OLIVModule::load_template($header);
-			$this->o['content'] = $article;
 
-// get article languages
-//			$langXml = OLIVText::getLanguages($textXml);
-//			$langSelector = OLIVLang::selector($langXml);
+			$this->o['content'] = $article;
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");

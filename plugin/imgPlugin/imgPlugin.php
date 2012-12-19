@@ -35,9 +35,9 @@ class imgPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($method,$content)
   {
-		return($options[0]);
+		return($content[0]);
   }
 }
 

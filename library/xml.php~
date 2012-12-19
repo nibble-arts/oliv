@@ -234,6 +234,7 @@ function oliv_parse_param($paramString)
 {
 	$retArray = array();
 	
+echoall($paramString);
 	$paramArray = explode(";",$paramString);
 	foreach($paramArray as $entry)
 	{

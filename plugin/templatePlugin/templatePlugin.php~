@@ -37,10 +37,9 @@ class templatePlugin
   
 //------------------------------------------------------------------------------
 // render functions
-  static public function __callStatic($method,$options)
+  static public function __callStatic($tag,$options)
   {
-  	return($options[0]);
-/*  	$link = "";
+  	$link = "";
 
     $template = $options[0]['template'];
     $content = $options[0]['content'];
@@ -66,7 +65,7 @@ class templatePlugin
 // insert link if present
 		if (count($startTagArray['link'])) $tagArray['link'] = $startTagArray['link'];
 
-		return $tagArray;*/
+		return $tagArray;
   }
 
 

@@ -46,18 +46,7 @@ class OLIVPostProcessor extends OLIVCore
   {
   	global $_PLUGIN;
 
-
-// get plugin methods
-		$methods = $_PLUGIN->XPath("//method");
-
-// loop methods
-		foreach($methods as $entry)
-		{
-//TODO call plugin class
-			OLIVPlugin::call($entry,$page);
-		}
-
-//echoall($pageXml->XPath("//p"));
+		$pageXml = OLIVPlugin::call(new simpleXmlElement($page));
 
 //------------------------------------------------------------------------------
 // convert page xml to html
@@ -72,10 +61,12 @@ class OLIVPostProcessor extends OLIVCore
 		$htmlProcessor = new XSLTProcessor();
 		$htmlProcessor->importStylesheet($postStylesheet);
 		$pageString = $htmlProcessor->transformToXML($pageXml);
+echoall($pageString);
+		$pageXml = new simpleXmlElement($pageString);
 
 //echoall($pageXml->asXML());
 
-		return ($pageString);
+		return ($pageXml);
   }
 }
 

@@ -47,33 +47,39 @@ class OLIVPlugin
 // $type ... type of plugin: render, search, etc.
 
 // $options ... array of options for plugin call
-  static public function call($entry,$page)
+  static public function call($page)
   {
     global $_PLUGIN;
 
+// get plugin methods
+		$methods = $_PLUGIN->XPath("//method");
 
+
+// loop over plugins
+		foreach($methods as $plugin)
+		{
 // load plugin definition
-		$class = $entry->XPath("../class");
-		if (count($class))
-			$class = (string)array_pop($class);
-		else
-			$class = "";
+			$class = $plugin->XPath("../class");
+			if (count($class))
+				$class = (string)array_pop($class);
+			else
+				$class = "";
 
-		$editclass = $entry->XPath("../editclass");
-		if (count($editclass))
-			$editclass = (string)array_pop($editclass);
-		else
-			$editclass = "";
+			$editclass = $plugin->XPath("../editclass");
+			if (count($editclass))
+				$editclass = (string)array_pop($editclass);
+			else
+				$editclass = "";
 
 
 // loop over plugin methods
-		foreach($entry as $method)
-		{
-			$name = $method->getName();
-			$classMethod = (string)$method;
+			foreach($plugin as $method)
+			{
+				$name = $method->getName();
+				$classMethod = (string)$method;
 
-// load plugin script
-      OLIVCore::loadScript($class . ".php",system::OLIV_PLUGIN_PATH() . $class . "/");
+		// load plugin script
+			  OLIVCore::loadScript($class . ".php",system::OLIV_PLUGIN_PATH() . $class . "/");
 
 //------------------------------------------------------------------------------
 // permission to display
@@ -81,24 +87,22 @@ class OLIVPlugin
 
 
 // call plugin
-			if (class_exists($class))
-			{
-				echoall("plugin: $class");
-				return $class::$classMethod($page);
+				if (class_exists($class))
+				{
+					$class::$classMethod($page,$name);
+				}
+				else
+					OLIVError::fire("postprocessor.php::process - class $class not found");
 			}
-			else
-				OLIVError::fire("postprocessor.php::process - class $class not found");
 		}
-
 //------------------------------------------------------------------------------
-
-//echoall($_PLUGIN);
+		return $page;
   }
 
   
 //------------------------------------------------------------------------------
 // scan plugin directory and load plugin metadata
-  private function scan($path)
+  static private function scan($path)
   {
     global $_PLUGIN;
 

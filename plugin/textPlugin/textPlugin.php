@@ -39,20 +39,25 @@ class textPlugin
 // render class
   static public function __callStatic($func,$options)
   {
-  echoall($options);
-  return($options[0]);
-/*		$func = "p";
+  	$content = $options[0];
+  	$tag = $options[1];
 
-		$pageXml = new simpleXmlElement($page);
-		$test = $pageXml->XPath("//$func");
+  	$nodes = $content->XPath("//$tag");
 
-		for ($i = 0;$i < count($test);$i++)
+		for ($i = 0;$i < count($nodes);$i++)
 		{
-			$text = (string)$test[$i][0];
-			$test[$i][0] = "";
-			$test[$i]->addChild("i",$text);
-//echoall($test[$i]->getName());
-		}*/
+// if source, make edit possible
+			$source = (string)$nodes[$i]->attributes()->source;
+			if ($source)
+			{
+//TODO include javaScript content menu
+// include editor call <a>
+				$text = (string)$nodes[$i];
+				$nodes[$i][0] = "";
+				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
+			}
+		}
+	  return($content);
   }
 }
 

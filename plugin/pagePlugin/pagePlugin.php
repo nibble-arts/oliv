@@ -36,9 +36,9 @@ class pagePlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($content,$tag)
   {
-		return($options[0]);
+		return($content);
 		
 /*		$pluginData = (string)$options[0]['template']->$func;
 		$pageXml = $options[0]['template'];
