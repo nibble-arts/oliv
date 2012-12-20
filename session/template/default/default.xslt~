@@ -38,13 +38,14 @@
 		    <div id='oliv_space' />
 
 				<div id='oliv_header'>
-			    <xsl:apply-templates select='//oliv_header'/>
+<!--			    <xsl:apply-templates select='//oliv_header'/>
 		      <div id='oliv_login'>
 				    <xsl:apply-templates select='//oliv_login'/>
 					</div>
 		      <div id='oliv_title'>
 				    <xsl:apply-templates select='//oliv_title'/>
 					</div>
+					<span class="oliv_clear"/>-->
 		    </div>
 		
 		    <div id='oliv_space' />
@@ -53,6 +54,7 @@
 		      <div id='oliv_search'>
 				    <xsl:apply-templates select='//oliv_search'/>
 			    </div>
+					<span class="oliv_clear"/>
 		    </div>
 		    
 		    <div id='oliv_space' />
@@ -69,20 +71,18 @@
 		        	<xsl:apply-templates select='//oliv_left3'/>
 						</div>
 		      </div>
+					<span class="oliv_clear"/>
 
-		      <div id='oliv_center'>
-		      	<div id="oliv_content">
-			        <xsl:apply-templates select='//oliv_content'/>
-			      </div>
+	      	<div id="oliv_content">
+		        <xsl:apply-templates select='//oliv_content'/>
 		      </div>
 
+					<span class="oliv_clear"/>
 		    </div>
 		    <div id='oliv_footer'>
 	        <xsl:apply-templates select='//oliv_footer'/>
 			  </div>
 		  </div>
-
-		  <div style="clear:both;"/>
 		</div>
 	</xsl:template>
 

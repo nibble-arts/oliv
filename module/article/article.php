@@ -49,28 +49,19 @@ class article extends OLIVCore
   {
     global $_argv;
 
-    $header->path = system::OLIV_MODULE_PATH() . "article/";
-
-// load index file
-//    OLIVIndex::load($this->header->path,"article.idx");
-    $param = (string)$header->param;
-    $paramArray = oliv_parse_param($param);
-
-		$articleName = $paramArray['name'];
+		$articleName = (string)$header->param->content;
 
 // load content
-  	$article = OLIVModule::load_xml($header,$header->script->content,"$articleName.xml");
+		$article = OLIVModule::load_content($header);
 
 
-// add source attribute recursive
+// add source and textname attribute recursive
 		if ($article)
 		{
 			olivxml_addAttribute_toNodes($article,"text","source",$header->path . "content/$articleName");
 
 // set param in header to articleName and load template path
-			$header->param = $articleName;
 			$this->o['template'] = OLIVModule::load_template($header);
-
 			$this->o['content'] = $article;
 		}
 	  else

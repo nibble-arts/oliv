@@ -224,28 +224,4 @@ function olivini_array2string($iniArray)
 
 	return $iniString;
 }
-
-
-//------------------------------------------------------------------------------
-// parse parameter sting
-// format [name]:[value];...
-// return assoziative array or single value
-function oliv_parse_param($paramString)
-{
-	$retArray = array();
-	
-	$paramArray = explode(";",$paramString);
-	foreach($paramArray as $entry)
-	{
-		$valueArray = explode(":",$entry);
-
-// enter name:value pair
-		if (count($valueArray) > 1)
-		{
-			if ($valueArray[1])
-				$retArray[$valueArray[0]] = $valueArray[1];
-		}
-	}
-	return $retArray;
-}
 ?>

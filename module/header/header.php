@@ -38,8 +38,10 @@ class header extends OLIVCore
 
   function __construct($header)
   {
+  	$paramArray = OLIVModule::parse_param($header);
     // load header template
     $this->o['template'] = OLIVModule::load_template($header);
+		$this->o['content'] = OLIVModule::load_content($header);
   }
 }
 

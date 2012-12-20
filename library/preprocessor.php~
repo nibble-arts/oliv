@@ -65,14 +65,21 @@ class OLIVPreProcessor extends OLIVCore
 		        if ($mod = $entry->attributes()->mod)
 		        {
 		          $script = OLIVModule::getModuleByName($mod);
+		          $originScript = $script;
 
-      // script found
+
+//------------------------------------------------------------------------------
+// script found
 		          if (isset($script->script))
 		          {
-      // link modules to page elements
-	      				$script->param = (string)$entry;
-echoall(OLIVRight::_($entry));
-//								$script->access = OLIVRight::_($entry);
+// insert parameters
+								olivxml_insert($script,OLIVPreprocessor::parse_param((string)$entry),"ALL");
+
+// create paths for module, content, template, image
+								$script->path = system::OLIV_MODULE_PATH() . (string)$script->name . "/";
+
+// insert script access rights 
+								$script->access->r = OLIVRight::r($entry);
 								$script->access->w = OLIVRight::w($entry);
 								$script->access->x = OLIVRight::x($entry);
 
@@ -82,7 +89,6 @@ echoall(OLIVRight::_($entry));
 
 //------------------------------------------------------------------------------
 // call module class and merge template and content
-								$outputObj = FALSE;
 
 								if ($script->script->main)
 								{
@@ -94,17 +100,24 @@ echoall(OLIVRight::_($entry));
 									{
 
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // create and execute module class
 							      $outputObj = new $class($script);
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 										if (is_object($outputObj) and $outputObj->o)
 										{
 											$tempTemplate = $outputObj->o['template'];
 
-// insert module template
-											if (array_key_exists("template",$outputObj->o))
+// set path to insert module-template-link stylesheet
+// link only if template and content found
+											if (array_key_exists("template",$outputObj->o) and array_key_exists("content",$outputObj->o))
 											{
-												$templates[$entry->getName() . "::" . $outputObj->o['content']->getName()] = $outputObj->o['template'];
+												if (is_object($outputObj->o['content']))
+												{
+													$templates[$entry->getName() . "::" . $outputObj->o['content']->getName()] = $outputObj->o['template'];
+												}
 											}
 
 // insert module content in page content
@@ -113,6 +126,9 @@ echoall(OLIVRight::_($entry));
 										}
 										else
 											$page->clear($entry->getName());
+
+// destroy module object
+									unset($outputObj);
 									} 
 								}
 								else
@@ -124,9 +140,9 @@ echoall(OLIVRight::_($entry));
 //------------------------------------------------------------------------------
 
 					}
-					else
 //TODO remove node completely
 // if no read permission -> clear content to not render
+					else
 						$page->clear($entry->getName());
         }
 //echoall($page->structure());
@@ -151,6 +167,8 @@ echoall(OLIVRight::_($entry));
 		else
 			OLIVError::fire("processor.php::process - no page template found");
 
+
+echoall($templates);
 
 // include module templates
 		foreach ($templates as $key => $entry)
@@ -200,7 +218,28 @@ echoall(OLIVRight::_($entry));
 //echoall($page->structure());
   }
 
+//------------------------------------------------------------------------------
+// parse parameter sting
+// format [name]:[value];...
+// return assoziative array or single value
+	public static function parse_param($paramString)
+	{
+		$retXml = new simpleXmlElement("<param></param>");
+	
+		$paramArray = explode(";",$paramString);
+		foreach($paramArray as $entry)
+		{
+			$valueArray = explode(":",$entry);
 
+	// enter name:value pair
+			if (count($valueArray) > 1)
+			{
+				if ($valueArray[1])
+					$retXml->addChild($valueArray[0],$valueArray[1]);
+			}
+		}
+		return $retXml;
+	}
 }
 
 

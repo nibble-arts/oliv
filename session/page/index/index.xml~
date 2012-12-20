@@ -23,14 +23,14 @@
 	<content>
 <!--		<masterpage>common</masterpage>-->
 
-		<oliv_header mod='header'></oliv_header>
-		<oliv_admin mod='admin' />
-		<oliv_login mod='login' />
+		<oliv_header mod='header'>template:start;name:oliv;</oliv_header>
+<!--		<oliv_admin mod='admin' />
+		<oliv_login mod='login' />-->
 
-		<oliv_content mod='article'>name:index;</oliv_content>
+		<oliv_content mod='article'>content:index;template:index;</oliv_content>
 
-	  <oliv_left1 mod='menu'>name:main;template:side;</oliv_left1>
-		<oliv_left2 mod='menu'>name:admin;template:side;</oliv_left2>
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+		<oliv_left2 mod='menu'>menu:admin;template:side;</oliv_left2>
 
 		<daba_init>name:railway;db:iggmp;</daba_init>
 		<daba name='railway'>table:railway;field:title;</daba>

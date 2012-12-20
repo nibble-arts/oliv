@@ -45,15 +45,10 @@ class menu extends OLIVCore
   	$templateName = "";
 
 // load menu items
-    $menu = (string)$header->param;
-		$menuArray = oliv_parse_param($menu);
 		$access = $header->access;
+		$menuName = (string)$header->param->menu;
+		$templateName = (string)$header->param->template;
 
-		if (array_key_exists("name",$menuArray))
-			$menuName = $menuArray['name'];
-
-		if (array_key_exists("template",$menuArray))
-			$templateName = $menuArray['template'];
 		if ($templateName and $menuName)
 		{
 			$menu = OLIVModule::load_xml($header,"","menu.xml");
@@ -62,7 +57,7 @@ class menu extends OLIVCore
 			if (OLIVRight::r($menu->$menuName))
 			{
 // load menu template
-			  $template = OLIVModule::load_template($header,$templateName);
+			  $template = OLIVModule::load_template($header);
 
 // call menu parser
 			  $menuXml = $this->parse($menu->$menuName,$templateName,$access,status::url());
@@ -146,7 +141,7 @@ class menu extends OLIVCore
 						}
 
 // create menu_item xml
-						$menu_item = new simpleXmlElement("<menu_item></menu_item>");
+						$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
 						olivxml_insert($menu_item,$entry);
 
 // insert menu_item into new menu structure
@@ -164,7 +159,7 @@ class menu extends OLIVCore
 //		      olivxml_insert($menuXml,$tempXml);
 		    }
 			}
-//echoall($menuXml);
+
       return ($menuXml);
     }
     else
