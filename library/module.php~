@@ -55,7 +55,7 @@ class OLIVModule
 // load template
 // header ... module header information
 // [name] ... name of special template
-  public static function load_template($header)
+  public static function load_template($header,$name = "")
   {
 		// look for template attribute
     if (!($name = $header->param->template)) // special template defined
@@ -113,7 +113,7 @@ class OLIVModule
     {
       foreach ($_MODULES as $entry)
       {
-        if ((string)$entry->name == $name) return (new simpleXmlElement($entry));
+        if ((string)$entry->name == $name) return (new simpleXmlElement($entry->asXML()));
       }
     }
     else

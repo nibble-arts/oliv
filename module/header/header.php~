@@ -31,18 +31,34 @@ if (!system::OLIVCORE()) die ("mod_header::header.php - OLIVCore not present");
 if (!system::OLIVTEXT()) die ("mod_header::header.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("mod_header::header.php - OLIVError not present");
 
-class header extends OLIVCore
+class header
 {
-  private $header; // module header metadata
-  public $o;
-
+  private $template;
+  private $content;
+  
   function __construct($header)
   {
-  	$paramArray = OLIVModule::parse_param($header);
+		echoall($header);
     // load header template
-    $this->o['template'] = OLIVModule::load_template($header);
-		$this->o['content'] = OLIVMofule::load_content($header);
+    $this->template = OLIVModule::load_template($header);
+		$this->content = OLIVModule::load_content($header);
   }
+
+//------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
+  }
+
+
 }
 
 ?>

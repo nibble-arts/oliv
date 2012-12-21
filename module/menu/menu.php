@@ -32,10 +32,10 @@ if (!system::OLIVTEXT()) die ("mod_menu::menu.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("mod_menu::menu.php - OLIVError not present");
 
 
-class menu extends OLIVCore
+class menu
 {
-	var $o; // output string
-
+	var $template;
+	var $content;
 
 //------------------------------------------------------------------------------
 // create menu
@@ -62,10 +62,25 @@ class menu extends OLIVCore
 // call menu parser
 			  $menuXml = $this->parse($menu->$menuName,$templateName,$access,status::url());
 
-				$this->o['template'] = $template;
-				$this->o['content'] = $menuXml;
+				$this->template = $template;
+				$this->content = $menuXml;
 			}
 		}
+  }
+
+
+//------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
   }
 
 

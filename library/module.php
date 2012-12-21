@@ -55,12 +55,15 @@ class OLIVModule
 // load template
 // header ... module header information
 // [name] ... name of special template
-  public static function load_template($header)
+  public static function load_template($header,$name = "")
   {
-		// look for template attribute
-    if (!($name = $header->param->template)) // special template defined
-      $name = system::OLIV_TEMPLATE(); // use template name
-
+  	if (!$name)
+  	{
+			// look for template attribute
+		  if (!($name = $header->param->template)) // special template defined
+		    $name = system::OLIV_TEMPLATE(); // use template name
+		}
+		
     $path = system::OLIV_MODULE_PATH() . $header->name . "/template/" . system::OLIV_TEMPLATE() . "/";
 
     if (!olivfile_exists($path . $name . ".xslt"))

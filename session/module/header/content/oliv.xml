@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <header>
+	<oliv_header>
+		<href>index</href>
+		<title>
+			<text lang="de">Zurück an den Start</text>
+			<text lang="en">Back home</text>
+		</title>
+	</oliv_header>
+	
 	<oliv_header_title>
 		<text lang="de">OLIV - Das omnilinguale CMS</text>
 		<text lang="en">OLIV - The omnilingual CMS</text>

@@ -36,14 +36,10 @@ $_ARTICLES;
 
 
 //------------------------------------------------------------------------------
-class article extends OLIVCore
+class article
 {
-	var $o = "";
-  var $path;
-  var $editExclude;
-  var $paramArray;
-  
-  var $editor;
+	var $template;
+	var $content;
   
   public function __construct($header)
   {
@@ -61,14 +57,29 @@ class article extends OLIVCore
 			olivxml_addAttribute_toNodes($article,"text","source",$header->path . "content/$articleName");
 
 // set param in header to articleName and load template path
-			$this->o['template'] = OLIVModule::load_template($header);
-			$this->o['content'] = $article;
+			$this->template = OLIVModule::load_template($header);
+			$this->content = $article;
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
   }
   
   
+//------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
+  }
+
+
 //------------------------------------------------------------------------------
 // scan session for articles
 // module must be loaded

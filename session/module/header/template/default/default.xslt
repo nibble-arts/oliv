@@ -3,7 +3,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match='oliv_header'>
-  	<div id='header_img' url='index' title='back_home' background-image="oliv_logo.png" />
+		<a>
+			Title <xsl:value-of select="./title"/>
+
+<!--	  	<div id='header_img' background-image="oliv_logo.png" />-->
+	  </a>
 	</xsl:template>
 
 </xsl:stylesheet>

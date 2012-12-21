@@ -102,33 +102,34 @@ class OLIVPreProcessor extends OLIVCore
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // create and execute module class
-							      $outputObj = new $class($script);
+							      $module = new $class($script);
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-										if (is_object($outputObj) and $outputObj->o)
+										if (is_object($module))
 										{
-											$tempTemplate = $outputObj->o['template'];
+											$tempTemplate = $module->template();
 
 // set path to insert module-template-link stylesheet
 // link only if template and content found
-											if (array_key_exists("template",$outputObj->o) and array_key_exists("content",$outputObj->o))
+											if ($module->template() and $module->content())
 											{
-												if (is_object($outputObj->o['content']))
+												if (is_object($module->content()))
 												{
-													$templates[$entry->getName() . "::" . $outputObj->o['content']->getName()] = $outputObj->o['template'];
+													$templates[$entry->getName() . "::" . $module->content()->getName()] = $module->template();
 												}
 											}
 
 // insert module content in page content
-											if (array_key_exists("content",$outputObj->o))
-												$page->insert($outputObj->o['content']);
+											if ($module->content())
+												$page->insert($module->content());
 										}
 										else
 											$page->clear($entry->getName());
 
 // destroy module object
-									unset($outputObj);
+//									unset($module);
 									} 
 								}
 								else

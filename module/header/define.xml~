@@ -8,6 +8,7 @@
     
   <script>
     <main>header.php</main>
+    <content>content/</content>
     <default_language>de_DE</default_language>
   </script>
 </module>  
