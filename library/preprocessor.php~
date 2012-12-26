@@ -73,7 +73,6 @@ class OLIVPreProcessor extends OLIVCore
 		          if (isset($script->script))
 		          {
 // insert parameters
-echoall($script);
 								olivxml_insert($script,OLIVPreprocessor::parse_param((string)$entry),"ALL");
 
 // create paths for module, content, template, image
@@ -104,7 +103,6 @@ echoall($script);
 //------------------------------------------------------------------------------
 // create and execute module class
 							      $module = new $class($script);
-
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -175,9 +173,11 @@ echoall($script);
 // include module templates
 		foreach ($templates as $key => $entry)
 		{
+echoall($key);
 			if (sessionfile_exists($entry . ".xslt"))
 			{
 				$linkArray = explode("::",$key);
+			echoall($linkArray);
 
 // create stylesheet to link module template to page area
 				$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
@@ -213,6 +213,7 @@ echoall($script);
 
 //TODO create temporary include template 
 		$xmlString = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>" . $xmlString . "</xsl:stylesheet>";
+
 
 		$tempXml = new simpleXmlElement($xmlString);
 		$stylesheet->importStylesheet($tempXml);

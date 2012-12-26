@@ -23,7 +23,7 @@
 	<content>
 <!--		<masterpage>common</masterpage>-->
 
-		<oliv_header mod='header'>template:start;content:oliv;</oliv_header>
+		<oliv_header mod='article'>template:header;content:header_oliv;</oliv_header>
 <!--		<oliv_admin mod='admin' />
 		<oliv_login mod='login' />-->
 

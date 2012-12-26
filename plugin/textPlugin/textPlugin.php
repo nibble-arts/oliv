@@ -57,6 +57,7 @@ class textPlugin
 				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
 			}
 		}
+
 	  return($content);
   }
 }

@@ -2,6 +2,8 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:template match="article_index">
+		<img id="article_index_img" src="CIMG1529.jpg"/>
+		
 		<xsl:apply-templates select="//article_index_001"/>
 		<xsl:apply-templates select="//article_index_002"/>
 		<xsl:apply-templates select="//daba_init"/>

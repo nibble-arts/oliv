@@ -46,7 +46,6 @@ class textPlugin
 
 		for ($i = 0;$i < count($nodes);$i++)
 		{
-echoall($nodes[$i]);
 // if source, make edit possible
 			$source = (string)$nodes[$i]->attributes()->source;
 			if ($source)
@@ -58,6 +57,7 @@ echoall($nodes[$i]);
 				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
 			}
 		}
+
 	  return($content);
   }
 }

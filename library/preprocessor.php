@@ -103,7 +103,6 @@ class OLIVPreProcessor extends OLIVCore
 //------------------------------------------------------------------------------
 // create and execute module class
 							      $module = new $class($script);
-
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -212,6 +211,7 @@ class OLIVPreProcessor extends OLIVCore
 
 //TODO create temporary include template 
 		$xmlString = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>" . $xmlString . "</xsl:stylesheet>";
+
 
 		$tempXml = new simpleXmlElement($xmlString);
 		$stylesheet->importStylesheet($tempXml);
