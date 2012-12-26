@@ -34,5 +34,7 @@
 
 		<daba_init>name:railway;db:iggmp;</daba_init>
 		<daba name='railway'>table:railway;field:title;</daba>
+		
+		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>
 	</content>
 </page>

@@ -33,30 +33,43 @@ if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present")
 
 class systemPlugin
 {
-  
+	var $template;
+	var $content;
+	
+	  
 //------------------------------------------------------------------------------
 // render class
   static public function __callStatic($method,$options)
   {
-  	return($options[0]);
+	 	$content = $options[0];
+  	$tag = $options[1];
+
+  	$nodes = $content->XPath("//$tag");
+
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+// if source, make edit possible
+			$valueName = strtoupper($nodes[$i]->getName());
+
+			if ($valueName)
+			{
+				$nodes[$i][0] = system::$valueName();
+			}
+		}
+
+	  return($content);  	
   }
-}
 
 
-//------------------------------------------------------------------------------
-// render tag string
-class systemRender
-{
-  static public function tagString($tag,$value,$options)
-  {
-// get system parameter
-    $retArray['value'] = system::$tag();
+	public static function template()
+	{
+		return $this->template;
+	}
 
-// write tags
-    $retArray['startTag'] = "<span>";
-    $retArray['endTag'] = "</span>";
 
-    return ($retArray);
-  }
+	public static function content()
+	{
+		return $this->content;
+	}
 }
 ?>
