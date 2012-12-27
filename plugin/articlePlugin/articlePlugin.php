@@ -42,26 +42,26 @@ class articlePlugin
   	$content = $options[0];
   	$tag = $options[1];
 
-//TODO change to search for $tag as attrbute
-// $tag name is attribute name to find
+//TODO
+// edit mode only if permission
 
-
-
-  	$nodes = $content->XPath("//$tag");
+		$nodes = $content->XPath("//*[@articlesource]");
 
 		for ($i = 0;$i < count($nodes);$i++)
 		{
 // if source, make edit possible
-			$source = (string)$nodes[$i]->attributes()->source;
-			if ($source)
-			{
+			$tag = $nodes[$i]->getName();
+			$text = (string)$nodes[$i];
+			$source = (string)$nodes[$i]->attributes()->articlesource;
+			$name = (string)$nodes[$i]->attributes()->articlename;
+
 //TODO include javaScript content menu
 // include editor call <a>
-				$text = (string)$nodes[$i];
 
-				$nodes[$i][0] = "";
-				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
-			}
+			$nodes[$i][0] = "";
+			$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
+
+			$nodes[$i]["title"] = "call editor for '$name' in '$source.xml'";
 		}
 
 	  return($content);

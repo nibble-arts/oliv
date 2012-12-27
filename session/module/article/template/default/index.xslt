@@ -2,21 +2,36 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:template match="article_index">
-		<img id="article_index_img" src="CIMG1529.jpg"/>
+		<a href="index">
+			Edit Template
+		</a>
+
+<!-- image sequence -->
+		<img id="article_index_img">
+			<xsl:attribute name="src">
+				<xsl:value-of select="//article_index_img_001"/>
+			</xsl:attribute>
+		</img>
 		
+<!-- text paragraph sequence -->
 		<xsl:apply-templates select="//article_index_001"/>
 		<xsl:apply-templates select="//article_index_002"/>
 		<xsl:apply-templates select="//daba_init"/>
 		<xsl:apply-templates select="//daba"/>
 
-		<span class='daba-field'>
-		</span>
+<!-- spezial fields -->
+		<span class='daba-field'/>
 	</xsl:template>
 
+
+<!-- paragraph definitions -->
 	<xsl:template match="article_index_001">
 		<h1>
-			<xsl:attribute name="source">
-				<xsl:value-of select="./text[@lang=$lang]/@source"/>
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
 			</xsl:attribute>
 			
 			<xsl:value-of select="./text[@lang=$lang]"/>
@@ -25,8 +40,11 @@
 
 	<xsl:template match="article_index_002">
 		<p>
-			<xsl:attribute name="source">
-				<xsl:value-of select="./text[@lang=$lang]/@source"/>
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
 			</xsl:attribute>
 
 			<xsl:value-of select="./text[@lang=$lang]"/>

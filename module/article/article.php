@@ -51,7 +51,11 @@ class article extends OLIVModule
 // add source and textname attribute recursive
 		if ($article)
 		{
-			olivxml_addAttribute_toNodes($article,"text","source",$header->path . "content/$articleName");
+// set source to all article paragraphs
+			foreach($article as $entry)
+			{
+				$entry["source"] = $header->path . "content/$articleName";
+			}
 
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);

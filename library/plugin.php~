@@ -53,14 +53,8 @@ class OLIVPlugin
 
 // get plugin methods
 		$methods = $_PLUGIN->XPath("//method");
-		$attributes = $_PLUGIN->XPath("//attribute");
 
-
-		if ($methods)
-			$page = OLIVPlugin::parse_methods($page,$methods);
-		
-		if ($attributes)
-			$page = OLIVPlugin::parse_attributes($page,$attributes);
+		$page = OLIVPlugin::parse_methods($page,$methods);
 
 //------------------------------------------------------------------------------
 		return $page;
@@ -93,54 +87,6 @@ class OLIVPlugin
 			{
 				$name = $method->getName();
 				$classMethod = (string)$method;
-
-		// load plugin script
-			  OLIVCore::loadScript($class . ".php",system::OLIV_PLUGIN_PATH() . $class . "/");
-
-//------------------------------------------------------------------------------
-// permission to display
-//TODO use class or editclass, depending on rights
-
-
-// call plugin
-				if (class_exists($class))
-				{
-					$class::$classMethod($page,$name);
-				}
-				else
-					OLIVError::fire("postprocessor.php::process - class $class not found");
-			}
-		}
-		return $page;
-	}
-
-
-//------------------------------------------------------------------------------
-// parse attributes
-	private static function parse_attributes($page,$attributes)
-	{
-// loop over plugin node names
-		foreach($attributes as $plugin)
-		{
-// load plugin definition
-			$class = $plugin->XPath("../class");
-			if (count($class))
-				$class = (string)array_pop($class);
-			else
-				$class = "";
-
-			$editclass = $plugin->XPath("../editclass");
-			if (count($editclass))
-				$editclass = (string)array_pop($editclass);
-			else
-				$editclass = "";
-
-
-// loop over plugin methods
-			foreach($plugin as $attribute)
-			{
-				$name = $attribute->getName();
-				$classMethod = (string)$attribute;
 
 		// load plugin script
 			  OLIVCore::loadScript($class . ".php",system::OLIV_PLUGIN_PATH() . $class . "/");

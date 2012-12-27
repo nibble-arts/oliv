@@ -146,9 +146,6 @@ class OLIVPlugin
       OLIVError::fire("plugin::scan - directory $path not found");
 			return (FALSE);
   }
-  
-
-
 }
 
 ?>

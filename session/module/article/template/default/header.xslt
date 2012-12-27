@@ -3,15 +3,27 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match='header'>
-		<div id="header_background" background-image="">
-			<a href="index">
-		  	<div id='header_img' background-image="oliv_logo.png" />
+		<div id="header_background">
+			<a href="index" id='header_img'>
+	  		<xsl:attribute name="background-image">
+	  			<xsl:value-of select="header_logo"/>
+	  		</xsl:attribute>
 			</a>
 
+			<xsl:apply-templates select="header_title"/>
+		</div>
+	</xsl:template>
 
-			<div id="header_title">
-				<xsl:value-of select="./header_title/text[@lang=$lang]"/>
-			</div>
+	<xsl:template match="header_title">
+		<div id="header_title">
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
+			</xsl:attribute>
+		
+			<xsl:value-of select="./text[@lang=$lang]"/>
 		</div>
 	</xsl:template>
 
