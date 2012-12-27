@@ -50,7 +50,7 @@ class imgPlugin
 		for ($i = 0;$i < count($nodes);$i++)
 		{
 			$imgName = (string)$nodes[$i]["src"];
-echoall($imgName);
+
 // get correct path to image
 			$imgPath = OLIVImage::_($imgName);
 
@@ -72,6 +72,7 @@ echoall($imgName);
 // loop through all nodes
 		for ($i = 0;$i < count($nodes);$i++)
 		{
+		echoall($nodes[$i]);
 			$imgName = (string)$nodes[$i];
 
 // get correct path to image

@@ -31,7 +31,7 @@ if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
 
-class textPlugin
+class articlePlugin
 {
   var $editor;
   
@@ -41,6 +41,11 @@ class textPlugin
   {
   	$content = $options[0];
   	$tag = $options[1];
+
+//TODO change to search for $tag as attrbute
+// $tag name is attribute name to find
+
+
 
   	$nodes = $content->XPath("//$tag");
 
@@ -53,6 +58,7 @@ class textPlugin
 //TODO include javaScript content menu
 // include editor call <a>
 				$text = (string)$nodes[$i];
+
 				$nodes[$i][0] = "";
 				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
 			}
@@ -65,7 +71,7 @@ class textPlugin
 
 //------------------------------------------------------------------------------
 // edit render class
-class textEditPlugin
+class articleEditPlugin
 {
   static public function __callStatic($tag,$options)
   {

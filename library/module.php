@@ -38,6 +38,8 @@ $_MODULES;
 
 class OLIVModule
 {
+	var $template;
+	var $content;
   
   public function __construct()
   {
@@ -50,6 +52,21 @@ class OLIVModule
 //    echoall($_MODULES);
   }
   
+
+//------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
+  }
+
 
 //------------------------------------------------------------------------------
 // load template

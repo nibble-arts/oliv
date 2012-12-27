@@ -34,7 +34,6 @@ The multisession capability of OLIV makes it easy to realise different sites on 
 To display a page, OLIV has to execute some steps:
 * Initialize the session
 * Initialize the OLIV core system
-* Scan for modules and plugins
 * Route the url to the correct page
 * Load the page template
 * Load the page CSS-stylesheets
@@ -46,11 +45,9 @@ To display a page, OLIV has to execute some steps:
 ** Load and merge all module content to page content
 ** Load and link all module xsl-templates to page template
 ** Link all module CSS-staylesheets
-* Render the page XML and XSLT with XSLT-processor to a XML
+* Render page with XSLT-processor
 * Run postprocessor
-** Parse the complete page content for tags, defined in a plugin
-** Change the page content in the plugins
-* Render the finished page content XML to valid HTML
+** 
 
 == Version ==
 OLIV is in an early developement state and threre are some big tasks to solve to get to an operational version.

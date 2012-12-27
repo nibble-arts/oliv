@@ -70,6 +70,21 @@ class menu
 
 
 //------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
+  }
+
+
+//------------------------------------------------------------------------------
 // parse menu file
 // create content xml-file for renderer
   private function parse($menu,$templateName,$access,$url,$level = 0)

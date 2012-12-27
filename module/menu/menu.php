@@ -32,10 +32,8 @@ if (!system::OLIVTEXT()) die ("mod_menu::menu.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("mod_menu::menu.php - OLIVError not present");
 
 
-class menu
+class menu extends OLIVModule
 {
-	var $template;
-	var $content;
 
 //------------------------------------------------------------------------------
 // create menu
@@ -66,21 +64,6 @@ class menu
 				$this->content = $menuXml;
 			}
 		}
-  }
-
-
-//------------------------------------------------------------------------------
-// return template path
-  public function template()
-  {
-  	return ($this->template);
-  }
-
-//------------------------------------------------------------------------------
-// return content xml
-  public function content()
-  {
-  	return ($this->content);
   }
 
 

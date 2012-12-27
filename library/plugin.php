@@ -54,8 +54,18 @@ class OLIVPlugin
 // get plugin methods
 		$methods = $_PLUGIN->XPath("//method");
 
+		$page = OLIVPlugin::parse_methods($page,$methods);
 
-// loop over plugins
+//------------------------------------------------------------------------------
+		return $page;
+  }
+
+  
+//------------------------------------------------------------------------------
+// parse methods
+	private static function parse_methods($page,$methods)
+	{
+// loop over plugin node names
 		foreach($methods as $plugin)
 		{
 // load plugin definition
@@ -95,11 +105,10 @@ class OLIVPlugin
 					OLIVError::fire("postprocessor.php::process - class $class not found");
 			}
 		}
-//------------------------------------------------------------------------------
 		return $page;
-  }
+	}
 
-  
+
 //------------------------------------------------------------------------------
 // scan plugin directory and load plugin metadata
   static private function scan($path)

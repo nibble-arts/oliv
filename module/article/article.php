@@ -36,11 +36,8 @@ $_ARTICLES;
 
 
 //------------------------------------------------------------------------------
-class article
+class article extends OLIVModule
 {
-	var $template;
-	var $content;
-  
   public function __construct($header)
   {
     global $_argv;
@@ -62,53 +59,6 @@ class article
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
-  }
-  
-  
-//------------------------------------------------------------------------------
-// return template path
-  public function template()
-  {
-  	return ($this->template);
-  }
-
-//------------------------------------------------------------------------------
-// return content xml
-  public function content()
-  {
-  	return ($this->content);
-  }
-
-
-//------------------------------------------------------------------------------
-// scan session for articles
-// module must be loaded
-  private function scan()
-  {
-		global $_ARTICLES;
-
-		$_ARTICLES = array();
-
-    $path = $this->header->path . "content/";
-    if ($pageDir = sessionopendir ($this->header->path))
-    {
-
-      while ($file = readdir($pageDir))
-      {
-        if (is_dir($this->header->path . $file) and $file != "." and $file != "..")
-        {
-          // get define.xml
-          if (sessionfile_exists($this->header->path . $file . "/$file.xml"))
-          {
-            $xml = sessionxml_load_file($this->header->path . $file . "/$file.xml");
-            $_ARTICLES['$file'] = $xml;
-          }
-        }
-      }
-      closedir ($pageDir);
-    }
-    else
-      OLIVError::fire("page::scan - directory $path not found");
   }
 }
 
