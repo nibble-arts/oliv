@@ -215,8 +215,6 @@ argv::remove('val');
 
 //------------------------------------------------------------------------------
 // decode friendly url to parameters without mod_rewrite
-//TODO look if .htaccess exist
-
 if (isset($_SERVER['PATH_INFO']))
   $pathInfo = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
 else
