@@ -1,7 +1,25 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<content id='index'>
-	<redirect> if (status::command() == "") { return("documentation"); } </redirect>
-	<masterpage>common</masterpage>
-  <oliv_content mod='article'>railway</oliv_content>
-</content>
+<page>
+	<define>
+		<name>
+			<text lang='de'>Testseite</text>
+			<text lang='en'>Testpage</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Testseite</text>
+			<text lang='en'>Testpage</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Seite zum Testen des Datenbank Moduls</text>
+			<text lang='en'>Page to test the database module</text>
+		</title>
+	</define>
+
+	<content id='index'>
+		<redirect> if (status::command() == "") { return("redirect"); } </redirect>
+		<include>common</include>
+
+		<oliv_content mod='article'>railway</oliv_content>
+	</content>
+</page>

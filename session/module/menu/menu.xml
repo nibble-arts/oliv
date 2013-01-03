@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <menu>
-  <main template='side'>
+  <main>
   	<index />
-    <documentation url='http://localhost/oliv/documentation/index.php' title='extern_documentation' name='extern_documentation' />
-		<iggmp url='http://www.iggmp.net' title='iggmp' target='_blank' name='IG-GmP'/>
-		<test owner='admin' group='user' access='440' />
+
+    <documentation>
+    	<url>http://localhost/oliv/documentation/index.php</url>
+			<target>_blank</target>
+    	<name>
+				<text lang='de'>Dokumentation</text>
+				<text lang='en'>Documentation</text>
+				<text lang='cs'>Dokumentace</text>
+			</name>
+    	<title>
+				<text lang='de'>OLIV Dokumentation</text>
+				<text lang='en'>OLIV documentation</text>
+				<text lang='cs'>OLIV dokumentace</text>
+			</title>
+		</documentation>
+
+		<iggmp>
+			<url>http://www.iggmp.net</url>
+			<target>_blank</target>
+			<name>IG-GmP</name>
+			<title>
+				<text lang='de'>IG - Gartenbahn mit Personenbeförderung</text>
+				<text lang='en'>Society for Railways with Person Transport</text>
+				<text lang='cs'>Zájem Společenství - parkoví dráha s osobní železniční dopravy</text>
+			</title>
+		</iggmp>
+		
+		<test owner='admin' group='user' access='774' />
 		<redirect />
   </main>
 
-  <admin template='side' group='edit' access='770'>
+  <admin template='side' group='edit' access='744'>
   	<test />
   </admin>
 </menu>

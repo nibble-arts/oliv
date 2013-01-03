@@ -6,10 +6,13 @@
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
+
+  <content>content/</content>
+  <template>template/</template>
     
+  <default_language>de</default_language>
+
   <script>
     <main>article.php</main>
-    <content>content/</content>
-    <default_language>de_DE</default_language>
   </script>
 </module>  

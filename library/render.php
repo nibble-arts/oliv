@@ -26,7 +26,7 @@
 //
 // Version 0.1
 //------------------------------------------------------------------------------
-
+//TODO the whole class is unused, due to change to XSLT support
 
 if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
 if (!system::OLIVTEXT()) die ("render.php - OLIVText not present");
@@ -58,21 +58,25 @@ class OLIVRender extends OLIVCore
 // main rendering routine
 // render page to this->o
 //------------------------------------------------------------------------------
-  public function page($template,$page)
+  public function page()
   {
+
 // output rendered page
-    if ($template)
+/*    if ($template)
       $this->o = OLIVRender::template($template->xml(),$page->structure());
     else
-      OLIVError::fire ("render::page - no template found");
+      OLIVError::fire ("render::page - no template found");*/
   }
 
 
 
+//TODO template render function not supported
+//TODO changed to XSLT
 // call template rendering
   static public function template($template,$content="")
   {
-    return (OLIVRender::_template($template,$content));
+  	return $this->o;
+//    return (OLIVRender::_template($template,$content));
   }
 
 

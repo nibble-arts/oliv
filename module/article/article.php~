@@ -36,97 +36,33 @@ $_ARTICLES;
 
 
 //------------------------------------------------------------------------------
-class article extends OLIVCore
+class article extends OLIVModule
 {
-	var $o = "";
-  var $path;
-  var $header;
-  var $editExclude;
-  var $command;
-  var $paramArray;
-  
-  var $editor;
-  
   public function __construct($header)
   {
     global $_argv;
 
-    $this->header = $header;
-    $this->header->path = system::OLIV_MODULE_PATH() . "article/";
-
-		$template = OLIVModule::load_template($header);
-//    $this->scan();
-
-// load index file
-//    OLIVIndex::load($this->header->path,"article.idx");
-
-    $articleName = (string)$header;
-    $langPath = $this->header->path . "language/";
-    $contentPath = $this->header->path . (string)$header->attributes()->content;
-
+		$articleName = (string)$header->param->content;
 
 // load content
-  	$article = OLIVModule::load_xml($header,(string)$header->attributes()->content,"$articleName.xml");
+		$article = OLIVModule::load_content($header);
 
-// add source attribute recursive
+
+// add source and textname attribute recursive
 		if ($article)
 		{
-			olivxml_addAttribute_recursive($article,'source',$this->header->path . "content/$articleName");
+			foreach($article as $entry)
+			{
+				$entry["source"] = $header->path . "content/$articleName";
+			}
+//			olivxml_addAttribute_toNodes($article,"text","source",$header->path . "content/$articleName");
 
-// load text language file
-		$textXml = OLIVText::_load($langPath,$articleName);
-    OLIVText::insert($textXml);
-
-
-// get article languages
-			$langXml = OLIVText::getLanguages($textXml);
-			$langSelector = OLIVLang::selector($langXml);
-
-
-// create temporary article content for rendering
-			$articleXml = new simpleXmlElement("<article></article>");
-			olivxml_insert($articleXml->articletext,$article);
-			olivxml_insert($articleXml,$langSelector);
-
-
-//------------------------------------------------------------------------------
-// render article
-    	$this->o .= OLIVRender::template($template,$articleXml);
+// set param in header to articleName and load template path
+			$this->template = OLIVModule::load_template($header);
+			$this->content = $article;
 		}
 	  else
 	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
-  }
-  
-  
-//------------------------------------------------------------------------------
-// scan session for articles
-// module must be loaded
-  private function scan()
-  {
-		global $_ARTICLES;
-
-		$_ARTICLES = array();
-
-    $path = $this->header->path . "content/";
-    if ($pageDir = sessionopendir ($this->header->path))
-    {
-
-      while ($file = readdir($pageDir))
-      {
-        if (is_dir($this->header->path . $file) and $file != "." and $file != "..")
-        {
-          // get define.xml
-          if (sessionfile_exists($this->header->path . $file . "/$file.xml"))
-          {
-            $xml = sessionxml_load_file($this->header->path . $file . "/$file.xml");
-            $_ARTICLES['$file'] = $xml;
-          }
-        }
-      }
-      closedir ($pageDir);
-    }
-    else
-      OLIVError::fire("page::scan - directory $path not found");
   }
 }
 

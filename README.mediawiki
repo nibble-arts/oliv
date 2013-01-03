@@ -2,21 +2,55 @@
 ﻿
 == Introduction ==
 OLIV is a slim but flexible content management system, especially designed for the support of different languages. The special tool manages the layout of articles and the multilingual content. If offers a messaging system for all translators about changes.
+
 == System Requirements ==
 OLIV don't use a database for the core functions. A database module offers the possibility to simply insert dynamic content into the page rendering.
-All configuration, template and content is stored in XML-Files, the language files are INI-Files, all editable with a simple text editor. This makes it eary to backup all the system by only copying some folders.
+All configuration, template and content is stored in XML-Files, all editable with a simple text editor. This makes it easy to backup all the system by only copying some folders.
+
 == Extension Modules ==
-A simple but powerfull module and plugin system make the developement of extensions a simple task. Modules are used to organize the design of the pages. The use the central rendering engine, whitch converts the template and content data to valid html code.
-For flexibility some basic function are realised as modules:
-* Article
-* Header / Footer
-* Menu
-* Login
-* Administration
-* Database (to be developed)
-== Extensions and Plugins ==
-The Plugins are used to extend basic functions like the rendering or search engine. Plugins can be used stand alone or be part of a module.
+A simple but powerfull module and plugin system make the developement of extensions a simple task. Modules are used to offer spezial functions to display complex content, like articles or menu structures.
+
+XSLT-stylesheets are used to convert the content data to valid html code.
+
+Some basic function are realised as modules:
+* Article: displays and organizes dynamic content
+* Menu: display of complex menues
+* Login: a login area for access control
+* Database (to be developed): an interface to mysql database structures
+
+== Plugins ==
+Plugins are functions, which can can change content after the render process. Both tags and attributes of tags can be filtered and changed. Plugins can be used stand alone or be part of a module.
+
+Some plugins are standard part of OLIV:
+* textPlugin: part of the article module to link the edit function to text parts
+* imgPlugin: use of the image class of OLIV to simply address images without the knowledge of the path
+* systemPlugin: display of system variables
+* dabaPlugin: integration of mysql field content in the render prozess
+
 == Multisession ==
 The multisession capability of OLIV makes it easy to realise different sites on a server with only one OLIV installation. All global installed modules can be used by all sites, whereas the content and templates are stored in a single separate subdirectory.
+
+== Basic functionality ==
+To display a page, OLIV has to execute some steps:
+* Initialize the session
+* Initialize the OLIV core system
+* Scan for modules and plugins
+* Route the url to the correct page
+* Load the page template
+* Load the page CSS-stylesheets
+* Load the page content
+** Redirect if redirect function if found
+** Recursivly load masterpages if found
+* Run preprocessor
+** Parse the page content and call all modules
+** Load and merge all module content to page content
+** Load and link all module xsl-templates to page template
+** Link all module CSS-staylesheets
+* Render the page XML and XSLT with XSLT-processor to a XML
+* Run postprocessor
+** Parse the complete page content for tags, defined in a plugin
+** Change the page content in the plugins
+* Render the finished page content XML to valid HTML
+
 == Version ==
 OLIV is in an early developement state and threre are some big tasks to solve to get to an operational version.

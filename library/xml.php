@@ -54,10 +54,12 @@ function olivxml_insert(&$xml_to,$xml_from,$option = "")
 // insert starting at xml basis
 			case 'ALL':
 				$option = ""; // clear option for recursion
-				$xml_to->addChild($name);
 
-				// recursion
-				olivxml_insert($xml_to->$name,$xml_from);
+				$new_child = $xml_to->addChild($name);
+
+				// recursion to new entry
+				olivxml_insert($new_child,$xml_from);
+
 				break;
 
 // insert if node does not exist
@@ -122,9 +124,16 @@ function olivxml_changeNode($node,$xml)
 
 //------------------------------------------------------------------------------
 // add attributes to all children
-function olivxml_addAttribute_recursive(&$xml,$name,$value)
+function olivxml_addAttribute_toNodes(&$xml,$tag,$name,$value)
 {
-	if ($xml->children())
+	$nodes = $xml->XPath("//$tag");
+
+	for($i = 0;$i < count($nodes);$i++)
+	{
+		$nodes[$i]->addAttribute($name,$value);
+//		echoall($nodes[$i]);
+	}
+/*	if ($xml->children())
 	{
 		foreach ($xml as $entry)
 		{
@@ -132,7 +141,7 @@ function olivxml_addAttribute_recursive(&$xml,$name,$value)
 			if (!$xml->$tag->attributes()->$name)
 				$xml->$tag->addAttribute($name,$value);
 		}
-	}
+	}*/
 }
 
 

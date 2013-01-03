@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<header>
+	<header_title>
+		<text lang="de">Das omnilinguale CMS</text>
+		<text lang="en">The omnilingual CMS</text>
+	</header_title>
+
+	<header_logo>oliv_logo.png</header_logo>
+
+	<back_link_title>
+		<text lang="de">Zurück an den Start</text>
+		<text lang="en">Back home</text>
+	</back_link_title>
+</header>

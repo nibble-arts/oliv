@@ -40,81 +40,83 @@ class OLIVPlugin
   }
 
 
+
 //------------------------------------------------------------------------------
 // call plugin
 // $func ... function name (in render plugin normally the tag name)
 // $type ... type of plugin: render, search, etc.
 
 // $options ... array of options for plugin call
-  static public function call($func,$type,$options = array())
+  static public function call($page)
   {
     global $_PLUGIN;
 
+// get plugin methods
+		$methods = $_PLUGIN->XPath("//method");
 
-    if (isset($_PLUGIN->$type->func->$func))
-    {
-  // get render plugin if registered
-      $plugin = $_PLUGIN->$type->func;
-
-      $pluginScript = (string)$plugin->$func->attributes()->script;
-      
-      $pluginCall = explode("::",(string)$plugin->$func->attributes()->class);
-      $pluginEditCall = explode("::",(string)$plugin->$func->attributes()->editClass);
-
-
-//TODO check content edit flag
-
-//$options['template']->attributes()->id
-
+		$page = OLIVPlugin::parse_methods($page,$methods);
 
 //------------------------------------------------------------------------------
-// permission to display
-			if (OLIVRight::r($options['template']))
-			{
-
-// permission to edit
-// write permission && edit plugin fourn && edit mode && source founr
-//				$source = (string)$options['template']->attributes()->source;
-				
-		    if (OLIVRight::w($options['template'],TRUE) and $pluginEditCall[0] and system::OLIV_CONTENT_EDIT()) // and $source)
-		    {
-		      $class = $pluginEditCall[0]; // set edit class
-				}
-		    else
-				{
-		      $class = $pluginCall[0]; // set display class
-				}
-		    $func = $pluginCall[1];
-
-//------------------------------------------------------------------------------
-// call render class for tag
-// load plugin script
-	      OLIVCore::loadScript($pluginScript . ".php",system::OLIV_PLUGIN_PATH() . $pluginScript . "/");
-
-
-// call script and return output
-		    if (class_exists($class))
-		      return ($class::$func($options));
-
-
-// error class not found
-		    else
-		      OLIVError::fire("OLIVPlugin::call - plugin class $class not found");
-		      return (FALSE);
-			}
-    }
-    else
-      return (FALSE);
+		return $page;
   }
 
   
 //------------------------------------------------------------------------------
+// parse methods
+	private static function parse_methods($page,$methods)
+	{
+// loop over plugin node names
+		foreach($methods as $plugin)
+		{
+// load plugin definition
+			$class = $plugin->XPath("../class");
+			if (count($class))
+				$class = (string)array_pop($class);
+			else
+				$class = "";
+
+			$editclass = $plugin->XPath("../editclass");
+			if (count($editclass))
+				$editclass = (string)array_pop($editclass);
+			else
+				$editclass = "";
+
+
+// loop over plugin methods
+			foreach($plugin as $method)
+			{
+				$name = $method->getName();
+				$classMethod = (string)$method;
+
+		// load plugin script
+			  OLIVCore::loadScript($class . ".php",system::OLIV_PLUGIN_PATH() . $class . "/");
+
+//------------------------------------------------------------------------------
+// permission to display
+//TODO use class or editclass, depending on rights
+
+
+// call plugin
+				if (class_exists($class))
+				{
+					$class::$classMethod($page,$name);
+				}
+				else
+					OLIVError::fire("postprocessor.php::process - class $class not found");
+			}
+		}
+		return $page;
+	}
+
+
+//------------------------------------------------------------------------------
 // scan plugin directory and load plugin metadata
-  private function scan($path)
+  static private function scan($path)
   {
     global $_PLUGIN;
 
-    $_PLUGIN = new simpleXmlElement("<plugin></plugin>");
+//    $_PLUGIN = new simpleXmlElement("<plugin></plugin>");
+    $_PLUGIN = new simpleXmlElement("<plugins></plugins>");
 
     if ($pluginDir = olivopendir ($path))
     {
@@ -126,34 +128,17 @@ class OLIVPlugin
           $file .= "/";
 
       // get define.xml
-          if (olivfile_exists($path . $file . "define.xml"))
+          if (olivfile_exists($path . $file . "define.xslt"))
           {
-            $xml = olivxml_load_file($path . $file . "define.xml");
+            $xml = olivxml_load_file($path . $file . "define.xslt");
 
+//TODO include plugin script
             // get type of plugin
-            $type = $xml->children()->getName();
-
-// type don't exist -> create
-            if ($type != (string)$_PLUGIN->$type->getName())
-            {
-              olivxml_insert($_PLUGIN,$xml);
-            }
-
-// insert or replace functions
-            else
-            {
-              $func = $xml->$type->func;
-
-              foreach ($func->children() as $entry)
-              {
-                olivxml_insert($_PLUGIN->$type->func,$entry);
-              }
-            }
-            $cnt++;
+						olivxml_insert($_PLUGIN,$xml,"ALL");
           }
         }
       }
-//echoall($_PLUGIN);
+
       closedir ($pluginDir);
       return ($cnt);
     }
@@ -161,9 +146,6 @@ class OLIVPlugin
       OLIVError::fire("plugin::scan - directory $path not found");
 			return (FALSE);
   }
-  
-
-
 }
 
 ?>

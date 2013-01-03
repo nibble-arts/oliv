@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<login>
+	<user>
+		<text lang="de">Benutzer</text>
+		<text lang="en">user</text>
+	</user>
+	<password>
+		<text lang="de">Passwort</text>
+		<text lang="en">password</text>
+	</password>
+
+	<login>
+		<text lang="de">Anmelden</text>
+		<text lang="en">login</text>
+	</login>
+	<logout>
+		<text lang="de">Abmelden</text>
+		<text lang="en">logout</text>
+	</logout>
+
+	<welcome>
+		<text lang="de">Willkommen</text>
+		<text lang="en">Welcome</text>
+	</welcome>
+
+	<incorrect>
+		<text lang="de">Benutzer oder Passwort falsch</text>
+		<text lang="en">Login or passwort incorrect</text>
+	</incorrect>
+</login>

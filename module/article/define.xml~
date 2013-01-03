@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>article</name>
+  <access>system</access>
+  <version>1.0</version>
+  <author>Thomas Winkler</author>
+  <copyright>2012</copyright>
+
+  <content>content/</content>
+  <template>template/</template>
+    
+  <default_language>de_DE</default_language>
+
+  <script>
+    <main>article.php</main>
+  </script>
+</module>  

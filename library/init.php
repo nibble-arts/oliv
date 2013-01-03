@@ -190,10 +190,8 @@ foreach($_POST as $key => $value)
 
 // set status lang,url,val from argv
 // and remove these parameters from argv
-
 status::set('lang',argv::lang());
 argv::remove('lang');
-if (!status::lang()) status::set('lang',system::OLIV_DEFAULT_LANG());
 
 status::set('url',argv::url());
 argv::remove('url');
@@ -209,22 +207,28 @@ if (argv::val())
 	status::set('cmdval',implode("/",$valArray));
 }
 
+
+//TODO val created by router
 status::set('val',argv::val());
 argv::remove('val');
 
 
 //------------------------------------------------------------------------------
 // decode friendly url to parameters without mod_rewrite
-/*if (isset($_SERVER['PATH_INFO']))
-  $pathInfo = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url","val"));
+//TODO look if .htaccess exist
+
+if (isset($_SERVER['PATH_INFO']))
+  $pathInfo = OLIVRoute::decode($_SERVER['PATH_INFO'],array("lang","url"));
 else
-	$pathInfo = array();*/
+	$pathInfo = array();
 
 
 // set language from friendly url
-/*if (array_key_exists('lang',$pathInfo))
+if (array_key_exists('lang',$pathInfo))
 	status::set('lang',$pathInfo['lang']);
-else
+
+// if no language set -> use default
+if (!status::lang())
 	status::set('lang',system::OLIV_DEFAULT_LANG());
 
 
@@ -235,7 +239,7 @@ if (array_key_exists('url',$pathInfo))
 
 // set val from friendly url
 if (array_key_exists('val',$pathInfo))
-	status::set('val',$pathInfo['val']);*/
+	status::set('val',$pathInfo['val']);
 
 
 

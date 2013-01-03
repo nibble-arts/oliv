@@ -45,14 +45,49 @@ $_TEXT;
 
 class OLIVText extends OLIVCore
 {
+	public static function xml($text)
+	{
+// multilingual text
+		if ($text)
+		{
+			if ($text->text)
+			{
+				$textNode = $text->XPath("../.");
 
+				$xpath = "text[@lang='" . status::lang() . "']";
+				$default_xpath = "text[@lang='" . system::OLIV_DEFAULT_LANG() . "']";
+
+				$tempText = $text->XPath($xpath);
+				$defaultTempText = $text->XPath($default_xpath);
+
+
+	// return language test
+				if (count($tempText) > 0)
+				{
+					return (String)$tempText[0];
+				}
+	// return default language
+				else
+				{
+					return (String)$defaultTempText[0];
+				}
+			}
+			else
+	// fixed text
+			{
+				return (string)$text;
+			}
+		}
+		return FALSE;
+	}
+	
 //-------------------------------------------------------------------------------------------
 // return text string
 // option ... an sting of optional parameters
 // format: paramName=paramValue
 //
 //				lang=langCode  : chose translation of this language
-  static public function _($text,$option = "")
+/*  static public function _($text,$option = "")
   {
     global $_TEXT;
     $retText = "";
@@ -97,7 +132,7 @@ class OLIVText extends OLIVCore
 
     if ($nameSpace) return($_TEXT->strtoupper($nameSpace));
     return false;
-  }
+  }*/
 
 
 
@@ -105,13 +140,13 @@ class OLIVText extends OLIVCore
 
 
 
-
+/*
 // TODO change to xml
 //-------------------------------------------------------------------------------------------
 // update text file
 	static public function update($updateArray,$nameSpace,$path,$file,$lang)
 	{
-/*  	$textArray = array();
+  	$textArray = array();
   	$tempTextArray = array();
 
 		$textArray = OLIVText::_load($textArray,$path,$file,$lang);
@@ -135,10 +170,11 @@ class OLIVText extends OLIVCore
 		OLIVText::write($textArray,$path,$file,$lang);
 
 // reload altered text
-		OLIVText::load($path,$file,$lang);*/
+		OLIVText::load($path,$file,$lang);
 	}
+*/
 
-
+/*
 //-------------------------------------------------------------------------------------------
 // return language text string
 // search recursive in $textXml
@@ -363,23 +399,23 @@ class OLIVText extends OLIVCore
 
 		return ($langXml);
 	}
+*/
 
 
 
 
-
-
+/*
 // TODO change to xml
 //-------------------------------------------------------------------------------------------
 // write text array to ini file
 	static public function write($textArray,$path,$file,$lang)
 	{
-/*		if (is_array($textArray))
+		if (is_array($textArray))
 		{
 			olivini_writeFile($textArray,$path,$file,$lang);
-		}*/
+		}
 	}
-
+*/
 
 //-------------------------------------------------------------------------------------------
 // load text array
@@ -437,7 +473,7 @@ class OLIVText extends OLIVCore
   }*/
 
 
-
+/*
 //-------------------------------------------------------------------------------------------
 // return array table
   static public function assocArray($dispArray)
@@ -463,7 +499,7 @@ class OLIVText extends OLIVCore
       $o .= "</table>";
     }
     return ($o);
-  }
+  }*/
 }
 
 ?>

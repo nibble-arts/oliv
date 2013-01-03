@@ -28,7 +28,6 @@
 //------------------------------------------------------------------------------
 
 if (!system::OLIVCORE()) die ("image.php - OLIVCore not present");
-if (!system::OLIVTEXT()) die ("image.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("image.php - OLIVError not present");
 
 

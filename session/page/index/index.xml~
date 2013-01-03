@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Startseite</text>
+			<text lang='en'>Home</text>
+			<text lang='cs'>Domácí</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Startseite</text>
+			<text lang='en'>Home</text>
+			<text lang='cs'>Domácí</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Das Omni-Linguale CMS</text>
+			<text lang='en'>The Omni-Lingual CMS</text>
+			<text lang='cs'>Vícejazyčné CMS</text>
+		</title>
+	</define>
+
+
+	<content>
+		<include>common</include>
+
+<!--		<oliv_admin mod='admin' />
+		<oliv_login mod='login' />-->
+
+		<oliv_content mod='article'>content:index;template:index;</oliv_content>
+
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+		<oliv_left2 mod='menu'>menu:admin;template:side;</oliv_left2>
+
+		<daba_init>name:railway;db:iggmp;</daba_init>
+		<daba name='railway'>table:railway;field:title;</daba>
+	
+	</content>
+</page>
