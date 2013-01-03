@@ -7,7 +7,7 @@
 			<form>
 				<input type="text" name="login">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./user/text[@lang=$lang]"/>
+						<xsl:value-of select="./user"/>
 					</xsl:attribute>
 				</input>
 
@@ -15,13 +15,13 @@
 
 				<input type="submit">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./login/text[@lang=$lang]"/>
+						<xsl:value-of select="./login"/>
 					</xsl:attribute>
 				</input>
 
 				<br/>
 
-				<xsl:value-of select="./incorrect/text[@lang=$lang]"/>
+				<xsl:value-of select="./incorrect"/>
 
 				<input type="hidden" name="action" value="login"/>
 			</form>

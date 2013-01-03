@@ -8,7 +8,7 @@
 				<img id="footer_img" src="oliv_logo"/>
 			
 				<span id="footer_text">
-					<xsl:value-of select="./footer_text/text[@lang=$lang]"/>
+					<xsl:value-of select="./footer_text"/>
 				</span>
 			</a>
 

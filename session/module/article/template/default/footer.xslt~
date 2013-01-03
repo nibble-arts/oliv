@@ -12,7 +12,6 @@
 				</span>
 			</a>
 
-			<xsl:text> - </xsl:text>
 			<oliv_version id="footer_text"/>
 		</div>
 	</xsl:template>

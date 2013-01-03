@@ -16,23 +16,15 @@
 
 	<xsl:template match="header_title">
 		<div id="header_title">
-			<xsl:call-template name="attributes">
-				<xsl:with-param name="node" select="."/>
-			</xsl:call-template>
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
+			</xsl:attribute>
 		
 			<xsl:value-of select="./text[@lang=$lang]"/>
 		</div>
 	</xsl:template>
-
-	<xsl:template name="attributes">
-		<xsl:param name="node"/>
-
-		<xsl:attribute name="articlesource">
-			<xsl:value-of select="./@source"/>
-		</xsl:attribute>
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name(.)"/>
-		</xsl:attribute>
-	</xsl:template>		
 
 </xsl:stylesheet>

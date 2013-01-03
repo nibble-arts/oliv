@@ -5,20 +5,24 @@
 	<xsl:template match='login'>
 		<div id="module_login_field">
 			<form>
+<!-- login field -->
 				<input type="text" name="login">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./user/text[@lang=$lang]"/>
+						<xsl:value-of select="./user"/>
 					</xsl:attribute>
 				</input>
 
+<!-- password field -->
 				<input type="password" name="password"/>
 
+<!-- submit -->
 				<input type="submit">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./login/text[@lang=$lang]"/>
+						<xsl:value-of select="./login"/>
 					</xsl:attribute>
 				</input>
 
+<!-- login action definition -->
 				<input type="hidden" name="action" value="login"/>
 			</form>
 		</div>

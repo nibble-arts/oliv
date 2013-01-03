@@ -1,10 +1,8 @@
 #module_login_field {
-	float:right;
 	padding:2px;
 }
 
 #module_login_incorrect {
-	float:right;
 	padding:2px;
 	background-color:red;
 	color:white;

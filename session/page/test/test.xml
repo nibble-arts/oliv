@@ -18,7 +18,10 @@
 
 	<content id='index'>
 		<redirect> if (status::command() == "") { return("redirect"); } </redirect>
-		<masterpage>common</masterpage>
+		<include>common</include>
+
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+
 		<oliv_content mod='article'>railway</oliv_content>
 	</content>
 </page>

@@ -17,7 +17,10 @@
 	</define>
 
 	<content id='redirect'>
-		<masterpage>common</masterpage>
+		<include>common</include>
+		
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+
 		<oliv_content>No dataset. Page redirected</oliv_content>
 	</content>
 </page>

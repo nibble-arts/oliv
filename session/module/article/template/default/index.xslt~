@@ -34,7 +34,7 @@
 				<xsl:value-of select="name(.)"/>
 			</xsl:attribute>
 			
-			<xsl:value-of select="./text[@lang=$lang]"/>
+			<xsl:value-of select="."/>
 		</h1>
 	</xsl:template>
 

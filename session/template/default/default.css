@@ -166,8 +166,9 @@ div {
 }
 
 #oliv_login {
-  text-align:right;
-  height:0px;
+	float:right;
+  text-align:left;
+  margin-top:0px;
 }
 
 #oliv_top {

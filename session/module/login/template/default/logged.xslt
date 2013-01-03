@@ -7,7 +7,7 @@
 
 			<form method="current()">
 				<span class="module_login">
-					<xsl:value-of select="./welcome/text[@lang=$lang]"/>
+					<xsl:value-of select="./welcome"/>
 					<xsl:text> </xsl:text>
 					<xsl:value-of select="./username"/>
 					<xsl:text> </xsl:text>
@@ -15,7 +15,7 @@
 
 				<input type="submit">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./logout/text[@lang=$lang]"/>
+						<xsl:value-of select="./logout"/>
 					</xsl:attribute>
 				</input>
 

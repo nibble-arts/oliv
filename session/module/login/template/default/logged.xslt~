@@ -18,6 +18,8 @@
 						<xsl:value-of select="./logout/text[@lang=$lang]"/>
 					</xsl:attribute>
 				</input>
+
+				<input type="hidden" name="action" value="logout"/>
 			</form>
 		</div>
 	</xsl:template>
