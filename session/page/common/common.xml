@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='utf8'?>
 
-<content id='common'>
-  <oliv_header mod='header' />
-	<oliv_admin mod='admin' />
-  <oliv_login mod='login' />
-  <oliv_title class='oliv_title'>title</oliv_title>
-  <oliv_footer url='http://github.com/nibble-arts/oliv'>OLIV-CMS by Thomas Winkler: <version /></oliv_footer>
-  <oliv_contact />
-</content>
+<page>
+	<define />
+	
+	<content>
+		<oliv_header mod='article'>template:header;content:header_oliv;</oliv_header>
+
+<!--		<oliv_admin mod='admin' />-->
+		<oliv_login mod='login'>content:login;</oliv_login>
+
+		<oliv_title class='oliv_title'>title</oliv_title>
+		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>
+		<oliv_contact />
+	</content>
+</page>

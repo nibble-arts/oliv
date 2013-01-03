@@ -38,6 +38,8 @@ $_MODULES;
 
 class OLIVModule
 {
+	var $template;
+	var $content;
   
   public function __construct()
   {
@@ -52,27 +54,55 @@ class OLIVModule
   
 
 //------------------------------------------------------------------------------
+// return template path
+  public function template()
+  {
+  	return ($this->template);
+  }
+
+//------------------------------------------------------------------------------
+// return content xml
+  public function content()
+  {
+  	return ($this->content);
+  }
+
+
+//------------------------------------------------------------------------------
 // load template
 // header ... module header information
 // [name] ... name of special template
-  public static function load_template($header,$name="")
+  public static function load_template($header,$name = "")
   {
-		// if no name parameter, look for template attribute
-    if (!$name)
-    {
-      if (!($name = (string)$header->attributes()->template)) // special template defined
-        $name = system::OLIV_TEMPLATE(); // use template name
-    }
+  	if (!$name)
+  	{
+			// look for template attribute
+		  if (!($name = $header->param->template)) // special template defined
+		    $name = system::OLIV_TEMPLATE(); // use template name
+		}
+		
+    $path = system::OLIV_MODULE_PATH() . $header->name . "/template/" . system::OLIV_TEMPLATE() . "/";
 
-    $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/" . system::OLIV_TEMPLATE() . "/";
-
-    if (!olivfile_exists($path . $name . ".xml"))
-      $path = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/template/default/"; // if no template use default
+    if (!olivfile_exists($path . $name . ".xslt"))
+      $path = system::OLIV_MODULE_PATH() . $header->name . "/template/default/"; // if no template use default
 
     // load template and link css
-    return (OLIVTemplate::load($path,$name));
+    return ($path . $name);
   }
 
+
+//------------------------------------------------------------------------------
+	public static function load_content($header)
+	{
+		$contentPath = (string)$header->content;
+		$contentName = (string)$header->param->content . ".xml";
+
+  	if ($contentPath and $contentName)
+  	{
+	  	return OLIVModule::load_xml($header,$contentPath,$contentName);
+  	}
+	}
+	
 
 //------------------------------------------------------------------------------
 // load file from module session
@@ -80,7 +110,7 @@ class OLIVModule
 // name ... name of the file with extension
 	public static function load_xml($header,$path,$name)
 	{
-		$filePath = system::OLIV_MODULE_PATH() . (string)$header->attributes()->mod . "/";
+		$filePath = system::OLIV_MODULE_PATH() . (string)$header->name . "/";
 		$filePath .= $path . $name;
 
 // load file
@@ -95,7 +125,7 @@ class OLIVModule
 	
 //------------------------------------------------------------------------------
 // get module by name
-  public function getModuleByName($name)
+  public static function getModuleByName($name)
   {
 		global $_MODULES;
 
@@ -103,7 +133,7 @@ class OLIVModule
     {
       foreach ($_MODULES as $entry)
       {
-        if ((string)$entry->name == $name) return ($entry);
+        if ((string)$entry->name == $name) return (new simpleXmlElement($entry->asXML()));
       }
     }
     else
@@ -136,6 +166,30 @@ class OLIVModule
 
 
 //------------------------------------------------------------------------------
+// parse parameter sting
+// format [name]:[value];...
+// return assoziative array or single value
+	public static function parse_param($header)
+	{
+		$retArray = array();
+	
+		$paramArray = explode(";",$header->param);
+		foreach($paramArray as $entry)
+		{
+			$valueArray = explode(":",$entry);
+
+	// enter name:value pair
+			if (count($valueArray) > 1)
+			{
+				if ($valueArray[1])
+					$retArray[$valueArray[0]] = $valueArray[1];
+			}
+		}
+		return $retArray;
+	}
+
+
+//------------------------------------------------------------------------------
 // scan module directory and load module metadata
   private function scan($path)
   {
@@ -160,7 +214,7 @@ class OLIVModule
 
 
 // insert module title and description in metadata
-						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define.xml")))
+/*						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define.xml")))
 							OLIVError::fire("module.php::scan - no language definition for module $file found");
 						else
 						{
@@ -169,7 +223,7 @@ class OLIVModule
 
 							olivxml_insert($xml->summary,$summary);
 							olivxml_insert($xml->description,$description);
-						}
+						}*/
 
 
 // save module metadata

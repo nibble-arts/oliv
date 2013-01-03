@@ -41,9 +41,25 @@ class OLIVPage
   
   
 //------------------------------------------------------------------------------
-// load xml page
+// load xml page and store in structure
   public function load($pageName = "")
   {
+		$xml = OLIVPage::_load($pageName);		
+
+// save content in page structure
+		if ($xml)
+		{
+		  $this->structure = new simpleXmlElement("<page></page>"); // create empty page
+			olivxml_insert($this->structure,$xml->content);
+		}
+  }
+
+
+//------------------------------------------------------------------------------
+// load and return page xml file
+// call plugins
+	public static function _load($pageName)
+	{
   	$xml = "";
   	
     if (!$pageName)
@@ -67,46 +83,21 @@ class OLIVPage
 // load content xml
 			$xml = sessionxml_load_file($path);
 
-
 //------------------------------------------------------------------------------
 // search for plugins and call methods
-			foreach($xml as $entry)
-			{
-				$tag = $entry->getName();
-				OLIVPlugin::call($tag,"page",array("template" => $xml));
-			}
+//TODO change to XSLT plugins
+			if ($xml->content->include)
+				OLIVPlugin::call($xml->content);
+				
 //------------------------------------------------------------------------------
 
-
-// save content in page structure
-	    $this->structure = new simpleXmlElement("<page></page>"); // create empty page
-			olivxml_insert($this->structure,$xml);
-
-//echoall($this->structure);
-
-// load content text
-			$langPath = system::OLIV_PAGE_PATH() . $pageName . "/language/";
-			$langFile = $pageName;
-
-			OLIVText::load($langPath,$langFile);
+			return ($xml);
 		}
 		else
 			OLIVError::fire("page::load - page not found");
 			return (FALSE);
-  }
-
-
-//------------------------------------------------------------------------------
-// set module value in page
-  public function setScript($id,$module)
-  {
-// insert attributes into page definition
-		foreach($module->children() as $entry)
-		{
-			$this->structure->$id->addAttribute($entry->getName(),(string)$entry);
-		}
-  }
-
+	}
+	
 
 //------------------------------------------------------------------------------
 // return page structure xml
@@ -114,4 +105,20 @@ class OLIVPage
   {
     return ($this->structure);
   }
+
+
+//------------------------------------------------------------------------------
+// insert xml in page structure
+	public function insert($xml)
+	{
+		olivxml_insert($this->structure,$xml,"ALL");
+	}
+
+
+//------------------------------------------------------------------------------
+// clear content of node in page structure
+	public function clear($nodeName)
+	{
+		$this->structure->$nodeName = "";
+	}
 }

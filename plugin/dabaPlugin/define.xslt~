@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<plugin>
+	<class>dabaPlugin</class>
+
+	<method><daba_init>class:init</daba_init></method>
+	<method>name:daba;class:field</method>
+s</plugin>

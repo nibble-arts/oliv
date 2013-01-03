@@ -15,7 +15,10 @@
   	<div><daba>land</daba></div>
   </p>
 
-  <h3>operator</h3>
+  <h3>
+  	<text lang="de">Betreiber</text>
+  	<text lang="en">operator</text>
+  </h3>
 	<p>
   	<daba>operator</daba>
   </p>

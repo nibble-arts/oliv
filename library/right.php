@@ -82,14 +82,13 @@ class OLIVRight
     $ownRight = "";
     $groupRight = "";
     $allRight = "";
-    
+
 
 //------------------------------------------------------------------------------
 // get requested rights
-		if (isset($access['owner'])) $owner = (string)$access->attributes()->owner;
-    if (isset($access['group'])) $group = (string)$access->attributes()->group;
-		if (isset($access['access'])) $rights = (string)$access->attributes()->access;
-
+		$owner = (string)$access->attributes()->owner;
+    $group = (string)$access->attributes()->group;
+		$rights = (string)$access->attributes()->access;
 
     $ownRight = intval(substr($rights,0,1));
     $groupRight = intval(substr($rights,1,1));
@@ -99,7 +98,6 @@ class OLIVRight
 //------------------------------------------------------------------------------
 // get user rights
     $userRight = OLIVUser::getRight(status::OLIV_USER());
-
     $userGroup = OLIVUser::getGroup(status::OLIV_USER());
     $userOwner = $userRight->getName();
 
@@ -122,13 +120,11 @@ class OLIVRight
 //print_r($userGroup->asXML());
 //------------------------------------------------------------------------------
 
-
 // give all rights if superuser
     if (status::OLIV_SU())
     {
       $r = $w = $x = 1;
     }
-
 
 //------------------------------------------------------------------------------
 // check owner

@@ -42,11 +42,16 @@ class OLIVCore
   private $module; // module object
   private $plugin; // plugin object
   private $template; // template object
+  private $templatePath; // path to page template
   private $page; // page object
   private $route; // router object
-  private $processor; // registered plugins
+  private $preProcessor; // preprocessor object
+  private $translator; // translator object
+  private $postProcessor; // postprocessor object
   private $render; // renderer engine
   private $html; // html class
+
+  private $o; // ouput string
 
 
   public function __construct($corePath)
@@ -92,6 +97,7 @@ class OLIVCore
     if (!system::OLIVENV())
     	die ("Environment not set");
 
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -99,10 +105,8 @@ class OLIVCore
 //------------------------------------------------------------------------------
 
 // load system language
-    if (!system::OLIVTEXT())
-    	die ("INIT: OLIVTEXT not found");
-    	
-    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
+//TODO define system text
+//    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
 
 
 //------------------------------------------------------------------------------
@@ -125,16 +129,23 @@ class OLIVCore
     $this->plugin = new OLIVPlugin();
 
 // load site template
+    $this->templatePath = system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/" . system::OLIV_TEMPLATE();
     $this->template = new OLIVTemplate(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",system::OLIV_TEMPLATE());
 
 // initialise page
     $this->page = new OLIVPage();
 
 // initialise preprocessor
-    $this->processor = new OLIVProcessor();
+    $this->preProcessor = new OLIVPreProcessor();
+
+// initialise translator
+		$this->translator = new OLIVTranslator();
+
+// initialise preprocessor
+    $this->postProcessor = new OLIVPostProcessor();
 
 // initialise renderer
-    $this->render = new OLIVRender();
+//    $this->render = new OLIVRender(); changed to XSLT support
 
 // initialise olivscript
     $this->olivscript = new OLIVScript();
@@ -170,22 +181,43 @@ class OLIVCore
     $this->page->load();
   }
 
-// start preprocessor
+
+// call content pre processor
   public function preProcessor()
   {
-    $this->processor->process($this->page,$this->template,$this->module);
+    $this->preProcessor->process($this->page,$this->template->stylesheet,$this->templatePath);
   }
+
+
+// call translator
+	public function translator()
+	{
+		$this->translator->process($this->page);
+	}
+
+	
+// call content post processor
+  public function postProcessor()
+  {
+    $this->o = $this->postProcessor->process($this->o);
+  }
+
 
 // start render engine
   public function render()
   {
-    $this->render->page($this->template,$this->page,$this->processor);
+// set language for stylesheet display
+		$this->template->stylesheet->setParameter("","lang",status::lang());
+
+//echoall($this->page->structure());
+		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
   }
+
 
 // display render result
   public function display()
   {
-    echo $this->render->display();
+    echo $this->o;
   }
  
 

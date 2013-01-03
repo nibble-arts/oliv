@@ -32,38 +32,37 @@ if (!system::OLIVTEXT()) die ("mod_menu::menu.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("mod_menu::menu.php - OLIVError not present");
 
 
-class menu extends OLIVCore
+class menu extends OLIVModule
 {
-	var $o; // output string
-  var $menuXml;
-  var $template;
-  var $templateName;
-
 
 //------------------------------------------------------------------------------
 // create menu
   function __construct($header)
   {
+  	$menuName = "";
+  	$templateName = "";
+
 // load menu items
-    $menuName = (string)$header;
+		$access = $header->access;
+		$menuName = (string)$header->param->menu;
+		$templateName = (string)$header->param->template;
 
-		$menu = OLIVModule::load_xml($header,"","menu.xml");
-
-//echoall($menu->$menuName);
-// permission to display menu
-		if (OLIVRight::r($menu->$menuName))
+		if ($templateName and $menuName)
 		{
+			$menu = OLIVModule::load_xml($header,"","menu.xml");
 
+// permission to display menu
+			if (OLIVRight::r($menu->$menuName))
+			{
 // load menu template
-		  $this->templateName = (string)$menu->$menuName->attributes()->template;
-		  $this->template = OLIVModule::load_template($header,$this->templateName);
+			  $template = OLIVModule::load_template($header);
 
+// call menu parser
+			  $menuXml = $this->parse($menu->$menuName,$templateName,$access,status::url());
 
-	    $this->menuXml = $this->parse($menu->$menuName,status::url());
-
-//echoall($this->menuXml->asXML());
-// call renderer
-	    $this->o .= OLIVRender::template($this->template,$this->menuXml);
+				$this->template = $template;
+				$this->content = $menuXml;
+			}
 		}
   }
 
@@ -71,91 +70,80 @@ class menu extends OLIVCore
 //------------------------------------------------------------------------------
 // parse menu file
 // create content xml-file for renderer
-  private function parse($menu,$url,$level = 0)
+  private function parse($menu,$templateName,$access,$url,$level = 0)
   {
-    $menuXml = new simpleXmlElement("<menu></menu>");
 
-    $templateName = (string)$menu->attributes()->template;
+//    $templateName = (string)$menu->attributes()->template;
+
+//TODO	parse intern links -> set url-node
+//			access rights	->
+//											no r: clear from xml
+//											no x: clear link -> set class to disabled
+//			active/inactive -> set the class to active/inactive
+
 
     if ($menu)
     {
 // get name of menu
-		$menuName = $menu->getName();
+			$menuName = $menu->getName();
+	    $menuXml = new simpleXmlElement("<menu_$menuName></menu_$menuName>");
 
 //------------------------------------------------------------------------------
 // loop over menu entries
       foreach ($menu->children() as $entry)
       {
-				$itemName = "";
-				$itemUrl = "";
-				$itemTitle = "";
-				$itemTarget = "";
-		    $paramString = "";
-
-				$menuItemName = $entry->getName();
-				
-//------------------------------------------------------------------------------
-// is extern link
-				if ($entry->attributes()->url)
-				{
-					$itemUrl = (string)$entry->attributes()->url;
-
-					if ($entry->attributes()->name)
-						$itemName = OLIVText::_((string)$entry->attributes()->name);
-				}
-
-
-//------------------------------------------------------------------------------
-// is intern link
-				else
-				{
-		      $itemUrl = $entry->getName();
-					$itemTitle = OLIVRoute::translateTitle($itemUrl);
-		      $itemName = OLIVRoute::translatePageName(status::lang(),$itemUrl);
-				}
-
-
-// insert url title and target
-				if ($entry->attributes()->title)
-					$itemTitle = OLIVText::_((string)$entry->attributes()->title);
-				if ($entry->attributes()->target)
-					$itemTarget = OLIVText::_((string)$entry->attributes()->target);
-
-
-// set display class aktive / inactive
-	      if ($itemUrl == $url)
-	        $displayClass = "menu_{$templateName}_active";
-	      else
-	        $displayClass = "menu_{$templateName}_inactive";
-        
-
 //------------------------------------------------------------------------------
 // display item if read permission
-				if (OLIVRight::r($entry))
+				if (OLIVRight::r($entry) and OLIVRight::r($menu))
 				{
-// insert link if x permission
-					if (OLIVRight::x($entry))
+					$internUrl = "";
+
+					$menuItemName = $entry->getName();
+				
+//------------------------------------------------------------------------------
+// is intern link
+					if (!$entry->url)
 					{
-						$paramString = "url='$itemUrl'";
+	// create correct url
+						$internUrl = (string)$entry->getName();
+						$entry->url = (string)OLIVRoute::url(status::lang(),$internUrl,status::val());
 
-						if ($itemTitle)
-							$paramString .= " title = '$itemTitle'";
-						if ($itemTarget)
-							$paramString .= " target = '$itemTarget'";
+						$entry->title = OLIVRoute::translateTitle($internUrl);
+				    $entry->name = OLIVRoute::translatePageName(status::lang(),$internUrl);
 					}
+
+//------------------------------------------------------------------------------
+// translate name and title
+					$entry->title = OLIVText::xml($entry->title);				
+					$entry->name = OLIVText::xml($entry->name);				
+
+//------------------------------------------------------------------------------
+// set display class aktive / inactive
+
+			    if ($internUrl == $url)
+			      $entry->class = "menu_{$templateName}_active";
+			    else
+			      $entry->class = "menu_{$templateName}_inactive";
+
+
+// remove link if no x permission
+// check for menu_item, menu and page permissions
 // set display class to disabled
-					else
-						$displayClass = "menu_{$templateName}_disabled";
+						$pageXAccess = (string)$access->x;
+						$menuXAccess = OLIVRight::x($menu);
 
+						if (!(OLIVRight::x($entry) and $menuXAccess and $pageXAccess))
+						{
+							$entry->url = "";
+							$entry->class = "menu_{$templateName}_disabled";
+						}
 
-// insert name and format
-					$paramString .= " name='{$menuName}_{$itemName}' class='$displayClass'";
+// create menu_item xml
+						$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
+						olivxml_insert($menu_item,$entry);
 
-
-// create menu item entry
-			    $tempXml = new simpleXmlElement("<menu_item_{$this->templateName} source='$menuName' $paramString>$itemName</menu_item_{$this->templateName}>");
-
-	//        olivxml_insert($menuXml,$tempXml);
+// insert menu_item into new menu structure
+						olivxml_insert($menuXml,$menu_item,"ALL");
 
 	//TODO
 	// sub menus foun
@@ -166,12 +154,10 @@ class menu extends OLIVCore
 		        $menuName = "menu_item_" . $this->templateName;
 		        olivxml_insert($tempXml->$menuName,$subXml);
 		      }*/
-		      olivxml_insert($menuXml,$tempXml);
+//		      olivxml_insert($menuXml,$tempXml);
 		    }
 			}
- 
-//echoall($tempXml);
-//echoall($menuXml->asXML());
+
       return ($menuXml);
     }
     else

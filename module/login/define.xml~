@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>login</name>
+  <version>1.0</version>
+  <author>Thomas Winkler</author>
+  <copyright>2012</copyright>
+    
+  <template>template/</template>
+  <template>content/</template>
+
+  <default_language>de</default_language>
+
+  <script>
+    <main>login.php</main>
+  </script>
+</module>

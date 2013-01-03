@@ -27,51 +27,35 @@
 // Version 0.1
 //------------------------------------------------------------------------------
 
-if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
-if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
-
+if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("render.php - OLIVError not present");
 
 class pagePlugin
 {
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($method,$options)
   {
-		$pluginData = (string)$options[0]['template']->$func;
-		$pageXml = $options[0]['template'];
+  	$content = $options[0];
+  	$tag = $options[1];
 
-//TODO remove $func entry from $pageXml entry
-		$pageXml->$func = "";
-		
-echoall($func);
-// call methods
-		switch ($func)
+
+// get include information
+		$nodes = $content->XPath("//include");
+
+
+// include all page informations
+		if (count($nodes))
 		{
-			case 'redirect':
-// run script for condition check for redirect
-				$redirect = OLIVScript::call($pluginData);
-
-// get redirected page
-				if ($redirect)
-				{
-					$pageXml = new OLIVPage;
-					$pageXml->load($redirect);
-//					$pageXml = $page->structure();
-				}
-				break;
-
-
-// add masterpage content to page
-			case 'masterpage':
-				$masterPage = new OLIVPage;
-				$masterPage->load($pluginData);
-
-				olivxml_insert($pageXml,$masterPage->structure());
-				break;
+			foreach ($nodes as $node)
+			{
+				$page = OLIVPage::_load((string)$node);
+				olivxml_insert($content,$page->content);				
+			}
 		}
-	}
+
+		return($content);
+  }
 }
-
-
 ?>

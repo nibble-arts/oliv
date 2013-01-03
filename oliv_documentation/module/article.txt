@@ -1,0 +1,38 @@
+																ModuleClass article
+																-------------------
+
+The article module gives access and tools to create, edit and manage article
+content. The content is stored in the content/ subdirectory, the article
+structure and css in the templates/ subdirectory. 
+
+path: modules/article/
+
+
+The article module is the tool to create formatted parts of the page. It
+consists of a xml, holding the content, a xslt with the design, and an optional
+ccs for format informations. All informations are included in the page structure
+and can be altered by the plugin system.
+
+The article module offers the article-plugin, witch provides the editor
+functions for the article content and design.
+
+
+Class Attributes:
+-----------------
+
+	private var template
+	private var content
+
+
+Class Methods:
+--------------
+
+
+void public __construct(void)
+-----------------------------
+	The method loads the content defined in the parameter string with:
+				content:content_name;
+
+	All nodes are extended with the source-attribute, holding the path to the
+	content-xml. This is necessary for editing and saving of text parts.
+

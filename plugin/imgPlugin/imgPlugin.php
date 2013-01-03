@@ -35,12 +35,57 @@ class imgPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($tag,$options)
+  static public function __callStatic($method,$options)
   {
-    $content = $options[0];
-    $value = $options[0]['template'];
+  	$content = $options[0];
+  	$tag = $options[1];
 
-    return (imgRender::tagString($tag,$value,$content));
+
+//------------------------------------------------------------------------------
+// look for images
+  	$nodes = $content->XPath("//img");
+
+
+// loop through all nodes
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+			$imgName = (string)$nodes[$i]["src"];
+
+// get correct path to image
+			$imgPath = OLIVImage::_($imgName);
+
+			if($imgPath);
+			{
+//TODO include javaScript content menu
+// include editor call <a>
+				$nodes[$i]["src"] = $imgPath;
+			}
+		}
+
+
+
+//------------------------------------------------------------------------------
+// look for background images
+  	$nodes = $content->XPath("//@background-image");
+
+
+// loop through all nodes
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+			$imgName = (string)$nodes[$i];
+
+// get correct path to image
+			$imgPath = OLIVImage::_($imgName);
+
+			if($imgPath);
+			{
+//TODO include javaScript content menu
+// include editor call <a>
+				$nodes[$i]->addAttribute("style","background-image:url(" . $imgPath . ")");
+			}
+		}
+
+		return($content);
   }
 }
 

@@ -37,12 +37,12 @@
     <OLIV_TEMPLATE_PATH>template/</OLIV_TEMPLATE_PATH>
     <OLIV_IMAGES_PATH>images/</OLIV_IMAGES_PATH>
     <OLIV_LANGUAGE_PATH>language/</OLIV_LANGUAGE_PATH>
-		<OLIV_SCRIPT>olivscript/</OLIV_SCRIPT>
+		<OLIV_OLIVSCRIPT>olivscript/</OLIV_OLIVSCRIPT>
     <OLIV_CONTEXT_PATH>context/</OLIV_CONTEXT_PATH>
     <OLIV_CORE_TEXT>system</OLIV_CORE_TEXT>
 		<OLIV_NAME>OLIV-CMS</OLIV_NAME>
 		<OLIV_AUTHOR>Thomas H. Winkler</OLIV_AUTHOR>
-    <OLIV_VERSION>V0.3.2.344d6556 - 2012-11-06</OLIV_VERSION>
+    <OLIV_VERSION>V0.4.0.1d5774e8 - 2013-01-03</OLIV_VERSION>
   </system>
   
   <includes>
@@ -57,14 +57,16 @@
     <file>html.php</file>
     <file>file.php</file>
     <file>module.php</file>
-    <file>render.php</file>
+<!--    <file>render.php</file> changed to XSLT support -->
     <file>user.php</file>
     <file>right.php</file>
     <file>route.php</file>
     <file>search.php</file>
     <file>database.php</file>
     <file>template.php</file>
-    <file>processor.php</file>
+    <file>preprocessor.php</file>
+    <file>translator.php</file>
+    <file>postprocessor.php</file>
     <file>page.php</file>
     <file>image.php</file>
     <file>index.php</file>
