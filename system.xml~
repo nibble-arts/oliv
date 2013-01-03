@@ -65,6 +65,7 @@
     <file>database.php</file>
     <file>template.php</file>
     <file>preprocessor.php</file>
+    <file>translator.php</file>
     <file>postprocessor.php</file>
     <file>page.php</file>
     <file>image.php</file>
