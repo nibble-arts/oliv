@@ -21,9 +21,8 @@
 
 
 	<content>
-<!--		<masterpage>common</masterpage>-->
+		<include>common</include>
 
-		<oliv_header mod='article'>template:header;content:header_oliv;</oliv_header>
 <!--		<oliv_admin mod='admin' />
 		<oliv_login mod='login' />-->
 
@@ -34,5 +33,6 @@
 
 		<daba_init>name:railway;db:iggmp;</daba_init>
 		<daba name='railway'>table:railway;field:title;</daba>
+	
 	</content>
 </page>

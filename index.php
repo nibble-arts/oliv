@@ -61,18 +61,11 @@ else
       $core = new OLIVCore($corePath);
       $core->init("oliv");
 
-
-// load page content
-      $core->loadContent();
-
-// call preprocessor
-      $core->preProcessor();
-
-// render site
+      $core->loadContent(); // load page content
+      $core->preProcessor(); // call preprocessor
+			$core->translator(); // call translator
 	    $core->render(); // render site
-
-// call postprocessor
-      $core->postProcessor();
+      $core->postProcessor(); // call postprocessor
     ?>
   </head>
   

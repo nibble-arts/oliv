@@ -17,6 +17,6 @@
 #header_title {
   float:left;
   text-align:right;
-	margin-top:50px;
+	margin-top:60px;
 	font-size:14pt;
 }

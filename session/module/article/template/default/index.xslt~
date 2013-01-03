@@ -27,9 +27,12 @@
 <!-- paragraph definitions -->
 	<xsl:template match="article_index_001">
 		<h1>
-			<xsl:call-template name="attributes">
-				<xsl:with-param name="node" select="."/>
-			</xsl:call-template>
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
+			</xsl:attribute>
 			
 			<xsl:value-of select="./text[@lang=$lang]"/>
 		</h1>
@@ -37,9 +40,12 @@
 
 	<xsl:template match="article_index_002">
 		<p>
-			<xsl:call-template name="attributes">
-				<xsl:with-param name="node" select="."/>
-			</xsl:call-template>
+			<xsl:attribute name="articlesource">
+				<xsl:value-of select="./@source"/>
+			</xsl:attribute>
+			<xsl:attribute name="articlename">
+				<xsl:value-of select="name(.)"/>
+			</xsl:attribute>
 
 			<xsl:value-of select="./text[@lang=$lang]"/>
 		</p>

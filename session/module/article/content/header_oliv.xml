@@ -2,8 +2,8 @@
 
 <header>
 	<header_title>
-		<text lang="de">OLIV - Das omnilinguale CMS</text>
-		<text lang="en">OLIV - The omnilingual CMS</text>
+		<text lang="de">Das omnilinguale CMS</text>
+		<text lang="en">The omnilingual CMS</text>
 	</header_title>
 
 	<header_logo>oliv_logo.png</header_logo>

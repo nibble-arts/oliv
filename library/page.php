@@ -41,9 +41,25 @@ class OLIVPage
   
   
 //------------------------------------------------------------------------------
-// load xml page
+// load xml page and store in structure
   public function load($pageName = "")
   {
+		$xml = OLIVPage::_load($pageName);		
+
+// save content in page structure
+		if ($xml)
+		{
+		  $this->structure = new simpleXmlElement("<page></page>"); // create empty page
+			olivxml_insert($this->structure,$xml->content);
+		}
+  }
+
+
+//------------------------------------------------------------------------------
+// load and return page xml file
+// call plugins
+	public static function _load($pageName)
+	{
   	$xml = "";
   	
     if (!$pageName)
@@ -70,25 +86,18 @@ class OLIVPage
 //------------------------------------------------------------------------------
 // search for plugins and call methods
 //TODO change to XSLT plugins
-/*			foreach($xml as $entry)
-			{
-				$tag = $entry->getName();
-				OLIVPlugin::call($tag,"page",array("template" => $xml));
-			}*/
+			if ($xml->content->include)
+				OLIVPlugin::call($xml->content);
+				
 //------------------------------------------------------------------------------
 
-
-// save content in page structure
-	    $this->structure = new simpleXmlElement("<page></page>"); // create empty page
-			olivxml_insert($this->structure,$xml->content);
-
+			return ($xml);
 		}
 		else
 			OLIVError::fire("page::load - page not found");
 			return (FALSE);
-  }
-
-
+	}
+	
 
 //------------------------------------------------------------------------------
 // return page structure xml

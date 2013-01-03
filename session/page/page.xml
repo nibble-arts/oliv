@@ -25,7 +25,7 @@ The status defines the visibility:
 		<friendly_name>
 			<text lang='de'>Startseite</text>
 			<text lang='en'>Home</text>
-			<text lang='cs'>Domácí</text>
+			<text lang='cs'>Domaci</text>
 		</friendly_name>
 		<title>
 			<text lang='de'>Das Omni-Linguale CMS</text>

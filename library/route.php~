@@ -80,6 +80,10 @@ class OLIVRoute
 // no site defined -> call OLIV_404_PAGE
     else
     {
+			OLIVError::fire("Error 404 - Page not found");
+			OLIVError::fire("route.php - route");
+			OLIVError::fire("start " . system::OLIV_404_PAGE() . " instead");
+
       status::set('url',system::OLIV_404_PAGE());
     }
 

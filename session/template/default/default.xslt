@@ -38,13 +38,11 @@
 		    <div id='oliv_space' />
 
 				<div id='oliv_header'>
-			    <xsl:apply-templates select='//oliv_header'/>
 		      <div id='oliv_login'>
 				    <xsl:apply-templates select='//oliv_login'/>
 					</div>
-		      <div id='oliv_title'>
-				    <xsl:apply-templates select='//oliv_title'/>
-					</div>
+			    <xsl:apply-templates select='//oliv_header'/>
+
 					<span class="oliv_clear"/>
 		    </div>
 		

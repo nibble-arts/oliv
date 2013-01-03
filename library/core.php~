@@ -46,6 +46,7 @@ class OLIVCore
   private $page; // page object
   private $route; // router object
   private $preProcessor; // preprocessor object
+  private $translator; // translator object
   private $postProcessor; // postprocessor object
   private $render; // renderer engine
   private $html; // html class
@@ -96,6 +97,7 @@ class OLIVCore
     if (!system::OLIVENV())
     	die ("Environment not set");
 
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -135,6 +137,9 @@ class OLIVCore
 
 // initialise preprocessor
     $this->preProcessor = new OLIVPreProcessor();
+
+// initialise translator
+		$this->translator = new OLIVTranslator();
 
 // initialise preprocessor
     $this->postProcessor = new OLIVPostProcessor();
@@ -184,6 +189,13 @@ class OLIVCore
   }
 
 
+// call translator
+	public function translator()
+	{
+		$this->translator->process();
+	}
+
+	
 // call content post processor
   public function postProcessor()
   {

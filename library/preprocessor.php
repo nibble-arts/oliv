@@ -105,24 +105,28 @@ class OLIVPreProcessor extends OLIVCore
 							      $module = new $class($script);
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-
 										if (is_object($module))
 										{
-											$tempTemplate = $module->template();
+											if (!method_exists($module,"template"))
+												OLIVError::fire("preprocessor.php::process - module '" . $script->name . "' don't extend OLIVModule");
+											else
+											{
+												$tempTemplate = $module->template();
 
 // set path to insert module-template-link stylesheet
 // link only if template and content found
-											if ($module->template() and $module->content())
-											{
-												if (is_object($module->content()))
+												if ($module->template() and $module->content())
 												{
-													$templates[$entry->getName() . "::" . $module->content()->getName()] = $module->template();
+													if (is_object($module->content()))
+													{
+														$templates[$entry->getName() . "::" . $module->content()->getName()] = $module->template();
+													}
 												}
-											}
 
-// insert module content in page content
-											if ($module->content())
-												$page->insert($module->content());
+	// insert module content in page content
+												if ($module->content())
+													$page->insert($module->content());
+											}
 										}
 										else
 											$page->clear($entry->getName());
