@@ -3,6 +3,8 @@
 <plugin>
 	<class>dabaPlugin</class>
 
-	<method><daba_init>class:init</daba_init></method>
-	<method>name:daba;class:field</method>
-s</plugin>
+	<method>
+		<daba_init>daba_init</daba_init>
+		<daba>daba</daba>
+	</method>
+</plugin>

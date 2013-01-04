@@ -1,28 +1,31 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:variable name="lang" select="'de'"/>
 
-	<daba_init>db=iggmp;table=railway</daba_init>
+	<xsl:template match="article_railway">
+		<h3><daba_init><xsl:value-of select="daba_init"/></daba_init></h3>
 
-	<dabaimg src='images' float='right' width='300em'  margin_left='0.5em' margin_bottom='0.5em'>_id</dabaimg>
+		<div id="railway_main_image"><daba_img><xsl:value-of select="mainimage"/></daba_img></div>
 
-  <h3><daba>title</daba></h3>
-  <p><daba>summary</daba></p>
+		<h3><xsl:value-of select="address"/></h3>
 
-	<h3>address</h3>
-  <p>
-  	<div><daba>address</daba></div>
-  	<div><daba>zip</daba><daba>city</daba></div>
-  	<div><daba>land</daba></div>
-  </p>
+		<p>
+			<div><daba><xsl:value-of select="road"/></daba></div>
+			<div><daba><xsl:value-of select="zip"/></daba>
 
-  <h3>
-  	<text lang="de">Betreiber</text>
-  	<text lang="en">operator</text>
-  </h3>
-	<p>
-  	<daba>operator</daba>
-  </p>
+			<xsl:text> - </xsl:text>
+
+			<daba><xsl:value-of select="city"/></daba></div>
+			<div><daba><xsl:value-of select="land"/></daba></div>
+		</p>
+
+		<h3>
+			<text lang="de">Betreiber</text>
+			<text lang="en">operator</text>
+		</h3>
+		<p>
+			<daba><xsl:value-of select="society"/></daba>
+		</p>
+	</xsl:template>
 
 </xsl:stylesheet>

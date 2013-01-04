@@ -105,11 +105,10 @@ class OLIVPreProcessor extends OLIVCore
 							      $module = new $class($script);
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-echoall($script);
 										if (is_object($module))
 										{
 											if (!method_exists($module,"template"))
-												OLIVError::fire("preprocessor.php::process - module " . $script->name . " don't extend OLIVModule");
+												OLIVError::fire("preprocessor.php::process - module '" . $script->name . "' don't extend OLIVModule");
 											else
 											{
 												$tempTemplate = $module->template();
@@ -157,6 +156,8 @@ echoall($script);
 	  }
 
 
+
+//------------------------------------------------------------------------------
 // include module templates in page template
 // create temporary xslt for include process
 		$tempXsl = new XSLTProcessor();
@@ -221,6 +222,7 @@ echoall($script);
 		$tempXml = new simpleXmlElement($xmlString);
 		$stylesheet->importStylesheet($tempXml);
 
+echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
 //echoall($page->structure());
   }
 

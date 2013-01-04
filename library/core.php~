@@ -192,7 +192,7 @@ class OLIVCore
 // call translator
 	public function translator()
 	{
-		$this->translator->process($this->page->structure());
+		$this->translator->process($this->page);
 	}
 
 	
@@ -206,10 +206,12 @@ class OLIVCore
 // start render engine
   public function render()
   {
-// set language for stylesheet display
+// set parameters for stylesheet display
 		$this->template->stylesheet->setParameter("","lang",status::lang());
+		$this->template->stylesheet->setParameter("","user",status::OLIV_USER());
 
-//echoall($this->page->structure());
+
+// start stylesheet processor
 		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
   }
 

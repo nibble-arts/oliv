@@ -33,10 +33,31 @@ if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present")
 
 class dabaPlugin
 {
+  public static function __callStatic($tag,$options)
+  {
+		$content = $options[0];
+
+		switch($tag)
+		{
+			case 'daba_init':
+				$content = dabaPlugin::init($content,$tag);
+				break;
+
+			case 'daba':
+				$content = dabaPlugin::field($content,$tag);
+				break;
+
+			case 'daba_image':
+				$content = dabaPlugin::image($content,$tag);
+				break;
+		}
+
+		return $content;
+  }
   
 //------------------------------------------------------------------------------
 // init database
-  static public function init($content,$tag)
+  static private function init($content,$tag)
   {
 //TODO initialize database
   	$nodes = $content->XPath("//$tag");
@@ -45,24 +66,50 @@ class dabaPlugin
 		{
 // get node and clear init string from page
 			$initString = (string)$nodes[$i];
-			$nodes[$i][0] = "";
+			$nodes[$i][0] = "Init database with: $initString";
 		}
 
-
-		return($content);
+		return $content;
   }
+
 
 //------------------------------------------------------------------------------
-// init database
+// get database field content
   static public function field($content,$tag)
   {
-		return($content);
+  	$nodes = $content->XPath("//$tag");
+
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+			$nodes[$i][0] = "Display daba field: " . (string)$nodes[$i];
+// get node and clear init string from page
+//			$initString = (string)$nodes[$i];
+//			$nodes[$i][0] = "";
+		}
+
+		return $content;
   }
 
 
+//------------------------------------------------------------------------------
+// use field content for image display
+  static public function image($content,$tag)
+  {
+  	$nodes = $content->XPath("//$tag");
 
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+			$nodes[$i][0] = "Display image with name: " . (string)$nodes[$i];
+// get node and clear init string from page
+//			$initString = (string)$nodes[$i];
+//			$nodes[$i][0] = "";
+		}
+
+		return $content;
+  }
 }
 
+/*
 //------------------------------------------------------------------------------
 // edit render class
 class dabaEditPlugin
@@ -118,9 +165,10 @@ class dabaRender
 		
     return ($tagArray);
 	}
-}
+}*/
 
 
+/*
 //------------------------------------------------------------------------------
 class dabaInit
 {
@@ -200,5 +248,5 @@ class dabaInit
 				OLIVError::fire("database.php::__construct - field in request definition not found");
 		}
   }
-}
+}*/
 ?>

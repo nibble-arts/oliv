@@ -4,7 +4,8 @@
 	<class>dabaPlugin</class>
 
 	<method>
-		<daba_init>init</daba_init>
-		<daba>field</daba>
+		<daba_init>daba_init</daba_init>
+		<daba>daba</daba>
+		<daba_image>daba_image</daba_image>
 	</method>
 </plugin>

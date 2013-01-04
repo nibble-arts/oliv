@@ -156,6 +156,8 @@ class OLIVPreProcessor extends OLIVCore
 	  }
 
 
+
+//------------------------------------------------------------------------------
 // include module templates in page template
 // create temporary xslt for include process
 		$tempXsl = new XSLTProcessor();
@@ -220,6 +222,7 @@ class OLIVPreProcessor extends OLIVCore
 		$tempXml = new simpleXmlElement($xmlString);
 		$stylesheet->importStylesheet($tempXml);
 
+//echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
 //echoall($page->structure());
   }
 

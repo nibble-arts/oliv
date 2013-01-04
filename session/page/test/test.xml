@@ -22,6 +22,6 @@
 
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
 
-		<oliv_content mod='article'>railway</oliv_content>
+		<oliv_content mod='article'>content:railway;template:railway;</oliv_content>
 	</content>
 </page>

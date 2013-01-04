@@ -20,6 +20,8 @@
 		<redirect> if (status::command() == "") { return("redirect"); } </redirect>
 		<include>common</include>
 
-		<oliv_content mod='article'>railway</oliv_content>
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+
+		<oliv_content mod='article'>content:railway;</oliv_content>
 	</content>
 </page>
