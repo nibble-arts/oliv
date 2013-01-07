@@ -111,18 +111,21 @@ class spring extends OLIVModule
 
 // set result values
 		$this->content->result = "---";
-		$this->content->result_unit = "N";
 		$this->content->spring_result_class = "spring_result_error";
 
 
 // set result type
 		if ($F)
 		{
+			$this->content->result_value = "s";
+			$this->content->result_unit = "mm";
 			$this->text("result_name","bending");
 			$this->content->spring_result_class = "spring_result";
 		}
 		if ($s)
 		{
+			$this->content->result_value = "F";
+			$this->content->result_unit = "N";
 			$this->text("result_name","force");
 			$this->content->spring_result_class = "spring_result";
 		}
@@ -135,41 +138,40 @@ class spring extends OLIVModule
 		}
 
 
-// PSI denominator
-		$_psi = 2 + (($n1 + $type) / $n);
+// PSI
+		$psi = 3 / (2 + (($n1 + $type) / $n));
 
-		if ($_psi)
-		{
-			$psi = 3 / $_psi;
 
 //------------------------------------------------------------------------------
 // calculate bending
-			if ($F)
-			{
+		if ($F)
+		{
 // s denominator
-				$_s = $E * $n * $b * pow($t,3);
+			$_s = $E * $n * $b * pow($t,3);
 
 // if s not NULL -> calculate
-				if ($_s)
-					$s = ($psi * 4 * $F * pow($L,3)) / $_s;
+			if ($_s)
+				$s = ($psi * 4 * $F * pow($L,3)) / $_s;
 
-				$this->content->result = number_format($s,3);
-			}
+			$this->content->result = number_format($s,3);
+		}
 
 //------------------------------------------------------------------------------
 // calculate force
-			elseif ($s)
-			{
+		elseif ($s)
+		{
 // F denominator
-				$_F = 4 * pow($L,3) * $psi;
+			$_F = 4 * pow($L,3) * $psi;
 
 // if F not NULL -> calculate
-				if ($_F)
-					$F = ($s * $E * $n * $b * pow($t,3)) / $_F;
+			if ($_F)
+				$F = ($s * $E * $n * $b * pow($t,3)) / $_F;
 
-				$this->content->result = number_format($F,3);
-			}
+			$this->content->result = number_format($F,3);
 		}
+
+// sigma
+		$this->content->spring_sigma = number_format((6 * $F * $L) / ($n * $b * pow($t,2)));
 //		echoall($this->content);
 	}
 }

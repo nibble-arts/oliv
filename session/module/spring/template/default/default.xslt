@@ -95,10 +95,18 @@
 							</xsl:attribute>
 							
 							<xsl:value-of select="result_name"/>:
-							<xsl:text> </xsl:text>
+
+							<xsl:value-of select="result_value"/>
+							<xsl:text> = </xsl:text>
 							<xsl:value-of select="result"/>
 							<xsl:text> </xsl:text>
 							<xsl:value-of select="result_unit"/>
+
+							<br/>
+							
+							<xsl:value-of select="sigma"/>:
+							<xsl:text> &#963; = </xsl:text>
+							<xsl:value-of select="spring_sigma"/> N/mm²
 						</div>
 					</xsl:when>
 

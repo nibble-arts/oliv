@@ -63,6 +63,11 @@
 		<text lang="en">Bending</text>
 	</bending>
 
+	<sigma>
+		<text lang="de">Spannung</text>
+		<text lang="en">Stress</text>
+	</sigma>
+
 	<calc>
 		<text lang="de">Berechnen</text>
 		<text lang="en">Calculate</text>
