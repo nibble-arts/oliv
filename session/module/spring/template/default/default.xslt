@@ -69,6 +69,9 @@
 					</tr>
 					<tr><td><xsl:value-of select="leaf_add_count"/></td><td> n' </td><td><input type="text" name="spring_n1" value="$spring_n1"/></td></tr>
 				</table>
+
+				<img src="spring03.png"/><br/>
+				
 			</fieldset>
 
 <!-- operation values -->
