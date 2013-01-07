@@ -12,9 +12,9 @@
 
 				<div>
 					<input type="radio" name="spring_type" value="0"/>
-					<img src="spring01.png"/><br/>
+					<img src="spring01.png" width="250px"/><br/>
 					<input type="radio" name="spring_type" value="1"/>
-					<img src="spring02.png"/>
+					<img src="spring02.png" width="250px"/>
 				</div>
 			</fieldset>
 
@@ -70,7 +70,7 @@
 					<tr><td><xsl:value-of select="leaf_add_count"/></td><td> n' </td><td><input type="text" name="spring_n1" value="$spring_n1"/></td></tr>
 				</table>
 
-				<img src="spring03.png"/><br/>
+				<img src="spring03.png" width="250px"/><br/>
 				
 			</fieldset>
 
