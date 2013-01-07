@@ -41,49 +41,61 @@ class formPlugin
   	$tag = $options[1];
 
 
-// get include information
-		$nodes = $content->XPath("//form");
+		switch($tag)
+		{
+			case 'form':
+// get form information
+				$nodes = $content->XPath("//form");
 
 
 // loop through all nodes
-		for ($i = 0;$i < count($nodes);$i++)
-		{
-			$formMethod = $nodes[$i]["action"];
-			
-// if no action -> use index.php
-			if(!$formMethod)
-			{
-				$nodes[$i]["action"] = "index.php";
-				$nodes[$i]["method"] = "post";
-
-// insert hidden url parameter
-				if (status::url())
+				for ($i = 0;$i < count($nodes);$i++)
 				{
-					$newNode = $nodes[$i]->addChild("input");
-					$newNode["type"] = "hidden";
-					$newNode["name"] = "url";
-					$newNode["value"] = status::url();
+					$formMethod = $nodes[$i]["action"];
+
+
+// if no action -> insert correct url
+					if(!$formMethod)
+					{
+						$nodes[$i]["action"] = OLIVRoute::makeUrl(status::lang(),status::url());
+						$nodes[$i]["method"] = "post";
+						$nodes[$i]["accept-charset"] = "utf-8";
+					}
+				}
+				break;
+
+			case 'input':
+// if $xxx in value of input tag
+// replace by argv::xxx() value
+				$nodes = $content->XPath("//input[contains(@value,'$')]");
+
+				foreach($nodes as $entry)
+				{
+					if ($entry)
+					{
+						$val = substr((string)$entry['value'],1);
+						$entry['value'] = argv::$val();
+					}
 				}
 
-// insert hidden val parameter
-				if (status::val())
-				{
-					$newNode = $nodes[$i]->addChild("input");
-					$newNode["type"] = "hidden";
-					$newNode["name"] = "val";
-					$newNode["value"] = status::val();
-				}				
 
-// insert hidden lang parameter
-				if (status::lang())
-				{
-					$newNode = $nodes[$i]->addChild("input");
-					$newNode["type"] = "hidden";
-					$newNode["name"] = "lang";
-					$newNode["value"] = status::lang();
-				}				
-			}
+// set checked value for radio TODO and checkbox
+				$nodes = $content->XPath("//input[@type = 'radio']");
 
+				foreach($nodes as $entry)
+				{
+					$name = (string)$entry['name'];
+					$value = (string)$entry['value'];
+
+					$arg = argv::$name();
+
+					if($arg == $value)
+					{
+						$entry['checked'] = "checked";
+					}
+				}
+
+				break;
 		}
 
 		return($content);

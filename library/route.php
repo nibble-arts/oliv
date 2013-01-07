@@ -58,7 +58,6 @@ class OLIVRoute
 // look for url in page.xml
 		$tempArray = $this->parseUrl(status::url());
 
-
 		status::set('url',$tempArray['url']);
  		status::set('val',$tempArray['val']); // add values to val-parameter
 
@@ -294,7 +293,6 @@ class OLIVRoute
   {
     global $_PAGES;
 
-
 // return translated page
 		if ($name = OLIVText::xml($_PAGES->$url->name))
 			return $name;
@@ -325,9 +323,14 @@ class OLIVRoute
   {
     global $_PAGES;
     $id = "";
-    
+
 		foreach($_PAGES as $page)
 		{
+// check if page id is given
+			$node = $page->XPath(".");
+			if ($node[0]->getName() == $name)
+				return $name;
+
 // get node containing $name
 			$node = $page->XPath("friendly_name/text[contains(.,'$name')]");
 
@@ -364,12 +367,15 @@ class OLIVRoute
     
 		$urlArray = explode("/",cut_slash($url));
 
+
 // search for url matches
     foreach($urlArray as $entry)
     {
       array_push($tempArray,$entry);
       $urlString = implode(".",$tempArray);
 
+
+// retranslate to page id
       if (!OLIVRoute::getUrl($urlString))
         array_push($paramArray,$entry); // insert parameter part
       else

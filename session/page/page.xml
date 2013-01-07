@@ -53,16 +53,32 @@ The status defines the visibility:
 	<test>
 		<status>hidden</status>
 		<name>
-			<text lang='de'>Testseite</text>
-			<text lang='en'>Testpage</text>
+			<text lang='de'>Daba-Test</text>
+			<text lang='en'>Daba-test</text>
 		</name>
 		<friendly_name>
-			<text lang='de'>Testseite</text>
-			<text lang='en'>Testpage</text>
+			<text lang='de'>Daba_Test</text>
+			<text lang='en'>Daba_test</text>
 		</friendly_name>
 		<title>
 			<text lang='de'>Seite zum Testen des Datenbank Moduls</text>
 			<text lang='en'>Page to test the database module</text>
 		</title>
 	</test>
+
+	<spring>
+		<status>public</status>
+		<name>
+			<text lang='de'>Blattfeder Rechner</text>
+			<text lang='en'>Coach Spring Calculator</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Blattfeder_Rechner</text>
+			<text lang='en'>Coach_Spring_Calculator</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Berechnen von geschichteten Blattfedern</text>
+			<text lang='en'>Calculator for compound springs</text>
+		</title>
+	</spring>
 </pages>

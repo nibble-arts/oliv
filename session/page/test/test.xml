@@ -3,12 +3,12 @@
 <page>
 	<define>
 		<name>
-			<text lang='de'>Testseite</text>
-			<text lang='en'>Testpage</text>
+			<text lang='de'>Daba-Test</text>
+			<text lang='en'>Daba-test</text>
 		</name>
 		<friendly_name>
-			<text lang='de'>Testseite</text>
-			<text lang='en'>Testpage</text>
+			<text lang='de'>Daba_Test</text>
+			<text lang='en'>Daba_test</text>
 		</friendly_name>
 		<title>
 			<text lang='de'>Seite zum Testen des Datenbank Moduls</text>

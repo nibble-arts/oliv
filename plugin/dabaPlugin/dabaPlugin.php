@@ -83,7 +83,7 @@ class dabaPlugin
 		{
 			$nodes[$i][0] = "Display daba field: " . (string)$nodes[$i];
 // get node and clear init string from page
-//			$initString = (string)$nodes[$i];
+			$fieldName = (string)$nodes[$i];
 //			$nodes[$i][0] = "";
 		}
 
@@ -108,6 +108,9 @@ class dabaPlugin
 		return $content;
   }
 }
+
+
+
 
 /*
 //------------------------------------------------------------------------------

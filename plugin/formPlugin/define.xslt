@@ -5,5 +5,6 @@
 
 	<method>
 		<form/>
+		<input/>
 	</method>
 </plugin>

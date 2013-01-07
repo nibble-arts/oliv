@@ -69,6 +69,15 @@ class OLIVModule
 
 
 //------------------------------------------------------------------------------
+// use content node as text
+// write to xml node with name
+	public function text($node,$name)
+	{
+		olivxml_insert($this->content->$node,$this->content->$name);
+	}
+
+
+//------------------------------------------------------------------------------
 // load template
 // header ... module header information
 // [name] ... name of special template
@@ -80,11 +89,12 @@ class OLIVModule
 		  if (!($name = $header->param->template)) // special template defined
 		    $name = system::OLIV_TEMPLATE(); // use template name
 		}
-		
+
     $path = system::OLIV_MODULE_PATH() . $header->name . "/template/" . system::OLIV_TEMPLATE() . "/";
 
+// if no template use default
     if (!olivfile_exists($path . $name . ".xslt"))
-      $path = system::OLIV_MODULE_PATH() . $header->name . "/template/default/"; // if no template use default
+      $path = system::OLIV_MODULE_PATH() . $header->name . "/template/default/";
 
     // load template and link css
     return ($path . $name);
@@ -95,7 +105,15 @@ class OLIVModule
 	public static function load_content($header)
 	{
 		$contentPath = (string)$header->content;
-		$contentName = (string)$header->param->content . ".xml";
+		$contentName = (string)$header->param->content;
+		$moduleName = (string)$header->name;
+
+// if content path but no content defined
+// use module_name.xml for content 
+		if (!$contentName)
+			$contentName = $moduleName;
+
+		$contentName .=  ".xml";
 
   	if ($contentPath and $contentName)
   	{

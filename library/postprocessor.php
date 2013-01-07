@@ -47,7 +47,7 @@ class OLIVPostProcessor extends OLIVCore
   	global $_PLUGIN;
 
 		$pageXml = OLIVPlugin::call(new simpleXmlElement($page));
-
+//echoall($pageXml);
 //------------------------------------------------------------------------------
 // convert page xml to html
 		if (sessionfile_exists(system::OLIV_TEMPLATE_PATH() . "post.xslt"))

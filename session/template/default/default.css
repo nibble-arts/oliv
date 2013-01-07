@@ -76,7 +76,7 @@ h3 {
 input {
   font-family:serif;
   font-style:italic;
-  font-size:60%;
+  font-size:0.8em;
 }
 
 div {
@@ -148,12 +148,7 @@ div {
   width:90%;
 }
 
-#oliv_space {
-  height:10px;
-}
-
 #oliv_header {
-  margin:0 auto;
   width:100%;
   height:80px;
   background-repeat:no-repeat;
@@ -187,13 +182,22 @@ div {
 }
 
 #oliv_main {
+	float:left;
   width:100%;
+  margin-top:15px;
 }
 
 #oliv_left {
-  float:left;
-  width:200px;
-	padding-right:15pt;
+	margin-top:0px;
+}
+
+.oliv_left {
+	vertical-align:top;
+	width:210px;
+}
+
+.oliv_content {
+	vertical-align:top;
 }
 
 #oliv_left1,#oliv_left2,#oliv_left3 {
