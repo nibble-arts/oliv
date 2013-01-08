@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<template>template_edit</template>
+	<define>
+		<name>
+			<text lang='de'>Template Editor</text>
+			<text lang='en'>Template editor</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Template_Editor</text>
+			<text lang='en'>Template_editor</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Editor, um Templates zu erstellen und zu bearbeiten</text>
+			<text lang='en'>Editor to create and edit templates</text>
+		</title>
+	</define>
+
+	<content id='index'>
+		<oliv_template_edit mod="template_edit"/>
+		<oliv_toolbox mod="toolbox"/>
+	</content>
+</page>

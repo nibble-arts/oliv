@@ -81,4 +81,19 @@ The status defines the visibility:
 			<text lang='en'>Calculator for compound springs</text>
 		</title>
 	</spring>
+
+	<template_edit>
+		<name>
+			<text lang='de'>Template Editor</text>
+			<text lang='en'>Template editor</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Template_Editor</text>
+			<text lang='en'>Template_editor</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Editor, um Templates zu erstellen und zu bearbeiten</text>
+			<text lang='en'>Editor to create and edit templates</text>
+		</title>
+	</template_edit>
 </pages>

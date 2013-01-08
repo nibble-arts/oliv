@@ -34,6 +34,7 @@ if (!system::OLIVERROR()) die ("page.php - OLIVError not present");
 class OLIVPage
 {
   private $structure;
+  private $template;
 
   // constructor
   public function __construct()
@@ -45,16 +46,32 @@ class OLIVPage
 // load xml page and store in structure
   public function load($pageName = "")
   {
-		$xml = OLIVPage::_load($pageName);		
+  	$templateName = "";
+  	
+		$xml = OLIVPage::_load($pageName);
+		$this->structure = $xml->content;
 
-// save content in page structure
-		if ($xml)
-		{
-		  $this->structure = new simpleXmlElement("<page></page>"); // create empty page
-			olivxml_insert($this->structure,$xml->content);
-		}
+
+// look for template node
+		$nodes = $this->structure->XPath("//template");
+		if ($nodes)
+			$templateName = (string)$nodes[0];
+
+		if (!$templateName)
+			$templateName = "default";
+
+// store template name
+		$this->template = $templateName;
   }
 
+
+//------------------------------------------------------------------------------
+// return template name
+	public function template()
+	{
+		return $this->template;
+	}
+	
 
 //------------------------------------------------------------------------------
 // load and return page xml file

@@ -1,0 +1,46 @@
+html, body {
+	margin:0px;
+	padding:0px;
+	height:100%;
+	
+	font-family:sans-serif;
+}
+
+#oliv_template_edit {
+	margin:auto;
+	padding:0px;
+	border:1px solid red;
+	
+	width:100%;
+	min-height:100%;
+	height:auto;
+	height:100%;
+	overflow: hidden;
+}
+
+#oliv_toolbox {
+	position:fixed;
+	right:0;
+
+	width:40px;
+	height:300px;
+	background-color:lightgreen;
+	
+	font-size:0.8em;
+}
+
+#oliv_empty_message {
+	margin:auto;
+	width:300px;
+	height:100px;
+	
+	border:2pt solid;
+	
+	font-size:2em;
+	font-weight:bold;
+}
+
+.centered {
+	text-align:right;
+	vertical-align:middle;
+}

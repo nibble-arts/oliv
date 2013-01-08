@@ -46,7 +46,7 @@ class OLIVPreProcessor extends OLIVCore
   {
     $i = 0;
     $templates = array();
-		
+
 //------------------------------------------------------------------------------
 // parse site
  
@@ -173,7 +173,7 @@ class OLIVPreProcessor extends OLIVCore
 			OLIVTemplate::link_css($templatePath);
 		}
 		else
-			OLIVError::fire("processor.php::process - no page template found");
+			OLIVError::fire("preprocessor.php::process - no page template found");
 
 
 //------------------------------------------------------------------------------

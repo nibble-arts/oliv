@@ -129,8 +129,7 @@ class OLIVCore
     $this->plugin = new OLIVPlugin();
 
 // load site template
-    $this->templatePath = system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/" . system::OLIV_TEMPLATE();
-    $this->template = new OLIVTemplate(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",system::OLIV_TEMPLATE());
+    $this->template = new OLIVTemplate();
 
 // initialise page
     $this->page = new OLIVPage();
@@ -179,13 +178,16 @@ class OLIVCore
   public function loadContent()
   {
     $this->page->load();
+		$template = $this->page->template();
+
+		$this->template->load(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",$template);
   }
 
 
 // call preprocessor
   public function preProcessor()
   {
-    $this->preProcessor->process($this->page,$this->template->stylesheet,$this->templatePath);
+    $this->preProcessor->process($this->page,$this->template->stylesheet,$this->template->filename());
   }
 
 

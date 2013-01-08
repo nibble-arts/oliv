@@ -37,38 +37,29 @@ if (!system::OLIVERROR()) die ("template.php - OLIVError not present");
 class OLIVTemplate
 {
   public $stylesheet;
+  var $path;
+  var $name;
   
-  public function __construct($path,$name)
+  public function __construct()
   {
   	$this->stylesheet = new XSLTProcessor();
-//    $template = OLIVTemplate::load($path,$name);
-//		$this->stylesheet->importStylesheet($template);
   }
 
 
-  // load template and corresponding css
-  // with name from path
-  // if no css with name -> use default.css
-  static public function load($path,$name)
-  {
-//echoall("template - link css: " . $path . $name);
-    OLIVTemplate::link_css($path,$name);
+	public function load($path,$name)
+	{
+		$this->path = $path;
+		$this->name = $name;
+	}
 
 
-//echoall("template - load template: " . $path . $name . ".xml");
-    if (sessionfile_exists($path . $name . ".xslt"))
-    {
-      return (sessionxml_load_file($path . $name . ".xslt"));
-		}
-  }
+//------------------------------------------------------------------------------
+// return path/name of template
+	public function filename()
+	{
+		return $this->path . $this->name;
+	}
 
-
-  // return structure array
-  public function xml()
-  {
-    return ($this->template);
-  }
-  
   
 // load css file from path
 // look for name.xml - if not exists load default.xml

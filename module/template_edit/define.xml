@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>template_edit</name>
+  <access>system</access>
+  <version>1.0</version>
+  <author>Thomas Winkler</author>
+  <copyright>2013</copyright>
+
+  <content>content/</content>
+  <template>template/</template>
+    
+  <default_language>de</default_language>
+
+  <script>
+    <main>template_edit.php</main>
+  </script>
+</module>  
