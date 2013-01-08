@@ -28,6 +28,7 @@
 //------------------------------------------------------------------------------
 
 if (!system::OLIVCORE()) die ("page.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("page.php - OLIVError not present");
 
 
 class OLIVPage

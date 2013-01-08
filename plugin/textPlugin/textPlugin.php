@@ -31,7 +31,7 @@ if (!system::OLIVCORE()) die ("plugin::textPlugin.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("plugin::textPlugin.php - OLIVError not present");
 
 
-class articlePlugin
+class textPlugin
 {
   var $editor;
   
@@ -45,15 +45,14 @@ class articlePlugin
 //TODO
 // edit mode only if permission
 
-		$nodes = $content->XPath("//*[@articlesource]");
+		$nodes = $content->XPath("//*[@textsource]");
 
 		for ($i = 0;$i < count($nodes);$i++)
 		{
 // if source, make edit possible
 			$tag = $nodes[$i]->getName();
 			$text = (string)$nodes[$i];
-			$source = (string)$nodes[$i]->attributes()->articlesource;
-			$name = (string)$nodes[$i]->attributes()->articlename;
+			$source = (string)$nodes[$i]->attributes()->textsource;
 
 //TODO include javaScript content menu
 // include editor call <a>
@@ -61,7 +60,7 @@ class articlePlugin
 			$nodes[$i][0] = "";
 			$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
 
-			$nodes[$i]["title"] = "call editor for '$name' in '$source.xml'";
+			$nodes[$i]["title"] = "call editor for '$source'";
 		}
 
 	  return($content);

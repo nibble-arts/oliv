@@ -46,13 +46,14 @@ class OLIVPreProcessor extends OLIVCore
   {
     $i = 0;
     $templates = array();
-
+		
 //------------------------------------------------------------------------------
 // parse site
  
     if (count($page->structure()))
     {
       $areas = $page->structure()->children();
+
 
       if (count($areas))
       {
@@ -112,6 +113,7 @@ class OLIVPreProcessor extends OLIVCore
 											else
 											{
 												$tempTemplate = $module->template();
+
 
 // set path to insert module-template-link stylesheet
 // link only if template and content found
@@ -174,7 +176,6 @@ class OLIVPreProcessor extends OLIVCore
 			OLIVError::fire("processor.php::process - no page template found");
 
 
-
 //------------------------------------------------------------------------------
 // include module templates
 		foreach ($templates as $key => $entry)
@@ -225,6 +226,7 @@ class OLIVPreProcessor extends OLIVCore
 //echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
 //echoall($page->structure());
   }
+
 
 //------------------------------------------------------------------------------
 // parse parameter sting

@@ -29,6 +29,7 @@
 
 
 if (!system::OLIVCORE()) die ("user.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("error.php - OLIVError not present");
 
 
 class OLIVUser extends OLIVCore

@@ -47,17 +47,17 @@
   
   <includes>
 <!-- static classes -->
+    <file>error.php</file>
     <file>text.php</file>
     <file>language.php</file>
-    <file>error.php</file>
     <file>xml.php</file>
+    <file>file.php</file>
 
 <!-- basic dynamic system classes -->
 		<file>debug.php</file>
     <file>html.php</file>
-    <file>file.php</file>
     <file>module.php</file>
-<!--    <file>render.php</file> changed to XSLT support -->
+    <file>render.php</file>
     <file>user.php</file>
     <file>right.php</file>
     <file>route.php</file>

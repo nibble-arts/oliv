@@ -56,7 +56,11 @@ function olivxml_insert(&$xml_to,$xml_from,$option = "")
 				$option = ""; // clear option for recursion
 
 				$new_child = $xml_to->addChild($name);
-
+				foreach($xml_from->attributes() as $attr_key => $attr_value)
+				{
+					$new_child->addAttribute($attr_key,$attr_value);
+				}
+				
 				// recursion to new entry
 				olivxml_insert($new_child,$xml_from);
 

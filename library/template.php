@@ -30,7 +30,6 @@
 
 if (!system::OLIVCORE()) die ("template.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("template.php - OLIVError not present");
-if (!system::OLIVHTML()) die ("template.php - OLIVHtml not present");
 
 
 //------------------------------------------------------------------------------

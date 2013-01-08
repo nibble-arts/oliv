@@ -141,11 +141,11 @@ class OLIVCore
 // initialise translator
 		$this->translator = new OLIVTranslator();
 
+// initialise renderer
+    $this->render = new OLIVRender();
+
 // initialise preprocessor
     $this->postProcessor = new OLIVPostProcessor();
-
-// initialise renderer
-//    $this->render = new OLIVRender(); changed to XSLT support
 
 // initialise olivscript
     $this->olivscript = new OLIVScript();
@@ -182,7 +182,7 @@ class OLIVCore
   }
 
 
-// call content pre processor
+// call preprocessor
   public function preProcessor()
   {
     $this->preProcessor->process($this->page,$this->template->stylesheet,$this->templatePath);
@@ -206,13 +206,7 @@ class OLIVCore
 // start render engine
   public function render()
   {
-// set parameters for stylesheet display
-		$this->template->stylesheet->setParameter("","lang",status::lang());
-		$this->template->stylesheet->setParameter("","user",status::OLIV_USER());
-
-
-// start stylesheet processor
-		$this->o = $this->template->stylesheet->transformToXML($this->page->structure());
+  	$this->o = $this->render->page($this->page,$this->template);
   }
 
 

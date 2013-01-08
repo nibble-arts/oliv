@@ -18,30 +18,30 @@
 	<xsl:template match="menu_item_side">
 		<div id="menu_item_side">
 			<xsl:attribute name="class">
-				<xsl:value-of select="./class"/>
+				<xsl:value-of select="class"/>
 			</xsl:attribute>
 
 				<a>
 					<xsl:if test="./url != ''">
 						<xsl:attribute name="href">
-							<xsl:value-of select="./url"/>
+							<xsl:value-of select="url"/>
 						</xsl:attribute>
 
 						<xsl:attribute name="target">
-							<xsl:value-of select="./target"/>
+							<xsl:value-of select="target"/>
 						</xsl:attribute>
 
 						<xsl:attribute name="title">
-							<xsl:value-of select="./title"/>
+							<xsl:value-of select="title"/>
 						</xsl:attribute>
 					</xsl:if>
 
 					<span>
 						<xsl:attribute name="class">
-							<xsl:value-of select="./class"/>
+							<xsl:value-of select="class"/>
 						</xsl:attribute>
 
-						<xsl:value-of select="./name"/>
+						<xsl:value-of select="name"/>
 					</span>
 				</a>
 			</div>

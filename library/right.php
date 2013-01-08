@@ -29,6 +29,7 @@
 
 
 if (!system::OLIVCORE()) die ("right.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("right.php - OLIVError not present");
 
 
 class OLIVRight

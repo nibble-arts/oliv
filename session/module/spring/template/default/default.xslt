@@ -3,12 +3,24 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match='spring'>
-		<h1><xsl:value-of select="title"/></h1>
+		<h1>
+			<xsl:attribute name="textsource">
+				<xsl:value-of select="title/@source"/>
+			</xsl:attribute>
+
+			<xsl:value-of select="title"/>
+		</h1>
 
 		<form>
 <!-- spring type -->
 			<fieldset>
-				<legend><xsl:value-of select="type"/></legend>
+				<legend>
+					<xsl:attribute name="textsource">
+						<xsl:value-of select="type/@source"/>
+					</xsl:attribute>
+
+					<xsl:value-of select="type"/>
+				</legend>
 
 				<div>
 					<input type="radio" name="spring_type" value="0"/>
@@ -20,11 +32,23 @@
 
 <!-- spring leaf values -->
 			<fieldset>
-				<legend><xsl:value-of select="leaf"/></legend>
+				<legend>
+					<xsl:attribute name="textsource">
+						<xsl:value-of select="leaf/@source"/>
+					</xsl:attribute>
+
+					<xsl:value-of select="leaf"/>
+				</legend>
 
 				<table>
 					<tr>
-						<td><xsl:value-of select="leaf_length"/></td>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="leaf_length/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="leaf_length"/>
+							</td>
 						<td> L </td>
 						<td>
 							<input type="text" name="spring_L" value="$spring_L">
@@ -33,7 +57,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td><xsl:value-of select="leaf_width"/></td>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="leaf_width/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="leaf_width"/>
+						</td>
 						<td> b </td>
 						<td>
 							<input type="text" name="spring_b" value="$spring_b">
@@ -42,7 +72,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td><xsl:value-of select="leaf_thickness"/></td>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="leaf_thickness/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="leaf_thickness"/>
+						</td>
 						<td> t </td>
 						<td>
 							<input type="text" name="spring_t" value="$spring_t">
@@ -54,42 +90,118 @@
 			</fieldset>
 			
 			<fieldset>
-				<legend><xsl:value-of select="package"/></legend>
+				<legend>
+					<xsl:attribute name="textsource">
+						<xsl:value-of select="package/@source"/>
+					</xsl:attribute>
+
+					<xsl:value-of select="package"/>
+				</legend>
 
 <!-- spring package values -->
 				<table>
 					<tr>
-						<td><xsl:value-of select="leaf_count"/></td>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="leaf_count/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="leaf_count"/>
+						</td>
 						<td> n </td>
+
 						<td>
 							<input type="text" name="spring_n" value="$spring_n">
 								<xsl:attribute name="class"><xsl:value-of select="leaf_count_class"/></xsl:attribute>
 							</input>
 						</td>
 					</tr>
-					<tr><td><xsl:value-of select="leaf_add_count"/></td><td> n' </td><td><input type="text" name="spring_n1" value="$spring_n1"/></td></tr>
+
+
+					<tr><td>
+						<xsl:attribute name="textsource">
+							<xsl:value-of select="leaf_add_count/@source"/>
+						</xsl:attribute>
+
+						<xsl:value-of select="leaf_add_count"/>
+					</td>
+					<td> n' </td>
+					<td><input type="text" name="spring_n1" value="$spring_n1"/></td></tr>
 				</table>
 
 				<img src="spring03.png" width="250px"/><br/>
-				
+
+<!-- list of leaf lengths if L and n defined -->
+				<xsl:if test="count(leaf_length_list)">
+					<div class="spring_result">
+						<span>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="leaf_lengths/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="leaf_lengths"/>:
+						</span>
+						<xsl:apply-templates select="leaf_length_list"/> mm
+						<br/>
+						<span>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="material_length/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="material_length"/>:
+						</span>
+						<xsl:value-of select="leaf_length_overall"/> mm
+					</div>
+				</xsl:if>
 			</fieldset>
 
 <!-- operation values -->
 			<fieldset>
-				<legend><xsl:value-of select="operation"/></legend>
+				<legend>
+					<xsl:attribute name="textsource">
+						<xsl:value-of select="operation/@source"/>
+					</xsl:attribute>
 
-				<i><xsl:value-of select="operation_summary"/></i>
+					<xsl:value-of select="operation"/>
+				</legend>
+
+				<i>
+					<xsl:attribute name="textsource">
+						<xsl:value-of select="operation_summary/@source"/>
+					</xsl:attribute>
+
+					<xsl:value-of select="operation_summary"/>
+				</i>
 
 				<table>
-					<tr><td><xsl:value-of select="force"/></td><td> F </td><td><input type="text" name="spring_F" value="$spring_F"/> N</td></tr>
-					<tr><td><xsl:value-of select="bending"/></td><td> s </td><td><input type="text" name="spring_s" value="$spring_s"/> mm</td></tr>
+					<tr>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="force/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="force"/>
+						</td>
+						<td> F </td>
+						<td><input type="text" name="spring_F" value="$spring_F"/> N</td>
+					</tr>
+					<tr>
+						<td>
+							<xsl:attribute name="textsource">
+								<xsl:value-of select="bending/@source"/>
+							</xsl:attribute>
+
+							<xsl:value-of select="bending"/>
+						</td>
+						<td> s </td>
+						<td><input type="text" name="spring_s" value="$spring_s"/> mm</td>
+					</tr>
 				</table>
 
 				<xsl:choose>
 <!-- display result -->
 					<xsl:when test="result_name">
 						<div>
-
 							<xsl:attribute name="class">
 								<xsl:value-of select="spring_result_class"/>
 							</xsl:attribute>
@@ -135,6 +247,15 @@
 			</input>
 		</form>
 
+	</xsl:template>
+
+
+	<xsl:template match="leaf_length_list">
+		<xsl:if test="position() > 1">
+			<xsl:text>, </xsl:text>
+		</xsl:if>
+
+		<xsl:value-of select="."/>
 	</xsl:template>
 
 </xsl:stylesheet>

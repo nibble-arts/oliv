@@ -27,7 +27,7 @@
 <!-- paragraph definitions -->
 	<xsl:template match="article_index_001">
 		<h1>
-			<xsl:attribute name="articlesource">
+			<xsl:attribute name="textsource">
 				<xsl:value-of select="./@source"/>
 			</xsl:attribute>
 			<xsl:attribute name="articlename">
@@ -40,7 +40,7 @@
 
 	<xsl:template match="article_index_002">
 		<p>
-			<xsl:attribute name="articlesource">
+			<xsl:attribute name="textsource">
 				<xsl:value-of select="./@source"/>
 			</xsl:attribute>
 			<xsl:attribute name="articlename">

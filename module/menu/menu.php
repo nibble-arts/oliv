@@ -62,6 +62,8 @@ class menu extends OLIVModule
 
 				$this->template = $template;
 				$this->content = $menuXml;
+
+//echoall($menuXml);
 			}
 		}
   }
@@ -108,14 +110,9 @@ class menu extends OLIVModule
 						$internUrl = (string)$entry->getName();
 						$entry->url = (string)OLIVRoute::url(status::lang(),$internUrl,status::val());
 
-						$entry->title = OLIVRoute::translateTitle($internUrl);
-				    $entry->name = OLIVRoute::translatePageName(status::lang(),$internUrl);
+						olivxml_insert($entry,OLIVRoute::getTitle($internUrl),"ALL");
+				    olivxml_insert($entry,OLIVRoute::getPageName(status::lang(),$internUrl),"ALL");
 					}
-
-//------------------------------------------------------------------------------
-// translate name and title
-					$entry->title = OLIVText::xml($entry->title);				
-					$entry->name = OLIVText::xml($entry->name);				
 
 //------------------------------------------------------------------------------
 // set display class aktive / inactive

@@ -109,6 +109,21 @@ class spring extends OLIVModule
 		}
 
 
+// calculate leaf lenghs
+		if ($L and $n)
+		{
+			$Lxg = 0;
+
+			for ($x = 0;$x < $n;$x++)
+			{
+				$Lx = 2 * $L * (1 - ($x / $n));
+				$Lxg += $Lx;
+				$this->content->addChild("leaf_length_list",$Lx);
+			}
+			$this->content->addChild("leaf_length_overall",$Lxg);
+		}
+
+
 // set result values
 		$this->content->result = "---";
 		$this->content->spring_result_class = "spring_result_error";

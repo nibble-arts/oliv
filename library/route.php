@@ -28,6 +28,7 @@
 //------------------------------------------------------------------------------
 
 if (!system::OLIVCORE()) die ("route.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("route.php - OLIVError not present");
 
 
 $_PAGES = array();
@@ -84,7 +85,7 @@ class OLIVRoute
 
 
 // set page name in correct language
-		status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . $this->translatePageName(status::lang(),status::url()));
+		status::set('OLIV_PAGE',system::OLIV_SITE_NAME() . " " . OLIVText::xml($this->getPageName(status::lang(),status::url())));
   }
 
 
@@ -219,11 +220,11 @@ class OLIVRoute
 
 //------------------------------------------------------------------------------
 // get page title
-	static public function translateTitle($url)
+	static public function getTitle($url)
 	{
 		global $_PAGES;
 
-		return (OLIVText::xml($_PAGES->$url->title));
+		return $_PAGES->$url->title;
 	}
 	
 
@@ -288,17 +289,18 @@ class OLIVRoute
   
 
 //------------------------------------------------------------------------------
-// translate url to lang pageName
-  static public function translatePageName($lang,$url)
+// get page name grom url and lang
+  static public function getPageName($lang,$url)
   {
     global $_PAGES;
 
-// return translated page
-		if ($name = OLIVText::xml($_PAGES->$url->name))
+// return page name
+		if ($name = $_PAGES->$url->name)
 			return $name;
+
 		else
-// return untranslated
-			return $url;
+// return url
+			return new simpleXmlElement("<name>$url</name>");
   }
 
 
@@ -408,9 +410,14 @@ class OLIVRoute
   public function scan($lang)
   {
 		global $_PAGES;
+		$path = system::OLIV_PAGE_PATH() . "page.xml";
+		
+		if (sessionfile_exists($path))
+		{
+			$_PAGES = sessionxml_load_file($path);
+			OLIVText::writeSource($_PAGES,$path);
+		}
 
-		if (sessionfile_exists(system::OLIV_PAGE_PATH() . "page.xml"))
-			$_PAGES = sessionxml_load_file(system::OLIV_PAGE_PATH() . "page.xml");
 		else
       OLIVError::fire("page::scan - page.xml not found -> rescan");
   }

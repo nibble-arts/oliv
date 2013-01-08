@@ -126,6 +126,8 @@ class OLIVModule
 // load file from module session
 // path ... path inside the module session directory
 // name ... name of the file with extension
+//
+// inserts source attribute to all text nodes for editing
 	public static function load_xml($header,$path,$name)
 	{
 		$filePath = system::OLIV_MODULE_PATH() . (string)$header->name . "/";
@@ -134,7 +136,10 @@ class OLIVModule
 // load file
     if (sessionfile_exists($filePath))
     {
-			return sessionxml_load_file($filePath);
+    	$xml = sessionxml_load_file($filePath);
+			OLIVText::writeSource($xml,$filePath);
+
+			return $xml;
 		}
 		else
 			OLIVError::fire("module.php::load_xml - $filePath not found");

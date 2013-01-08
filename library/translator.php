@@ -28,8 +28,9 @@
 //------------------------------------------------------------------------------
 
 
-if (!system::OLIVCORE())
-	die ("language.php - OLIVCore not present");
+if (!system::OLIVCORE()) die ("language.php - OLIVCore not present");
+if (!system::OLIVTEXT()) die ("language.php - OLIVTEXT not present");
+if (!system::OLIVERROR()) die ("language.php - OLIVError not present");
 
 
 class OLIVTranslator
@@ -49,28 +50,17 @@ class OLIVTranslator
 
 		$texts = $content->XPath("//*/*[text]");
 
+
 // translate all texts
 		for ($i = 0;$i < count($texts);$i++)
 		{
-			$text = $texts[$i]->XPath("./text[@lang = '$lang']");
-
-			if (count($text))
-			{
-				$text = (string)$text[0];
-			}
-			else
-
-// use default language
-			{
-				$text = $texts[$i]->XPath("./text[@lang = '$default_lang']");
-				$text = (string)$text[0];
-			}
+			$text = OLIVText::xml($texts[$i]);
 
 // set correct language in node
 			unset($texts[$i]->text);
 			$texts[$i]->text = $text;
 		}
-	
+
 //echoall($content);
 	}
 }

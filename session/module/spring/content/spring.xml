@@ -28,6 +28,16 @@
 		<text lang="en">Leaf thickness</text>
 	</leaf_thickness>
 
+	<leaf_lengths>
+		<text lang="de">Packet-Blattlängen</text>
+		<text lang="en">Package leaf lengths</text>
+	</leaf_lengths>
+
+	<material_length>
+		<text lang="de">Materialbedarf</text>
+		<text lang="en">Overall material length</text>
+	</material_length>
+
 	<package>
 		<text lang="de">Federpacket</text>
 		<text lang="en">Spring Package</text>

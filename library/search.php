@@ -28,6 +28,7 @@
 //------------------------------------------------------------------------------
 
 if (!system::OLIVCORE()) die ("search.php - OLIVCore not present");
+if (!system::OLIVERROR()) die ("search.php - OLIVError not present");
 
 class OLIVSearch extends OLIVCore
 {

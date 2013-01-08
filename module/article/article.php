@@ -52,10 +52,11 @@ class article extends OLIVModule
 		if ($article)
 		{
 // set source to all article paragraphs
-			foreach($article as $entry)
+// moved to module xml_load
+/*			foreach($article as $entry)
 			{
 				$entry["source"] = $header->path . "content/$articleName";
-			}
+			}*/
 
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);
