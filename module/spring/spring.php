@@ -114,6 +114,10 @@ class spring extends OLIVModule
 		{
 			$Lxg = 0;
 
+// add additional leafs
+			if ($n1)
+				$Lxg = $n1 * $L;
+
 			for ($x = 0;$x < $n;$x++)
 			{
 				$Lx = 2 * $L * (1 - ($x / $n));

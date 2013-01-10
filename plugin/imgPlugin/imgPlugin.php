@@ -45,7 +45,6 @@ class imgPlugin
 // look for images
   	$nodes = $content->XPath("//img");
 
-
 // loop through all nodes
 		for ($i = 0;$i < count($nodes);$i++)
 		{

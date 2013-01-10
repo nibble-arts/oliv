@@ -158,7 +158,6 @@ class OLIVPreProcessor extends OLIVCore
 	  }
 
 
-
 //------------------------------------------------------------------------------
 // include module templates in page template
 // create temporary xslt for include process

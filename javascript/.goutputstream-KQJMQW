@@ -1,0 +1,105 @@
+// init routine
+// hide toolbox
+
+var toolbox_clipboard;
+var toolboxObj;
+var toolboxVisibleBorder = 0;
+var toolboxAnimationSpeed = 2;
+var toolboxWidth;
+var toolboxHeight;
+var toolboxPos = 0;
+
+
+checkLoad();
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+function showToolbox()
+{
+	toolboxObj.addEventListener('click',hideToolbox,false);
+	toolboxAnimation(0);
+}
+
+//------------------------------------------------------------------------------
+function hideToolbox()
+{
+	toolboxObj.addEventListener('click',showToolbox,false);
+	toolboxAnimation(toolboxHidden);
+}
+
+//------------------------------------------------------------------------------
+// animation timer
+function toolboxAnimation(end)
+{
+// get toolbox position
+	pos = Math.abs(parseInt(toolboxObj.style.marginRight));
+
+// end animation if near target
+	if (Math.abs(pos - end) <= toolboxAnimationSpeed)
+	{
+		pos = end;
+		toolboxObj.style.marginRight = -end + "px";
+		toolboxObj.style.visibility = "visible";
+	}
+
+
+// animate up
+	if (pos < end)
+	{
+		pos += toolboxAnimationSpeed;
+		toolboxObj.style.marginRight = -pos + "px";
+		setTimeout(function() { toolboxAnimation(end); },1);
+	}
+
+// animate down
+	if (pos > end)
+	{
+		pos -= toolboxAnimationSpeed;
+		toolboxObj.style.marginRight = -pos + "px";
+		setTimeout(function() { toolboxAnimation(end); },1);
+	}
+}
+
+
+//------------------------------------------------------------------------------
+function timeToolbox()
+{
+	setTimeout("hideToolbox();",1000);
+}
+
+
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// check if page is loaded
+function checkLoad()
+{
+	if (document.readyState === "complete")
+	{
+		toolboxObj = document.getElementById("toolbox");
+
+		toolboxWidth = parseInt(toolboxObj.offsetWidth);
+		toolboxHeight = parseInt(toolboxObj.offsetHeight);
+
+		screenHeight = parseInt(screen.height);
+
+		toolboxY = (screenHeight - toolboxHeight) / 2;
+
+		toolboxObj.style.top = toolboxY + "px";
+
+		toolboxHidden = parseInt(toolboxWidth) - parseInt(toolboxVisibleBorder);
+		toolboxObj.style.marginRight = "0px";
+
+
+		hideToolbox();		
+	}
+	else
+	{
+		setTimeout('checkLoad();', 500)
+	}
+}

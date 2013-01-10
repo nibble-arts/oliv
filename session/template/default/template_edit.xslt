@@ -34,11 +34,11 @@
 
 	<xsl:template match="/">
 		<span>
-			<div id="oliv_toolbox">
-				<span class="centered">TOOL<br/>BOX</span>
-			</div>
-		
 			<div id="oliv_template_edit">
+				<span id="oliv_toolbox">
+					<xsl:apply-templates select="//oliv_toolbox"/>
+				</span>
+
 				<div id="oliv_empty_message"><span class="centered">Empty Template</span></div>
 			</div>
 		</span>
