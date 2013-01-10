@@ -48,7 +48,7 @@
 			<text lang="de">Löschen</text>
 			<text lang="en">Delete</text>
 		</name>
-		<href>javascript:toolbox('delete');</href>
+		<href>javascript:toolbox_delete();</href>
 		<title>
 			<text lang="de">Rahmen löschen</text>
 			<text lang="en">Delete frame</text>
@@ -62,7 +62,7 @@
 			<text lang="de">Kopieren</text>
 			<text lang="en">Copy</text>
 		</name>
-		<href>javascript:toolbox('copy');</href>
+		<href>javascript:toolbox_copy();</href>
 		<title>
 			<text lang="de">Rahmen kopieren</text>
 			<text lang="en">Copy frame</text>
@@ -80,7 +80,7 @@
 			<text lang="de">OK</text>
 			<text lang="en">OK</text>
 		</name>
-		<href>javascript:toolbox('enter');</href>
+		<href>javascript:toolbox_enter();</href>
 		<title>
 			<text lang="de">Änderungen speichern</text>
 			<text lang="en">Save changes</text>
@@ -94,7 +94,7 @@
 			<text lang="de">Abbrechen</text>
 			<text lang="en">Cancel</text>
 		</name>
-		<href>javascript:toolbox('cancel');</href>
+		<href>javascript:toolbox_cancel();</href>
 		<title>
 			<text lang="de">Änderungen verwerfen</text>
 			<text lang="en">Abort changes</text>

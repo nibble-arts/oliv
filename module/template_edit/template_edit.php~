@@ -35,7 +35,7 @@ class template_edit extends OLIVModule
 {
   public function __construct($header)
   {
-//  	echoall("start template edit module");
+  	echoall("start template edit module");
   }
 }
 

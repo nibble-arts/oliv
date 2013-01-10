@@ -266,7 +266,7 @@ system::set('OLIVENV','alive');
 //------------------------------------------------------------------------------
 //check for permissions
 	$fileperms = fileperms(session_path("."));
-echoall(sprintf('%o', fileperms('.')), -4);
+echoall($fileperms);
 
 
 

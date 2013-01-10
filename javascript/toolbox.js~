@@ -90,8 +90,6 @@ function timeToolbox()
 }
 
 
-//------------------------------------------------------------------------------
-// position the toolbox vertically in the browser 
 function centerToolbar()
 {
 	screenHeight = parseInt(document.body.offsetHeight);
@@ -99,8 +97,7 @@ function centerToolbar()
 	toolboxObj.style.marginTop = toolboxYPos + "px";
 }
 
-//------------------------------------------------------------------------------
-// position the grip vertically relative to the toolbox
+
 function centerToolgrip()
 {
 	toolgripHeight = toolgripObj.offsetHeight;
@@ -109,17 +106,12 @@ function centerToolgrip()
 }
 
 
-//TODO not working
-//------------------------------------------------------------------------------
-// change the grip image to in
 function setImageIn(image)
 {
 	return image.replace(/(_out)/gi,"_in");
 }
 
 
-//------------------------------------------------------------------------------
-// change the grip image to out
 function setImageOut(image)
 {
 	return image.replace(/(_in)/gi,"_out");
@@ -130,7 +122,7 @@ function setImageOut(image)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// init toolbox when page is loaded
+// check if page is loaded
 function checkLoad()
 {
 	if (document.readyState === "complete")
