@@ -264,13 +264,13 @@ system::set('OLIVENV','alive');
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-//check for permissions
-	$fileperms = fileperms(session_path("."));
-echoall(sprintf('%o', fileperms('.')), -4);
+//check for permissions of session directory
+	$path = session_path("");
+	
+	$sessionPerm = substr(sprintf('%o', fileperms($path)),2);
+	system::set("OLIV_SESSION_PERM",$sessionPerm);
 
-
-
-
+//echoall(system::getAll());
 
 
 

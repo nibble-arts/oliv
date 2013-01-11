@@ -9,6 +9,7 @@
 
   <content>content/</content>
   <template>template/</template>
+  <javascript>javascript/</javascript>
     
   <default_language>de</default_language>
 

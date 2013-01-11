@@ -108,7 +108,7 @@ class menu extends OLIVModule
 					{
 	// create correct url
 						$internUrl = (string)$entry->getName();
-						$entry->url = (string)OLIVRoute::url(status::lang(),$internUrl,status::val());
+						$entry->url = $internUrl;
 
 						olivxml_insert($entry,OLIVRoute::getTitle($internUrl),"ALL");
 				    olivxml_insert($entry,OLIVRoute::getPageName(status::lang(),$internUrl),"ALL");

@@ -5,6 +5,7 @@ The article module gives access and tools to create, edit and manage article
 content. The content is stored in the content/ subdirectory, the article
 structure and css in the templates/ subdirectory. 
 
+
 path: modules/article/
 
 

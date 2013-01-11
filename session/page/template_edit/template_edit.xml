@@ -18,7 +18,7 @@
 	</define>
 
 	<content id='index'>
-		<oliv_toolbox mod="toolbox"/>
+		<oliv_toolbox mod="toolbox">content:template_edit;</oliv_toolbox>
 		<oliv_template_edit mod="template_edit"/>
 	</content>
 </page>

@@ -57,6 +57,8 @@ class dabaPlugin
   
 //------------------------------------------------------------------------------
 // init database
+// the init string must countain the link to the database definition in the
+// session/plugin/daba.xml
   static private function init($content,$tag)
   {
 //TODO initialize database

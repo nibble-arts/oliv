@@ -1,0 +1,44 @@
+																		dabaPlugin
+																		----------
+
+
+The database plugin is used to include values out of a MySql database in texts.
+
+
+path: plugin/dabaPlugin/
+
+
+tag definitions:
+----------------
+	<daba_init>
+	<daba>
+	<daba_image>
+
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	The database plugin supports three tags for handling the database access:
+
+	-	daba_init
+			Inside of the daba_init is the name, defined in the
+						session/plugin/daba/daba.xml
+			file. The daba.xml contains the information about the MySql server access.
+			The second parameter is the table to be loaded.
+
+						<daba_init>daba:dabaName;table:tableName;</daba_init>
+						
+			The 'request' area in the daba.xml defines the search parameters for the
+			MySql query.
+
+	- daba
+			The daba tag defines the field to be displayed
+
+						<daba>fieldName</daba>
+
+	- daba_image
+			The daba_image method replaces the name by the correct path to the image
+			using the OLIVImage class.

@@ -1,0 +1,25 @@
+																		systemPlugin
+																		------------
+
+
+The system plugin is used to include system parameters in the text.
+
+
+path: plugin/systemPlugin/
+
+
+tag definitions:
+----------------
+		<oliv_name>
+		<oliv_autor>
+		<oliv_version>
+
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	By including the tags in a text, the tags are substituted by the corresponding
+	system values.

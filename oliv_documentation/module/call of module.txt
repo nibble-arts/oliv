@@ -1,3 +1,9 @@
+//TODO
+complete method description:
+	getModuleByName
+	getImagePath
+	parse_param
+	scan
 																		Modules
 																		-------
 
@@ -35,8 +41,9 @@ SimpleXMLElement Object
 									template.xslt files. The extensions must not be given)
     [param] => SimpleXMLElement Object
         (
-            [template] => header
-            [content] => header_oliv
+            [template] => templateName
+            [content] => contentName
+            [javascript] => javascriptName
         )
 
     [path] => The path to the module root (i.e. "module/article/")
@@ -54,20 +61,65 @@ in the render process. The OLIVModule class proviedes some static methods to
 access custom data:
 
 
-string load_template (simpleXmlElement header)
-----------------------------------------------
+string load_template (simpleXmlElement header[,string name])
+------------------------------------------------------------
 	Returns the path to the xslt-stylesheet to be included by the preprocessor.
+
+	The name of the template to be loaded can be determined by three cases:
+	- no name defined
+			The default.xslt is loaded
+
+	- The 'template:templateName;' value is given in the call of the module inside
+		of the page definition
+			The templateName.xslt is loaded
+
+	- The name argument in the method call is defined
+			The argument.xslt is loaded
+
+	In all cases, the templates don't exist, the default.xslt is loaded anyway.
+	
 	
 simpleXmlElement load_content (simpleXmlElement header)
 -------------------------------------------------------
 	Returns a simpleXmlElement with the loaded content.
 
-To both methods the method header is given as parameter.
+	The name of the content to be loaded can be determined by two cases:
+	- no name defined
+			The default.xml is loaded
+
+	- The 'content:contentName;' value is given in the call of the module inside
+		of the page definition
+			The contentName.xml is loaded
+
+
+To both methods the method header is given as argument.
+
+
+simpleXmlElement load_javascript (simpleXmlElement header)
+----------------------------------------------------------
+	If the javascript path is defined in the module header, the module javascript
+	is included. There are two cases, which file is used:
+
+	- In module call of the page definition a 'javascript:scriptName;' value is
+		defined:
+			The scriptName.js file is used
+
+	- In module call of the page definition only a 'content:contentName'
+		definition is found:
+			The 'contentName.js' file is used
+
+	- no parameter is given
+			The 'default.js' of 'moduleName.js' file is used
+
 
 simpleXmlElement load_xml (simpleXmlElement header,string path,string name)
 ---------------------------------------------------------------------------
 	Returns a simpleXmlElement of the file to be loaded. The path referres
 	relative to the module root. The name is the name of the xml-file to be
 	loaded.
+
+	When the xml file is loaded, the 'text' and 'img' tags are parsed to include
+	the corresponding source string for editing.
+//TODO include the imagesource string
 
 

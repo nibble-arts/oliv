@@ -1,0 +1,48 @@
+																		routePlugin
+																		-----------
+
+The route plugin parses all 'href' attributes for url strings and change them
+depending on the type of the string
+
+path: plugin/routePlugin/
+
+
+
+attribute definitions:
+----------------------
+	<href>
+	
+
+Class Methods:
+--------------
+
+
+void public routePlugin(string $method,array $options)
+------------------------------------------------------
+	The plugin scans the content xml for nodes with href-attributes. For the url
+	different types of strings can be defined:
+
+	- extern url
+			If a http:, https: or mailto: string is found, the url is interpreted as
+			extern url and kept unchanched.
+
+	- defined methods
+			Two methods are defined to use system urls:
+
+			* current()
+					The current method uses the page id of the current page and extends it
+					with the language and val values.
+			* referer()
+					The referer method inserts the url refering to the calling page.
+
+	- javascript
+			The javascript directive is used to insert a valid javascript url. The
+			directive has to be of the format:
+									javascript:scriptname(scriptargs)
+
+
+	- intern page id
+			If none of the other methods are executed, the string is interpreted as
+			internal page id and extended with the lang and val values. If no page is
+			found, the oliv_index_page is used.
+

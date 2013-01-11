@@ -22,7 +22,7 @@
 //
 
 //------------------------------------------------------------------------------
-// html form plugin
+// Preprocessor object
 //
 // Version 0.1
 //------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("render.php - OLIVError not present");
 
-class formPlugin
+class routePlugin
 {
   
 //------------------------------------------------------------------------------
@@ -41,66 +41,39 @@ class formPlugin
   	$tag = $options[1];
 
 
-		switch($tag)
-		{
-			case 'form':
-// get form information
-				$nodes = $content->XPath("//form");
+//------------------------------------------------------------------------------
+// look for href expressions
+  	$nodes = $content->XPath("//*/@href");
 
 
 // loop through all nodes
-				for ($i = 0;$i < count($nodes);$i++)
+		for ($i = 0;$i < count($nodes);$i++)
+		{
+
+// if not extern link
+// route
+			if (!link_is_extern($href = (string)$nodes[$i]))
+			{
+				$hrefArray = explode(":",$href);
+				
+				switch($hrefArray[0])
 				{
-					$formMethod = $nodes[$i]["action"];
+					case 'referer()':
+						$nodes[$i]['href'] = status::oliv_referer();
+						break;
 
+					case 'current()':
+						$nodes[$i]['href'] = OLIVRoute::url(status::lang(),status::url(),status::val());
+						break;
 
-// if no action -> insert correct url
-					if(!$formMethod)
-					{
-						$nodes[$i]["action"] = OLIVRoute::makeUrl(status::lang(),status::url());
-						$nodes[$i]["method"] = "post";
-						$nodes[$i]["accept-charset"] = "utf-8";
-					}
+					case 'javascript':
+						$nodes[$i]['href'] = "javascript:toolbox('" . (string)$hrefArray[1] . "')";
+						break;
 
-//TODO analyse the action attribute for intern page id
-					else
-					{
-					}
+					default:
+						$nodes[$i]['href'] = OLIVRoute::url(status::lang(),$href,status::val());
 				}
-				break;
-
-			case 'input':
-// if $xxx in value of input tag
-// replace by argv::xxx() value
-				$nodes = $content->XPath("//input[contains(@value,'$')]");
-
-				foreach($nodes as $entry)
-				{
-					if ($entry)
-					{
-						$val = substr((string)$entry['value'],1);
-						$entry['value'] = argv::$val();
-					}
-				}
-
-
-// set checked value for radio and checkbox
-				$nodes = $content->XPath("//input[@type = 'radio' or @type = 'checkbox']");
-
-				foreach($nodes as $entry)
-				{
-					$name = (string)$entry['name'];
-					$value = (string)$entry['value'];
-
-					$arg = argv::$name();
-
-					if($arg == $value)
-					{
-						$entry['checked'] = "checked";
-					}
-				}
-
-				break;
+			}
 		}
 
 		return($content);

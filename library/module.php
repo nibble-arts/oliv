@@ -78,7 +78,7 @@ class OLIVModule
 
 
 //------------------------------------------------------------------------------
-// load template
+// load module template path
 // header ... module header information
 // [name] ... name of special template
   public static function load_template($header,$name = "")
@@ -102,6 +102,7 @@ class OLIVModule
 
 
 //------------------------------------------------------------------------------
+// load module content file
 	public static function load_content($header)
 	{
 		$contentPath = (string)$header->content;
@@ -111,7 +112,7 @@ class OLIVModule
 // if content path but no content defined
 // use module_name.xml for content 
 		if (!$contentName)
-			$contentName = $moduleName;
+			$contentName = "default";
 
 		$contentName .=  ".xml";
 
@@ -121,6 +122,54 @@ class OLIVModule
   	}
 	}
 	
+
+
+//------------------------------------------------------------------------------
+// load module javascript file
+	public static function load_javascript($header)
+	{
+		$scriptPath = (string)$header->javascript;
+
+		if ($scriptPath)
+		{
+			$scriptName = (string)$header->param->javascript;
+			$contentName = (string)$header->param->content;
+			$moduleName = (string)$header->name;
+
+	// use scriptName.js
+			if ($scriptName)
+				OLIVModule::load_js($header,$scriptPath,$scriptName . ".js");
+
+	// use contentName.js
+			elseif ($contentName)
+				OLIVModule::load_js($header,$scriptPath,$contentName . ".js");
+		
+	// use moduleName.js or default.js
+			else
+			{
+				if (!OLIVModule::load_js($header,$scriptPath,$moduleName . ".js"))
+					OLIVModule::load_js($header,$scriptPath,"default.js");
+			}
+		}
+	}
+
+
+//------------------------------------------------------------------------------
+// try to include javascript file
+// returns true if linked
+// returns false if not found 
+	public static function load_js($header,$path,$name)
+	{
+		$filePath = system::OLIV_MODULE_PATH() . (string)$header->name . "/" . $path;
+
+
+// load file
+		if (OLIVCore::loadScript($name,$filePath,session_path("")))
+			return TRUE;
+
+		return FALSE;
+	}
+
 
 //------------------------------------------------------------------------------
 // load file from module session
@@ -137,8 +186,10 @@ class OLIVModule
     if (sessionfile_exists($filePath))
     {
     	$xml = sessionxml_load_file($filePath);
-			OLIVText::writeSource($xml,$filePath);
 
+			OLIVText::writeSource($xml,$filePath);
+//TODO write imagesource
+//			OLIVImage::writeSource($xml,$filePath);
 			return $xml;
 		}
 		else

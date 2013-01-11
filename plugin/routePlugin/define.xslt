@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <plugin>
-	<class>textPlugin</class>
+	<class>routePlugin</class>
 
 	<method>
-		<textsource/>
+		<href />
 	</method>
 </plugin>

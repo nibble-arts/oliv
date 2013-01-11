@@ -1,0 +1,34 @@
+																		textPlugin
+																		----------
+
+
+The text plugin looks for the 'textsource' attribute to link the field to the
+text editor.
+
+
+path: plugin/formPlugin/
+
+
+
+attribute definitions:
+----------------------
+	<textsource>
+	
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	The plugin is searching for the 'textsource' attribute. The textsource
+	contains the source to the file and the index inside the file of the text.
+	Depending on the user access rights, a link to the texteditor is inserted.
+
+//TODO
+	It establishes a connection to the text paragraph editor, as well as the
+	update method for the text file.
+
+	The module loading routine analyses the xml for text nodes and automaticaly
+	includes the source string. So every text can be simply edited.  
+			 

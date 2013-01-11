@@ -1,0 +1,31 @@
+																		imgPlugin
+																		---------
+
+
+The image plugin uses the OLIVImage class to insert the correct path to the
+images.
+
+
+path: plugin/imagePlugin/
+
+
+
+tag definitions:
+----------------
+	<img>
+	
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	- The plugin looks for img-nodes and replace the src value by the correct path
+	  to the image, using the OLIVImage class.
+
+	- The plugin also can handle the 'background-image' attribute, which is
+		handled in the same way as the img nodes.
+
+//TODO
+	Like the textPlugin the imgPlugin should link the image to the image-editor.

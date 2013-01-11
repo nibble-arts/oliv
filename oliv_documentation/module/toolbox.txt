@@ -1,0 +1,62 @@
+																ModuleClass toolbox
+																-------------------
+
+The toolbox modules offers a javascript menu icon box, hidden on the right
+border of the page. It can be unfolded by clicking on the toolbox grip.
+
+
+path: modules/toolbox/
+
+
+The toolbox is a JavaScript based box, which can be hidden behind the right
+border. The content is controlled by a xml file containing all informations
+about the content and links of the toolbox.
+
+The structure of the standard toolbox definition is the followind:
+
+<toolbox>
+	<icon>
+		<name>
+			<text lang="de">Deutscher Icon Name</text>
+			<text lang="en">English icon name</text>
+		</name>
+		<href>url for call</href>
+		<title>
+			<text lang="de">Deutscher Titel für das <a>-Tag</text>
+			<text lang="en">English Text for the <a>-Tag</text>
+		</title>
+		<image>image for active link</image>
+		<disabled>image for disabled link</disabled>
+	</icon>
+
+	<icon>
+	  ...
+	</icon>
+</toolbox>
+
+If no href tag is declared, no <a>-tag will be created. In case a icon is
+disabled, the href tag is removed.
+
+For href all expressions supported by the routePlugin can be used.
+
+
+Class Attributes:
+-----------------
+
+	private var template
+	private var content
+
+
+Class Methods:
+--------------
+
+
+void public __construct(void)
+-----------------------------
+	The method loads the content defined in the parameter string with:
+				content:contentName;
+
+	Normally the default template is used, which defines a standard toolbox. By
+	the
+				template:templateName;
+	value a alternative template can be used.

@@ -16,23 +16,44 @@
 
 	<xsl:template match='icon'>
 		<div id="toolbox_icon">
-			<a href="template_edit">
-				<xsl:attribute name="href">
-					<xsl:value-of select="href"/>
-				</xsl:attribute>
-				<xsl:attribute name="title">
-					<xsl:value-of select="title"/>
-				</xsl:attribute>
-				
-				<img>
-					<xsl:attribute name="src">
-						<xsl:value-of select="image"/>
-					</xsl:attribute>
-					<xsl:attribute name="alt">
-						<xsl:value-of select="name"/>
-					</xsl:attribute>
-				</img>
-			</a>
+			<xsl:choose>
+				<xsl:when test="href">
+					<a href="template_edit">
+						<xsl:attribute name="href">
+							<xsl:value-of select="href"/>
+						</xsl:attribute>
+						<xsl:attribute name="title">
+							<xsl:value-of select="title"/>
+						</xsl:attribute>
+
+						<img>
+							<xsl:attribute name="src">
+								<xsl:value-of select="image"/>
+							</xsl:attribute>
+							<xsl:attribute name="width">
+								<xsl:value-of select="'36'"/>
+							</xsl:attribute>
+							<xsl:attribute name="alt">
+								<xsl:value-of select="name"/>
+							</xsl:attribute>
+						</img>
+					</a>
+				</xsl:when>
+
+				<xsl:otherwise>
+					<img>
+						<xsl:attribute name="src">
+							<xsl:value-of select="image"/>
+						</xsl:attribute>
+						<xsl:attribute name="width">
+							<xsl:value-of select="'36'"/>
+						</xsl:attribute>
+						<xsl:attribute name="alt">
+							<xsl:value-of select="name"/>
+						</xsl:attribute>
+					</img>
+				</xsl:otherwise>
+			</xsl:choose>
 		</div>
 	</xsl:template>
 	

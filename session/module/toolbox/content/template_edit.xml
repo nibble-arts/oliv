@@ -6,7 +6,7 @@
 			<text lang="de">Einfügen</text>
 			<text lang="en">Insert</text>
 		</name>
-		<href>javascript:toolbox('insert');</href>
+		<href>javascript:insert</href>
 		<title>
 			<text lang="de">Neuen Rahmen einfügen</text>
 			<text lang="en">Insert new frame</text>
@@ -20,7 +20,7 @@
 			<text lang="de">Bearbeiten</text>
 			<text lang="en">Edit</text>
 		</name>
-		<href>javascript:toolbox('edit');</href>
+		<href>javascript:edit</href>
 		<title>
 			<text lang="de">Rahmen bearbeiten</text>
 			<text lang="en">Edit frame</text>
@@ -34,7 +34,7 @@
 			<text lang="de">Bewegen</text>
 			<text lang="en">Move</text>
 		</name>
-		<href>javascript:toolbox('move');</href>
+		<href>javascript:move</href>
 		<title>
 			<text lang="de">Rahmen bewegen</text>
 			<text lang="en">Move frame</text>
@@ -48,7 +48,7 @@
 			<text lang="de">Löschen</text>
 			<text lang="en">Delete</text>
 		</name>
-		<href>javascript:toolbox('delete');</href>
+		<href>javascript:delete</href>
 		<title>
 			<text lang="de">Rahmen löschen</text>
 			<text lang="en">Delete frame</text>
@@ -62,7 +62,7 @@
 			<text lang="de">Kopieren</text>
 			<text lang="en">Copy</text>
 		</name>
-		<href>javascript:toolbox('copy');</href>
+		<href>javascript:copy</href>
 		<title>
 			<text lang="de">Rahmen kopieren</text>
 			<text lang="en">Copy frame</text>
@@ -80,7 +80,8 @@
 			<text lang="de">OK</text>
 			<text lang="en">OK</text>
 		</name>
-		<href>javascript:toolbox('enter');</href>
+		<href>current()</href>
+		<val>action=save</val>
 		<title>
 			<text lang="de">Änderungen speichern</text>
 			<text lang="en">Save changes</text>
@@ -94,13 +95,31 @@
 			<text lang="de">Abbrechen</text>
 			<text lang="en">Cancel</text>
 		</name>
-		<href>javascript:toolbox('cancel');</href>
+		<href>current()</href>
 		<title>
 			<text lang="de">Änderungen verwerfen</text>
 			<text lang="en">Abort changes</text>
 		</title>
 		<image>toolbox_cancel.png</image>
 		<disabled>toolbox_cancel_disabled.png</disabled>
+	</icon>
+
+	<icon>
+		<image>toolbox_line.png</image>
+	</icon>
+
+	<icon>
+		<name>
+			<text lang="de">Beenden</text>
+			<text lang="en">Exit</text>
+		</name>
+		<href>referer()</href>
+		<title>
+			<text lang="de">Editor beenden</text>
+			<text lang="en">Exit editor</text>
+		</title>
+		<image>toolbox_exit.png</image>
+		<disabled>toolbox_exit_disabled.png</disabled>
 	</icon>
 </toolbox>
 

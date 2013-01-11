@@ -35,13 +35,11 @@ class toolbox extends OLIVModule
 {
   public function __construct($header)
   {
-  	OLIVCore::loadScript("javascript/toolbox.js");
+		OLIVModule::load_javascript($header);
 
 		$this->template = OLIVModule::load_template($header);
 		$this->content = OLIVModule::load_content($header);
-
-//TODO insert image
-  }
+	}
 }
 
 

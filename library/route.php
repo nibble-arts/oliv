@@ -44,6 +44,14 @@ class OLIVRoute
   public function __construct()
   {
     $this->scan(status::lang());
+
+// set referer
+// complete url to get back
+		if (array_key_exists('HTTP_REFERER',$_SERVER))
+			status::set("OLIV_REFERER",$_SERVER['HTTP_REFERER']);
+		else
+			status::set("OLIV_REFERER",OLIVRoute::url(system::lang(),system::oliv_index_page(),status::val()));
+
     $this->route();
   }
 
@@ -442,11 +450,12 @@ function cut_slash($url)
 // check if link is extern with http / https protocoll or mailto
 function link_is_extern($url)
 {
-	if (substr($url,0,5) == "http:" or
-		substr($url,0,6) == "https:" or
-		substr($url,0,11) == "javascript:" or
-		substr($url,0,7) == "mailto:"
-	)
-		return (TRUE);
+	$ret = FALSE;
+
+	if (strstr($url,"http:")) $ret = "http:";
+	if (strstr($url,"https:"))	$ret = "https:";
+	if (strstr($url,"mailto:"))	$ret = "mailto:";
+
+	return ($ret);
 }
 ?>

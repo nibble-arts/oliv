@@ -17,8 +17,15 @@ checkLoad();
 
 
 //------------------------------------------------------------------------------
+// keep toolbar centered when window size is changed
+window.onresize = function(event) {
+	centerToolbar();
+}
+
+
 //------------------------------------------------------------------------------
-// call from the module
+//------------------------------------------------------------------------------
+// call the module methods
 function toolbox(func)
 {
 	alert("call method " + func);
@@ -34,6 +41,7 @@ function showToolbox()
 {
 	toolboxAnimation(0);
 
+	toolboxObj.removeEventListener('click',showToolbox);
 	toolboxObj.addEventListener('click',hideToolbox,false);
 	toolgripImgObj.src = setImageIn(toolgripImgObj.src);
 }
@@ -44,6 +52,7 @@ function hideToolbox()
 {
 	toolboxAnimation(toolboxHidden);
 
+	toolboxObj.removeEventListener('click',hideToolbox);
 	toolboxObj.addEventListener('click',showToolbox,false);
 	toolgripImgObj.src = setImageOut(toolgripImgObj.src);
 }
@@ -90,6 +99,8 @@ function timeToolbox()
 }
 
 
+//------------------------------------------------------------------------------
+// position the toolbox vertically in the browser 
 function centerToolbar()
 {
 	screenHeight = parseInt(document.body.offsetHeight);
@@ -97,21 +108,27 @@ function centerToolbar()
 	toolboxObj.style.marginTop = toolboxYPos + "px";
 }
 
-
+//------------------------------------------------------------------------------
+// position the grip vertically relative to the toolbox
 function centerToolgrip()
 {
-	toolgripHeight = toolgripObj.offsetHeight;
-	toolgripYPos = (toolboxHeight - toolgripHeight) / 2;
+	toolgripHeight = toolgripImgObj.offsetHeight;
+	toolgripYPos = (toolboxHeight + toolgripHeight) / 2;
 	toolgripObj.style.top = -toolgripYPos + "px";
+
 }
 
 
+//------------------------------------------------------------------------------
+// change the grip image to in
 function setImageIn(image)
 {
 	return image.replace(/(_out)/gi,"_in");
 }
 
 
+//------------------------------------------------------------------------------
+// change the grip image to out
 function setImageOut(image)
 {
 	return image.replace(/(_in)/gi,"_out");
@@ -122,20 +139,21 @@ function setImageOut(image)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// check if page is loaded
+// init toolbox when page is loaded
 function checkLoad()
 {
 	if (document.readyState === "complete")
 	{
 		toolboxObj = document.getElementById("toolbox");
+		toolsObj = document.getElementById("tools");
+
 		toolboxObj.style.marginRight = "0px";
 		toolboxWidth = parseInt(toolboxObj.offsetWidth);
-		toolboxHeight = parseInt(toolboxObj.offsetHeight);
+		toolboxHeight = parseInt(tools.offsetHeight);
 		toolboxHidden = parseInt(toolboxWidth) - parseInt(toolboxVisibleBorder);
 
 		toolgripObj = document.getElementById("toolbox_grip");
 		toolgripImgObj = document.getElementById("toolgrip_img");
-
 
 		centerToolgrip();
 		centerToolbar();

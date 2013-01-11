@@ -222,9 +222,15 @@ class OLIVCore
 
 //------------------------------------------------------------------------------
 // load script and execute
-  static public function loadScript($file,$path="")
+// path ... path from the system root directory
+// root ... change the root directory
+  static public function loadScript($file,$path="",$root="")
   {
-    $path = system::OLIV_CORE_PATH() . $path; // redirect to core root directory
+// if no root, use system root
+  	if (!$root)
+			$root = system::OLIV_CORE_PATH();
+  	
+    $path = $root . $path; // redirect to root directory
 
     if (file_exists($path . $file))
     {

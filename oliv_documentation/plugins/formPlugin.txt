@@ -1,0 +1,49 @@
+																		formPlugin
+																		----------
+
+The form plugin uses the OLIVRoute class for insert or convert the html formular
+action attribute, that determins, which page is called by the formular submit.
+It also supports the automatic insertion of argument value insertion and the
+default selection of radio buttons and checkboxes.
+
+
+path: plugin/formPlugin/
+
+
+
+tag definitions:
+----------------
+	<form>
+	<input>
+	
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	$tag = $option[1]
+	
+	The method can handle two tags:
+
+	- form tag
+			If no action parameter is defined, it is set to the current page in the
+			current language. In the case, a action value is found, the value is
+			parsed for a valid page id and extended if found.	The accept-charset is
+			set to utf-8.
+
+	-input tag
+		* If a $value is found in the value attribute of an input tag, the
+			argv::$value() is inserted instead. The $value has to be named after the
+			name value.
+			 					<input type="text" name="surname" value="$surname"/>
+			In this case the argument of the page call in inserted in the input
+			field.
+
+		* If the types 'radio' od 'checkbox' are found, the argv::$name() of the
+			page arguments are compared with the radio/checkbox tags. In case of
+			equality the 'checkbox' attribute is set.
+			
+
+			 

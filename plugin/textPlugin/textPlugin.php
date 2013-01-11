@@ -37,7 +37,7 @@ class textPlugin
   
 //------------------------------------------------------------------------------
 // render class
-  static public function __callStatic($func,$options)
+  static public function __callStatic($method,$options)
   {
   	$content = $options[0];
   	$tag = $options[1];
@@ -56,6 +56,8 @@ class textPlugin
 
 //TODO include javaScript content menu
 // include editor call <a>
+
+//TODO include text in <a> tag
 
 			$nodes[$i][0] = "";
 			$nodes[$i] = $nodes[$i][0]->addChild("a",$text);

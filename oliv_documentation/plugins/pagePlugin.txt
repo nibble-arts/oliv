@@ -1,0 +1,31 @@
+																		pagePlugin
+																		----------
+
+
+The page plugin is uses during the page loading include and redirect pages.
+
+
+path: plugin/pagePlugin/
+
+
+
+tag definitions:
+----------------
+	<include>
+	<redirect>
+
+Class Methods:
+--------------
+
+
+void public __callStatic(string $method,array $options)
+-------------------------------------------------------
+	- The include method loades the page with the id, defined in the include node.
+		The include directive can be nested.
+
+//TODO
+	- The redirect method analyses the PHP-code inluded in the node. The code can
+		make a decition depending on the 'system', 'status' and 'argv' values. The
+		test returns the page to be loaded instead of the current page, or false.
+		In cas a new page is loaded, the page loading is restarted with the new
+		page id. 
