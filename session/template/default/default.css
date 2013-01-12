@@ -132,6 +132,12 @@ div {
 
 /*----------------------------------------------------------------------------*/
 /* id definition */
+#noscript {
+	background-color:#ff9050;
+	text-align:center;
+	height:30px;
+}
+
 #oliv_site {
   z-index:0;
   margin:0;

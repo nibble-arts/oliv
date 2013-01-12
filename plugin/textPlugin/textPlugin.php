@@ -57,7 +57,15 @@ class textPlugin
 //TODO include javaScript content menu
 // include editor call <a>
 
+
 //TODO include text in <a> tag
+/*			$parent = $nodes[$i]->XPath("..");
+			$newNode = $parent[0]->addChild("a");
+			$nodes[$i]["title"] = "call editor for '$source'";
+			olivxml_insert($newNode,$nodes[$i]);
+			unset($nodes[$i]);*/
+
+//echoall($newNode->asXML());
 
 			$nodes[$i][0] = "";
 			$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
@@ -68,6 +76,8 @@ class textPlugin
 	  return($content);
   }
 }
+
+
 
 
 //------------------------------------------------------------------------------
@@ -208,21 +218,9 @@ class textRender
 
     return ($retArray);
   }
-
-
-
-//------------------------------------------------------------------------------
-// parse markup
-	static private function markup($text)
-	{
-		$search = array("{","}");
-		$replace = array("<",">");
-		
-		$text = str_replace($search,$replace,$text);
-
-		return $text;
-	}
 }
+
+
 
 
 

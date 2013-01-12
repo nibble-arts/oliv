@@ -40,10 +40,8 @@ class pagePlugin
   	$content = $options[0];
   	$tag = $options[1];
 
-
 // get include information
 		$nodes = $content->XPath("//include");
-
 
 // include all page informations
 		if (count($nodes))

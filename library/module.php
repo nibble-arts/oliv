@@ -180,20 +180,20 @@ class OLIVModule
 	public static function load_xml($header,$path,$name)
 	{
 		$filePath = system::OLIV_MODULE_PATH() . (string)$header->name . "/";
-		$filePath .= $path . $name;
+		$filePath .= $path;
 
 // load file
-    if (sessionfile_exists($filePath))
+    if (sessionfile_exists($filePath . $name))
     {
-    	$xml = sessionxml_load_file($filePath);
+    	$xml = sessionxml_load_file($filePath . $name);
 
-			OLIVText::writeSource($xml,$filePath);
+			OLIVText::writeSource($xml,$filePath . $name);
 //TODO write imagesource
 //			OLIVImage::writeSource($xml,$filePath);
 			return $xml;
 		}
 		else
-			OLIVError::fire("module.php::load_xml - $filePath not found");
+			OLIVError::fire("module.php::load_xml - $filePath$name not found");
 	}
 
 	
@@ -274,7 +274,6 @@ class OLIVModule
     
     if ($modDir = olivopendir ($path))
     {
-  
       while ($file = readdir($modDir))
       {
         if (olivis_dir($path . $file) and $file != "." and $file != "..")
@@ -286,20 +285,28 @@ class OLIVModule
 // load module information
             $xml = olivxml_load_file($path . $filePath . "define.xml");
 
+//------------------------------------------------------------------------------
+// check for session directory
+						$sessionDir = system::oliv_module_path() . $filePath;
 
-// insert module title and description in metadata
-/*						if (!($modText = OLIVText::_load($path . $filePath . "language/","_define.xml")))
-							OLIVError::fire("module.php::scan - no language definition for module $file found");
+						if (sessionfile_exists($sessionDir))
+						{
+							$contentPath = $xml->content;
+							$templatePath = $xml->template;
+
+// write directory permissions to module header
+							$xml->content['permission'] = get_permission(session_path($sessionDir) . $contentPath);
+							$xml->template['permission'] = get_permission(session_path($sessionDir) . $templatePath);
+						}
 						else
 						{
-							$summary = new simpleXmlElement("<MOD_" . strtoupper($file) . ">" . $modText->MOD_SUMMARY->asXML() . "</MOD_" . strtoupper($file) . ">");
-							$description = new simpleXmlElement("<MOD_" . strtoupper($file) . ">" . $modText->MOD_DESCRIPTION->asXML() . "</MOD_" . strtoupper($file) . ">");
-
-							olivxml_insert($xml->summary,$summary);
-							olivxml_insert($xml->description,$description);
-						}*/
+// session directory don't exist
+							$xml->status = "NO_SESSION_DIR";
+							$xml->permission = 0;
+						}
 
 
+//------------------------------------------------------------------------------
 // save module metadata
             $_MODULES[(string)$xml->name] = $xml;
 						
@@ -308,6 +315,7 @@ class OLIVModule
         }
       }
       closedir ($modDir);
+
       return ($cnt);
     }
     else

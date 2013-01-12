@@ -262,15 +262,15 @@ if (array_key_exists('val',$pathInfo))
 
 system::set('OLIVENV','alive');
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//check for permissions of session directory
-	$path = session_path("");
-	
-	$sessionPerm = substr(sprintf('%o', fileperms($path)),2);
-	system::set("OLIV_SESSION_PERM",$sessionPerm);
 
-//echoall(system::getAll());
+
+
+
+//------------------------------------------------------------------------------
+// display noscript message
+?>
+<noscript><div id="noscript">Kein Javascript</div></noscript>
+<?PHP
 
 
 

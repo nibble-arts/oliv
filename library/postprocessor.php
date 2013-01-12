@@ -47,7 +47,8 @@ class OLIVPostProcessor extends OLIVCore
   	global $_PLUGIN;
 
 		$pageXml = OLIVPlugin::call(new simpleXmlElement($page));
-//echoall($pageXml);
+
+
 //------------------------------------------------------------------------------
 // convert page xml to html
 		if (sessionfile_exists(system::OLIV_TEMPLATE_PATH() . "post.xslt"))
@@ -63,8 +64,27 @@ class OLIVPostProcessor extends OLIVCore
 		$pageString = $htmlProcessor->transformToXML($pageXml);
 //echoall($pageXml->asXML());
 
+
+//------------------------------------------------------------------------------
+// run markup parser
+		$pageString = $this->markup($pageString);
+
 		return ($pageString);
   }
+
+
+
+//------------------------------------------------------------------------------
+// parse markup
+	static private function markup($text)
+	{
+		$search = array("{","}");
+		$replace = array("<",">");
+		
+		$text = str_replace($search,$replace,$text);
+
+		return $text;
+	}
 }
 
 

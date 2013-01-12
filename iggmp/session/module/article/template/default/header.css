@@ -15,10 +15,13 @@
 }
 
 #header_logo {
-  width:70px;
 	float:right;
 	margin-right:-0.3em;
-	margin-top:15px;
+	margin-top:30px;
+}
+
+#header_logo_img {
+  width:70px;
 }
 
 .header_title {

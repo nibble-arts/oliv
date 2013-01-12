@@ -94,5 +94,14 @@ function sessionxml_load_file($file)
 }
 
 
+// return permissions of file
+// -1 ... file don't exist
+function get_permission($path)
+{
+	if (file_exists($path))
+		return substr(sprintf('%o', fileperms($path)),4);
+
+	return -1;
+}
 
 ?>

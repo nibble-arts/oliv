@@ -34,49 +34,35 @@
 <html>
   <head>
     <?PHP
-
-/*if ($sessionXml->system->children())
-{
-  foreach($sessionXml->system->children() as $key => $value)
-  {
-//  	system::set($key,(string)$value);
-    define($key,$value);
-  }
-}
-else
-  die ("init.php - no session constant definitions found");*/
-
 // init core
-//			include("init.php");
 			if (file_exists("session.xml"))
 				$sessionXml = simplexml_load_file("session.xml");
 			else
 				die ("session_init.php - session.xml not found");
 
-			$corePath = ((string)$sessionXml->system->OLIV_CORE_PATH);
+// get core system path
+			$corePath = (string)$sessionXml->system->OLIV_CORE_PATH;
 
 // include system core
 			include($corePath . "library/core.php");
 
+// create core
       $core = new OLIVCore($corePath);
-      $core->init("documentation");
+      $core->init("oliv");
 
-// load page content
-      $core->loadContent();
-  
-// call preprocessor
-      $core->preProcessor();
+// process page
+      $core->loadContent(); // load page content
+      $core->preProcessor(); // call preprocessor
+			$core->translator(); // call translator
+	    $core->render(); // render site
+      $core->postProcessor(); // call postprocessor
     ?>
   </head>
   
   <body>
     <?PHP
-// render site
-    $core->render(); // render site
-//echoall(value::getAll());
-    $core->display(); // display site
-    
-//    OLIVError::renderDebug();
+// display page
+    	$core->display();
     ?>
   </body>
 </html>

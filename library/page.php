@@ -103,10 +103,10 @@ class OLIVPage
 
 //------------------------------------------------------------------------------
 // search for plugins and call methods
-//TODO change to XSLT plugins
+
 			if ($xml->content->include)
 				OLIVPlugin::call($xml->content);
-				
+
 //------------------------------------------------------------------------------
 
 			return ($xml);
