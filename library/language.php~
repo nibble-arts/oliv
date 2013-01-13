@@ -78,7 +78,7 @@ $title = "switch to " . $langCode;
 // create flag image
 //				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='oliv_flag' id='{$id}' lang='" . $countryCode . "' />");
 
-				$img = new simpleXmlElement("<selector><a href='referer()' title='{$title}' lang='" . $langCode . "'/><img id='{$id}' lang='" . $countryCode . "'>oliv_flag</img></selector>");
+				$img = new simpleXmlElement("<selector><a href='referer()' title='{$title}' lang='" . $countryCode . "'/><img id='{$id}' lang='" . $langCode . "'>oliv_flag</img></selector>");
 
 // insert image
 				

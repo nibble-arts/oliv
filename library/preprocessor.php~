@@ -222,7 +222,7 @@ class OLIVPreProcessor extends OLIVCore
 		$stylesheet->importStylesheet($tempXml);
 
 //echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
-//echoall($page->structure());
+echoall($page->structure());
   }
 
 

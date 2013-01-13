@@ -102,7 +102,7 @@ class OLIVText
 //   <lang><lang1/><lang2>...</lang>
 	static public function getLanguages($text)
 	{
-		$langs = new simpleXmlElement("<languages></languages>");
+		$langs = new simpleXmlElement("<lang></lang>");
 		$nodes = $text->XPath("//text/@lang");
 
 		if ($nodes)

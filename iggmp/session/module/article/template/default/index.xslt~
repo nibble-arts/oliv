@@ -24,6 +24,8 @@
 
 
 	<xsl:template match="lang_selector/selector">
+		<xsl:value-of select="./a/@lang"/>
+		<xsl:value-of select="./img/@lang"/>
 
 		<a>
 			<xsl:attribute name="href">

@@ -50,7 +50,7 @@ class imgPlugin
 		{
 			$imgName = (string)$nodes[$i]["src"];
 
-// language version defined 
+// use special language version 
 			$imgLang = (string)$nodes[$i]["lang"];
 
 // get correct path to image

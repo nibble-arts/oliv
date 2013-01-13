@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <article_index>
+	<lang_selector><img href="" title="de" id="oliv_lang_flag_selected" lang="DE">oliv_flag</img><img href="" title="en" id="oliv_lang_flag" lang="GB">oliv_flag</img><img href="" title="cs" id="oliv_lang_flag" lang="CZ">oliv_flag</img><img href="" title="fr" id="oliv_lang_flag" lang="FR">oliv_flag</img><img href="" title="it" id="oliv_lang_flag" lang="IT">oliv_flag</img><img href="" title="es" id="oliv_lang_flag" lang="ES">oliv_flag</img><img href="" title="jp" id="oliv_lang_flag" lang="JP">oliv_flag</img></lang_selector>
 
 	<article_index_002>
 		<text lang='de'>Neustart der Gartenbahn Datenbank!</text>

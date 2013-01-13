@@ -22,62 +22,50 @@
 //
 
 //------------------------------------------------------------------------------
-// Preprocessor object
+// Page rendering engine
 //
 // Version 0.1
 //------------------------------------------------------------------------------
+//TODO the whole class is unused, due to change to XSLT support
 
 if (!system::OLIVCORE()) die ("render.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("render.php - OLIVError not present");
 
-class routePlugin
+
+class OLIVRender extends OLIVCore
 {
-  
+  var $o = "";
+
 //------------------------------------------------------------------------------
-// render class
-  static public function __callStatic($method,$options)
+// constructor
+  public function __construct()
   {
-  	$content = $options[0];
-  	$tag = $options[1];
+    $this->o = "";
+  }
+
 
 
 //------------------------------------------------------------------------------
-// look for href expressions
-  	$nodes = $content->XPath("//*[@href]");
-// loop through all nodes
-		for ($i = 0;$i < count($nodes);$i++)
-		{
-// if not extern link
-// route
-			if (!link_is_extern($href = (string)$nodes[$i]))
-			{
-// set lang for link call
-				if (!($lang = (string)$nodes[$i]['lang']))
-					$lang = status::lang();
-					
-				$hrefArray = explode(":",$href);
+// return render result
+  public function display()
+  {
+    return ($this->o);
+  }
 
-				switch($hrefArray[0])
-				{
-					case 'referer()':
-						$nodes[$i]['href'] = status::oliv_referer();
-						break;
 
-					case 'current()':
-						$nodes[$i]['href'] = OLIVRoute::url($lang,status::url(),status::val());
-						break;
+//------------------------------------------------------------------------------
+// main rendering routine
+// render page to this->o
+//------------------------------------------------------------------------------
+  public function page($page,$template)
+  {
+// set parameters for stylesheet display
+		$template->stylesheet->setParameter("","lang",status::lang());
+		$template->stylesheet->setParameter("","user",status::OLIV_USER());
 
-					case 'javascript':
-						$nodes[$i]['href'] = "javascript:toolbox('" . (string)$hrefArray[1] . "')";
-						break;
-
-					default:
-						$nodes[$i]['href'] = OLIVRoute::url($lang,$href,status::val());
-				}
-			}
-		}
-
-		return($content);
+echoall($page->structure());
+// start stylesheet processor
+		return $template->stylesheet->transformToXML($page->structure());
   }
 }
 ?>

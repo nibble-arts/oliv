@@ -1,8 +1,7 @@
 															Class OLIVPage
 															--------------
 
-The page class loades the page content and the page template. It starts the
-plugin subsystem for plugins altering the page content loaded (like re
+
 
 
 

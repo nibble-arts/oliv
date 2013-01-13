@@ -267,6 +267,7 @@ class OLIVRoute
 		    $lang = status::lang();
 
 // use friendly name for url
+
 		  $val = OLIVRoute::translateFriendlyName($lang,$url);
 		  
 		  if ($url[strtolower($val)]) array_push($routeArray,$val);
