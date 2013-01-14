@@ -57,6 +57,7 @@ class article extends OLIVModule
 //			olivxml_insert($article,$langs,"ALL");
 			olivxml_insert($article,OLIVLang::selector($langs),"ALL");
 
+
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);
 			$this->content = $article;

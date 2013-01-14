@@ -24,6 +24,7 @@
 
 <!-- page administration -->
     <admin>
+      <admin />
     </admin>
   </group>
 </access>

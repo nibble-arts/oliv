@@ -47,6 +47,7 @@ class OLIVPreProcessor extends OLIVCore
     $i = 0;
     $templates = array();
 
+
 //------------------------------------------------------------------------------
 // parse site
  
@@ -114,14 +115,13 @@ class OLIVPreProcessor extends OLIVCore
 											{
 												$tempTemplate = $module->template();
 
-
 // set path to insert module-template-link stylesheet
 // link only if template and content found
 												if ($module->template() and $module->content())
 												{
 													if (is_object($module->content()))
 													{
-														$templates[$entry->getName() . "::" . $module->content()->getName()] = $module->template();
+															$templates[$entry->getName() . "::" . $module->content()->getName()] = $tempTemplate;
 													}
 												}
 
@@ -157,7 +157,7 @@ class OLIVPreProcessor extends OLIVCore
 	      OLIVError::fire("processor::process - page is empty");
 	  }
 
-
+echoall($templates);
 //------------------------------------------------------------------------------
 // include module templates in page template
 // create temporary xslt for include process
@@ -222,7 +222,7 @@ class OLIVPreProcessor extends OLIVCore
 		$stylesheet->importStylesheet($tempXml);
 
 //echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
-echoall($page->structure());
+//echoall($page->structure());
   }
 
 

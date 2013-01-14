@@ -46,6 +46,7 @@ class OLIVPostProcessor extends OLIVCore
   {
   	global $_PLUGIN;
 
+// call plugins
 		$pageXml = OLIVPlugin::call(new simpleXmlElement($page));
 
 

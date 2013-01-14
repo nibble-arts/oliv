@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <article_index>
+	<access owner="tom" group="publisher" access="771"/> 
 
 	<article_index_002>
 		<text lang='de'>Neustart der Gartenbahn Datenbank!</text>

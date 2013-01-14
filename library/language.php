@@ -68,17 +68,16 @@ class OLIVLang
 				if ($langCode == status::lang())
 					$id = "oliv_lang_flag_selected";
 
-//TODO use system text for language name
+
 //get string for url title language name
-//				$title = OLIVText::_("change_language","lang=$langCode");
-//				$title .= " - " . OLIVText::_($langCode,"lang=$langCode"); // full language name
-$title = "switch to " . $langCode;
+				$title = OLIVText::_("change_language",$langCode);
+				$title .= " - " . OLIVText::_($langCode,$langCode); // full language name
 
 
 // create flag image
 //				$img = new simpleXmlElement("<img url='" . status::url() . "' urllang='" . $langCode . "' urltitle='{$title}' src='oliv_flag' id='{$id}' lang='" . $countryCode . "' />");
 
-				$img = new simpleXmlElement("<selector><a href='referer()' title='{$title}' lang='" . $langCode . "'/><img id='{$id}' lang='" . $countryCode . "'>oliv_flag</img></selector>");
+				$img = new simpleXmlElement("<selector><a href='current()' title='{$title}' lang='" . $langCode . "'/><img id='{$id}' lang='" . $countryCode . "'>oliv_flag</img></selector>");
 
 // insert image
 				
@@ -117,7 +116,8 @@ $title = "switch to " . $langCode;
 // get default country for language
 	static public function defaultCountry($lang)
 	{
-		$countryXml = system::country();
+		$countryXml = system::systemtext()->country;
+
 
 // look for default value
 		$retArray = $countryXml->xpath("//country/*/{$lang}[@default='TRUE']");

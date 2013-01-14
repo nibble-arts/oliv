@@ -170,6 +170,15 @@ li {
   height:10px;
 }
 
+#oliv_table_right {
+	vertical-align:top;
+}
+
+#oliv_table_left {
+	vertical-align:top;
+	padding-top:18px;
+}
+
 #oliv_header {
   margin:0 auto;
   width:100%;

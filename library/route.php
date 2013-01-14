@@ -88,7 +88,10 @@ class OLIVRoute
 // no site defined -> call OLIV_404_PAGE
     else
     {
-      status::set('url',system::OLIV_404_PAGE());
+    	if (system::OLIV_404_PAGE())
+	      status::set('url',system::OLIV_404_PAGE());
+			else
+	      status::set('url',system::OLIV_INDEX_PAGE());
     }
 
 
@@ -244,7 +247,7 @@ class OLIVRoute
     $url = strtolower($url);
 
     if (!$lang) $lang = status::lang(); // if no language use current
-    
+
     $path = OLIVRoute::makeUrl($lang,$url) . "/";
     if ($val) $path .= $val . "/";
 

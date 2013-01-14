@@ -44,19 +44,20 @@ class routePlugin
 //------------------------------------------------------------------------------
 // look for href expressions
   	$nodes = $content->XPath("//*[@href]");
+
+
 // loop through all nodes
 		for ($i = 0;$i < count($nodes);$i++)
 		{
 // if not extern link
 // route
-			if (!link_is_extern($href = (string)$nodes[$i]))
+			if (!link_is_extern($href = (string)$nodes[$i]['href']))
 			{
 // set lang for link call
 				if (!($lang = (string)$nodes[$i]['lang']))
 					$lang = status::lang();
-					
+
 				$hrefArray = explode(":",$href);
-echoall($nodes[$i]);
 
 				switch($hrefArray[0])
 				{

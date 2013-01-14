@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- IG-CMS
 //
@@ -21,7 +21,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 
-// IG-CMS template definition
+// IG-CMS XSL template definition
 //
 // Version 0.1 -->
 
@@ -34,61 +34,55 @@
 
 
 	<xsl:template match='/'>
-		<div id='oliv_site'> <!-- background-image='*.png *.jpg' page background -->
-		  <div id='oliv_page' background-image='locoback.png'>
-		    <div id='oliv_header'>
+		<div id='oliv_site' background-image='oliv_leaves'>
+		  <div id='oliv_page'>
+
+				<div id='oliv_header'>
+		      <div id='oliv_login'>
+				    <xsl:apply-templates select='//oliv_login'/>
+					</div>
 			    <xsl:apply-templates select='//oliv_header'/>
-				</div>
-					
-		    <div id='oliv_main'>
-		    	<table><tr>
-						<td id="oliv_table_left">
+
+					<span class="oliv_clear"/>
+		    </div>
+		
+<!--		    <div id='oliv_top'>
+		      <div id='oliv_search'>
+				    <xsl:apply-templates select='//oliv_search'/>
+			    </div>
+					<span class="oliv_clear"/>
+		    </div>-->
+		    
+		    <span id='oliv_main'>
+		    	<table width="100%"><tr>
+		    		<td class="oliv_left">
 						  <div id='oliv_left'>
-								<xsl:apply-templates select='//oliv_left'/>
-						  </div>
-						</td>
-						
-						<td id="oliv_table_right">
-						  <div id='oliv_center'>
-								<div id="oliv_content">
-									<xsl:apply-templates select='//oliv_content'/>
+						    <div id='oliv_left1'>
+						    	<xsl:apply-templates select='//oliv_left1'/>
+								</div>
+						    <div id='oliv_left2'>
+						    	<xsl:apply-templates select='//oliv_left2'/>
+								</div>
+						    <div id='oliv_left3'>
+						    	<xsl:apply-templates select='//oliv_left3'/>
 								</div>
 						  </div>
+							<span class="oliv_clear"/>
+						</td>
+						<td class='oliv_content'>
+					  	<div id="oliv_content">
+						    <xsl:apply-templates select='//oliv_content'/>
+						  </div>
+
+							<span class="oliv_clear"/>
 						</td>
 					</tr></table>
-		    </div>
+		    </span>
 		    <div id='oliv_footer'>
 	        <xsl:apply-templates select='//oliv_footer'/>
 			  </div>
 		  </div>
 		</div>
-	</xsl:template>
-
-
-<!-- paragraph template -->
-	<xsl:template name="article_paragraph">
-		<xsl:param name="node"/>
-
-		<xsl:if test="$node/@source">
-			<xsl:attribute name="textsource">
-				<xsl:value-of select="$node/@source"/>
-			</xsl:attribute>
-		</xsl:if>
-
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name($node)"/>
-		</xsl:attribute>
-		<xsl:attribute name="owner">
-			<xsl:value-of select="$node/@owner"/>
-		</xsl:attribute>
-		<xsl:attribute name="group">
-			<xsl:value-of select="$node/@group"/>
-		</xsl:attribute>
-		<xsl:attribute name="access">
-			<xsl:value-of select="$node/@access"/>
-		</xsl:attribute>
-
-		<xsl:value-of select="$node"/>
 	</xsl:template>
 
 </xsl:stylesheet>

@@ -4,8 +4,6 @@
 
 	<xsl:template match="article_images">
 		<div>
-			<xsl:apply-templates select="languages"/>
-			
 			<img src='loco1' width='200px' />
 
 			<p class='oliv_image_text'>
@@ -22,25 +20,17 @@
 	</xsl:template>
 	
 	<xsl:template match="article_images_001">
-		<xsl:attribute name="textsource">
-			<xsl:value-of select="./@source"/>
-		</xsl:attribute>
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name(.)"/>
-		</xsl:attribute>
-
-		<xsl:value-of select="."/>
+		<xsl:call-template name="article_paragraph">
+			<xsl:with-param name="node" select="."/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="article_images_002">
-		<xsl:attribute name="textsource">
-			<xsl:value-of select="./@source"/>
-		</xsl:attribute>
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name(.)"/>
-		</xsl:attribute>
-
-		<xsl:value-of select="."/>
+		<xsl:call-template name="article_paragraph">
+			<xsl:with-param name="node" select="."/>
+		</xsl:call-template>
 	</xsl:template>
+
+
 
 </xsl:stylesheet>

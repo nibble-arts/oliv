@@ -53,8 +53,8 @@ class OLIVRight
 		if (isset($access[0])) $right = $access[0];
 		if (isset($access[1])) $strict = $access[1];
 
-//echo "<hr>";
-//echoall($right->getName());
+echo "<hr>";
+echoall($right->getName());
     $right = OLIVRight::checkAccess($right,$strict);
 
 

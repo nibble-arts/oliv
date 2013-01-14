@@ -95,7 +95,7 @@
 			<text lang="de">Abbrechen</text>
 			<text lang="en">Cancel</text>
 		</name>
-		<href>javascript:template_cancel</href>
+		<href>javascript:cancel</href>
 		<title>
 			<text lang="de">Änderungen verwerfen</text>
 			<text lang="en">Abort changes</text>

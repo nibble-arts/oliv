@@ -4,7 +4,7 @@
 //
 // This file is part of the OLIV Content Management System.
 //
-// Copyright(c) 2012 Thomas H Winkler
+// Copyright(c) 2012,2013 Thomas H Winkler
 // thomas.winkler@iggmp.net
 //
 // This file may be licensed under the terms of of the
@@ -21,76 +21,296 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 
-// main system configuration file
+// main system text file
 //
 // Version 0.1 -->
 
-<core>
-  <system>
-		<OLIV_SSH_HOST>localhost</OLIV_SSH_HOST>
-		<OLIV_SESSION_PATH>session/</OLIV_SESSION_PATH>
-    <OLIV_INCLUDE_PATH>library/</OLIV_INCLUDE_PATH>
-    <OLIV_JAVASCRIPT_PATH>javascript/</OLIV_JAVASCRIPT_PATH>
-	  <OLIV_MODULE_PATH>module/</OLIV_MODULE_PATH>
-    <OLIV_PAGE_PATH>page/</OLIV_PAGE_PATH>
-    <OLIV_PLUGIN_PATH>plugin/</OLIV_PLUGIN_PATH>
-    <OLIV_TEMPLATE_PATH>template/</OLIV_TEMPLATE_PATH>
-    <OLIV_IMAGES_PATH>images/</OLIV_IMAGES_PATH>
-    <OLIV_LANGUAGE_PATH>language/</OLIV_LANGUAGE_PATH>
-		<OLIV_OLIVSCRIPT>olivscript/</OLIV_OLIVSCRIPT>
-    <OLIV_CONTEXT_PATH>context/</OLIV_CONTEXT_PATH>
-    <OLIV_CORE_TEXT>system</OLIV_CORE_TEXT>
-		<OLIV_NAME>OLIV-CMS</OLIV_NAME>
-		<OLIV_AUTHOR>Thomas H. Winkler</OLIV_AUTHOR>
-    <OLIV_VERSION>V0.4.3.74631c0c - 2013-01-11</OLIV_VERSION>
-  </system>
-  
-  <includes>
-<!-- static classes -->
-    <file>error.php</file>
-    <file>text.php</file>
-    <file>language.php</file>
-    <file>xml.php</file>
-    <file>file.php</file>
 
-<!-- basic dynamic system classes -->
-		<file>debug.php</file>
-    <file>html.php</file>
-    <file>module.php</file>
-    <file>render.php</file>
-    <file>user.php</file>
-    <file>right.php</file>
-    <file>route.php</file>
-    <file>search.php</file>
-    <file>database.php</file>
-    <file>template.php</file>
-    <file>preprocessor.php</file>
-    <file>translator.php</file>
-    <file>postprocessor.php</file>
-    <file>page.php</file>
-    <file>image.php</file>
-    <file>index.php</file>
-    <file>search.php</file>
-    <file>plugin.php</file>
-    <file>context.php</file>
-    <file>clipboard.php</file>
-    <file>olivscript.php</file>
-  </includes>
-  
-<!-- accepted file types for images -->
-  <image>
-    <imgtype>png</imgtype>
-    <imgtype>gif</imgtype>
-    <imgtype>jpg</imgtype>
-  </image>
+<systemtext>
+	<page>
+		<home>
+			<text lang='de'>Startseite</text>
+			<text lang='en'>Home</text>
+		</home>
+		<back_home>
+			<text lang='de'>Zurück an den Start</text>
+			<text lang='en'>Back to Start</text>
+		</back_home>
+		<contact>
+			<text lang='de'>Kontakt</text>
+			<text lang='en'>Contact</text>
+		</contact>
+		<get_contact>
+			<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
+			<text lang='en'>Get in contact with us</text>
+		</get_contact>
+		<new>
+			<text lang='de'>Neu auf der Seite</text>
+			<text lang='en'>New on the site</text>
+		</new>
+		<news>
+			<text lang='de'>Neuigkeiten</text>
+			<text lang='en'>News</text>
+		</news>
+		<search>
+			<text lang='de'>suchen</text>
+			<text lang='en'>search</text>
+		</search>
+		<change_language>
+			<text lang='de'>Sprache umschalten</text>
+			<text lang='en'>Change Language</text>
+			<text lang='cs'>Prepojit jasik</text>
+			<text lang='fr'>Changement de langue</text>
+			<text lang='it'>Il cambio di lingua</text>
+			<text lang='es'>Cambiar idioma</text>
+			<text lang='jp'>言語スイッチ</text>
+		</change_language>
 
-  <imagepath>
-  	<path></path>
-  	<path>OLIV_IMAGES_PATH</path>
-  	<path>OLIV_TEMPLATE_PATH.OLIV_TEMPLATE./images/</path>
-  	<path>OLIV_TEMPLATE_PATH.default/images/</path>
-  </imagepath>
-  
+		<cut>
+			<text lang='de'>Ausschneiden</text>
+			<text lang='en'>Cut</text>
+		</cut>
+		<copy>
+			<text lang='de'>Kopieren</text>
+			<text lang='en'>Copy</text>
+		</copy>
+		<paste>
+			<text lang='de'>Einfügen</text>
+			<text lang='en'>Paste</text>
+		</paste>
+		<edit>
+			<text lang='de'>Bearbeiten</text>
+			<text lang='en'>Edit</text>
+		</edit>
+		<edit_text>
+			<text lang='de'>Text bearbeiten</text>
+			<text lang='en'>Edit text</text>
+		</edit_text>
+		<edit_image>
+			<text lang='de'>Bild bearbeiten</text>
+			<text lang='en'>Edit image</text>
+		</edit_image>
+		<save>
+			<text lang='de'>Sichern</text>
+			<text lang='en'>Save</text>
+		</save>
+		<cancel>
+			<text lang='de'>Abbrechen</text>
+			<text lang='en'>Cancel</text>
+		</cancel>
+		<add>
+			<text lang='de'>Neu</text>
+			<text lang='en'>New</text>
+		</add>
+		<delete>
+			<text lang='de'>Löschen</text>
+			<text lang='en'>Delete</text>
+		</delete>
+		<remove>
+			<text lang='de'>Entfernen</text>
+			<text lang='en'>Remove</text>
+		</remove>
+		<move>
+			<text lang='de'>Bewegen</text>
+			<text lang='en'>Move</text>
+		</move>
+	</page>
+
+	<location>
+		<address>
+			<text lang='de'>Adresse</text>
+			<text lang='en'>Address</text>
+		</address>
+		<city>
+			<text lang='de'>Stadt</text>
+			<text lang='en'>City</text>
+		</city>
+		<zip>
+			<text lang='de'>Postleitzahl</text>
+			<text lang='en'>ZIP</text>
+		</zip>
+		<land>
+			<text lang='de'>Land</text>
+			<text lang='en'>Land</text>
+		</land>
+	</location>
+
+	<time>
+		<from>
+			<text lang='de'>von</text>
+			<text lang='en'>from</text>
+		</from>
+		<to>
+			<text lang='de'>bis</text>
+			<text lang='en'>to</text>
+		</to>
+		<clock>
+			<text lang='de'>Uhr</text>
+			<text lang='en'>o'clock</text>
+		</clock>
+
+		<year>
+			<text lang='de'>Jahr</text>
+			<text lang='en'>Year</text>
+		</year>
+		<month>
+			<text lang='de'>Monat</text>
+			<text lang='en'>Month</text>
+		</month>
+		<day>
+			<text lang='de'>Tag</text>
+			<text lang='en'>Day</text>
+		</day>
+	</time>
+
+	<day>
+		<mon>
+			<text lang='de'>Montag</text>
+			<text lang='en'>Monday</text>
+			<text lang='cs'>Pondely</text>
+		</mon>
+		<tue>
+			<text lang='de'>Dienstag</text>
+			<text lang='en'>Tuesday</text>
+			<text lang='cs'>Útery</text>
+		</tue>
+		<wed>
+			<text lang='de'>Mittwoch</text>
+			<text lang='en'>Wednesday</text>
+			<text lang='cs'>Streda</text>
+		</wed>
+		<thu>
+			<text lang='de'>Donnerstag</text>
+			<text lang='en'>Thursday</text>
+			<text lang='cs'>Ctvrtek</text>
+		</thu>
+		<fri>
+			<text lang='de'>Freitag</text>
+			<text lang='en'>Friday</text>
+			<text lang='cs'>Pátek</text>
+		</fri>
+		<sat>
+			<text lang='de'>Samstag</text>
+			<text lang='en'>Saturday</text>
+			<text lang='cs'>Sobota</text>
+		</sat>
+		<sun>
+			<text lang='de'>Sonntag</text>
+			<text lang='en'>Sunday</text>
+			<text lang='cs'>Nedeli</text>
+		</sun>
+	</day>
+
+	<MONTH>
+		<JAN>
+			<text lang='de'>Jänner</text>
+			<text lang='en'>January</text>
+		</JAN>
+		<FEB>
+			<text lang='de'>Februar</text>
+			<text lang='en'>February</text>
+		</FEB>
+		<MAR>
+			<text lang='de'>März</text>
+			<text lang='en'>March</text>
+		</MAR>
+		<MAY>
+			<text lang='de'>Mai</text>
+			<text lang='en'>May</text>
+		</MAY>
+		<JUN>
+			<text lang='de'>Juni</text>
+			<text lang='en'>June</text>
+		</JUN>
+		<JUL>
+			<text lang='de'>Juli</text>
+			<text lang='en'>July</text>
+		</JUL>
+		<AUG>
+			<text lang='de'>August</text>
+			<text lang='en'>August</text>
+		</AUG>
+		<SEP>
+			<text lang='de'>September</text>
+			<text lang='en'>September</text>
+		</SEP>
+		<OCT>
+			<text lang='de'>Oktober</text>
+			<text lang='en'>October</text>
+		</OCT>
+		<NOV>
+			<text lang='de'>November</text>
+			<text lang='en'>November</text>
+		</NOV>
+		<DEC>
+			<text lang='de'>Dezember</text>
+			<text lang='en'>December</text>
+		</DEC>
+	</MONTH>
+
+	<LANGUAGE>
+		<en>
+			<text lang='de'>Englisch</text>
+			<text lang='en'>English</text>
+			<text lang='cs'>Anglicky</text>
+		</en>
+		<nl>
+			<text lang='de'>Niederländisch</text>
+		</nl>
+		<fr>
+			<text lang='de'>Französisch</text>
+			<text lang='fr'>Français</text>
+		</fr>
+		<de>
+			<text lang='de'>Deutsch</text>
+		</de>
+		<el>
+			<text lang='de'>Griechisch</text>
+		</el>
+		<it>
+			<text lang='de'>Italienisch</text>
+			<text lang='it'>Italiano</text>
+		</it>
+		<pt>
+			<text lang='de'>Portugisisch</text>
+		</pt>
+		<es>
+			<text lang='de'>Spanisch</text>
+			<text lang='es'>español</text>
+		</es>
+		<zh>
+			<text lang='de'>Vereinfachtes Chinesisch</text>
+		</zh>
+		<zt>
+			<text lang='de'>Traditionelles Chinesisch</text>
+		</zt>
+		<ko>
+			<text lang='de'>Koreanisch</text>
+		</ko>
+		<ja>
+			<text lang='de'>Japanisch</text>
+		</ja>
+		<ru>
+			<text lang='de'>Russisch</text>
+		</ru>
+		<pl>
+			<text lang='de'>Polnisch</text>
+		</pl>
+		<se>
+			<text lang='de'>Schwedisch</text>
+		</se>
+		<cs>
+			<text lang='de'>Tschechisch</text>
+			<text lang='cs'>český</text>
+		</cs>
+		<jp>
+			<text lang='de'>Japanisch</text>
+			<text lang='en'>Japanese</text>
+			<text lang='cs'>Japnoec</text>
+			<text lang='jp'>日本人</text>
+		</jp>
+	</LANGUAGE>
+
 <!-- reference from countries to languages -->
 <!-- country code must be upper case -->
 <!-- language codes must be lower case -->
@@ -331,4 +551,5 @@
   	<ZM><en /></ZM>
   	<ZW><en /><nd /><sn /><ve /><zu /></ZW>
   </country>
-</core>
+</systemtext>
+

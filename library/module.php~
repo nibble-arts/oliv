@@ -199,6 +199,7 @@ class OLIVModule
 				if (OLIVRight::w($xml->access))
 					OLIVText::writeSource($xml,$filePath . $name);
 			}
+echoall($xml->asXML());
 			
 //TODO write imagesource
 //			OLIVImage::writeSource($xml,$filePath);

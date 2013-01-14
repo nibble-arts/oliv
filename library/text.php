@@ -57,10 +57,11 @@ class OLIVText
 //                  <text lang="langcode2">Textstring lang 2</text>
 //                  <text lang="...">...</text>
 //								</node>
-	public static function xml($text)
+	public static function xml($text,$lang="")
 	{
-//		OLIVText::getLanguages($text);
-
+		if (!$lang)
+			$lang = status::lang();
+		
 		if ($text)
 		{
 // multilingual text found
@@ -68,7 +69,7 @@ class OLIVText
 			{
 				$textNode = $text->XPath("../.");
 
-				$xpath = "text[@lang='" . status::lang() . "']";
+				$xpath = "text[@lang='$lang']";
 				$default_xpath = "text[@lang='" . system::OLIV_DEFAULT_LANG() . "']";
 
 				$tempText = $text->XPath($xpath);
@@ -96,6 +97,16 @@ class OLIVText
 		return FALSE;
 	}
 	
+
+//------------------------------------------------------------------------------
+// get system text
+	static public function _($text,$lang="")
+	{
+		$systemText = system::systemtext();
+		$textXml = $systemText->XPath("//{$text}");
+
+		return OLIVText::xml($textXml[0],$lang);
+	}
 
 //------------------------------------------------------------------------------
 // return languages of text xml

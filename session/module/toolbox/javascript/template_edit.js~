@@ -28,6 +28,6 @@ function template_cancel()
 {
 	check = confirm("Wollen Sie wirklich alle Änderungen verwerfen?");
 	if (check)
-		alert("Alles auf Anfang gesetzt");
+		history.back();
 }
 

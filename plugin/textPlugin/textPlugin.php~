@@ -46,7 +46,7 @@ class textPlugin
 // edit mode only if permission
 
 		$nodes = $content->XPath("//*[@textsource]");
-
+echoall($nodes);
 //echoall($nodes);
 		for ($i = 0;$i < count($nodes);$i++)
 		{

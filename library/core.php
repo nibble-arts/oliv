@@ -105,8 +105,8 @@ class OLIVCore
 //------------------------------------------------------------------------------
 
 // load system language
-//TODO define system text
-//    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
+    $systemText = OLIVCore::loadScript(system::OLIV_CORE_TEXT());
+		system::set("systemtext",$systemText);
 
 
 //------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ class OLIVCore
     {
 // check for filetype
       $fileInfo = pathInfo($file);
-      
+
 //debug
 //print_r("load script " . $path . $file . "<br>");
       switch($fileInfo['extension'])
@@ -244,6 +244,9 @@ class OLIVCore
         case 'php':
           include_once ($path . $file);
           break;
+
+				case 'xml':
+					return simplexml_load_file($path . $file);
 
         case 'js':
           echo "<script type='text/javascript' src='{$path}{$file}'></script >";
