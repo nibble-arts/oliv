@@ -4,10 +4,7 @@
 
 	<xsl:template match='toolbox'>
 		<div id="toolbox">
-			<div id="tooltitle">
-				<xsl:value-of select="name"/>
-			</div>
-
+			Toolbox
 			<div id="tools">
 				<xsl:apply-templates select="icon"/>
 			</div>

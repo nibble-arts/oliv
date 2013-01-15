@@ -19,6 +19,6 @@
 			<text lang='jp'>言語を変更</text>
 		</oliv_lang_switch>
 
-		<oliv_toolbox mod="toolbox">content:toolbox;</oliv_toolbox>
+		<oliv_toolbox mod="toolbox">content:toolboxt;</oliv_toolbox>
 	</content>
 </page>

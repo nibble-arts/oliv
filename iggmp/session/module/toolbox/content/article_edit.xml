@@ -2,10 +2,9 @@
 
 <toolbox>
 	<access group="admin" access="770"/>
-
 	<name>
-		<text lang="de">Templ{br}Edit</text>
-		<text lang="en">Templ{br}edit</text>
+		<text lang="de">Text{br}Edit</text>
+		<text lang="en">Text{br}edit</text>
 	</name>
 
 	<icon>
