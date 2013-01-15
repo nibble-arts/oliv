@@ -16,14 +16,9 @@
 
 	<xsl:template match="header_title">
 		<div id="header_title">
-			<xsl:attribute name="textsource">
-				<xsl:value-of select="./@source"/>
-			</xsl:attribute>
-			<xsl:attribute name="articlename">
-				<xsl:value-of select="name(.)"/>
-			</xsl:attribute>
-		
-			<xsl:value-of select="."/>
+			<xsl:call-template name="article_paragraph">
+				<xsl:with-param name="node" select="."/>
+			</xsl:call-template>
 		</div>
 	</xsl:template>
 

@@ -3,22 +3,53 @@
 <access>
   <user>
     <gast password='d4061b1486fe2da19dd578e8d970f7eb' full='Gast'/>
-    <admin su='true' password='9b84a825a73844106a5ebe0265c62436' full='Administrator' />
+    <tom password='9b84a825a73844106a5ebe0265c62436' full='Thomas Winkler' email="thomas.winkler@iggmp.net"/>
+    <admin su='admin' password='9b84a825a73844106a5ebe0265c62436' full='Administrator' email="thomas.winkler@iggmp.net"/>
   </user>
   
   <group>
-<!-- Normal users with no edit or publish rights but access to special areas -->
-		<user>
-		</user>
+<!-- right to create and edit texts -->
+    <author>
+    	<name>
+    		<text lang="de">Autor</text>
+    		<text lang="en">Author</text>
+    	</name>
+    	<users>
+	      <tom />
+	    </users>
+    </author>
 
-<!-- Users with the right to edit text -->
-     <editor>
-      <admin />
-    </editor>
+<!-- right to create and edit translations -->
+		<translator>
+    	<name>
+    		<text lang="de">Übersetzer</text>
+    		<text lang="en">Translator</text>
+    	</name>
+			<users>
+<!-- parameter for translation language -->
+				<tom lang="de"/>
+				<tom lang="en"/>
+			</users>
+		</translator>
 
-<!-- Users with the right to modify system settings -->
+<!-- right to create pages -->
+		<publisher>
+    	<name>
+    		<text lang="de">Herausgeber</text>
+    		<text lang="en">Publisher</text>
+    	</name>
+			<users>
+			</users>
+		</publisher>
+
+<!-- page administration -->
     <admin>
-      <admin />
+    	<name>
+    		<text lang="de">Administrator</text>
+    		<text lang="en">Administrator</text>
+    	</name>
+			<users>
+			</users>
     </admin>
   </group>
 </access>

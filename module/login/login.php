@@ -49,15 +49,23 @@ class login extends OLIVModule
 		if (status::OLIV_USER())
 		{
 			$header->param->template = "logged";
-			$this->content->username = "tom";//status::OLIV_USER(); TODO use full name
+			$this->content->username = OLIVUser::getName(status::OLIV_USER());
+
+			if (status::OLIV_SU())
+			{
+				$this->content->su = status::OLIV_SU();
+			}
+			else
+			{
+				$this->content->user_groups = OLIVUser::getGroupName(status::OLIV_USER());
+			}
 		}
 		else
 		{
-		
 // check if wrong login
 			if (argv::action() == "login")
 			{
-			$header->param->template = "incorrect";
+				$header->param->template = "incorrect";
 			}
 		}
 

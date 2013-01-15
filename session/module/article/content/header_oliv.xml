@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <header>
+	<access group="author" access="774"/>
+	
 	<header_title>
 		<text lang="de">Das omnilinguale CMS</text>
 		<text lang="en">The omnilingual CMS</text>

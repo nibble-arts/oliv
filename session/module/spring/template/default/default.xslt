@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- spring calculator -->
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:template match='spring'>
@@ -15,11 +17,9 @@
 <!-- spring type -->
 			<fieldset>
 				<legend>
-					<xsl:attribute name="textsource">
-						<xsl:value-of select="type/@source"/>
-					</xsl:attribute>
-
-					<xsl:value-of select="type"/>
+					<xsl:call-template name="article_paragraph">
+						<xsl:with-param name="node" select="type"/>
+					</xsl:call-template>
 				</legend>
 
 				<div>
@@ -33,22 +33,18 @@
 <!-- spring leaf values -->
 			<fieldset>
 				<legend>
-					<xsl:attribute name="textsource">
-						<xsl:value-of select="leaf/@source"/>
-					</xsl:attribute>
-
-					<xsl:value-of select="leaf"/>
+					<xsl:call-template name="article_paragraph">
+						<xsl:with-param name="node" select="leaf"/>
+					</xsl:call-template>
 				</legend>
 
 				<table>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="leaf_length/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="leaf_length"/>
-							</td>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="leaf_length"/>
+							</xsl:call-template>
+						</td>
 						<td> L </td>
 						<td>
 							<input type="text" name="spring_L" value="$spring_L">
@@ -58,11 +54,9 @@
 					</tr>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="leaf_width/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="leaf_width"/>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="leaf_width"/>
+							</xsl:call-template>
 						</td>
 						<td> b </td>
 						<td>
@@ -73,11 +67,9 @@
 					</tr>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="leaf_thickness/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="leaf_thickness"/>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="leaf_thickness"/>
+							</xsl:call-template>
 						</td>
 						<td> t </td>
 						<td>
@@ -91,22 +83,18 @@
 			
 			<fieldset>
 				<legend>
-					<xsl:attribute name="textsource">
-						<xsl:value-of select="package/@source"/>
-					</xsl:attribute>
-
-					<xsl:value-of select="package"/>
+					<xsl:call-template name="article_paragraph">
+						<xsl:with-param name="node" select="package"/>
+					</xsl:call-template>
 				</legend>
 
 <!-- spring package values -->
 				<table>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="leaf_count/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="leaf_count"/>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="leaf_count"/>
+							</xsl:call-template>
 						</td>
 						<td> n </td>
 
@@ -119,11 +107,9 @@
 
 
 					<tr><td>
-						<xsl:attribute name="textsource">
-							<xsl:value-of select="leaf_add_count/@source"/>
-						</xsl:attribute>
-
-						<xsl:value-of select="leaf_add_count"/>
+						<xsl:call-template name="article_paragraph">
+							<xsl:with-param name="node" select="leaf_add_count"/>
+						</xsl:call-template>
 					</td>
 					<td> n' </td>
 					<td><input type="text" name="spring_n1" value="$spring_n1"/></td></tr>
@@ -135,20 +121,18 @@
 				<xsl:if test="count(leaf_length_list)">
 					<div class="spring_result">
 						<span>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="leaf_lengths/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="leaf_lengths"/>:
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="leaf_lengths"/>
+							</xsl:call-template>
+							<xsl:text>: </xsl:text>
 						</span>
 						<xsl:apply-templates select="leaf_length_list"/> mm
 						<br/>
 						<span>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="material_length/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="material_length"/>:
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="material_length"/>
+							</xsl:call-template>
+							<xsl:text>: </xsl:text>
 						</span>
 						<xsl:value-of select="leaf_length_overall"/> mm
 					</div>
@@ -166,32 +150,26 @@
 				</legend>
 
 				<i>
-					<xsl:attribute name="textsource">
-						<xsl:value-of select="operation_summary/@source"/>
-					</xsl:attribute>
-
-					<xsl:value-of select="operation_summary"/>
+					<xsl:call-template name="article_paragraph">
+						<xsl:with-param name="node" select="operation_summary"/>
+					</xsl:call-template>
 				</i>
 
 				<table>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="force/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="force"/>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="force"/>
+							</xsl:call-template>
 						</td>
 						<td> F </td>
 						<td><input type="text" name="spring_F" value="$spring_F"/> N</td>
 					</tr>
 					<tr>
 						<td>
-							<xsl:attribute name="textsource">
-								<xsl:value-of select="bending/@source"/>
-							</xsl:attribute>
-
-							<xsl:value-of select="bending"/>
+							<xsl:call-template name="article_paragraph">
+								<xsl:with-param name="node" select="bending"/>
+							</xsl:call-template>
 						</td>
 						<td> s </td>
 						<td><input type="text" name="spring_s" value="$spring_s"/> mm</td>

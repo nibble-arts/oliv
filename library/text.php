@@ -143,8 +143,34 @@ class OLIVText
 		{
 			$parentNode = $entry->XPath("..");
 
-			if (!$parentNode[0]['source'])
-				$parentNode[0]['source'] = $path . "::" . $UUID++;
+			if ($parentNode)
+			{
+// if no source in parent, write source
+				if (!$parentNode[0]['source'])
+				{
+					$parentNode[0]['source'] = $path . "::" . $UUID++;
+				}
+
+
+// check for paragraph write permission
+				if ($parentNode[0]['access'])
+				{
+
+// if no read permission, remove node
+					if (!OLIVRight::r($parentNode[0]))
+					{
+						unset($parentNode[0]['source']);
+						unset($parentNode[0]->text);
+					}
+
+
+// if no write permission, remove source
+					elseif (!OLIVRight::w($parentNode[0]))
+					{
+						unset($parentNode[0]['source']);
+					}
+				}
+			}
 		}
 	}
 }

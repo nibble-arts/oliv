@@ -34,13 +34,22 @@
 
 
 	<xsl:template match='/'>
-		<div id='oliv_site'> <!-- background-image='*.png *.jpg' page background -->
-		  <div id='oliv_page' background-image='locoback.png'>
-		    <div id='oliv_header'>
-			    <xsl:apply-templates select='//oliv_header'/>
-				</div>
-					
-		    <div id='oliv_main'>
+
+		<div id='oliv_site'>
+			<div id="oliv_login">
+			  <xsl:apply-templates select='//oliv_login'/>
+			</div>	
+
+			<div id="oliv_toolbox">
+				<xsl:apply-templates select="//oliv_toolbox"/>
+			</div>
+
+		  <div id='oliv_page'>
+		    <div id='oliv_main' background-image='locoback.png'>
+				  <div id='oliv_header'>
+					  <xsl:apply-templates select='//oliv_header'/>
+					</div>
+
 		    	<table><tr>
 						<td id="oliv_table_left">
 						  <div id='oliv_left'>
@@ -56,11 +65,15 @@
 						  </div>
 						</td>
 					</tr></table>
+
 		    </div>
 		    <div id='oliv_footer'>
 	        <xsl:apply-templates select='//oliv_footer'/>
 			  </div>
+
+				<span style="clear:both;display:block;"/>
 		  </div>
+
 		</div>
 	</xsl:template>
 

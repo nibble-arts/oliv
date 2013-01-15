@@ -1,0 +1,32 @@
+																OLIV Templates
+																--------------
+
+
+OLIV uses XSLT-Stylesheets for the page design definition and XML-files for the
+content definition. When designing Stylesheets, there are some predefined
+templates, which can be used to implement OLIV functionality.
+
+
+article_paragraph
+-----------------
+
+call:
+		<xsl:call-template name="article_paragraph">
+			<xsl:with-param name="node" select="{nodeName}"/>
+		</xsl:call-template>
+
+
+With the call of the article text node, the information used by the editor are
+added to the output. These are:
+
+	textsource ... The path and id of the file containing the text paragraph
+	owner ... The owner (creator) of the text
+	group ... The group of text
+	access ... The UNIX/Linux type access permissions for the text
+
+The permissions are defined in the XML-file on the rool level:
+
+	<access owner='owenerName' group='groupName' access='xwr'/>
+
+
+

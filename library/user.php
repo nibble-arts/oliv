@@ -83,18 +83,44 @@ class OLIVUser extends OLIVCore
   public static function getGroup($user)
   {
     global $_access;
-    $groupArray = array();
-    $groupXml = new simpleXmlElement("<group></group>");
-    
-    $groups = $_access->group;
-    foreach($groups->children() as $entry)
-    {
-      $groupName = $entry->getName();
-      if ($entry->$user)
-        $groupXml->addChild($groupName);
-    }
 
-    return ($groupXml);
+		if ($user)
+		{
+		  $groupArray = array();
+		  $groupXml = new simpleXmlElement("<group></group>");
+
+			$groups = $_access->group->XPath("*/users[$user]");
+
+			foreach($groups as $entry)
+			{
+				$group = $entry->XPath("..");
+
+				olivxml_insert($groupXml,$group[0],"ALL");
+			}
+
+		  return ($groupXml);
+		}
+		return FALSE;
+  }
+
+
+//------------------------------------------------------------------------------
+// get user group
+// returns a xml object with the groups the user is assigned to
+  public static function getGroupName($user)
+  {
+		$groups = OLIVUser::getGroup($user);
+
+    $groupArray = array();
+		foreach($groups as $entry)
+		{
+			$groupId = $entry->getName();
+
+
+			array_push($groupArray,OLIVText::xml($entry->name));
+		}
+
+    return (implode(", ",$groupArray));
   }
 
 

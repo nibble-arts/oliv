@@ -1,15 +1,17 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <article_index>
+	<access owner="tom" group="translator" access="774"/>
+	
 	<article_index_img_001>CIMG1529.jpg</article_index_img_001>
 	
-  <article_index_001 owner='admin' group='editor' access='774' lang='de' index='1336633758'>
+  <article_index_001 lang='de' index='1336633758'>
   	<text lang='de'>Das OLIV Kontrollzentrum</text>
 		<text lang='en'>The OLIV Control Center</text>
 		<text lang='cs'>OLIV řídicího centra</text>
 	</article_index_001>
 
-  <article_index_002 owner='tom' group='editor' access='774' lang='de' index='1336633758'>
+  <article_index_002 access="774" lang='de' index='1336633758'>
 		<text lang='de'>An dieser Stelle kann Ihre Einzel-Session-Seite stehen. Rufen Sie die Dokumentation für mehr Informationen auf. Oder gehen sie in die Core-Administration und legen sie eine neue Session an.</text>
 		<text lang='en'>Hier you can place your single-session pages. Call the documentation for more information. Or use the core-administraion to set up a new session.</text>
     <text lang='cs'>V tomto bodě, vaše single-session-boční stojan. Zkontrolujte v dokumentaci pro více informací. Nebo chodí do základní správní a umístit je do nové relace.</text>

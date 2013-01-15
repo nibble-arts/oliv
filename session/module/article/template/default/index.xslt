@@ -15,7 +15,7 @@
 		
 <!-- text paragraph sequence -->
 		<h1><xsl:apply-templates select="//article_index_001"/></h1>
-		<xsl:apply-templates select="//article_index_002"/>
+		<p><xsl:apply-templates select="//article_index_002"/></p>
 		<xsl:apply-templates select="//daba_init"/>
 		<xsl:apply-templates select="//daba"/>
 
@@ -26,27 +26,15 @@
 
 <!-- paragraph definitions -->
 	<xsl:template match="article_index_001">
-		<xsl:attribute name="textsource">
-			<xsl:value-of select="./@source"/>
-		</xsl:attribute>
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name(.)"/>
-		</xsl:attribute>
-		
-		<xsl:value-of select="."/>
+		<xsl:call-template name="article_paragraph">
+			<xsl:with-param name="node" select="."/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="article_index_002">
-		<p>
-			<xsl:attribute name="textsource">
-				<xsl:value-of select="./@source"/>
-			</xsl:attribute>
-			<xsl:attribute name="articlename">
-				<xsl:value-of select="name(.)"/>
-			</xsl:attribute>
-
-			<xsl:value-of select="."/>
-		</p>
+		<xsl:call-template name="article_paragraph">
+			<xsl:with-param name="node" select="."/>
+		</xsl:call-template>
 	</xsl:template>
 
 

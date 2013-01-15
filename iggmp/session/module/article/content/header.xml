@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <article_header>
-	<access owner="tom" group="publisher" access="771"/> 
+	<access owner="admin" group="publisher" access="774"/> 
 
 	<header_title>
 		<text lang='de'>Die Gartenbahn Datenbank</text>

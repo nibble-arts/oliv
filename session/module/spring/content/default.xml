@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <spring>
+	<access owner="tom" group="publisher" access="771"/>
+	
 	<title>
 		<text lang="de">Blattfeder Rechner</text>
 		<text lang="en">Compound Spring Calculator</text>
 	</title>
 
-	<type>Type</type>
+	<type>
+		<text lang="de">Type</text>
+		<text lang="en">Type</text>
+	</type>
 
 	<leaf>
 		<text lang="de">Federblätter</text>

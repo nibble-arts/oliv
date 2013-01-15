@@ -1,0 +1,26 @@
+#module_login_field {
+	background-color:grey;
+}
+
+#module_login_incorrect {
+	margin-bottom:10px;
+	background-color:red;
+	color:white;
+	text-align:right;
+}
+
+.module_login {
+	font-size:0.8em;
+	font-style:italic;
+	color:white;
+}
+
+.module_login_su {
+	font-size:0.8em;
+	font-style:italic;
+	color:red;
+}
+
+input {
+	background-color:lightgrey;
+}

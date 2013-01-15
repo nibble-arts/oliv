@@ -314,6 +314,7 @@ $_SESSION['user'] = $user;
 status::set('OLIV_USER',$_SESSION['user']);
 
 
+
 // set superuser state
 if (OLIVUser::superUser(status::OLIV_USER()))
   status::set('OLIV_SU',TRUE);

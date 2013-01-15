@@ -192,11 +192,17 @@ class OLIVModule
     {
     	$xml = sessionxml_load_file($filePath . $name);
 
-
+//TODO remove when no read permission
 // if access defined and write access -> enable editing
 			if ($xml->access->getName())
 			{
-				if (OLIVRight::w($xml->access))
+				if (!OLIVRight::r($xml->access))
+				{
+					$xmlName = $xml->getName();
+					return (new simpleXmlElement("<$xmlName/>"));
+				}
+
+				elseif (OLIVRight::w($xml->access))
 					OLIVText::writeSource($xml,$filePath . $name);
 			}
 			

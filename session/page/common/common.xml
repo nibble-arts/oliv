@@ -7,7 +7,7 @@
 		<oliv_header mod='article'>template:header;content:header_oliv;</oliv_header>
 
 <!--		<oliv_admin mod='admin' />-->
-		<oliv_login mod='login'>content:login;</oliv_login>
+		<oliv_login mod='login'/>
 
 		<oliv_title class='oliv_title'>title</oliv_title>
 		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>

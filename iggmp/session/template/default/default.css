@@ -138,6 +138,11 @@ li {
 	background-color:#ffd0d0;
 }
 
+.wrap {
+	display:block;
+	clear:both;
+}
+	
 /*----------------------------------------------------------------------------*/
 /* id definition */
 #noscript {
@@ -146,28 +151,23 @@ li {
 	height:30px;
 }
 
+#oliv_toolbox {
+	float:right;
+	height:100%;
+}
+
 #oliv_site {
   z-index:0;
   margin:0;
   padding:0;
   width:100%;
-  height:1000px;
-  background-repeat:repeat-x;
-  background-position:center center;
 }
 
 #oliv_page {
   z-index:0;
+	padding-top:20px;
   margin:0 auto;
-  margin-top:1em;
   width:900px;
-  height:700px;
-  background-repeat:repeat-x;
-  background-position:center top;
-}
-
-#oliv_space {
-  height:10px;
 }
 
 #oliv_table_right {
@@ -182,9 +182,6 @@ li {
 #oliv_header {
   margin:0 auto;
   width:100%;
-  height:45px;
-  background-repeat:no-repeat;
-  background-position:center bottom;
 }
 
 #oliv_title {
@@ -193,9 +190,8 @@ li {
 }
 
 #oliv_login {
-  text-align:right;
-  width:100%;
-  height:0px;
+	text-align:right;
+	margin:0px;
 }
 
 #oliv_top {
@@ -217,19 +213,13 @@ li {
   margin:0 auto;
   float:left;
   width:100%;
+  background-repeat:no-repeat;
+  background-position:center top;
 }
 
 #oliv_left {
   float:left;
   margin-left:2em;
-}
-
-#oliv_line {
-	float:right;
-	width:1px;
-	height:500px;
-	background-color:#dcdc78;
-  background-repeat:repeat-y;
 }
 
 #oliv_left1,#oliv_left2,#oliv_left3 {

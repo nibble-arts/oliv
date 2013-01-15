@@ -28,4 +28,14 @@
 		<text lang="de">Benutzer oder Passwort falsch</text>
 		<text lang="en">Login or passwort incorrect</text>
 	</incorrect>
+
+	<user_note>
+		<text lang="de">Sie sind</text>
+		<text lang="en">You are</text>
+	</user_note>
+
+	<su_note>
+		<text lang="de">Sie sind Superuser</text>
+		<text lang="en">You are superuser</text>
+	</su_note>
 </login>

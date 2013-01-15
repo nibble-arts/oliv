@@ -46,6 +46,7 @@ class article extends OLIVModule
 
 // load content
 		$article = OLIVModule::load_content($header);
+		$this->content = $article;
 
 
 // add source and textname attribute recursive
@@ -54,16 +55,12 @@ class article extends OLIVModule
 // get article languages
 			$langs = OLIVText::getLanguages($article);
 
-//			olivxml_insert($article,$langs,"ALL");
 			olivxml_insert($article,OLIVLang::selector($langs),"ALL");
 
 
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);
-			$this->content = $article;
 		}
-	  else
-	    $this->o .= OLIVError::renderError("article.php - content for <b>'$articleName'</b> not found");
   }
 }
 

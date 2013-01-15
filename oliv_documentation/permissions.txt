@@ -1,0 +1,100 @@
+																OLIV Permissions
+																----------------
+
+
+OLIV uses a UNIX/Linux type permission system for access control. The permission
+is defined by adding attributes to a node:
+
+		<nodeName owner="ownerName" group="groupName" access="permissions" />
+
+
+User and groups
+---------------
+The user permissions are organized in the access.xml file in the session root
+directory. In the session.xml the
+
+    <OLIV_ACCESS_FILE> .... </OLIV_ACCESS_FILE>
+
+parameter defines the file, which is used. It can be defined as:
+
+	global ... The access.xml in the oliv root directory is loaded
+	local ... The access.xml in the session root directory is loaded
+
+
+Permissions
+-----------
+	The permissions are defined with three attributes:
+
+		owner ... the owner of the data
+		group ... the group the data is part of
+		access ... the access rights for the owner, the group and everybody
+
+	For permission control the access attribute has to be defined as minimum. In
+	this case only the permissions for everybody can be controlled.
+
+	The owner definition is the username of the user that created the data.
+
+	The access holds three octal values for:
+				O=the owner - G=the group - A=All.
+
+	The bits of the three octal values define:
+				bit 0: call links
+				bit 1: write
+				bit 2: read
+
+	So the value 777 gives all right to everybody. 754 gives full rights to the
+	owner, read and link rights to the group and only read permission to all
+	other.
+
+
+access.xml
+----------
+The access permission definition has two sections for users and groups. In the
+user section, each user has one line with the following attributes:
+
+
+	<user>
+		<gast password='md5(password)' full='Gast'/>
+		<userName password="md5(password)" full="full name" email="mail address">
+	</user>
+
+In the group section, each group has a <name> node for a translated description.
+Inside the <users> node is a user id list.
+
+In the translator group the users can have a lang-attribute, for which language
+updates they are included. If the user has multiple languages, the node has to
+be repeated with the different lang codes:
+
+	<translator>
+  	<name>
+  		<text lang="de">Übersetzer</text>
+  		<text lang="en">Translator</text>
+  	</name>
+
+		<users>
+			<userName lang="de"/>
+			<userName lang="en"/>
+		</users>
+	</translator>
+
+
+Permission support
+------------------
+Permissions are supported in the following areas:
+
+Article module
+--------------
+	In article content.xml a <access/> tag with the corresponding permissions
+	can be added to the root level.
+
+	effect:
+	-------
+		read ... If no read permission, an empty dummy template is inserted
+						 during the preprocessor and nothing is displayed.
+		write ... When write permission, the textPlugin connects all fields to the
+						  editor.
+
+	Each paragraph can also contain permissions, which are only active on the
+	single paragraph. The article wide permission overrides the local permissions.
+
+

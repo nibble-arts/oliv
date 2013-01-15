@@ -7,8 +7,8 @@
 		<oliv_header mod='article'>content:header;template:header</oliv_header>
 		<oliv_footer mod="article">content:footer;template:footer</oliv_footer>
 
-		<oliv_contact />
-		
+		<oliv_login mod="login"/>
+
 		<oliv_lang_switch>
 			<text lang='de'>Sprache umschalten</text>
 			<text lang='en'>Change Language</text>
@@ -19,5 +19,6 @@
 			<text lang='jp'>言語を変更</text>
 		</oliv_lang_switch>
 
+		<oliv_toolbox mod="toolbox">content:template_edit;</oliv_toolbox>
 	</content>
 </page>

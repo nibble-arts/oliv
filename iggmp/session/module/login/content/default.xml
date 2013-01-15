@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<login>
+	<user>
+		<text lang="de">Benutzer</text>
+		<text lang="en">user</text>
+		<text lang="fr">utilisateur</text>
+		<text lang="cs">Přihlásit</text>
+	</user>
+	<password>
+		<text lang="de">Passwort</text>
+		<text lang="en">password</text>
+		<text lang="fr">mot de passe</text>
+		<text lang="cs">heslo</text>
+	</password>
+
+	<login>
+		<text lang="de">Anmelden</text>
+		<text lang="en">login</text>
+		<text lang="fr">enregistrer</text>
+		<text lang="cs">přihlášení</text>
+	</login>
+	<logout>
+		<text lang="de">Abmelden</text>
+		<text lang="en">logout</text>
+		<text lang="fr">déconnecter</text>
+		<text lang="cs">odhlásit</text>
+	</logout>
+
+	<welcome>
+		<text lang="de">Willkommen</text>
+		<text lang="en">Welcome</text>
+		<text lang="fr">Accueil</text>
+		<text lang="cs">Vítejte</text>
+	</welcome>
+
+	<incorrect>
+		<text lang="de">Benutzer oder Passwort falsch</text>
+		<text lang="en">Login or password incorrect</text>
+		<text lang="fr">Utilisateur ou mot de passe incorrect</text>
+		<text lang="cs">Přihlásit se nebo heslo není správné</text>
+	</incorrect>
+
+	<user_note>
+		<text lang="de">Sie sind</text>
+		<text lang="en">You are</text>
+		<text lang="fr">Ils sont</text>
+		<text lang="cs">Jste</text>
+	</user_note>
+
+	<su_note>
+		<text lang="de">Sie sind Superuser</text>
+		<text lang="en">You are superuser</text>
+		<text lang="fr">Vous êtes superutilisateur</text>
+		<text lang="cs">Jste superuser</text>
+	</su_note>
+</login>

@@ -105,6 +105,7 @@ class OLIVPreProcessor extends OLIVCore
 //------------------------------------------------------------------------------
 // create and execute module class
 							      $module = new $class($script);
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 										if (is_object($module))
@@ -125,9 +126,40 @@ class OLIVPreProcessor extends OLIVCore
 													}
 												}
 
+	// if no content -> create dummy template for empty content
+												if (!$module->content() and is_object($module->content()))
+												{
+													$scriptName = (string)$script->name;
+													$modName = $module->content()->getName();
+
+
+//TODO define a dummy template in the session.xml to be used
+// create dummy stylesheet for empty content
+													$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
+													$tempSting .= "<xsl:template match='" . $modName . "'>";
+													$tempSting .= "<xsl:text></xsl:text>";
+													$tempSting .= "</xsl:template>";
+													$tempSting .= "</xsl:stylesheet>";
+
+													$tempXsl = new simpleXmlElement($tempSting);
+
+													$dummyName = "dummy_" . $scriptName . "_" . $modName;
+
+													$fileName = system::oliv_module_path() . "$scriptName/template/" . system::oliv_template() . "/";
+													$filePath = session_path($fileName) . $dummyName . ".xslt";
+
+													$fileHandle = fopen($filePath,"w");
+													if ($fileHandle)
+													{
+														fputs($fileHandle,$tempXsl->asXML());
+														fclose($fileHandle);
+													}
+
+													$templates[$entry->getName() . "::" . $dummyName] = $fileName . $dummyName;
+												}
+
 	// insert module content in page content
-												if ($module->content())
-													$page->insert($module->content());
+												$page->insert($module->content());
 											}
 										}
 										else
@@ -206,6 +238,7 @@ class OLIVPreProcessor extends OLIVCore
 					fclose($fileHandle);
 				}
 
+// create include string
 				$xmlString .= "<xsl:include href='" . $filePath . "'/>";
 				$xmlString .= "<xsl:include href='" . session_path($entry) . ".xslt'/>";
 
