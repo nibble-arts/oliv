@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<construct>
+	<name>login</name>
+	
+	<structure>
+		<dir>content
+			<file>default.xml</file>
+		</dir>
+		<dir>template
+			<dir>default
+				<file>default.css</file>
+				<file>default.xslt</file>
+				<file>incorrect.xslt</file>
+				<file>logged.xslt</file>
+			</dir>
+		</dir>
+	</structure>
+</construct>

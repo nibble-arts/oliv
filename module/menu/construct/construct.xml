@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<construct>
+	<name>menu</name>
+	
+	<structure>
+		<dir>template
+			<dir>default
+				<dir>images</dir>
+				<file>side.css</file>
+				<file>side.xslt</file>
+			</dir>
+		</dir>
+		<file>menu.xml</file>
+	</structure>
+</construct>

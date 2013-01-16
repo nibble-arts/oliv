@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<construct>
+	<name>article</name>
+	
+	<structure>
+		<dir>content</dir>
+		<dir>template
+			<dir>default
+				<dir>images</dir>
+			</dir>
+		</dir>
+	</structure>
+</construct>

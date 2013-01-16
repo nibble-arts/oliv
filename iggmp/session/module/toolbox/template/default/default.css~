@@ -22,7 +22,7 @@ body {
 
 #tooltitle {
 	font-size:0.8em;
-	line-height:0.9em;
+	line-height:0.8em;
 	font-weight:bold;
 	color:white;
 	background-color:grey;
