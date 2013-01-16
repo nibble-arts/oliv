@@ -110,5 +110,24 @@
 		<image>toolbox_cancel.png</image>
 		<disabled>toolbox_cancel_disabled.png</disabled>
 	</icon>
+
+	<icon>
+		<image>toolbox_line.png</image>
+	</icon>
+
+	<icon>
+		<name>
+			<text lang="de">Verlassen</text>
+			<text lang="en">Exit</text>
+		</name>
+		<href>current()</href>
+		<title>
+			<text lang="de">Editor verlassen</text>
+			<text lang="en">Exit editor</text>
+		</title>
+		<image>toolbox_exit.png</image>
+		<disabled>toolbox_exit_disabled.png</disabled>
+	</icon>
+
 </toolbox>
 

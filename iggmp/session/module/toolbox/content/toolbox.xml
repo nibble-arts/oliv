@@ -17,8 +17,8 @@
 			<text lang="de">Artikel bearbeiten</text>
 			<text lang="en">Edit article</text>
 		</title>
-		<image>toolbox_edit.png</image>
-		<disabled>toolbox_edit_disabled.png</disabled>
+		<image>toolbox_articleedit.png</image>
+		<disabled>toolbox_articleedit_disabled.png</disabled>
 	</icon>
 
 	<icon>
@@ -26,13 +26,13 @@
 			<text lang="de">Template</text>
 			<text lang="en">Template</text>
 		</name>
-		<href>current():toolbox=article_edit</href>
+		<href>current():toolbox=template_edit</href>
 		<title>
 			<text lang="de">Template bearbeiten</text>
 			<text lang="en">Edit template</text>
 		</title>
-		<image>toolbox_edit.png</image>
-		<disabled>toolbox_edit_disabled.png</disabled>
+		<image>toolbox_templateedit.png</image>
+		<disabled>toolbox_templateedit_disabled.png</disabled>
 	</icon>
 
 </toolbox>

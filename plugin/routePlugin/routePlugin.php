@@ -67,9 +67,10 @@ class routePlugin
 
 					case 'current()':
 						$nodes[$i]['href'] = OLIVRoute::url($lang,status::url(),status::val());
+						
 // insert additional parameters
 						if (count($hrefArray) > 1)
-							$nodes[$i] .= "?" . $hrefArray[1];
+							$nodes[$i]['href'] = substr($nodes[$i]['href'],0,-1) . "?" . $hrefArray[1];
 						break;
 
 					case 'javascript':
