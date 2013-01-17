@@ -151,12 +151,10 @@ li {
 	height:30px;
 }
 
-#oliv_toolbox {
-	float:right;
-	height:100%;
-}
-
 #oliv_site {
+  position:relative;
+  top:0px;
+  left:0px;
   z-index:0;
   margin:0;
   padding:0;
@@ -164,10 +162,17 @@ li {
 }
 
 #oliv_page {
-  z-index:0;
-	padding-top:20px;
+	position:relative;
+  z-index:1;
   margin:0 auto;
   width:900px;
+}
+
+#oliv_toolbox {
+	position:relative;
+	z-index:3;
+	float:right;
+	height:100%;
 }
 
 #oliv_table_right {

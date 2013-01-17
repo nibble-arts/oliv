@@ -5,14 +5,16 @@ body {
 #toolbox {
 	visibility:hidden;
 	position:relative;
+	z-index:999;
+	
 }
 
 #tools {
+	position:relative;
 	background-color:#f0f0f0;
 	width:36px;
 	padding:1px;
 	border:1px solid #d0d0d0;
-	z-index:999;
 }
 
 #toolbox_grip {
@@ -24,7 +26,11 @@ body {
 	font-size:0.8em;
 	line-height:0.9em;
 	font-weight:bold;
-	color:white;
-	background-color:grey;
+	background-color:lightgrey;
 	text-align:center;
+}
+
+#toolbox_config {
+	background-color:lightgrey;
+	height:10px;
 }

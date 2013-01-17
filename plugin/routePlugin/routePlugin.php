@@ -73,7 +73,7 @@ class routePlugin
 							$nodes[$i]['href'] = substr($nodes[$i]['href'],0,-1) . "?" . $hrefArray[1];
 						break;
 
-					case 'javascript':
+					case 'javascript()':
 						$nodes[$i]['href'] = "javascript:toolbox('" . (string)$hrefArray[1] . "')";
 						break;
 

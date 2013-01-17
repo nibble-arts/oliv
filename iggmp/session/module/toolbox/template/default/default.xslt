@@ -12,9 +12,21 @@
 				<xsl:apply-templates select="icon"/>
 			</div>
 
+			<span>
+				<table width="100%" id="toolbox_config"><tr>
+					<td align="left">
+						<a href="current():toolfix=fix">
+							<img src="toolbox_fix.png"/>
+						</a>
+					</td>
+<!--					<td align="right"><img src="toolbox_config.png"/></td>-->
+				</tr></table>
+			</span>
+
 			<span id="toolbox_grip">
 				<img id="toolgrip_img" src='toolbox_grip_out.png'/>
 			</span>
+
 		</div>
 	</xsl:template>
 

@@ -36,7 +36,7 @@ class toolbox extends OLIVModule
   public function __construct($header)
   {
 //TODO load toolbox system js and user js
-		OLIVModule::load_javascript($header,"toolbox");
+		OLIVModule::load_javascript($header,"default");
 		OLIVModule::load_javascript($header);
 
 		$contentName = argv::toolbox();
