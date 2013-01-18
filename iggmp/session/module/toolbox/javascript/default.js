@@ -174,6 +174,7 @@ function checkLoad()
 
 		centerToolgrip();
 		centerToolbar();
+
 		hideToolbox();		
 	}
 	else

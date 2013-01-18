@@ -1,69 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <toolbox>
-	<access group="admin" access="770"/>
+	<access group="author" access="770"/>
 	<name>
-		<text lang="de">Text{br}Edit</text>
-		<text lang="en">Text{br}edit</text>
+		<text lang="de">Text-Editor</text>
+		<text lang="en">Text-editor</text>
 	</name>
 
-	<icon>
+	<icon group="publisher" access="770">
 		<name>
 			<text lang="de">Einfügen</text>
 			<text lang="en">Insert</text>
 		</name>
-		<href>javascript():template_insert</href>
+		<href>javascript():article_insert</href>
 		<title>
-			<text lang="de">Neuen Rahmen einfügen</text>
-			<text lang="en">Insert new frame</text>
+			<text lang="de">Neuen Absatz einfügen</text>
+			<text lang="en">Insert new paragraph</text>
 		</title>
-		<image>toolbox_insert.png</image>
-		<disabled>toolbox_insert_disabled.png</disabled>
+		<image>toolbox_insert_text.png</image>
+		<disabled>toolbox_insert_text_disabled.png</disabled>
 	</icon>
 
-	<icon>
-		<name>
-			<text lang="de">Bearbeiten</text>
-			<text lang="en">Edit</text>
-		</name>
-		<href>javascript():template_edit</href>
-		<title>
-			<text lang="de">Rahmen bearbeiten</text>
-			<text lang="en">Edit frame</text>
-		</title>
-		<image>toolbox_edit.png</image>
-		<disabled>toolbox_edit_disabled.png</disabled>
-	</icon>
-
-	<icon>
-		<name>
-			<text lang="de">Bewegen</text>
-			<text lang="en">Move</text>
-		</name>
-		<href>javascript():template_move</href>
-		<title>
-			<text lang="de">Rahmen bewegen</text>
-			<text lang="en">Move frame</text>
-		</title>
-		<image>toolbox_move.png</image>
-		<disabled>toolbox_move_disabled.png</disabled>
-	</icon>
-
-	<icon>
+	<icon group="publisher" access="770">
 		<name>
 			<text lang="de">Löschen</text>
 			<text lang="en">Delete</text>
 		</name>
-		<href>javascript():template_delete</href>
+		<href>javascript():article_delete</href>
 		<title>
-			<text lang="de">Rahmen löschen</text>
-			<text lang="en">Delete frame</text>
+			<text lang="de">Absatz löschen</text>
+			<text lang="en">Delete paragraph</text>
 		</title>
-		<image>toolbox_delete.png</image>
-		<disabled>toolbox_delete_disabled.png</disabled>
+		<image>toolbox_delete_text.png</image>
+		<disabled>toolbox_delete_text_disabled.png</disabled>
 	</icon>
 
-	<icon>
+	<icon group="publisher" access="770">
+		<name>
+			<text lang="de">Bewegen</text>
+			<text lang="en">Move</text>
+		</name>
+		<href>javascript():article_move</href>
+		<title>
+			<text lang="de">Absatz verschieben</text>
+			<text lang="en">Move paragraph</text>
+		</title>
+		<image>toolbox_move_text.png</image>
+		<disabled>toolbox_move_text_disabled.png</disabled>
+	</icon>
+
+<!--	<icon>
 		<name>
 			<text lang="de">Kopieren</text>
 			<text lang="en">Copy</text>
@@ -75,9 +61,9 @@
 		</title>
 		<image>toolbox_copy.png</image>
 		<disabled>toolbox_copy_disabled.png</disabled>
-	</icon>
+	</icon>-->
 
-	<icon>
+	<icon group="publisher" access="770">
 		<image>toolbox_line.png</image>
 	</icon>
 

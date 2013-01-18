@@ -42,28 +42,30 @@ class textPlugin
   	$content = $options[0];
   	$tag = $options[1];
 
-//TODO
-// edit mode only if permission
 
-		$nodes = $content->XPath("//*[@textsource]");
+// edit mode if edit mode and permission
+		if (argv::toolbox() == "article_edit")
+		{
+			$nodes = $content->XPath("//*[@textsource]");
 
 //echoall($nodes);
-		for ($i = 0;$i < count($nodes);$i++)
-		{
+			for ($i = 0;$i < count($nodes);$i++)
+			{
 // if source, make edit possible
-			$tag = $nodes[$i]->getName();
-			$text = (string)$nodes[$i];
-			$source = (string)$nodes[$i]->attributes()->textsource;
+				$tag = $nodes[$i]->getName();
+				$text = (string)$nodes[$i];
+				$source = (string)$nodes[$i]->attributes()->textsource;
 
 //TODO include javaScript content menu
 // include editor call <a>
 
-			$nodes[$i][0] = "";
-			$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
+				$nodes[$i][0] = "";
+				$nodes[$i] = $nodes[$i][0]->addChild("a",$text);
 
-			$nodes[$i]["title"] = "call editor for '$source'";
+				$nodes[$i]["title"] = "call editor for '$source'";
+			}
 		}
-
+		
 	  return($content);
   }
 }

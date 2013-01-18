@@ -4,28 +4,27 @@
 
 	<xsl:template match='toolbox'>
 		<div id="toolbox">
-			<div id="tooltitle">
-				<xsl:value-of select="name"/>
-			</div>
 
 			<div id="tools">
 				<xsl:apply-templates select="icon"/>
 			</div>
 
-			<span>
+			<span id="toolbox_grip">
+				<img id="toolgrip_img" src='toolbox_grip_out.png'/>
+
+				<v id="tooltitle"><xsl:value-of select="name"/></v>
+			</span>
+
+<!--			<span>
 				<table width="100%" id="toolbox_config"><tr>
 					<td align="left">
 						<a href="current():toolfix=fix">
 							<img src="toolbox_fix.png"/>
 						</a>
 					</td>
-<!--					<td align="right"><img src="toolbox_config.png"/></td>-->
+					<td align="right"><img src="toolbox_config.png"/></td>
 				</tr></table>
-			</span>
-
-			<span id="toolbox_grip">
-				<img id="toolgrip_img" src='toolbox_grip_out.png'/>
-			</span>
+			</span>-->
 
 		</div>
 	</xsl:template>
@@ -34,6 +33,7 @@
 		<div id="toolbox_icon">
 			<xsl:choose>
 				<xsl:when test="href">
+
 					<a href="template_edit">
 						<xsl:attribute name="href">
 							<xsl:value-of select="href"/>

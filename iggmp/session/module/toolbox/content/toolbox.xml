@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <toolbox>
-	<access group="admin" access="770"/>
+	<access group="author" access="770"/>
 
 	<name>
-		<text lang="de">Tool{br}Box</text>
+		<text lang="de">ToolBox</text>
 	</name>
 
-	<icon>
+	<icon group="author" access="770">
 		<name>
 			<text lang="de">Artikel</text>
 			<text lang="en">Article</text>
@@ -21,7 +21,7 @@
 		<disabled>toolbox_articleedit_disabled.png</disabled>
 	</icon>
 
-	<icon>
+	<icon group="admin" access="740">
 		<name>
 			<text lang="de">Template</text>
 			<text lang="en">Template</text>
@@ -35,5 +35,18 @@
 		<disabled>toolbox_templateedit_disabled.png</disabled>
 	</icon>
 
+	<icon group="admin" access="740">
+		<name>
+			<text lang="de">Seite</text>
+			<text lang="en">Page</text>
+		</name>
+		<href>current():toolbox=page_edit</href>
+		<title>
+			<text lang="de">Seite bearbeiten</text>
+			<text lang="en">Edit page</text>
+		</title>
+		<image>toolbox_pageedit.png</image>
+		<disabled>toolbox_pageedit_disabled.png</disabled>
+	</icon>
 </toolbox>
 

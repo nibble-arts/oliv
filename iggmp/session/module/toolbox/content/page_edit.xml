@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<toolbox>
+	<access group="admin" access="770"/>
+	<name>
+		<text lang="de">Seiten-Editor</text>
+		<text lang="en">Page-editor</text>
+	</name>
+
+	<icon>
+		<image>toolbox_line.png</image>
+	</icon>
+
+	<icon>
+		<name>
+			<text lang="de">OK</text>
+			<text lang="en">OK</text>
+		</name>
+		<href>current():toolbox=article_edit</href>
+		<val>action=save</val>
+		<title>
+			<text lang="de">Änderungen speichern</text>
+			<text lang="en">Save changes</text>
+		</title>
+		<image>toolbox_ok.png</image>
+		<disabled>toolbox_ok_disabled.png</disabled>
+	</icon>
+
+	<icon>
+		<name>
+			<text lang="de">Abbrechen</text>
+			<text lang="en">Cancel</text>
+		</name>
+		<href>javascript():template_cancel</href>
+		<title>
+			<text lang="de">Änderungen verwerfen</text>
+			<text lang="en">Abort changes</text>
+		</title>
+		<image>toolbox_cancel.png</image>
+		<disabled>toolbox_cancel_disabled.png</disabled>
+	</icon>-->
+
+	<icon>
+		<image>toolbox_line.png</image>
+	</icon>
+
+	<icon>
+		<name>
+			<text lang="de">Verlassen</text>
+			<text lang="en">Exit</text>
+		</name>
+		<href>current()</href>
+		<title>
+			<text lang="de">Editor verlassen</text>
+			<text lang="en">Exit editor</text>
+		</title>
+		<image>toolbox_exit.png</image>
+		<disabled>toolbox_exit_disabled.png</disabled>
+	</icon>
+
+</toolbox>
+

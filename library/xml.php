@@ -30,6 +30,46 @@
 
 
 //------------------------------------------------------------------------------
+// create new xml element
+
+
+function olivxml_create($content,$name = "")
+{
+// look for <?XML header and remove
+	echoall(stristr($content,"<?xml"));
+
+	try {
+		set_error_handler('xml_error');
+
+		$xml = new SimpleXMLElement("<{$page}>{$content}</{$page}>");
+	}
+	catch (Exception $e) 
+	{
+		$xmlMessage = $e->getMessage();
+		$xmlFile = $e->getFile();
+		$xmlLine = $e->getLine();
+
+// Error Message
+// print xml
+		echo "<div id='fatal_error'>";
+			OLIVError::fire("*** Fatal XML Error");
+			OLIVError::fire(" $xmlMessage");
+			$content = str_replace(array("<",">"),array("&lt;","&gt;"),$content);
+
+			echoall(explode("\n",$content));
+		echo "</div>";
+	}
+	
+}
+
+
+function xml_error()
+{
+  return true;
+}	
+
+
+//------------------------------------------------------------------------------
 // insert complex xml structure to xml object
 //
 // option = ALL ... insert starting at xml basis

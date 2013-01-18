@@ -132,19 +132,63 @@ class OLIVText
 	}
 
 
+//TODO move method to module class
 //------------------------------------------------------------------------------
 // write source to all text nodes
 	static public function writeSource($xml,$path)
 	{
 		$UUID = 0;
-		$nodes = $xml->XPath("//*/text");
+
+
+// process permissions
+		$nodes = $xml->XPath("//*[@access]");
 
 		foreach($nodes as $entry)
 		{
-			$parentNode = $entry->XPath("..");
+			$parentNode = $entry->XPath(".");
+//			$parentName = $parentNode[0]->getName();
+			$parentName = $entry->getName();
+
+
+// if access-tag -> display/hide whole content
+			if ($parentName == "access")
+			{
+//TODO remove all nodes
+			}
+
+// node with access attributes
+// hide content of tag
+			else
+			{
+				if (!OLIVRight::x($entry))
+					unset($entry->href);
+
+				if (!OLIVRight::r($entry))
+				{
+					$childArray = array();
+					foreach($entry->children() as $child)// ($x = 0;$x < count($entry);$x++)
+					{
+						array_push($childArray,$child->getName());
+					}
+					foreach($childArray as $child)
+					{
+						unset($entry->$child);
+					}
+				}
+			}
+
+//TODO use edit attribute to set attribute -> source="path"
+// plugin uses edit and source for editor call
+
+
+
+
+/*
+//		$nodes = $xml->XPath("//text");
 
 			if ($parentNode)
 			{
+
 // if no source in parent, write source
 				if (!$parentNode[0]['source'])
 				{
@@ -152,10 +196,10 @@ class OLIVText
 				}
 
 
-// check for paragraph write permission
-				if ($parentNode[0]['access'])
+// check for node write permission
+//echoall($entry);
+				if ($parentNode[0])
 				{
-
 // if no read permission, remove node
 					if (!OLIVRight::r($parentNode[0]))
 					{
@@ -165,12 +209,13 @@ class OLIVText
 
 
 // if no write permission, remove source
-					elseif (!OLIVRight::w($parentNode[0]))
+					elseif (!OLIVRight::w($parentNode[0]->access))
 					{
-						unset($parentNode[0]['source']);
+						unset($parentNode[0]->access['source']);
 					}
 				}
-			}
+			}*/
+//			echoall($nodes);
 		}
 	}
 }

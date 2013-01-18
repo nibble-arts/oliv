@@ -2,8 +2,9 @@
 
 <article_index>
 	<access owner="admin" group="publisher" access="774"/> 
+	<lang>de</lang>
 
-	<article_index_002>
+	<article_index_002 edit="text">
 		<text lang='de'>Neustart der Gartenbahn Datenbank!</text>
 		<text lang='en'>Relaunch of the Miniature Railway Database!</text>
 		<text lang='cs'>Oživení miniaturní železnice databáze!</text>
@@ -12,7 +13,7 @@
 		<text lang='es'>Relanzamiento de la Base de Datos de trenes en miniatura!</text>
 		<text lang='jp'>ミニチュア鉄道データベースのリニューアル!</text>
 	</article_index_002>
-	<article_index_003>
+	<article_index_003 edit="text">
 		<text lang='de'>Die IG-GmP Seiten sind in die Jahre gekommen. Durch ein technisches Gebrechen ist die Seite derzeit nicht funktionsfähig. Die Daten der zahlreichen Anlagen sind jedoch in sicherer Verwahrung.</text>
 		<text lang='en'>The pages of the IG-GmP became a bit long in the tooth. Due to a software problem the site presently is not working.The data of the railways are saved.</text>
 		<text lang='cs'>Na stránkách společnosti IG-GMP se stal trochu dlouho v zubu. Vzhledem k softwarového problému stránky v současné době není working.The údaje železnic jsou uloženy.</text>
@@ -21,7 +22,7 @@
 		<text lang='es'>Las páginas de la IG-GMP se hizo un poco largo en el diente. Debido a un problema de software del sitio actualmente no hay datos working.The de los ferrocarriles se guardan.</text>
 		<text lang='jp'>IG-GMPのページでは、歯に少し長くなりました。ソフトウェアの問題に起因するサイトでは、現在の鉄道のworking.Theデータが保存されていません。.</text>
 	</article_index_003>
-	<article_index_004>
+	<article_index_004 edit="text">
 		<text lang='de'>Wir arbeiten an einer vollkommen neuen Seite, mit einer neuen Bedienung und Optik. Da alle Arbeit in unserer Freizeit geleistet wird, kann es noch ein bischen dauern, bis wir wieder online sind. Dafür wird die neue Seite einiges bieten:</text>
 		<text lang='en'>We are working on a completely new site, with a new user experience and design. All our work is done free of charge, so it will last for a little while until we will be online again. In return the new pages will bring some new features:</text>
 		<text lang='cs'>Pracujeme na zcela novém místě, s novou zkušeností uživatele a designu. Veškerá naše práce se provádí zdarma, tak to bude trvat chvíli, dokud budeme zase online. Na oplátku nové stránky přinese některé nové funkce:</text>
@@ -30,7 +31,7 @@
 		<text lang='es'>Estamos trabajando en un sitio completamente nuevo, con una nueva experiencia de usuario y diseño. Todo nuestro trabajo se realiza de forma gratuita, por lo que tendrá una duración de un poco de tiempo hasta que nos será de nuevo en línea. A cambio, las nuevas páginas traerá algunas novedades:</text>
 		<text lang='jp'>私たちは、新しいユーザーエクスペリエンスとデザインで、完全に新しいサイトに取り組んでいる。すべての我々の仕事は無料で行われますので、我々は再びオンラインになりますまで、それはしばらく続く。リターンでは新しいページにはいくつかの新機能をもたらすでしょう：</text>
 	</article_index_004>
-	<article_index_005>
+	<article_index_005 edit="text">
 		<text lang='de'>Die Seite kann alle Sprachen der Welt verwalten. Übersetzungen können von jedem, der als Redakteur mitarbeiten will, leicht erstellt werden.</text>
 		<text lang='en'>The pages can manage all languages of the world. Translations can be written by everyone who want to work as an editor.</text>
 		<text lang='cs'>Tyto stránky mohou spravovat všechny jazyky světa. Překlady lze zapsat každý, kdo chtějí pracovat jako redaktor.</text>
@@ -39,7 +40,7 @@
 		<text lang='es'>Las páginas se pueden gestionar todos los idiomas del mundo. Las traducciones pueden ser escritos por todos los que quieran trabajar como editor.</text>
 		<text lang='jp'>ページには、世界のすべての言語を管理することができます。翻訳は編集者として仕事をしたい誰も書き込むことができます。</text>
 	</article_index_005>
-	<article_index_006>
+	<article_index_006 edit="text">
 		<text lang='de'>Die Programmbasis wurde als Open-Source Projekt komplett neu programmiert. Das System heißt 'OLIV' und wurde speziell für die vielsprachigen Aufgaben dieser internationalen Seite konzipiert. {b}Diese Vorschau arbeitet schon mit der neuen Software{/b}.</text>
 		<text lang='en'>The software basis is newly programmed as an open-source-project. The system named 'OLIV' was specialy designed for the oportunities of a international internet site. {b}This preview already uses the new Software{/b}.</text>
 		<text lang='cs'>Software Základem je nově naprogramován jako open-source-projektu.Systém s názvem "Oliv 'byla speciálně navržena pro a přehledné o mezinárodní internetové stránky. {b}Tento náhled již používá nový software.{/b}</text>
@@ -48,7 +49,7 @@
 		<text lang='es'>La base del software está recién programado como un código abierto-proyecto. El sistema llamado 'OLIV "fue diseñado especialmente para las oportunidades de un sitio de Internet internacional. {b}Esta vista previa ya utiliza el nuevo software.{/b}</text>
 		<text lang='jp'>ソフトウェアの基礎を新たにオープンソース·プロジェクトとしてプログラムされています。 'OLIV' という名前のシステムがspecialy国際インターネットサイトのoportunitiesのために設計されました。 {b}このプレビューは、すでに新しいソフトウェア{/b}を使用しています。</text>
 	</article_index_006>
-	<article_index_007>
+	<article_index_007 edit="text">
 		<text lang='de'>Als Content-Management-System sind Änderungen am Inhalt nun eine einfache Angelegenheit.</text>
 		<text lang='en'>Being a content-management-system all changes of the content is a simple task.</text>
 		<text lang='cs'>Být Content-Systém managementu veškeré změny obsahu je jednoduchý úkol.</text>
@@ -57,7 +58,7 @@
 		<text lang='es'>Siendo un contenido de gestión del sistema de todos los cambios de los contenidos es una tarea simple.</text>
 		<text lang='jp'>コンテンツ管理システムのすべてのコンテンツの変更があることは簡単な作業です。</text>
 	</article_index_007>
-	<article_index_008>
+	<article_index_008 edit="text">
 		<text lang='de'>Wie schon vorher können Veränderungen an den Anlagentexten und Bildern von den Anlagenbetreibern selbst durchgeführt werden.</text>
 		<text lang='en'>As before the texts and photos in the railway description can be edited by the operators of the railways them self.</text>
 		<text lang='cs'>Stejně jako dříve lze textes a fotografie v železniční popisu upravovat provozovatelé železnic.</text>
@@ -66,7 +67,7 @@
 		<text lang='es'>Al igual que antes los textos y fotos en la descripción de ferrocarril pueden ser editados por los operadores de los ferrocarriles de los propios.</text>
 		<text lang='jp'>前と同じように鉄道の説明のテキストと写真は、彼らが自己の鉄道事業者で編集することができます。</text>
 	</article_index_008>
-	<article_index_009>
+	<article_index_009 edit="text">
 		<text lang='de'>Die neue Seite wird eine Programmschnittstelle bieten, mit der z.B. der MRDB-Kalender auf der eigenen Internetseite eingebunden werden kann. Die Daten werden dabei in der "Cloud" gespeichert und sind für alle abrufbar.</text>
 		<text lang='en'>The new page will offer an API (a program interface). As an example it will be possible to link the MRDB-Calendar to your own internet site. The data will be stored in the "cloud" and can be accessed by everyone.</text>
 		<text lang='cs'>Nová stránka bude nabízet API (programové rozhraní). Jako příklad bude možné spojit MRDB-kalendář na vaše vlastní internetové stránky. Tyto údaje budou uloženy v "cloud" a mohou být přístupné všem.</text>
@@ -75,7 +76,7 @@
 		<text lang='es'>La nueva página ofrece una API (interfaz del programa). A modo de ejemplo, será posible vincular el MRDB-calendario para su propio sitio de Internet. Los datos se almacenan en la "cloud" y se puede acceder por todo el mundo.</text>
 		<text lang='jp'>新しいページでは、API（プログラム·インタフェース）を提供します。例として、それはあなた自身のインターネットサイトにMRDB-カレンダーをリンクすることが可能となります。データは、 'cloud' に格納され、誰もがアクセスすることができます。</text>
 	</article_index_009>
-	<article_index_010>
+	<article_index_010 edit="text">
 		<text lang='de'>Schlußendlich wurde auch der Name der Seite verändert. Die {b}'Gartenbahn-Datenbank'{/b} konzentriert sich von nun an ganz auf die Verwaltung der Anlagen- und Veranstaltungsdaten.</text>
 		<text lang='en'>Finally the title of the site was changed. The {b}'Miniature-Railway-Database'{/b} is now focusing on the management of the railways informations and events.</text>
 		<text lang='cs'>Nakonec název místa byl změněn.{b}'Miniaturní železnice-Database'{/b} se nyní soustředí na řízení informací železničních a akcí.</text>

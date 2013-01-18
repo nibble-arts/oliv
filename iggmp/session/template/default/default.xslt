@@ -34,47 +34,47 @@
 
 
 	<xsl:template match='/'>
-
-		<div id='oliv_site'>
-			<div id="oliv_login">
-			  <xsl:apply-templates select='//oliv_login'/>
-			</div>	
-
+		<page>
 			<div id="oliv_toolbox">
 				<xsl:apply-templates select="//oliv_toolbox"/>
 			</div>
 
-		  <div id='oliv_page'>
-		    <div id='oliv_main' background-image='locoback.png'>
-				  <div id='oliv_header'>
-					  <xsl:apply-templates select='//oliv_header'/>
+			<div id='oliv_site'>
+				<div id="oliv_login">
+					<xsl:apply-templates select='//oliv_login'/>
+				</div>	
+
+				<div id='oliv_page'>
+				  <div id='oliv_main' background-image='locoback.png'>
+						<div id='oliv_header'>
+							<xsl:apply-templates select='//oliv_header'/>
+						</div>
+
+				  	<table><tr>
+							<td id="oliv_table_left">
+								<div id='oliv_left'>
+									<xsl:apply-templates select='//oliv_left'/>
+								</div>
+							</td>
+						
+							<td id="oliv_table_right">
+								<div id='oliv_center'>
+									<div id="oliv_content">
+										<xsl:apply-templates select='//oliv_content'/>
+									</div>
+								</div>
+							</td>
+						</tr></table>
+
+				  </div>
+				  <div id='oliv_footer'>
+			      <xsl:apply-templates select='//oliv_footer'/>
 					</div>
 
-		    	<table><tr>
-						<td id="oliv_table_left">
-						  <div id='oliv_left'>
-								<xsl:apply-templates select='//oliv_left'/>
-						  </div>
-						</td>
-						
-						<td id="oliv_table_right">
-						  <div id='oliv_center'>
-								<div id="oliv_content">
-									<xsl:apply-templates select='//oliv_content'/>
-								</div>
-						  </div>
-						</td>
-					</tr></table>
-
-		    </div>
-		    <div id='oliv_footer'>
-	        <xsl:apply-templates select='//oliv_footer'/>
-			  </div>
-
-				<span style="clear:both;display:block;"/>
-		  </div>
-
-		</div>
+					<span style="clear:both;display:block;"/>
+				</div>
+			</div>
+		</page>
 	</xsl:template>
 
 
