@@ -52,14 +52,14 @@ class article extends OLIVModule
 
 
 // create index file
-/*		$index = new OLIVIndex();
+		$index = new OLIVIndex();
 		$textNodes = $article->XPath("//text");
 
 
 		foreach ($textNodes as $text)
 		{
 			$index->insertText((string)$text,"article:$articleName");
-		}*/
+		}
 
 
 

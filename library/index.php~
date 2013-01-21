@@ -56,7 +56,7 @@ class OLIVIndex
 		global $_INDEX;
 		
 		$string = OLIVText::remove_accents($string);
-//		echoall("search for $string");
+		echoall("search for $string");
 
 		OLIVIndex::_search($_INDEX,$string);
 	}

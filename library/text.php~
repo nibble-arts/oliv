@@ -331,10 +331,7 @@ class OLIVText
 			'ｅ'=>'e','ｆ'=>'f','ｇ'=>'g','ｈ'=>'h','ｉ'=>'i','ｊ'=>'j','ｋ'=>'k','ｌ'=>'l',
 			'ｍ'=>'m','ｎ'=>'n','ｏ'=>'o','ｐ'=>'p','ｑ'=>'q','ｒ'=>'r','ｓ'=>'s','ｔ'=>'t',
 			'ｕ'=>'u','ｖ'=>'v','ｗ'=>'w','ｘ'=>'x','ｙ'=>'y','ｚ'=>'z',);
-
-
-// do transformation
-		$string = strtr( $string, $trans);
+		$string strtr( $string, $trans);
 
 // remove all remaining incorrect characters
 		return preg_replace('~[^a-zA-Z0-9]+~', '', $string);
