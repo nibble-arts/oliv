@@ -8,9 +8,6 @@
 		<text lang="en">ToolBox</text>
 		<text lang="cs">Skříň na nástroje</text>
 		<text lang="fr">Boîte à outils</text>
-		<text lang="it">Cassetta degli attrezzi</text>
-		<text lang="es">Caja de herramientas</text>
-		<text lang="jp">ツールボックス</text>
 	</name>
 
 	<icon group="author" access="770">

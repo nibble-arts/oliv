@@ -3,7 +3,7 @@
 <toolbox>
 	<access group="author" access="770"/>
 	<name>
-		<text lang="de">Text bearbeiten</text>
+		<text lang="de">Texteditor</text>
 		<text lang="en">Text editor</text>
 		<text lang="cs">Zpracování textu</text>
 		<text lang="fr">Traitement de texte</text>
