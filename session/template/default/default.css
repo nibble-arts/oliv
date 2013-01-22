@@ -142,15 +142,16 @@ div {
   margin:0;
   padding:0;
   width:100%;
-  min-height:1000px;
   background-repeat:repeat-x;
   background-position:center center;
 }
 
 #oliv_page {
-  z-index:0;
+	position:relative;
+  z-index:1;
   margin:0 auto;
   width:90%;
+  min-height:600px;
 }
 
 #oliv_header {
@@ -158,6 +159,13 @@ div {
   height:80px;
   background-repeat:no-repeat;
   background-position:center bottom;
+}
+
+#oliv_toolbox {
+	position:absolute;
+	right:0px;
+	z-index:3;
+	height:100%;
 }
 
 #oliv_title {

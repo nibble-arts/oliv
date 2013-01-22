@@ -35,57 +35,101 @@ $_INDEX;
 
 class OLIVIndex
 {
+
 //------------------------------------------------------------------------------
 // create index xml object
   public function __construct()
   {
     global $_INDEX;
 
-//		if (!$_INDEX = sessionxml_load_file("index.xml"))
-	    $_INDEX = new simpleXmlElement("<index/>");
+		if (!$_INDEX = sessionxml_load_file("index.xml"))
+	    $_INDEX = new simpleXmlElement("<index><root/></index>");
 
 //		echoall($_INDEX);
   }
 
 
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 // search the index
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 // return an xml with the links
 	public static function search($string)
 	{
 		global $_INDEX;
-		
-		$string = OLIVText::remove_accents($string);
-//		echoall("search for $string");
+		$search = new simpleXmlElement("<search/>");
 
-		OLIVIndex::_search($_INDEX,$string);
+// prepare string for search
+		$string = strtolower(OLIVText::remove_accents($string));
+
+
+// search index
+		$result = OLIVIndex::_search($_INDEX->root,$string);
+
+
+		if (count($result))
+		{
+// create search xml
+			foreach ($result as $entry)
+			{
+				$resArray = explode(":",(string)$entry);
+				$type = $resArray[0];
+				$name = $resArray[1];
+				$value = $resArray[2];
+
+				$lang = $entry['lang'];
+				
+				$newResult = new simpleXmlElement("<result><type>{$type}</type><name>{$name}</name><value lang='{$lang}'>{$value}</value></result>");
+				olivxml_insert($search,$newResult);
+			}
+
+			return $search;
+		}
 	}
 
 
-	private static function _search($node,$string)
+//------------------------------------------------------------------------------
+// search index for word
+// return xml of matches
+	private static function _search($node,$word)
 	{
-		$suffix = substr($string,strlen($string)-1);
-		$string = substr($string,0,strlen($string));
+		if (!isset($result))
+			$result = array();
 
-//		echoall ($node->$suffix);
-		if ($node->$suffix)
+		$char = substr($word,0,1);
+		$restWord = substr($word,1);
+
+		if ($char)
 		{
-			if ($node->$suffix->link)
-				echoall($node->$suffix->link);
-
-			$retVal = OLIVIndex::_search($node->suffix,$string);
+// node found -> goto branch
+			if ($node->$char)
+			{
+				return OLIVIndex::_search($node->$char,$restWord);
+			}
 		}
 		else
 		{
-			$retVal = (string)$node;
-		}
+// collect all subnodes
+			$retArray = array_unique($node->XPath(".//link"));
 
-		return $retVal;
+			return  $retArray;
+		}
 	}
 
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+// create index
+
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // insert text
-  public function insertText($text,$url="",$val="")
+  public function insertText($text,$url="",$lang="")
   {
     // remove punctuation marks in text
     $text = preg_replace("![\.\,\;\:\(\)\[\]\{\}\-\_\/]!"," ",strtolower($text));
@@ -98,6 +142,8 @@ class OLIVIndex
 		foreach($wordArray as $word)
 		{
 //	 		$word = strtolower(Normalizer::normalize($word,Normalizer::FORM_C));
+			$word = strtolower($word);
+
 
 //TODO replace all special characters with root
 			$specialChar = array("ä","ö",);
@@ -111,11 +157,13 @@ class OLIVIndex
 
 			foreach($suffArray as $suffix)
 			{
-				$this->insertWord($suffix,$url . ":$word");
+				$this->insertWord($suffix,$url . ":$word",$lang);
 			}
 		}
 
 		global $_INDEX;
+
+//echoall($_INDEX);
 
 // write index to disk
 		$fh = fopen("session/index.xml","w");
@@ -143,208 +191,48 @@ class OLIVIndex
 
 //------------------------------------------------------------------------------
 // create suffix array from word
-	private function insertWord($word,$value)
+	private function insertWord($word,$value,$lang="")
 	{
 		global $_INDEX;
 //echo "<hr>";
 //echoall("insert $word:");
 
-		$this->_addWord($_INDEX,$word,$value);
-
+		$this->_addWord($_INDEX->root,$word,$value,$lang);
 	}
 
 
 //------------------------------------------------------------------------------
 // insert suffix array in suffix tree
-	private function _addWord($node,$word,$value)
+	private function _addWord($node,$word,$value,$lang="")
 	{
-	global $_INDEX;
 // create new node
-		$suffix = substr($word,strlen($word)-1,1);
-		$word = substr($word,0,strlen($word)-1);
+		$char = substr($word,0,1);
+		$restWord = substr($word,1);
 
-		if (!$node)
+// if something to insert, do it
+		if ($char)
 		{
-			$node->addChild("right",$suffix);
-		}
-//echoall($node);
-
-
-		if ($suffix)
-		{
-// check existing nod
-//			else
-//			{
-	// go right
-				if ($suffix > (string)$node)
+			if ($node->$char)
+			{
+// follow node
+				if (!count($node->$char->XPath("link[contains(.,'$value')]")))
 				{
-					if ($node->right->getName())
-					{
-//		echoall("goto right");
-						OLIVIndex::_addWord($node->right,$word,$value);
-					}
-					else
-					{
-//		echoall("add $suffix right");
-						$newNode = new simpleXmlElement("<right>$suffix</right>");
-						olivxml_insert($node,$newNode);
-			echoall($node);
-						OLIVIndex::_addWord($node->right,$word,$value);
-					}
+					$newNode = $node->$char->addChild("link",$value);
+					$newNode->addAttribute("lang",$lang);
 				}
 
-	// go left
-				else
-				{
-					if ($node->left->getName())
-					{
-//		echoall("goto left");
-						OLIVIndex::_addWord($node->left,$word,$value);
-					}
-					else
-					{
-//		echoall("add $suffix left");
-						$newNode = new simpleXmlElement("<left>$suffix</left>");
-						olivxml_insert($node,$newNode);
-						OLIVIndex::_addWord($node->left,$word,$value);
-					}
-//				}
-			}
-			
-/*			if (!$node->$suffix->getName())
-			{
-				$newNode = $node->addChild($suffix);
+				OLIVIndex::_addWord($node->$char,$restWord,$value,$lang);
 			}
 			else
 			{
-				$newNode = $node->$suffix;
-			}
+// create node
+				$newNode = $node->addChild($char);
 
-
-	// call recursive
-			if (strlen($word) > 0)
-			{
-				$this->_addWord($newNode,$word,$value);
+				$newLink = $newNode->addChild("link",$value);
+				$newLink->addAttribute("lang",$lang);
+				
+				OLIVIndex::_addWord($newNode,$restWord,$value,$lang);
 			}
-			else
-			{
-				$newNode->addChild('link',$value);
-			}*/
 		}
 	}
-
-
-/*
-//------------------------------------------------------------------------------
-// insert value in index
-  public function insert($value,$url="",$val="")
-  {
-    global $_INDEX;
-
-    // insert only lowercase
-    $value = strtolower($value);
-
-    $node = $this->_find($_INDEX,$value);
-
-    // insert if root
-    if (!(string)$node->attributes()->value)
-    {
-      // insert value
-      $node->attributes()->value = $value;
-      $node->attributes()->url = $url;
-      $node->attributes()->val = $val;
-    }
-    else
-    {
-      if ($value <= (string)$node->attributes()->value)
-      {
-        // insert left node
-        if (!$node->left)
-        {
-          $newNode = new simpleXmlElement("<left url='$url' val='$val' value='$value' />");
-          olivxml_insert($node,$newNode);
-        }
-      }
-      else
-      {
-        // insert right node
-        if (!$node->right)
-        {
-          $newNode = new simpleXmlElement("<right url='$url' val='$val' value='$value' />");
-          olivxml_insert($node,$newNode);
-        }
-      }
-    }
-//print_r($_INDEX);
-  }
-
-
-//------------------------------------------------------------------------------
-// find entry in index
-  public function find($value)
-  {
-    // parse string for wildcards
-//TODO
-// find inside of word
-
-    $startChar = $value[0];
-    $endChar = $value[strlen($value)-1];
-
-    $value = str_replace ("%","",$value); // remove wildcards
-
-    if ($startChar == "%");
-      else $startChar = "";
-    if ($endChar == "%");
-      else $endChar = "";
-
-// create result xml
-    $result = new simpleXmlElement ("<search></search>");
-    $index = $_INDEX;
-    do
-    {
-      $match = $this->_find($index,$value,$startChar,$endChar);
-      $index = $match;
-
-    } while ($match->left or $match->right);
-  }
-
-//------------------------------------------------------------------------------
-// find entry recursive in index
-  private function _find($index,$value,$startChar="",$endChar="")
-  {
-    if ($index)
-    {
-      // no value
-      if (!(string)$index->attributes()->value)
-        return ($index);
-  
-      // value found
-      if ($value == (string)$index->attributes()->value)
-        return ($index);
-      
-      // compare value
-      $compString = substr((string)$index->attributes()->value,0,strlen($value));
-      
-      if ($value < $compString) // value smaller
-      {
-        if ($index->left) // left branch exists
-        {
-          // call left branch recursive
-          return ($this->_find($index->left,$value,$startChar,$endChar));
-        }
-        else
-          return ($index);
-      }
-      else
-      {
-        if ($index->right) // right branch exists
-        {
-          // call right branch recursive
-          return ($this->_find($index->right,$value,$startChar,$endChar));
-        }
-        else
-          return ($index);
-      }
-    }
-  }*/
 }

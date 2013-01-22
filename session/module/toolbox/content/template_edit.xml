@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <toolbox>
+	<access group="admin" access="770"/>
+
+	<name>
+		<text lang="de">Template-Editor</text>
+		<text lang="en">Template-edit</text>
+	</name>
+
 	<icon>
 		<name>
 			<text lang="de">Einfügen</text>
 			<text lang="en">Insert</text>
 		</name>
-		<href>javascript:template_insert</href>
+		<href>javascript():template_insert</href>
 		<title>
 			<text lang="de">Neuen Rahmen einfügen</text>
 			<text lang="en">Insert new frame</text>
@@ -20,7 +27,7 @@
 			<text lang="de">Bearbeiten</text>
 			<text lang="en">Edit</text>
 		</name>
-		<href>javascript:template_edit</href>
+		<href>javascript():template_edit</href>
 		<title>
 			<text lang="de">Rahmen bearbeiten</text>
 			<text lang="en">Edit frame</text>
@@ -34,7 +41,7 @@
 			<text lang="de">Bewegen</text>
 			<text lang="en">Move</text>
 		</name>
-		<href>javascript:template_move</href>
+		<href>javascript():template_move</href>
 		<title>
 			<text lang="de">Rahmen bewegen</text>
 			<text lang="en">Move frame</text>
@@ -48,7 +55,7 @@
 			<text lang="de">Löschen</text>
 			<text lang="en">Delete</text>
 		</name>
-		<href>javascript:template_delete</href>
+		<href>javascript():template_delete</href>
 		<title>
 			<text lang="de">Rahmen löschen</text>
 			<text lang="en">Delete frame</text>
@@ -62,7 +69,7 @@
 			<text lang="de">Kopieren</text>
 			<text lang="en">Copy</text>
 		</name>
-		<href>javascript:template_copy</href>
+		<href>javascript():template_copy</href>
 		<title>
 			<text lang="de">Rahmen kopieren</text>
 			<text lang="en">Copy frame</text>
@@ -95,7 +102,7 @@
 			<text lang="de">Abbrechen</text>
 			<text lang="en">Cancel</text>
 		</name>
-		<href>javascript:template_cancel</href>
+		<href>javascript():template_cancel</href>
 		<title>
 			<text lang="de">Änderungen verwerfen</text>
 			<text lang="en">Abort changes</text>
@@ -110,16 +117,17 @@
 
 	<icon>
 		<name>
-			<text lang="de">Beenden</text>
+			<text lang="de">Verlassen</text>
 			<text lang="en">Exit</text>
 		</name>
-		<href>referer()</href>
+		<href>current()</href>
 		<title>
-			<text lang="de">Editor beenden</text>
+			<text lang="de">Editor verlassen</text>
 			<text lang="en">Exit editor</text>
 		</title>
 		<image>toolbox_exit.png</image>
 		<disabled>toolbox_exit_disabled.png</disabled>
 	</icon>
+
 </toolbox>
 

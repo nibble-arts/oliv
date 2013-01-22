@@ -40,27 +40,14 @@ class article extends OLIVModule
   {
     global $_argv;
 
-		$articleName = (string)$header->param->content;
 
 // load content
 		$article = OLIVModule::load_content($header);
 		$this->content = $article;
 
 
-// load index file
-//		OLIVIndex::search("arbeiten");
-
-
-// create index file
-/*		$index = new OLIVIndex();
-		$textNodes = $article->XPath("//text");
-
-
-		foreach ($textNodes as $text)
-		{
-			$index->insertText((string)$text,"article:$articleName");
-		}*/
-
+// check activities
+		$this->activities($header,$this->content);
 
 
 // add source and textname attribute recursive
@@ -75,6 +62,32 @@ class article extends OLIVModule
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);
 		}
+  }
+
+
+//------------------------------------------------------------------------------
+  private function activities($header,$article)
+  {
+// create index file
+		switch (argv::action())
+		{
+			case "create_index":
+
+				$articleName = (string)$header->param->content;
+				$index = new OLIVIndex();
+				$textNodes = $article->XPath("//text");
+
+				foreach ($textNodes as $text)
+				{
+					$index->insertText((string)$text,"article:$articleName",(string)$text['lang']);
+				}
+				break;
+
+			case "delete_index":
+				argv::remove("action");
+				break;
+		}
+
   }
 }
 

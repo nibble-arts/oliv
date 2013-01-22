@@ -57,6 +57,8 @@ class routePlugin
 				if (!($lang = (string)$nodes[$i]['lang']))
 					$lang = status::lang();
 
+				$href = str_replace(array(";"),array("&"),$href);
+
 				$hrefArray = explode(":",$href);
 
 				switch($hrefArray[0])

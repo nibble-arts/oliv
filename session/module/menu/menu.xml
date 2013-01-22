@@ -33,7 +33,6 @@
 		<test owner='admin' group='user' access='774' />
 <!--		<redirect />-->
 		<spring/>
-		<template_edit/>
   </main>
 
   <admin template='side' group='edit' access='744'>

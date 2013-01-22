@@ -119,7 +119,7 @@ class OLIVCore
 
 // initialise indexing engine
     $this->index = new OLIVIndex();
-//    $this->index->insertText("ich bin ein testtest");
+//    $this->index->insertText("ich bin ein seltsames wesen");
 
 // initialise router
     $this->route = new OLIVRoute();

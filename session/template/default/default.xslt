@@ -34,55 +34,61 @@
 
 
 	<xsl:template match='/'>
-		<div id='oliv_site' background-image='oliv_leaves'>
-		  <div id='oliv_page'>
+		<page>
+			<div id="oliv_toolbox">
+				<xsl:apply-templates select="//oliv_toolbox"/>
+			</div>
 
-				<div id='oliv_header'>
-		      <div id='oliv_login'>
-				    <xsl:apply-templates select='//oliv_login'/>
-					</div>
-			    <xsl:apply-templates select='//oliv_header'/>
+			<div id='oliv_site' background-image='oliv_leaves'>
+				<div id='oliv_page'>
 
-					<span class="oliv_clear"/>
-		    </div>
+					<div id='oliv_header'>
+				    <div id='oliv_login'>
+						  <xsl:apply-templates select='//oliv_login'/>
+						</div>
+					  <xsl:apply-templates select='//oliv_header'/>
+
+						<span class="oliv_clear"/>
+				  </div>
 		
-<!--		    <div id='oliv_top'>
-		      <div id='oliv_search'>
-				    <xsl:apply-templates select='//oliv_search'/>
-			    </div>
-					<span class="oliv_clear"/>
-		    </div>-->
-		    
-		    <span id='oliv_main'>
-		    	<table width="100%"><tr>
-		    		<td class="oliv_left">
-						  <div id='oliv_left'>
-						    <div id='oliv_left1'>
-						    	<xsl:apply-templates select='//oliv_left1'/>
+	<!--		    <div id='oliv_top'>
+				    <div id='oliv_search'>
+						  <xsl:apply-templates select='//oliv_search'/>
+					  </div>
+						<span class="oliv_clear"/>
+				  </div>-->
+				  
+				  <span id='oliv_main'>
+				  	<table width="100%"><tr>
+				  		<td class="oliv_left">
+								<div id='oliv_left'>
+								  <div id='oliv_left1'>
+								  	<xsl:apply-templates select='//oliv_left1'/>
+									</div>
+								  <div id='oliv_left2'>
+								  	<xsl:apply-templates select='//oliv_left2'/>
+									</div>
+								  <div id='oliv_left3'>
+								  	<xsl:apply-templates select='//oliv_left3'/>
+									</div>
 								</div>
-						    <div id='oliv_left2'>
-						    	<xsl:apply-templates select='//oliv_left2'/>
+								<span class="oliv_clear"/>
+							</td>
+							<td class='oliv_content'>
+								<div id="oliv_content">
+								  <xsl:apply-templates select='//oliv_content'/>
 								</div>
-						    <div id='oliv_left3'>
-						    	<xsl:apply-templates select='//oliv_left3'/>
-								</div>
-						  </div>
-							<span class="oliv_clear"/>
-						</td>
-						<td class='oliv_content'>
-					  	<div id="oliv_content">
-						    <xsl:apply-templates select='//oliv_content'/>
-						  </div>
 
-							<span class="oliv_clear"/>
-						</td>
-					</tr></table>
-		    </span>
-		    <div id='oliv_footer'>
-	        <xsl:apply-templates select='//oliv_footer'/>
-			  </div>
-		  </div>
-		</div>
+								<span class="oliv_clear"/>
+							</td>
+						</tr></table>
+				  </span>
+				  <div id='oliv_footer'>
+			      <xsl:apply-templates select='//oliv_footer'/>
+					</div>
+				</div>
+			</div>
+		</page>
 	</xsl:template>
 
 
