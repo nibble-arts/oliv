@@ -15,6 +15,6 @@
 		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>
 		<oliv_contact />
 
-		<oliv_search mod="search">target:search;</oliv_search>
+		<oliv_search mod="search">target:spring;</oliv_search>
 	</content>
 </page>

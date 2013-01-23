@@ -166,8 +166,8 @@ class OLIVCore
 		$filePerm = substr(sprintf('%o',fileperms(session_path(""))),4);
 
 // check for write permission for all
-//		if (!($filePerm & 0x0002))
-//			 die("core.php - no write permissions in session dir");
+		if (!($filePerm & 0x0002))
+			 die("core.php - no write permissions in session dir");
 
 
 

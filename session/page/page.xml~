@@ -96,19 +96,4 @@ The status defines the visibility:
 			<text lang='en'>Editor to create and edit templates</text>
 		</title>
 	</template_edit>
-
-	<search>
-		<name>
-			<text lang='de'>Suchergebnis</text>
-			<text lang='en'>Search result</text>
-		</name>
-		<friendly_name>
-			<text lang='de'>Suchergebnis</text>
-			<text lang='en'>Search_result</text>
-		</friendly_name>
-		<title>
-			<text lang='de'>Liste der Suchergebnisse</text>
-			<text lang='en'>List of the search results</text>
-		</title>
-	</search>
 </pages>
