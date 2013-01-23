@@ -37,18 +37,31 @@ class OLIVIndex
 {
 
 //------------------------------------------------------------------------------
-// create index xml object
+// load index idx xml object
   public function __construct()
   {
     global $_INDEX;
 
-		if (!$_INDEX = sessionxml_load_file("index.xml"))
+		if (!$_INDEX = sessionxml_load_file("index.idx"))
 	    $_INDEX = new simpleXmlElement("<index><root/></index>");
 
 //		echoall($_INDEX);
   }
 
 
+//------------------------------------------------------------------------------
+// check if index has entries
+	public static function is_index()
+	{
+		global $_INDEX;
+
+		if (count($_INDEX->root->children()))
+			return TRUE;
+		else
+			return FALSE;
+	}
+
+	
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -166,7 +179,7 @@ class OLIVIndex
 //echoall($_INDEX);
 
 // write index to disk
-		$fh = fopen("session/index.xml","w");
+		$fh = fopen("session/index.idx","w");
 		fwrite($fh,$_INDEX->asXML());
 		fclose($fh);
 	}

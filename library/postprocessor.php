@@ -50,7 +50,7 @@ class OLIVPostProcessor extends OLIVCore
 // call plugins
 //		$pageXml = olivxml_create($page,"page");
 		
-		$pageXml = OLIVPlugin::call(new simpleXmlElement($page));
+		$pageXml = OLIVPlugin::call(new simpleXmlElement($page),"render");
 
 
 //------------------------------------------------------------------------------

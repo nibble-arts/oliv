@@ -36,6 +36,7 @@ class login extends OLIVModule
 {
   function __construct($header)
   {
+//TODO use https when loggin in
 // use ssh for login
 //		$host = "https://" . OLIV_SSH_HOST . "/" . OLIV_BASE . "index.php";
 		$host = "http://" . system::OLIV_SSH_HOST() . "/" . system::OLIV_BASE() . "index.php";

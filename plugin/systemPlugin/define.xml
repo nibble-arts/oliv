@@ -3,10 +3,10 @@
 <plugin>
 	<class>systemPlugin</class>
 
-	<method>
+	<render>
 		<oliv_name>name</oliv_name>
 		<oliv_autor>autor</oliv_autor>
 		<oliv_version>version</oliv_version>
-	</method>
+	</render>
 </plugin>
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<search>
+	<search>
+		<text lang="de">Suchen</text>
+		<text lang="en">Search</text>
+	</search>
+	<searchtext>
+		<text lang="de">Suchtext</text>
+		<text lang="en">search text</text>
+	</searchtext>
+</search>

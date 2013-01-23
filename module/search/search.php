@@ -31,13 +31,15 @@ if (!system::OLIVCORE()) die ("mod_search::search.php - OLIVCore not present");
 if (!system::OLIVINDEX()) die ("mod_search::search.php - OLIVIndext not present");
 if (!system::OLIVERROR()) die ("mod_search::search.php - OLIVError not present");
 
-class search
+class search extends OLIVModule
 {
-  var $o;
   public function __construct($header)
   {
-    OLIVIndex::load(OLIV_MODULE_PATH,"article.idx");
-    
+  	$this->content = OLIVModule::load_content($header);
+  	$this->template = OLIVModule::load_template($header);
+
+// add search result target page
+  	$this->content->target = $header->param->target;
   }
 }
 

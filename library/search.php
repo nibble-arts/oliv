@@ -29,8 +29,30 @@
 
 if (!system::OLIVCORE()) die ("search.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("search.php - OLIVError not present");
+if (!system::OLIVINDEX()) die ("search.php - OLIVIndex not present");
 
-class OLIVSearch extends OLIVCore
+class OLIVSearch
 {
+	public function __construct()
+	{
+		global $_INDEX;
+
+// check for index
+		if (!OLIVIndex::is_index())
+			OLIVError::fire("search.php - no index found");
+	}
+
+
+	public function getSearch()
+	{
+		$content = new simpleXmlElement("<search></search>");
+		
+		if (argv::action() == "search")
+		{
+			OLIVPlugin::call($content,"search");
+
+			status::set("search",$content);
+		}
+	}
 }
 ?>

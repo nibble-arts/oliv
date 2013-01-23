@@ -47,14 +47,16 @@ class OLIVPlugin
 // $type ... type of plugin: render, search, etc.
 
 // $options ... array of options for plugin call
-  static public function call($page)
+  static public function call($page,$type)
   {
     global $_PLUGIN;
 
-// get plugin methods
-		$methods = $_PLUGIN->XPath("//method");
 
-		$page = OLIVPlugin::parse_methods($page,$methods);
+// call xml render plugins
+// get plugin methods
+		$methods = $_PLUGIN->XPath("//{$type}");
+
+		$page = OLIVPlugin::parse_methods($page,$methods,$type);
 
 //------------------------------------------------------------------------------
 		return $page;
@@ -63,7 +65,7 @@ class OLIVPlugin
   
 //------------------------------------------------------------------------------
 // parse methods
-	private static function parse_methods($page,$methods)
+	private static function parse_methods($page,$methods,$type)
 	{
 // loop over plugin node names
 		foreach($methods as $plugin)
@@ -75,12 +77,12 @@ class OLIVPlugin
 			else
 				$class = "";
 
-			$editclass = $plugin->XPath("../editclass");
+/*			$editclass = $plugin->XPath("../editclass");
 			if (count($editclass))
 				$editclass = (string)array_pop($editclass);
 			else
 				$editclass = "";
-
+*/
 
 // loop over plugin methods
 			foreach($plugin as $method)
@@ -99,7 +101,7 @@ class OLIVPlugin
 // call plugin
 				if (class_exists($class))
 				{
-					$class::$classMethod($page,$name);
+					$class::$classMethod($page,$name,$type);
 				}
 				else
 					OLIVError::fire("postprocessor.php::process - class $class not found");
@@ -128,9 +130,9 @@ class OLIVPlugin
           $file .= "/";
 
       // get define.xml
-          if (olivfile_exists($path . $file . "define.xslt"))
+          if (olivfile_exists($path . $file . "define.xml"))
           {
-            $xml = olivxml_load_file($path . $file . "define.xslt");
+            $xml = olivxml_load_file($path . $file . "define.xml");
 
 //TODO include plugin script
             // get type of plugin

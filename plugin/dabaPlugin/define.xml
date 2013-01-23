@@ -3,9 +3,9 @@
 <plugin>
 	<class>dabaPlugin</class>
 
-	<method>
+	<render>
 		<daba_init>daba_init</daba_init>
 		<daba>daba</daba>
 		<daba_image>daba_image</daba_image>
-	</method>
+	</render>
 </plugin>

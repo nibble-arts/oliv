@@ -51,12 +51,9 @@
 						<span class="oliv_clear"/>
 				  </div>
 		
-	<!--		    <div id='oliv_top'>
-				    <div id='oliv_search'>
-						  <xsl:apply-templates select='//oliv_search'/>
-					  </div>
-						<span class="oliv_clear"/>
-				  </div>-->
+			    <div id='oliv_search'>
+					  <xsl:apply-templates select='//oliv_search'/>
+				  </div>
 				  
 				  <span id='oliv_main'>
 				  	<table width="100%"><tr>

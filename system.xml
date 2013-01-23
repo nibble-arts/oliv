@@ -61,7 +61,6 @@
     <file>user.php</file>
     <file>right.php</file>
     <file>route.php</file>
-    <file>search.php</file>
     <file>database.php</file>
     <file>template.php</file>
     <file>preprocessor.php</file>
@@ -70,9 +69,9 @@
     <file>page.php</file>
     <file>image.php</file>
     <file>index.php</file>
-    <file>search.php</file>
     <file>plugin.php</file>
-    <file>context.php</file>
+    <file>search.php</file>
+<!--    <file>context.php</file>-->
     <file>clipboard.php</file>
     <file>olivscript.php</file>
   </includes>

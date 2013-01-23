@@ -53,19 +53,16 @@ class formPlugin
 				{
 					$formMethod = $nodes[$i]["action"];
 
+					$nodes[$i]["method"] = "post";
+					$nodes[$i]["accept-charset"] = "utf-8";
 
 // if no action -> insert correct url
 					if(!$formMethod)
-					{
 						$nodes[$i]["action"] = OLIVRoute::makeUrl(status::lang(),status::url());
-						$nodes[$i]["method"] = "post";
-						$nodes[$i]["accept-charset"] = "utf-8";
-					}
 
-//TODO analyse the action attribute for intern page id
+// if action -> route url
 					else
-					{
-					}
+						$nodes[$i]["action"] = OLIVRoute::makeUrl(status::lang(),(string)$formMethod);
 				}
 				break;
 

@@ -3,7 +3,11 @@
 <plugin>
 	<class>textPlugin</class>
 
-	<method>
+	<render>
 		<textsource/>
-	</method>
+	</render>
+
+	<search>
+		<text/>
+	</search>
 </plugin>

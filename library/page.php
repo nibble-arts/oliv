@@ -105,7 +105,7 @@ class OLIVPage
 // search for plugins and call methods
 
 			if ($xml->content->include)
-				OLIVPlugin::call($xml->content);
+				OLIVPlugin::call($xml->content,"page");
 
 //------------------------------------------------------------------------------
 

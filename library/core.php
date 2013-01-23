@@ -52,6 +52,7 @@ class OLIVCore
   private $html; // html class
 
   private $index; // index object
+  private $search; // index object
 
   private $o; // ouput string
 
@@ -117,9 +118,15 @@ class OLIVCore
 // connect to database
 //    $this->daba = new OLIVDatabase($this->coreXml->_("core.database"));
 
+// load plugin metadata
+    $this->plugin = new OLIVPlugin();
+
 // initialise indexing engine
     $this->index = new OLIVIndex();
 //    $this->index->insertText("ich bin ein seltsames wesen");
+
+// initialise search engine
+    $this->search = new OLIVSearch();
 
 // initialise router
     $this->route = new OLIVRoute();
@@ -129,9 +136,6 @@ class OLIVCore
 
 // load module metadata
     $this->module = new OLIVModule();
-
-// load plugin metadata
-    $this->plugin = new OLIVPlugin();
 
 // load site template
     $this->template = new OLIVTemplate();
@@ -187,6 +191,13 @@ class OLIVCore
 
 		$this->template->load(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",$template);
   }
+
+
+// call search engine
+	public function search()
+	{
+		$this->search->getSearch();
+	}
 
 
 // call preprocessor

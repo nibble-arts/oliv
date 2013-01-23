@@ -3,7 +3,7 @@
 <plugin>
 	<class>imgPlugin</class>
 
-	<method>
+	<render>
 		<img>img</img>
-	</method>
+	</render>
 </plugin>

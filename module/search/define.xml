@@ -6,8 +6,12 @@
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
     
+  <template>template/</template>
+  <content>content/</content>
+
+  <default_language>de</default_language>
+
   <script>
     <main>search.php</main>
-    <default_language>de_DE</default_language>
   </script>
 </module>  

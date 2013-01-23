@@ -52,6 +52,7 @@
 
 // process page
       $core->loadContent(); // load page content
+			$core->search(); // get search result
       $core->preProcessor(); // call preprocessor
 			$core->translator(); // call translator
 	    $core->render(); // render site

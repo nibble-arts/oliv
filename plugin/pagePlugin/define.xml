@@ -3,7 +3,7 @@
 <plugin>
 	<class>pagePlugin</class>
 
-	<method>
+	<page>
 		<include/>
-	</method>
+	</page>
 </plugin>
