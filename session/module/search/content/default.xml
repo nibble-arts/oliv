@@ -9,4 +9,13 @@
 		<text lang="de">Suchtext</text>
 		<text lang="en">search text</text>
 	</searchtext>
+	<searchresult>
+		<text lang="de">Suchergebnis</text>
+		<text lang="en">Search result</text>
+	</searchresult>
+	<hits>
+		<text lang="de">Einträge gefunden</text>
+		<text lang="en">hits found</text>
+	</hits>
 </search>
+

@@ -101,6 +101,10 @@ div {
   font-style:italic;
 }
 
+.oliv_small {
+  font-size:75%;
+}
+
 .oliv_error {
   color:red;
   font-weight:bold;

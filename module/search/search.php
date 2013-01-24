@@ -35,8 +35,20 @@ class search extends OLIVModule
 {
   public function __construct($header)
   {
-  	$this->content = OLIVModule::load_content($header);
+// create temporary content xml
+// name different if used with different templates
+  	$templateName = (string)$header->param->template;
+  	if ($templateName)
+	  	$this->content = new simpleXmlElement("<search_{$templateName}/>");
+		else
+	  	$this->content = new simpleXmlElement("<search/>");
+		
+
+  	$tempContent = OLIVModule::load_content($header);
   	$this->template = OLIVModule::load_template($header);
+
+		olivxml_insert($this->content,$tempContent);
+		olivxml_insert($this->content->search_result,status::search_result());
 
 // add search result target page
   	$this->content->target = $header->param->target;

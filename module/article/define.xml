@@ -2,6 +2,10 @@
 
 <module>
   <name>article</name>
+  <title>
+  	<text lang="de">Artikel</text>
+  	<text lang="en">Artikel</text>
+  </title>
   <access>system</access>
   <version>1.0</version>
   <author>Thomas Winkler</author>

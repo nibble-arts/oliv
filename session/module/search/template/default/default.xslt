@@ -12,7 +12,7 @@
 <!-- search text field -->
 				<input type="text" name="search">
 					<xsl:attribute name="value">
-						<xsl:value-of select="searchtext"/>
+						<xsl:value-of select="'$search'"/>
 					</xsl:attribute>
 				</input>
 

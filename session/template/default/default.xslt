@@ -111,10 +111,6 @@
 			</xsl:attribute>
 		</xsl:if>
 
-		<xsl:attribute name="articlename">
-			<xsl:value-of select="name($node)"/>
-		</xsl:attribute>
-
 		<xsl:value-of select="$node"/>
 	</xsl:template>
 

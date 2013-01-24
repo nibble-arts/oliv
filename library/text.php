@@ -183,42 +183,101 @@ class OLIVText
 
 
 
-/*
-//		$nodes = $xml->XPath("//text");
 
-			if ($parentNode)
-			{
-
-// if no source in parent, write source
-				if (!$parentNode[0]['source'])
-				{
-					$parentNode[0]['source'] = $path . "::" . $UUID++;
-				}
-
-
-// check for node write permission
-//echoall($entry);
-				if ($parentNode[0])
-				{
-// if no read permission, remove node
-					if (!OLIVRight::r($parentNode[0]))
-					{
-						unset($parentNode[0]['source']);
-						unset($parentNode[0]->text);
-					}
-
-
-// if no write permission, remove source
-					elseif (!OLIVRight::w($parentNode[0]->access))
-					{
-						unset($parentNode[0]->access['source']);
-					}
-				}
-			}*/
-//			echoall($nodes);
 		}
 	}
 
+
+//------------------------------------------------------------------------------
+// highlight a string
+// text ... multilingual original text string
+// string ... lowercase text without accesnts
+// overhang ... length before and after the searchstring to be displayed
+
+// return hightlighted string or false if nothing done
+	static public function highlight($text,$searchString,$class,$overhang = 0)
+	{
+		
+// parse string without accesnts and lowercase for searchstring
+		$stringArray = array();
+		$textArray = explode(" ",$text);
+		$retArray = array();
+
+		$pattern = "~$searchString~";
+		$string = strtolower(OLIVText::remove_accents((string)$text));
+
+		preg_match_all($pattern,$string,$matches,PREG_OFFSET_CAPTURE);
+
+// split the string
+		$start = 0;
+		$offset = 0;
+
+		if ($matches)
+		{
+			if (count($matches[0]))
+			{
+				return $text;
+//TODO solve the problem with the utf8 chars
+
+/*				foreach ($matches[0] as $match)
+				{
+					$delimitor = "";
+					
+// insert part from previous start
+					$length = $match[1] - $start;
+
+					if ($overhang)
+					{
+						if ($length > $overhang)
+						{
+	// text longer than 2 times the overhang
+	// cut away the rest
+							if ($length > 2*$overhang)
+							{
+								array_push($stringArray,$delimitor . substr((string)$text,$start,$overhang) . "... ");
+
+								$start = $match[1] - $overhang;
+								$length = $overhang;
+								$delimitor = " ...";
+							}
+						}
+					}
+
+					if ($length)
+						array_push($stringArray,$delimitor . substr((string)$text,$start,$length));
+
+// insert hightlighted searchstring
+					$length = strlen($searchString);
+					$start = $match[1];
+
+					if ($length)
+						array_push($stringArray,"{span class='$class'}" . substr((string)$text,$start,$length) . "{/span}");
+
+					$start = $start + $length;
+				}*/
+			}
+			else
+				return FALSE;
+
+
+	// rest of text longer than overhang
+	// cut away the rest
+/*			$length = strlen($text) - $start;
+			
+			if ($overhang)
+			{
+				if ($length > $overhang)
+				{
+					$length = $overhang;
+					$delimitor = "...";
+				}
+			}
+
+			array_push($stringArray,substr((string)$text,$start,$length) . $delimitor);
+
+			return implode("",$stringArray);*/
+		}
+	}
 
 
 //------------------------------------------------------------------------------
@@ -334,11 +393,14 @@ class OLIVText
 
 
 // do transformation
-		$string = strtr( $string, $trans);
+		$string = strtr($string, $trans);
 
 // remove all remaining incorrect characters
-		return preg_replace('~[^a-zA-Z0-9]+~', '', $string);
+		return preg_replace('~[^a-zA-Z0-9 .,;:!?\-_]+~', '', $string);
 	}
+
+
+	
 }
 
 ?>

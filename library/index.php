@@ -90,14 +90,16 @@ class OLIVIndex
 			foreach ($result as $entry)
 			{
 				$resArray = explode(":",(string)$entry);
-				$type = $resArray[0];
-				$name = $resArray[1];
-				$value = $resArray[2];
 
-				$lang = $entry['lang'];
+				$page = $resArray[0];
+				$type = $resArray[1];
+				$name = $resArray[2];
+				$lang = $resArray[3];
+				$value = $resArray[4];
 				
-				$newResult = new simpleXmlElement("<result><type>{$type}</type><name>{$name}</name><value lang='{$lang}'>{$value}</value></result>");
-				olivxml_insert($search,$newResult);
+				$newResult = new simpleXmlElement("<result><page>{$page}</page><type>{$type}</type><name>{$name}</name><lang>{$lang}</lang><value>{$value}</value></result>");
+
+				olivxml_insert($search,$newResult,"ALL");
 			}
 
 			return $search;
@@ -170,7 +172,7 @@ class OLIVIndex
 
 			foreach($suffArray as $suffix)
 			{
-				$this->insertWord($suffix,$url . ":$word",$lang);
+				$this->insertWord($suffix,status::url() . ":" . $url . ":$lang:$word",$lang);
 			}
 		}
 

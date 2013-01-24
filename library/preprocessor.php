@@ -126,14 +126,14 @@ class OLIVPreProcessor extends OLIVCore
 													}
 												}
 
-	// if no content -> create dummy template for empty content
+// if no content -> create dummy template for empty content
 												if (!$module->content() and is_object($module->content()))
 												{
 													$scriptName = (string)$script->name;
 													$modName = $module->content()->getName();
 
 
-//TODO define a dummy template in the session.xml to be used
+// define a dummy template in the session.xml to be used
 // create dummy stylesheet for empty content
 													$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
 													$tempSting .= "<xsl:template match='" . $modName . "'>";
@@ -242,16 +242,15 @@ class OLIVPreProcessor extends OLIVCore
 
 				$filePath = session_path($fileName) . "/link_" . $linkArray[0] . "_to_" . $linkArray[1] . ".xslt";
 			
-
 // check for write permission for all
-				$filePerm = substr(sprintf('%o',fileperms($filePath)),4);
+//				$filePerm = substr(sprintf('%o',fileperms($fileName)),4);
 
-				if (!($filePerm & 0x0002))
-					 OLIVError::fire("preprocessor.php - no write permissions in dir $fileName");
+//				if (!($filePerm & 0x0002))
+//				 OLIVError::fire("preprocessor.php - no write permissions in dir $fileName");
 
 // write file to disk
-				else
-				{
+//				else
+//				{
 
 					$fileHandle = fopen($filePath,"w");
 					if ($fileHandle)
@@ -259,7 +258,7 @@ class OLIVPreProcessor extends OLIVCore
 						fputs($fileHandle,$tempXsl->asXML());
 						fclose($fileHandle);
 					}
-				}
+//				}
 
 
 // create include string

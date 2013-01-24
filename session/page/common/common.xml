@@ -13,7 +13,6 @@
 
 		<oliv_title class='oliv_title'>title</oliv_title>
 		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>
-		<oliv_contact />
 
 		<oliv_search mod="search">target:search;</oliv_search>
 	</content>

@@ -51,7 +51,7 @@ class OLIVSearch
 		{
 			OLIVPlugin::call($content,"search");
 
-			status::set("search",$content);
+			status::set("search_result",$content);
 		}
 	}
 }

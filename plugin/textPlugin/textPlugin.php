@@ -50,14 +50,50 @@ class textPlugin
 		{
 // call text search
 			case 'search':
-//TODO merge result with status::set()
-				olivxml_insert($content,textPlugin::search());
+// merge result with status::set()
+				$searchString = argv::search();
+				$result = textPlugin::search();
+
+				if ($result)
+				{
+// get translation of pages
+					$pages = $result->XPath("./result");
+
+
+// insert text snippets with highlighted searchString
+					foreach ($pages as $page)
+					{
+						$moduleName = (string)$page->type;
+						$name = (string)$page->name;
+						$value = (string)$page->value;
+
+						$article = OLIVModule::load_xml("",$moduleName . "/" . "content/",$name . ".xml");
+
+						$texts = $article->XPath("//text");
+
+						foreach ($texts as $text)
+						{
+// highlight seachstring
+							if ($highlighted = OLIVText::highlight((string)$text,$searchString,"highlight",25))
+							{
+								$page->summary = $highlighted;
+	// add language
+								$page->lang = (string)$text['lang'];
+							}
+						}
+
+// insert page name
+						olivxml_insert($page->pagename,OLIVRoute::getName((string)$page->page));
+					}
+
+					olivxml_insert($content,$result);
+				}
 				break;
 
 // call renderer
 			case 'render':
 				textPlugin::render($content);
-						break;
+				break;
 		}
   }
 
@@ -67,6 +103,7 @@ class textPlugin
 	private static function search()
 	{
 		$result = OLIVIndex::search(argv::search());
+
 		if ($result)
 			return $result;
 	}

@@ -186,7 +186,12 @@ class OLIVModule
 // inserts source attribute to all text nodes for editing
 	public static function load_xml($header,$path,$name)
 	{
-		$filePath = system::OLIV_MODULE_PATH() . (string)$header->name . "/";
+		$filePath = system::OLIV_MODULE_PATH();
+
+// use module name from header
+		if ($header)
+			$filePath .= (string)$header->name . "/";
+
 		$filePath .= $path;
 
 // load file
