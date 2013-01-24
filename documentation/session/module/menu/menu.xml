@@ -1,18 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <menu>
-  <top template='tabs'>
-    <index />
-    <download  owner='admin' group='admin' access='770' />
-  </top>
-  
-  <main template='side'>
-    <index />
-    <download group='editor' access='776' />
-    <admin owner='admin' group='admin' access='760' />
-  </main>
+  <main>
+  	<index/>
+		<function/>
+		<plugins/>
+		<modules/>
+		<templates/>
+		<content/>
+		<administration/>
+	</main>
 
-  <admin template='side'>
-    <download />
-  </admin>
+	<function>
+		<function_basics/>
+		<core/>
+		<init/>
+		<route/>
+		<page/>
+		<preprocessor/>
+		<render/>
+		<postprocessor/>
+	</function>
+	
+  <plugins>
+  	<plugin_basics/>
+  	<search_plugin/>
+  	<page_plugin/>
+  	<render_plugin/>
+  </plugins>
+  
+  <modules>
+  	<module_basics/>
+  	<article_module/>
+  	<menu_module/>
+  	<login_module/>
+  	<search_module/>
+  	<toolbar_module/>
+  </modules>
+  
+  <templates>
+  	<template_basics/>
+  	<skins/>
+  	<page_templates/>
+  	<global_templates/>
+  </templates>
+
+	<content>
+		<content_basics/>
+		<static_content/>
+		<module_content/>
+	</content>
+	
+	<administration>
+		<admin_basics/>
+		<permissions/>
+		<text_edit/>
+		<template_edit/>
+	</administration>
 </menu>

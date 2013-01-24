@@ -1,0 +1,16 @@
+#module_search_field {
+	padding:2px;
+}
+
+#search_result_box {
+	border:1px solid;
+	width:100%;
+	margin-bottom:2px;
+	background-color:lightyellow;
+	padding-left:2px;
+}
+
+.highlight {
+	font-weight:bold;
+	color:red;
+}

@@ -88,7 +88,8 @@ class menu extends OLIVModule
     {
 // get name of menu
 			$menuName = $menu->getName();
-	    $menuXml = new simpleXmlElement("<menu_$menuName></menu_$menuName>");
+//	    $menuXml = new simpleXmlElement("<menu_$menuName></menu_$menuName>");
+	    $menuXml = new simpleXmlElement("<menu></menu>");
 
 //------------------------------------------------------------------------------
 // loop over menu entries

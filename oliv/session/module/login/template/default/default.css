@@ -1,0 +1,21 @@
+#module_login_field {
+	padding:2px;
+}
+
+#module_login_incorrect {
+	padding:2px;
+	background-color:red;
+	color:white;
+	text-align:center;
+}
+
+.module_login {
+	font-size:0.8em;
+	font-style:italic;
+}
+
+.module_login_su {
+	font-size:0.8em;
+	font-style:italic;
+	color:red;
+}

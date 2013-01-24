@@ -49,19 +49,23 @@ class OLIVPage
   	$templateName = "";
   	
 		$xml = OLIVPage::_load($pageName);
-		$this->structure = $xml->content;
+
+		if ($xml)
+		{
+			$this->structure = $xml->content;
 
 
 // look for template node
-		$nodes = $this->structure->XPath("//template");
-		if ($nodes)
-			$templateName = (string)$nodes[0];
+			$nodes = $this->structure->XPath("//template");
+			if ($nodes)
+				$templateName = (string)$nodes[0];
 
-		if (!$templateName)
-			$templateName = "default";
+			if (!$templateName)
+				$templateName = "default";
 
 // store template name
-		$this->template = $templateName;
+			$this->template = $templateName;
+		}
   }
 
 
@@ -127,13 +131,17 @@ class OLIVPage
 
 //------------------------------------------------------------------------------
 // insert xml in page structure
-	public function insert($xml)
+	public function insert($xml,$root)
 	{
 		$insertName = $xml->getName();
 
 // insert content only once
-		if (!$this->structure->$insertName)
-			olivxml_insert($this->structure,$xml,"ALL");
+		if (!$this->structure->$root->$insertName)
+		{
+			$tempXml = new simpleXmlElement("<$root/>");
+			olivxml_insert($tempXml,$xml,"ALL");
+			olivxml_insert($this->structure,$tempXml,"ALL");
+		}
 	}
 
 

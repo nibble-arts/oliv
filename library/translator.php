@@ -45,20 +45,23 @@ class OLIVTranslator
 	{
 		$content = $page->structure();
 
-		$lang = status::lang();
-		$default_lang = system::OLIV_DEFAULT_LANG();
-
-		$texts = $content->XPath("//*/*[text]");
-
-
-// translate all texts
-		for ($i = 0;$i < count($texts);$i++)
+		if ($content)
 		{
-			$text = OLIVText::xml($texts[$i]);
+			$lang = status::lang();
+			$default_lang = system::OLIV_DEFAULT_LANG();
 
-// set correct language in node
-			unset($texts[$i]->text);
-			$texts[$i]->text = $text;
+			$texts = $content->XPath("//*/*[text]");
+
+
+	// translate all texts
+			for ($i = 0;$i < count($texts);$i++)
+			{
+				$text = OLIVText::xml($texts[$i]);
+
+	// set correct language in node
+				unset($texts[$i]->text);
+				$texts[$i]->text = $text;
+			}
 		}
 
 //echoall($content);

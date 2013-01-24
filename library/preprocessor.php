@@ -46,6 +46,7 @@ class OLIVPreProcessor extends OLIVCore
   {
     $i = 0;
     $templates = array();
+    $xmlString = "";
 
 
 //------------------------------------------------------------------------------
@@ -122,7 +123,7 @@ class OLIVPreProcessor extends OLIVCore
 												{
 													if (is_object($module->content()))
 													{
-															$templates[$entry->getName() . "::" . $module->content()->getName()] = $tempTemplate;
+														$templates[$entry->getName() . "::" . $module->content()->getName()] = $tempTemplate;
 													}
 												}
 
@@ -170,7 +171,7 @@ class OLIVPreProcessor extends OLIVCore
 												}
 
 	// insert module content in page content
-												$page->insert($module->content());
+												$page->insert($module->content(),$entry->getName());
 											}
 										}
 										else
@@ -218,6 +219,7 @@ class OLIVPreProcessor extends OLIVCore
 			OLIVError::fire("preprocessor.php::process - no page template found");
 
 
+//echoall($templates);
 //------------------------------------------------------------------------------
 // include module templates
 		foreach ($templates as $key => $entry)
@@ -229,7 +231,7 @@ class OLIVPreProcessor extends OLIVCore
 // create stylesheet to link module template to page area
 				$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
 				$tempSting .= "<xsl:template match='" . $linkArray[0] . "'>";
-				$tempSting .= "<xsl:apply-templates select='../" . $linkArray[1] . "'/>";
+				$tempSting .= "<xsl:apply-templates select='" . $linkArray[1] . "'/>";
 				$tempSting .= "</xsl:template>";
 				$tempSting .= "</xsl:stylesheet>";
 

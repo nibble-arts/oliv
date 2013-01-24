@@ -59,13 +59,16 @@ class OLIVRender extends OLIVCore
 //------------------------------------------------------------------------------
   public function page($page,$template)
   {
+  	if ($page->structure())
+  	{
 // set parameters for stylesheet display
-		$template->stylesheet->setParameter("","lang",status::lang());
-		$template->stylesheet->setParameter("","user",status::OLIV_USER());
+			$template->stylesheet->setParameter("","lang",status::lang());
+			$template->stylesheet->setParameter("","user",status::OLIV_USER());
 
 
 // start stylesheet processor
-		return $template->stylesheet->transformToXML($page->structure());
+			return $template->stylesheet->transformToXML($page->structure());
+		}
   }
 }
 ?>

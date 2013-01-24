@@ -49,31 +49,33 @@ class OLIVPostProcessor extends OLIVCore
 //echoall($page);
 // call plugins
 //		$pageXml = olivxml_create($page,"page");
-		
-		$pageXml = OLIVPlugin::call(new simpleXmlElement($page),"render");
+		if ($page)
+		{
+			$pageXml = OLIVPlugin::call(new simpleXmlElement($page),"render");
 
 
 //------------------------------------------------------------------------------
 // convert page xml to html
-		if (sessionfile_exists(system::OLIV_TEMPLATE_PATH() . "post.xslt"))
-			$postStylesheet = sessionxml_load_file(system::OLIV_TEMPLATE_PATH() . "post.xslt");
-		else
-		{
-			OLIVError::fire("postprocessor.php::process - post.xslt file not found");
-			die();
-		}
+			if (sessionfile_exists(system::OLIV_TEMPLATE_PATH() . "post.xslt"))
+				$postStylesheet = sessionxml_load_file(system::OLIV_TEMPLATE_PATH() . "post.xslt");
+			else
+			{
+				OLIVError::fire("postprocessor.php::process - post.xslt file not found");
+				die();
+			}
 
-		$htmlProcessor = new XSLTProcessor();
-		$htmlProcessor->importStylesheet($postStylesheet);
-		$pageString = $htmlProcessor->transformToXML($pageXml);
+			$htmlProcessor = new XSLTProcessor();
+			$htmlProcessor->importStylesheet($postStylesheet);
+			$pageString = $htmlProcessor->transformToXML($pageXml);
 //echoall($pageXml->asXML());
 
 
 //------------------------------------------------------------------------------
 // run markup parser
-		$pageString = $this->markup($pageString);
+			$pageString = $this->markup($pageString);
 
-		return ($pageString);
+			return ($pageString);
+		}
   }
 
 

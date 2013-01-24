@@ -69,21 +69,24 @@ class textPlugin
 
 						$article = OLIVModule::load_xml("",$moduleName . "/" . "content/",$name . ".xml");
 
-						$texts = $article->XPath("//text");
-
-						foreach ($texts as $text)
+						if ($article)
 						{
-// highlight seachstring
-							if ($highlighted = OLIVText::highlight((string)$text,$searchString,"highlight",25))
+							$texts = $article->XPath("//text");
+
+							foreach ($texts as $text)
 							{
-								$page->summary = $highlighted;
-	// add language
-								$page->lang = (string)$text['lang'];
+// highlight seachstring
+								if ($highlighted = OLIVText::highlight((string)$text,$searchString,"highlight",25))
+								{
+									$page->summary = $highlighted;
+		// add language
+									$page->lang = (string)$text['lang'];
+								}
 							}
-						}
 
 // insert page name
-						olivxml_insert($page->pagename,OLIVRoute::getName((string)$page->page));
+							olivxml_insert($page->pagename,OLIVRoute::getName((string)$page->page));
+						}
 					}
 
 					olivxml_insert($content,$result);

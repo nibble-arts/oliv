@@ -181,9 +181,22 @@ class OLIVIndex
 //echoall($_INDEX);
 
 // write index to disk
-		$fh = fopen("session/index.idx","w");
-		fwrite($fh,$_INDEX->asXML());
-		fclose($fh);
+		$path = session_path("");
+		$name = "index.idx";
+		
+		if (file_exists($path))
+		{
+			$fh = fopen($path . $name,"w");
+			if ($fh)
+			{
+				fwrite($fh,$_INDEX->asXML());
+				fclose($fh);
+			}
+			else
+				OLIVError::fire("index.php - no write permission");
+		}
+		else
+			OLIVError::fire("index.php - directory $path don't exist");
 	}
 
 

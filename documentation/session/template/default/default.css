@@ -35,7 +35,6 @@ body {
 
 /* links */
 a {
-  font-weight:normal;
   text-decoration:none;
 }
 
@@ -57,29 +56,29 @@ img {
 }
 
 p {
-  line-height:1.2em;
+  line-height:1.1em;
   font-size:0.9em;
 }
 
 h1 {
   font-size:130%;
-  line-height:0em;
 }
 
 h2 {
   font-size:120%;
-  line-height:0em;
 }
 
 h3 {
   font-size:110%;
-  line-height:0em;
 }
 
 input {
   font-family:serif;
   font-style:italic;
-  font-size:60%;
+  font-size:0.8em;
+}
+
+div {
 }
 
 /*----------------------------------------------------------------------------*/
@@ -100,6 +99,10 @@ input {
   font-size:115%;
   font-weight:bold;
   font-style:italic;
+}
+
+.oliv_small {
+  font-size:75%;
 }
 
 .oliv_error {
@@ -126,35 +129,47 @@ input {
 	background-color:#ffd0d0;
 }
 
+.oliv_clear {
+	clear:both;
+}
+
 /*----------------------------------------------------------------------------*/
 /* id definition */
+#noscript {
+	background-color:#ff9050;
+	text-align:center;
+	height:30px;
+}
+
 #oliv_site {
   z-index:0;
   margin:0;
   padding:0;
   width:100%;
-  height:1000px;
   background-repeat:repeat-x;
   background-position:center center;
 }
 
 #oliv_page {
-  z-index:0;
+	position:relative;
+  z-index:1;
   margin:0 auto;
-  width:900px;
-  height:500px;
-}
-
-#oliv_space {
-  height:10px;
+  width:90%;
+  min-height:600px;
 }
 
 #oliv_header {
-  margin:0 auto;
-  width:900px;
+  width:100%;
   height:80px;
   background-repeat:no-repeat;
   background-position:center bottom;
+}
+
+#oliv_toolbox {
+	position:absolute;
+	right:0px;
+	z-index:3;
+	height:100%;
 }
 
 #oliv_title {
@@ -163,15 +178,14 @@ input {
 }
 
 #oliv_login {
-  text-align:right;
-  width:900px;
-  height:0px;
+	float:right;
+  text-align:left;
+  margin-top:0px;
 }
 
 #oliv_top {
   margin:0 auto;
-  float:left;
-  width:900px;
+  width:100%;
   height:30px;
   background-repeat:no-repeat;
 }
@@ -180,51 +194,39 @@ input {
   float:right;
   margin-top:-24px;
   height:24px;
-  width:150px;
 }
 
 #oliv_main {
-  margin:0 auto;
-  float:left;
-  width:1000px;
+	float:left;
+  width:100%;
+  margin-top:15px;
 }
 
 #oliv_left {
-  float:left;
-  width:200px;
+	margin-top:0px;
 }
 
-#oliv_line {
-	float:right;
-	width:1px;
-	height:500px;
-	background-color:#dcdc78;
-  background-repeat:repeat-y;
+.oliv_left {
+	vertical-align:top;
+	width:210px;
+}
+
+.oliv_content {
+	vertical-align:top;
 }
 
 #oliv_left1,#oliv_left2,#oliv_left3 {
   margin-top:5px;
 }
 
-#oliv_center{
-  float:left;
-  width:700px;
-	margin-left:10px;
-}
-
 #oliv_content {
-  min-height:150px;
 }
 
 #oliv_footer {
-	font-size:0.9em;
-	color:grey;
+  margin-top:5pt;
   float:left;
-  margin:0 auto;
-  width:900px;
+  width:100%;
   height:30px;
-  text-align:center;
-  background-color:#dcdc78;
 }
 
 /*----------------------------------------------------------------------------*/
