@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<construct>
+	<name>$pageId</name>
+
+<!-- dir structure in the session directory -->
+	<structure>
+		<page> <!-- use page subdirectory -->
+			<pagename rename="$pageId"> <!-- create subdir $pageName -->
+				<file rename="$pageId">page.xml</file> <!-- use file and rename -->
+			</pagename>
+		</page>
+
+		<file insert="pages">page.xml <!-- copy file and insert subnodes into node "pages" -->
+			<pageid rename="$pageId;unique"> <!-- rename node to pageId. must be unique-->
+				<name>
+					<text lang="$lang">$pageName</text>
+				</name>
+				<friendly_name>
+					<text lang="$lang">$pageFriendlyName</text>
+				</friendly_name>
+				<title/>
+					<text lang="$lang">$pageTitle</text>
+				</title>
+			</pageid>
+		</file>
+	</structure>
+</construct>
+

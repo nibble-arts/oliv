@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Neue Seite erstellen</text>
+			<text lang='en'>Create new page</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Neue_Seite_erstellen</text>
+			<text lang='en'>create_new_page</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Eine neue Seite anlegen</text>
+			<text lang='en'>Create a new page</text>
+		</title>
+	</define>
+
+
+	<content>
+		<oliv_toolbox mod="toolbox">content:toolbox;</oliv_toolbox>
+		
+		<oliv_page mod="article">content:page_construct;template:page_construct;</oliv_page>
+		<oliv_page mod="page_construct">Construction information</oliv_page>
+	</content>
+</page>

@@ -41,6 +41,7 @@
 
 			<div id='oliv_site' background-image='oliv_leaves'>
 				<div id='oliv_page'>
+				  <xsl:apply-templates select='//oliv_page'/>
 
 					<div id='oliv_header'>
 				    <div id='oliv_login'>

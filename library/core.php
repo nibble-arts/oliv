@@ -53,6 +53,7 @@ class OLIVCore
 
   private $index; // index object
   private $search; // index object
+  private $constructor; // constructor object
 
   private $o; // ouput string
 
@@ -157,6 +158,9 @@ class OLIVCore
 
 // initialise olivscript
     $this->olivscript = new OLIVScript();
+
+// initialise olivscript
+    $this->olivconstructor = new OLIVConstructor();
 
 
 //------------------------------------------------------------------------------

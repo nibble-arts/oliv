@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page_construct>
+	<access group="author" access="774"/>
+	
+	<title>
+		<text lang="de">Eine neue Seite anlegen</text>
+		<text lang="en">Create a new page</text>
+	</title>
+
+	<logo>oliv_logo.png</logo>
+
+	<summary>
+		<text lang="de">Zum Anlegen einer Seite tragen sie bitte die Informationen in die unten stehenden Felder ein.</text>
+		<text lang="en">To create a new page, please fill in the information in the following fields.</text>
+	</summary>
+
+	<pagename>
+		<text lang="de">Seitenname</text>
+		<text lang="en">Page name</text>
+	</pagename>
+
+	<friendlyname>
+		<text lang="de">Klar lesbarer Name für die Adresszeile (ohne Sonderzeichen)</text>
+		<text lang="en">Friendly url (without special characters)</text>
+	</friendlyname>
+
+	<pageid>
+		<text lang="de">Eindeutiger Seiten ID</text>
+		<text lang="en">Unique page ID</text>
+	</pageid>
+
+	<pagetitle>
+		<text lang="de">Kurzbeschreibung der Seite</text>
+		<text lang="en">Short description of the page</text>
+	</pagetitle>
+
+</page_construct>

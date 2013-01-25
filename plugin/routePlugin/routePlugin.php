@@ -45,7 +45,6 @@ class routePlugin
 // look for href expressions
   	$nodes = $content->XPath("//*[@href]");
 
-
 // loop through all nodes
 		for ($i = 0;$i < count($nodes);$i++)
 		{
@@ -80,7 +79,8 @@ class routePlugin
 						break;
 
 					default:
-						$nodes[$i]['href'] = OLIVRoute::url($lang,$href,status::val());
+						$nodes[$i]['href'] = OLIVRoute::url($lang,$hrefArray[0],status::val());
+						break;
 				}
 			}
 		}

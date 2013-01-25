@@ -1,0 +1,132 @@
+														class OLIVConstructor
+														---------------------
+
+
+The constructor is used to create the needed structures for sessions, new
+templates or pages.
+
+
+path: library/
+
+
+class methods:
+--------------
+
+bool construct (simpleXmlElement $consctuct,array $variables)
+-------------------------------------------------------------
+	The constructor is called with the construct.xml file and an array of
+	variables.
+
+				$variables = array("$variableName" => $value, ....)
+
+	The variables are used to perform different actions during the construction
+	process. The variables must be defined in the construct.xml as "$varName".
+
+	The construcor parses the construct.xml definition file. The file has two
+	parts, the name section and the structure section.
+
+	In the structure section the file and directory structure in the session
+	directory is defined. All structural definitions start at the session root
+	directory.
+
+	<structure>
+		<dirName>
+			<subDirName>
+				<file>fileName</file>
+				  ...
+			</subDirName>
+		</dirName>
+	</structure>
+
+	The dir/subDirNames define the directory tree, where not existing directories
+	are created in the construction process. In every newly created directory, an
+	empty index.html file is inserted.
+
+	The file nodes define the files to be created while the construction process.
+	All files defined must be present in the cunstruct directory. If not, an
+	error is returned and the constuction is abborted.
+
+
+directory-directives:
+---------------------
+	For directories a rename attribute can be defined. In this case the directory
+	name used to create is not that of the xml definition, but is changed to the
+	value of the variable inside the rename attribute.
+
+			$variables["newDirName"] = dirName
+
+			<xmlDirName rename="$newDirName"/>
+
+	This creates a new directory named "dirName".
+	
+
+file-directives:
+----------------
+	rename:
+	-------
+
+	The file node can not only define the file to be coppied, but also perform
+	some actions in doing so:
+
+		<file rename="$renameVariable">fileName</file>
+
+	The "rename" attribute defines the variable which is used to rename the file
+	in the copying process. The extension is kept unchanged if it is not
+	explicitly defined in the variable:
+
+		fileName = file.xml
+		$renameVariable = page
+
+						=>
+
+		newFileName = page.xml
+
+	The extension can be changed if defined in the variable:
+
+		fileName = file.xml
+		$renameVariable = page.xslt
+
+						=>
+
+		newFileName = page.xslt
+
+	insert:
+	-------
+
+	If a "insert" attribute can be used to insert some nodes into an newly
+	copied or existing xml file. In this case all nodes inside the file-node
+	are used to be inserted. The value of the insert-attribute defines the parent-
+	node used to insert the new nodes. The "rename" attribute can also be used
+	to change the node names with variable content.
+
+	$variable = array("pageId" => "search","lang" => "de","pageName" => "Suche")
+
+	Sequenz in the construct.xml:
+	
+		<file insert="pages">page.xml
+			<pageId rename="$pageId">
+				<name>
+					<text lang="$lang">$pageName</text>
+				</nam>
+				...
+				...
+			</pageId>
+		</file>
+
+	page.xml file after the process:
+	
+		<pages>
+			<index>
+				...
+				...
+			</index>
+			<search>
+				<name>
+					<text lang="de">Suche</text>
+				</nam>
+				...
+				...
+			</search>
+		</pages>
+
+	

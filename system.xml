@@ -74,6 +74,7 @@
 <!--    <file>context.php</file>-->
     <file>clipboard.php</file>
     <file>olivscript.php</file>
+    <file>constructor.php</file>
   </includes>
   
 <!-- accepted file types for images -->

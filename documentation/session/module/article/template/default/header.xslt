@@ -27,7 +27,6 @@
 	</xsl:template>
 
 	<xsl:template match="lang_selector/selector">
-
 		<a>
 			<xsl:attribute name="href">
 				<xsl:value-of select="./a/@href"/>

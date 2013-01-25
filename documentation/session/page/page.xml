@@ -134,4 +134,19 @@ The status defines the visibility:
 			<text lang='en'>List of the search results</text>
 		</title>
 	</search>
+
+	<page_construct>
+		<name>
+			<text lang='de'>Neue Seite erstellen</text>
+			<text lang='en'>Create new page</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Neue_Seite_erstellen</text>
+			<text lang='en'>create_new_page</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Eine neue Seite anlegen</text>
+			<text lang='en'>Create a new page</text>
+		</title>
+	</page_construct>
 </pages>

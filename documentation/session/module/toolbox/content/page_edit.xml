@@ -2,10 +2,23 @@
 
 <toolbox>
 	<access group="admin" access="770"/>
+
 	<name>
 		<text lang="de">Seiten-Editor</text>
 		<text lang="en">Page-editor</text>
 	</name>
+
+	<icon>
+		<name>
+			<text lang="de">Neue Seite</text>
+			<text lang="en">New Page</text>
+		</name>
+		<href>page_construct:toolbox=page_edit</href>
+		<title>
+			<text lang="de">Eine neue Seite anlegen</text>
+			<text lang="en">Create a new page</text>
+		</title>
+	</icon>
 
 	<icon>
 		<image>toolbox_line.png</image>
