@@ -2,6 +2,10 @@
 
 <module>
   <name>spring</name>
+  <title>
+  	<text lang="de">Federnrechner</text>
+  	<text lang="en">Spring calculator</text>
+  </title>
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
