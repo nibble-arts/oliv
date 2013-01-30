@@ -47,7 +47,7 @@ class OLIVPage
   public function load($pageName = "")
   {
   	$templateName = "";
-  	
+
 		$xml = OLIVPage::_load($pageName);
 
 		if ($xml)
@@ -67,6 +67,40 @@ class OLIVPage
 			$this->template = $templateName;
 		}
   }
+
+
+//------------------------------------------------------------------------------
+// get page information
+// return false, if page dont exist
+	public static function getPageInfo($id)
+	{
+		if ($page = sessionxml_load_file(system::OLIV_PAGE_PATH() . $id . "/$id.xml"))
+			return $page;
+		else
+			return FALSE;
+	}
+	
+
+//------------------------------------------------------------------------------
+// get page name
+	public static function getName($id)
+	{
+		return (OLIVPage::getPageInfo($id)->define->name);
+	}
+
+//------------------------------------------------------------------------------
+// get page friendly_name
+	public static function getFriendlyName($id)
+	{
+		return (OLIVPage::getPageInfo($id)->define->name);
+	}
+
+//------------------------------------------------------------------------------
+// get page title
+	public static function getTitle($id)
+	{
+		return (OLIVPage::getPageInfo($id)->define->name);
+	}
 
 
 //------------------------------------------------------------------------------
@@ -95,7 +129,6 @@ class OLIVPage
 			}
       $pageName = strtolower($url); // set to lowercase
     }
-
 
 // create content path
 		$path = system::OLIV_PAGE_PATH() . $pageName . "/" . $pageName . ".xml";

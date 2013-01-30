@@ -8,14 +8,33 @@
 }
 
 #menu_item_side {
-  text-align:center;
-  width:100%;
+  text-align:left;
 }
 
-.menu_side_active {
-  color:white;
-	background-color:#4e6b31;
+
+/* menu / submenu formats */
+.menu_side {
 	width:100%;
+}
+
+.menu1_side {
+	font-size:95%;
+	font-style:italic;
+	margin-left:5pt;
+	background-color:#ccdfb8;
+}
+
+.menu2_side {
+	font-size:90%;
+	font-style:italic;
+	margin-left:10pt;
+	background-color:#acbf98;
+}
+
+/* activation formats */
+.menu_side_active {
+	background-color:#4e6b31;
+	color:white;
 }
 
 .menu_side_inactive {
@@ -27,3 +46,5 @@
   color:grey;
   font-style:normal;
 }
+
+

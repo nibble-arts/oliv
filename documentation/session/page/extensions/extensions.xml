@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Erweiterungen</text>
+			<text lang='en'>Extensions</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Erweiterungen</text>
+			<text lang='en'>extensions</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>OLIV Funktionen erweitern</text>
+			<text lang='en'>Extend the OLIV functions</text>
+		</title>
+	</define>
+
+
+	<content>
+		<include>common</include>
+
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+	</content>
+</page>

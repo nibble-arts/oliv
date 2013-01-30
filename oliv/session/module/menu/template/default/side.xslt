@@ -2,13 +2,7 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template match="menu_main">
-		<div id='menu_background_side'>
-			<xsl:apply-templates select="menu_item_side"/>
-		</div>
-	</xsl:template>
-
-	<xsl:template match="menu_admin">
+	<xsl:template match="menu">
 		<div id='menu_background_side'>
 			<xsl:apply-templates select="menu_item_side"/>
 		</div>

@@ -58,7 +58,7 @@ class menu extends OLIVModule
 			  $template = OLIVModule::load_template($header);
 
 // call menu parser
-			  $menuXml = $this->parse($menu->$menuName,$templateName,$access,status::url());
+			  $menuXml = $this->parse($menu,$menuName,$templateName,$access,status::url());
 
 				$this->template = $template;
 				$this->content = $menuXml;
@@ -72,29 +72,31 @@ class menu extends OLIVModule
 //------------------------------------------------------------------------------
 // parse menu file
 // create content xml-file for renderer
-  private function parse($menu,$templateName,$access,$url,$level = 0)
+
+// menu ... xml with menu structure
+// templateName ... name of template to use
+// access ... module access permissions
+// level ... sub menu level (used in recursion)
+  private function parse($menus,$menuName,$templateName,$access,$url,$level = 0)
   {
-
-//    $templateName = (string)$menu->attributes()->template;
-
-//TODO	parse intern links -> set url-node
-//			access rights	->
-//											no r: clear from xml
-//											no x: clear link -> set class to disabled
-//			active/inactive -> set the class to active/inactive
-
-
+		$menu = $menus->$menuName;
+		
     if ($menu)
     {
 // get name of menu
 			$menuName = $menu->getName();
-//	    $menuXml = new simpleXmlElement("<menu_$menuName></menu_$menuName>");
 	    $menuXml = new simpleXmlElement("<menu></menu>");
+
+//TODO open path to actice menu
+			$this->openPath($menus,$url);
 
 //------------------------------------------------------------------------------
 // loop over menu entries
       foreach ($menu->children() as $entry)
       {
+		  	$visible = FALSE;
+				$subMenuVisible = $entry['visible'];
+
 //------------------------------------------------------------------------------
 // display item if read permission
 				if (OLIVRight::r($entry) and OLIVRight::r($menu))
@@ -115,51 +117,91 @@ class menu extends OLIVModule
 				    olivxml_insert($entry,OLIVRoute::getPageName(status::lang(),$internUrl),"ALL");
 					}
 
-//------------------------------------------------------------------------------
-// set display class aktive / inactive
 
+//------------------------------------------------------------------------------
+// set display class
+
+//------------------------------------------------------------------------------
+// aktive / inactive
 			    if ($internUrl == $url)
-			      $entry->class = "menu_{$templateName}_active";
+			    {
+			    	$visible = $url;
+			      $entry->class = "{$templateName} menu_{$templateName}_active";
+					}
 			    else
-			      $entry->class = "menu_{$templateName}_inactive";
+			      $entry->class = "{$templateName} menu_{$templateName}_inactive";
+
+// submenu level
+					if ($level)
+						$entry->class = "menu{$level}_" . $entry->class;
+					else
+						$entry->class = "menu_" . $entry->class;
+//------------------------------------------------------------------------------
 
 
 // remove link if no x permission
 // check for menu_item, menu and page permissions
 // set display class to disabled
-						$pageXAccess = (string)$access->x;
-						$menuXAccess = OLIVRight::x($menu);
+					$pageXAccess = (string)$access->x;
+					$menuXAccess = OLIVRight::x($menu);
 
-						if (!(OLIVRight::x($entry) and $menuXAccess and $pageXAccess))
-						{
-							$entry->url = "";
-							$entry->class = "menu_{$templateName}_disabled";
-						}
+					if (!(OLIVRight::x($entry) and $menuXAccess and $pageXAccess))
+					{
+						$entry->url = "";
+						$entry->class = "menu_{$templateName}_disabled";
+					}
 
 // create menu_item xml
-						$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
-						olivxml_insert($menu_item,$entry);
+					$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
+					olivxml_insert($menu_item,$entry);
 
 // insert menu_item into new menu structure
-						olivxml_insert($menuXml,$menu_item,"ALL");
+					olivxml_insert($menuXml,$menu_item,"ALL");
 
-	//TODO
-	// sub menus foun
-	// display when active
-	/*        if(count($entry))
-		      {
-		        $subXml = menu::parse($entry,$url,$level+1);
-		        $menuName = "menu_item_" . $this->templateName;
-		        olivxml_insert($tempXml->$menuName,$subXml);
-		      }*/
-//		      olivxml_insert($menuXml,$tempXml);
+
+//------------------------------------------------------------------------------
+//TODO look if aktive menu is in submenu
+// display sub menus
+					if ($subName = (string)$entry['submenu'] and $visible or $subMenuVisible)
+					{
+		// call menu recursive
+						$subMenu = $this->parse($menus,$subName,$templateName,$access,$url,$level+1);
+						olivxml_insert($menuXml,$subMenu);
+					}
+
 		    }
 			}
 
       return ($menuXml);
     }
-    else
-      OLIVError::fire("menu::parse - no menu defined");
+//    else
+//      OLIVError::fire("menu::parse - no menu defined");
   }
+
+
+// get path to selected menu item
+	private function openPath($menus,$url)
+	{
+		$node = $menus->XPath("*[$url]");
+
+// has parent
+		if ($node)
+		{
+			$parentName = $node[0]->getName();
+
+
+// set node to visible
+			if (!(string)$node[0]->$url->attributes()->visible)
+			{
+				$node[0]->$url->addAttribute('visible',"show");
+			}
+
+// recursion if has parent
+			if ($parentName)
+				$this->openPath($menus,$parentName);
+		}
+
+	}
+
 }
 ?>

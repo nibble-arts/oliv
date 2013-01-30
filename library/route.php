@@ -65,6 +65,7 @@ class OLIVRoute
   {
 // separate url and values
 // look for url in page.xml
+
 		$tempArray = $this->parseUrl(status::url());
 
 		status::set('url',$tempArray['url']);
@@ -310,8 +311,17 @@ class OLIVRoute
 			return $name;
 
 		else
-// return url
-			return new simpleXmlElement("<name>$url</name>");
+// if no entry => insert in _PAGES from page definition.xml
+		{
+			$pageInfo = OLIVRoute::updatePageXml($url);
+			if ($pageInfo)
+			{
+				return $pageInfo->define->name;
+			}
+// page dont exist
+			else
+				return new simpleXmlElement("<name>$url</name>");
+		}
   }
 
 
@@ -321,13 +331,46 @@ class OLIVRoute
   {
     global $_PAGES;
 
+// return friendly name
 		if ($name = OLIVText::xml($_PAGES->$url->friendly_name,$lang))
 			return $name;
 		else
 
-// return untranslated
-			return $url;
+
+// if no entry => insert in _PAGES from page definition.xml
+		{
+			$pageInfo = OLIVRoute::updatePageXml($url);
+			if ($pageInfo)
+				return OLIVText::xml($pageInfo->friendly_name);
+
+// page dont exist
+			else
+				return FALSE;
+		}
   }
+
+
+//------------------------------------------------------------------------------
+// write page definition from id to page.xml
+// return pageInfo
+	static private function updatePageXml($url)
+	{
+// get page information xml
+		$pageInfo = OLIVPage::getPageInfo($url);
+
+// page exists => write pageInfo in page.xml
+		if ($pageInfo)
+		{
+
+			$pageXml = sessionxml_load_file(system::OLIV_PAGE_PATH() . "page.xml");
+			olivxml_insert($pageXml->$url,$pageInfo->define);
+
+// write file back to disk
+			$pageXml->asXML(session_path(system::OLIV_PAGE_PATH() . "page.xml"));
+
+			return $pageInfo;
+		}
+	}
 
 
 //------------------------------------------------------------------------------
@@ -337,6 +380,10 @@ class OLIVRoute
   {
     global $_PAGES;
     $id = "";
+
+//TODO get information directly from page define.xml
+
+
 
 		foreach($_PAGES as $page)
 		{
@@ -369,7 +416,7 @@ class OLIVRoute
 	static public function getName($id)
 	{
 		global $_PAGES;
-		
+
 		return $_PAGES->$id->name;
 	}
 	
