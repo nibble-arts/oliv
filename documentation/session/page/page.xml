@@ -16,7 +16,7 @@ The status defines the visibility:
 	<structure>
 		<main>
 			<index/>
-			<function submenu="sub_function"/> <!-- visible="show" always display submenu -->
+			<function submenu="function"/> <!-- visible="show" always display submenu -->
 			<extensions submenu="extensions"/> <!-- submenu="menuName" ... user menu as submenu -->
 			<templates submenu="templates"/>
 			<content submenu="content"/>

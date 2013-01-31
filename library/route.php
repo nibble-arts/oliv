@@ -425,8 +425,14 @@ class OLIVRoute
     $retArray = array();
     $paramArray = array();
     $tempArray = array();
-    
+
 		$urlArray = explode("/",cut_slash($url));
+
+// get the path to the page to open
+		$path = OLIVRoute::getPath($urlArray);
+		status::set("path",$path);
+
+//TODO create url and val
 
 
 // search for url matches
@@ -446,6 +452,42 @@ class OLIVRoute
     return (array("url" => implode("/",$retArray),"val" => implode("/",$paramArray))); // return parameters
   }
 
+
+// parse the url string and return the path to the deepest page in the page structure
+// return an array of the page ids
+	static public function getPath($urlArray,$path = array())
+	{
+    $struct = status::pagestructure();
+
+// retranslate to id
+		$urlId = (string)OLIVRoute::getUrl(array_shift($urlArray));
+
+
+// page found
+		$page = $struct->$urlId;
+		if ($page)
+		{
+// write to path
+			array_push($path,$urlId);
+
+// check for submenu
+			if (count($urlArray))
+			{
+				$subUrlId = (string)OLIVRoute::getUrl($urlArray[0]);
+				if ($subUrlId)
+				{
+					$subpage = $page->XPath("*[@submenu = '$subUrlId']");
+
+// goto submenu recursive
+					if ($subpage)
+					{
+						return OLIVRoute::getPath($urlArray,$path);
+					}
+				}
+			}
+		}
+		return $path;
+	}
 
 
 //------------------------------------------------------------------------------
