@@ -22,5 +22,7 @@
 
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
 	  <oliv_left2 mod='menu'>menu:content;template:side;</oliv_left2>
+
+	  <oliv_content mod="article">content:content;template:content;</oliv_content>
 	</content>
 </page>

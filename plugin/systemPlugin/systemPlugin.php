@@ -45,15 +45,16 @@ class systemPlugin
   	$tag = $options[1];
 
   	$nodes = $content->XPath("//$tag");
-
 		for ($i = 0;$i < count($nodes);$i++)
 		{
 // if source, make edit possible
-			$valueName = strtoupper($nodes[$i]->getName());
+			$valueName = (string)$nodes[$i];
 
 			if ($valueName)
 			{
-				$nodes[$i][0] = system::$valueName();
+				$val = renderall($tag::$valueName());
+
+				$nodes[$i][0] = $val;
 			}
 		}
 

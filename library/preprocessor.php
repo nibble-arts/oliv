@@ -130,6 +130,7 @@ class OLIVPreProcessor extends OLIVCore
 // if no content -> create dummy template for empty content
 												if (!$module->content() and is_object($module->content()))
 												{
+//TODO no dummy but remove node
 													$scriptName = (string)$script->name;
 													$modName = $module->content()->getName();
 
@@ -280,7 +281,7 @@ class OLIVPreProcessor extends OLIVCore
 		$stylesheet->importStylesheet($tempXml);
 
 //echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
-//echoall($page->structure());
+status::set("debug",$page->structure());
   }
 
 

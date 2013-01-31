@@ -31,13 +31,6 @@ if (!system::OLIVCORE()) die ("route.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("route.php - OLIVError not present");
 
 
-$_PAGES = array();
-
-
-
-//TODO
-// insert: also use normal links
-
 class OLIVRoute
 {
 
@@ -234,9 +227,9 @@ class OLIVRoute
 // get page title
 	static public function getTitle($url)
 	{
-		global $_PAGES;
+		$pages = status::pages();
 
-		return $_PAGES->$url->title;
+		return $pages->$url->title;
 	}
 	
 
@@ -304,10 +297,10 @@ class OLIVRoute
 // get page name grom url and lang
   static public function getPageName($lang,$url)
   {
-    global $_PAGES;
+    $pages = status::pages();
 
 // return page name
-		if ($name = $_PAGES->$url->name)
+		if ($name = $pages->$url->name)
 			return $name;
 
 		else
@@ -329,10 +322,10 @@ class OLIVRoute
 // translate url to lang pageName
   static public function translateFriendlyName($lang,$url)
   {
-    global $_PAGES;
+    $pages = status::pages();
 
 // return friendly name
-		if ($name = OLIVText::xml($_PAGES->$url->friendly_name,$lang))
+		if ($name = OLIVText::xml($pages->$url->friendly_name,$lang))
 			return $name;
 		else
 
@@ -340,6 +333,7 @@ class OLIVRoute
 // if no entry => insert in _PAGES from page definition.xml
 		{
 			$pageInfo = OLIVRoute::updatePageXml($url);
+
 			if ($pageInfo)
 				return OLIVText::xml($pageInfo->friendly_name);
 
@@ -361,13 +355,16 @@ class OLIVRoute
 // page exists => write pageInfo in page.xml
 		if ($pageInfo)
 		{
-
 			$pageXml = sessionxml_load_file(system::OLIV_PAGE_PATH() . "page.xml");
-			olivxml_insert($pageXml->$url,$pageInfo->define);
+
+// insert if url don't exist
+			if (!$pageXml->define->$url)
+			{
+				olivxml_insert($pageXml->define->$url,$pageInfo->define);
 
 // write file back to disk
-			$pageXml->asXML(session_path(system::OLIV_PAGE_PATH() . "page.xml"));
-
+				$pageXml->asXML(session_path(system::OLIV_PAGE_PATH() . "page.xml"));
+			}
 			return $pageInfo;
 		}
 	}
@@ -378,22 +375,17 @@ class OLIVRoute
 // use the $_PAGES xml
   static public function getUrl($name)
   {
-    global $_PAGES;
+    $pages = status::pages();
     $id = "";
 
-//TODO get information directly from page define.xml
-
-
-
-		foreach($_PAGES as $page)
+		foreach($pages as $page)
 		{
 // check if page id is given
-			$node = $page->XPath(".");
-			if ($node[0]->getName() == $name)
+			if ((string)$page->getName() == $name)
 				return $name;
 
 // get node containing $name
-			$node = $page->XPath("friendly_name/text[contains(.,'$name')]");
+			$node = $page->XPath("//friendly_name/text[contains(.,'$name')]");
 
 			if ($node)
 			{
@@ -415,9 +407,9 @@ class OLIVRoute
 // translate url id to pageName
 	static public function getName($id)
 	{
-		global $_PAGES;
+		$PAGES = status::pages();
 
-		return $_PAGES->$id->name;
+		return $pages->$id->name;
 	}
 	
 
@@ -460,11 +452,10 @@ class OLIVRoute
 // return array of pages
 	public static function getPages()
 	{
-		global $_PAGES;
 		$retArray = array();
-
-
-		foreach ($_PAGES as $key => $value)
+		$pages = status::pages();
+		
+		foreach ($pages as $key => $value)
 		{
 			$retArray[$key] = $value['text'];
 		}
@@ -476,13 +467,15 @@ class OLIVRoute
 // get list of existing pages
   public function scan($lang)
   {
-		global $_PAGES;
 		$path = system::OLIV_PAGE_PATH() . "page.xml";
 		
 		if (sessionfile_exists($path))
 		{
-			$_PAGES = sessionxml_load_file($path);
-			OLIVText::writeSource($_PAGES,$path);
+			$pageXml = sessionxml_load_file($path);
+			status::set("pages",$pageXml->define);
+			status::set("pagestructure",$pageXml->structure);
+
+			OLIVText::writeSource(status::pages(),$path);
 		}
 
 		else

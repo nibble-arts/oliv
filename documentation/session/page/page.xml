@@ -12,70 +12,71 @@ The status defines the visibility:
 		prepared	is ready to go online, but dont' show
 		public		show
 -->
-<pages><index><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
-			
-			
-		<text lang="de">Startseite</text><text lang="en">Home</text></friendly_name><title>
-			
-			
-		<text lang="de">Das Omni-Linguale CMS</text><text lang="en">The Omni-Lingual CMS</text></title><name>
+<pages>
+	<structure>
+		<main>
+			<index/>
+			<function submenu="sub_function"/> <!-- visible="show" always display submenu -->
+			<extensions submenu="extensions"/> <!-- submenu="menuName" ... user menu as submenu -->
+			<templates submenu="templates"/>
+			<content submenu="content"/>
+			<administration submenu="administration"/>
+		</main>
+
+		<function group="publisher" access="740">
+			<function_basics/>
+			<core/>
+			<init/>
+			<route/>
+			<page/>
+			<preprocessor/>
+			<render/>
+			<postprocessor/>
+		</function>
+
+		<extensions>
+	 		<plugins submenu="plugins"/>
+	 		<modules submenu="modules"/>
+	 	</extensions>
+		
+		<plugins>
+			<plugin_basics/>
+			<search_plugin/>
+			<page_plugin/>
+			<render_plugin/>
+		</plugins>
+		
+		<modules>
+			<module_basics/>
+			<article_module/>
+			<menu_module/>
+			<login_module/>
+			<search_module/>
+			<toolbar_module/>
+		</modules>
+		
+		<templates>
+			<template_basics/>
+			<skins/>
+			<page_templates/>
+			<global_templates/>
+		</templates>
+
+		<content>
+			<content_basics/>
+			<static_content/>
+			<module_content/>
+		</content>
+	
+		<administration>
+			<admin_basics/>
+			<permissions/>
+			<text_edit/>
+			<template_edit/>
+		</administration>
+	</structure>
+
+<define><index><name>
 			
 			
 		<text lang="de">Startseite</text><text lang="en">Home</text></name><friendly_name>
@@ -93,25 +94,7 @@ The status defines the visibility:
 		<text lang="de">Funktion</text><text lang="en">function</text></friendly_name><title>
 			
 			
-		<text lang="de">Die innere Funktion von OLIV</text><text lang="en">The inner function of OLIV</text></title><name>
-			
-			
-		<text lang="de">Funktion</text><text lang="en">Function</text></name><friendly_name>
-			
-			
-		<text lang="de">Funktion</text><text lang="en">function</text></friendly_name><title>
-			
-			
 		<text lang="de">Die innere Funktion von OLIV</text><text lang="en">The inner function of OLIV</text></title></function><extensions><name>
-			
-			
-		<text lang="de">Erweiterungen</text><text lang="en">Extensions</text></name><friendly_name>
-			
-			
-		<text lang="de">Erweiterungen</text><text lang="en">extensions</text></friendly_name><title>
-			
-			
-		<text lang="de">OLIV Funktionen erweitern</text><text lang="en">Extend the OLIV functions</text></title><name>
 			
 			
 		<text lang="de">Erweiterungen</text><text lang="en">Extensions</text></name><friendly_name>
@@ -129,15 +112,6 @@ The status defines the visibility:
 		<text lang="de">Templates</text><text lang="en">templates</text></friendly_name><title>
 			
 			
-		<text lang="de">OLIV Templates</text><text lang="en">OLIV templates</text></title><name>
-			
-			
-		<text lang="de">Templates</text><text lang="en">Templates</text></name><friendly_name>
-			
-			
-		<text lang="de">Templates</text><text lang="en">templates</text></friendly_name><title>
-			
-			
 		<text lang="de">OLIV Templates</text><text lang="en">OLIV templates</text></title></templates><content><name>
 			
 			
@@ -147,25 +121,7 @@ The status defines the visibility:
 		<text lang="de">Inhalte</text><text lang="en">content</text></friendly_name><title>
 			
 			
-		<text lang="de">OLIV Inhalte</text><text lang="en">OLIV content</text></title><name>
-			
-			
-		<text lang="de">Inhalte</text><text lang="en">Content</text></name><friendly_name>
-			
-			
-		<text lang="de">Inhalte</text><text lang="en">content</text></friendly_name><title>
-			
-			
 		<text lang="de">OLIV Inhalte</text><text lang="en">OLIV content</text></title></content><administration><name>
-			
-			
-		<text lang="de">Administration</text><text lang="en">Administration</text></name><friendly_name>
-			
-			
-		<text lang="de">Administration</text><text lang="en">administration</text></friendly_name><title>
-			
-			
-		<text lang="de">OLIV administrieren</text><text lang="en">Administrate OLIV</text></title><name>
 			
 			
 		<text lang="de">Administration</text><text lang="en">Administration</text></name><friendly_name>
@@ -192,15 +148,6 @@ The status defines the visibility:
 		<text lang="de">Plugins</text><text lang="en">plugins</text></friendly_name><title>
 			
 			
-		<text lang="de">Das OLIV Plugin System</text><text lang="en">The OLIV plugin system</text></title><name>
-			
-			
-		<text lang="de">Plugins</text><text lang="en">Plugins</text></name><friendly_name>
-			
-			
-		<text lang="de">Plugins</text><text lang="en">plugins</text></friendly_name><title>
-			
-			
 		<text lang="de">Das OLIV Plugin System</text><text lang="en">The OLIV plugin system</text></title></plugins><modules><name>
 			
 			
@@ -210,13 +157,4 @@ The status defines the visibility:
 		<text lang="de">Modules</text><text lang="en">modules</text></friendly_name><title>
 			
 			
-		<text lang="de">Das OLIV Modul System</text><text lang="en">The OLIV module system</text></title><name>
-			
-			
-		<text lang="de">Module</text><text lang="en">Modules</text></name><friendly_name>
-			
-			
-		<text lang="de">Modules</text><text lang="en">modules</text></friendly_name><title>
-			
-			
-		<text lang="de">Das OLIV Modul System</text><text lang="en">The OLIV module system</text></title></modules></pages>
+		<text lang="de">Das OLIV Modul System</text><text lang="en">The OLIV module system</text></title></modules></define></pages>

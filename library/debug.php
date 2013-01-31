@@ -37,12 +37,12 @@ function echoall($string)
   if (is_array($string))
   {
     echo count($string) . " elements";
-    echoarray($string);
+    echo "<pre>" . renderall($string) . "</pre>";
   }
 
   elseif (is_object($string))
   {
-    echoarray($string);
+    echo "<pre>" . renderall($string) . "</pre>";
   }
 
   else
@@ -71,12 +71,9 @@ function echoall($string)
 }
 
 
-// displays array in code-style
-function echoarray($entry)
+// convert array to string
+function renderall($string)
 {
-  echo "<pre>";
-    print_r($entry);
-  echo "</pre>";
+	return print_r($string,TRUE);
 }
-
 ?>

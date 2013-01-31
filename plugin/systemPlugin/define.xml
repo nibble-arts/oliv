@@ -4,9 +4,9 @@
 	<class>systemPlugin</class>
 
 	<render>
-		<oliv_name>name</oliv_name>
-		<oliv_autor>autor</oliv_autor>
-		<oliv_version>version</oliv_version>
+		<system>system</system>
+		<status>status</status>
+		<argv>argv</argv>
 	</render>
 </plugin>
 

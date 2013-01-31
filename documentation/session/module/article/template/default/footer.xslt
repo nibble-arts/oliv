@@ -12,7 +12,7 @@
 				</span>
 			</a>
 
-			<oliv_version id="footer_text"/>
+			<system id="footer_text">oliv_version</system>
 		</div>
 	</xsl:template>
 

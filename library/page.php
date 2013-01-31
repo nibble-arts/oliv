@@ -166,14 +166,17 @@ class OLIVPage
 // insert xml in page structure
 	public function insert($xml,$root)
 	{
-		$insertName = $xml->getName();
+		if ($xml)
+		{
+			$insertName = $xml->getName();
 
 // insert content only once
-		if (!$this->structure->$root->$insertName)
-		{
-			$tempXml = new simpleXmlElement("<$root/>");
-			olivxml_insert($tempXml,$xml,"ALL");
-			olivxml_insert($this->structure,$tempXml,"ALL");
+			if (!$this->structure->$root->$insertName)
+			{
+				$tempXml = new simpleXmlElement("<$root/>");
+				olivxml_insert($tempXml,$xml,"ALL");
+				olivxml_insert($this->structure,$tempXml,"ALL");
+			}
 		}
 	}
 

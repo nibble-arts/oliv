@@ -49,7 +49,7 @@ class menu extends OLIVModule
 
 		if ($templateName and $menuName)
 		{
-			$menu = OLIVModule::load_xml($header,"","menu.xml");
+			$menu = status::pagestructure();
 
 // permission to display menu
 			if (OLIVRight::r($menu->$menuName))
@@ -104,7 +104,7 @@ class menu extends OLIVModule
 					$internUrl = "";
 
 					$menuItemName = $entry->getName();
-				
+
 //------------------------------------------------------------------------------
 // is intern link
 					if (!$entry->url)
@@ -151,12 +151,14 @@ class menu extends OLIVModule
 						$entry->class = "menu_{$templateName}_disabled";
 					}
 
+
 // create menu_item xml
 					$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
 					olivxml_insert($menu_item,$entry);
 
 // insert menu_item into new menu structure
 					olivxml_insert($menuXml,$menu_item,"ALL");
+
 
 
 //------------------------------------------------------------------------------

@@ -31,8 +31,6 @@ if (!system::OLIVCORE()) die ("module.php - OLIVCore not present");
 if (!system::OLIVERROR()) die ("module.php - OLIVError not present");
 
 
-$_MODULES;
-
 //------------------------------------------------------------------------------
 // class for managing modules
 
@@ -43,13 +41,8 @@ class OLIVModule
   
   public function __construct()
   {
-		global $_MODULES;
-
-		$_MODULES = array();
-
-    // load module metadata
+// load module metadata
     $this->scan(system::OLIV_MODULE_PATH());
-//    echoall($_MODULES);
   }
   
 
@@ -231,11 +224,11 @@ class OLIVModule
 // get module by name
   public static function getModuleByName($name)
   {
-		global $_MODULES;
+		$modules = system::modules();
 
-    if (is_array($_MODULES))
+    if (is_array($modules))
     {
-      foreach ($_MODULES as $entry)
+      foreach ($modules as $entry)
       {
         if ((string)$entry->name == $name) return (new simpleXmlElement($entry->asXML()));
       }
@@ -249,9 +242,9 @@ class OLIVModule
 // get image path
 	static public function getImagePath($name)
 	{
-		global $_MODULES;
+		$modules = system::modules();
 
-    if ($_MODULES[$name])
+    if ($modules[$name])
     {
 			$path = system::OLIV_MODULE_PATH() . $name . "/template/" . system::OLIV_TEMPLATE() . "/images/";
 	
@@ -297,9 +290,7 @@ class OLIVModule
 // scan module directory and load module metadata
   private function scan($path)
   {
-		global $_MODULES;
-
-		$_MODULES = array();
+		$modules = array();
 		$cnt = 0;
     
     if ($modDir = olivopendir ($path))
@@ -338,7 +329,7 @@ class OLIVModule
 
 //------------------------------------------------------------------------------
 // save module metadata
-            $_MODULES[(string)$xml->name] = $xml;
+            $modules[(string)$xml->name] = $xml;
 						
             $cnt++;
           }
@@ -346,6 +337,7 @@ class OLIVModule
       }
       closedir ($modDir);
 
+			system::set("modules",$modules);
       return ($cnt);
     }
     else
