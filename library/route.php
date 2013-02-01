@@ -63,6 +63,7 @@ class OLIVRoute
 
 		status::set('url',$tempArray['url']);
  		status::set('val',$tempArray['val']); // add values to val-parameter
+ 		status::set('path',$tempArray['path']); // add values to val-parameter
 
 
 // routable url found
@@ -255,6 +256,8 @@ class OLIVRoute
 // return parameter string for link
   static public function makeUrl($lang,$url)
   {
+  	$valArray = array();
+  	
 		if ($url)
 		{
 		  $routeArray = array(system::OLIV_PROTOCOL() . system::OLIV_HOST() . system::OLIV_BASE() . system::OLIV_SCRIPT_NAME());
@@ -263,10 +266,20 @@ class OLIVRoute
 		  else
 		    $lang = status::lang();
 
+
 // use friendly name for url
-		  $val = OLIVRoute::translateFriendlyName($lang,$url);
-		  
-		  if ($url[strtolower($val)]) array_push($routeArray,$val);
+			$path = OLIVRoute::makePath($url);
+
+
+// tranlsate and combine path
+			foreach ($path as $entry)
+			{
+				array_push($valArray,OLIVRoute::translateFriendlyName($lang,$entry));
+			}
+		  $val = implode("/",$valArray);
+
+		  if ($val)
+		  	array_push($routeArray,$val);
 
 		  return (implode("/",$routeArray));
 		}
@@ -326,11 +339,16 @@ class OLIVRoute
 
 // return friendly name
 		if ($name = OLIVText::xml($pages->$url->friendly_name,$lang))
+		{
+// get page path from status::pages()
+//			$name = OLIVRoute::getRootPath($url);
+			
 			return $name;
+		}
 		else
 
 
-// if no entry => insert in _PAGES from page definition.xml
+// if no entry => insert in status::pages from page definition.xml
 		{
 			$pageInfo = OLIVRoute::updatePageXml($url);
 
@@ -415,7 +433,6 @@ class OLIVRoute
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-//TODO
 // parse url for subpages
 // extract and returns parameters for modules
 //
@@ -428,68 +445,88 @@ class OLIVRoute
 
 		$urlArray = explode("/",cut_slash($url));
 
+// get the page
+		$page = OLIVRoute::getPage($urlArray);
+
+
 // get the path to the page to open
-		$path = OLIVRoute::getPath($urlArray);
-		status::set("path",$path);
-
-//TODO create url and val
+		$path = OLIVRoute::makePath($page);
 
 
-// search for url matches
-    foreach($urlArray as $entry)
-    {
-      array_push($tempArray,$entry);
-      $urlString = implode(".",$tempArray);
-
-
-// retranslate to page id
-      if (!OLIVRoute::getUrl($urlString))
-        array_push($paramArray,$entry); // insert parameter part
-      else
-        array_push($retArray,$entry); // insert url part
-    }
-
-    return (array("url" => implode("/",$retArray),"val" => implode("/",$paramArray))); // return parameters
+// return route information aray
+    return (array("url" => $page,"val" => implode("/",$paramArray),"path" => $path)); // return parameters
   }
 
 
-// parse the url string and return the path to the deepest page in the page structure
-// return an array of the page ids
-	static public function getPath($urlArray,$path = array())
+//------------------------------------------------------------------------------
+// make path from page up to root
+	static public function makePath($page,$path = array())
+	{
+		$pathArray = OLIVRoute::_makePath($page,$path);
+		array_pop($pathArray);
+
+		return array_reverse($pathArray);
+	}
+	
+
+// recursice part of makePath
+	static private function _makePath($page,$path)
 	{
     $struct = status::pagestructure();
-
-// retranslate to id
-		$urlId = (string)OLIVRoute::getUrl(array_shift($urlArray));
-
-
-// page found
-		$page = $struct->$urlId;
+		$parent = "";
+		$parentName = "";
+		
 		if ($page)
 		{
-// write to path
-			array_push($path,$urlId);
+// insert friendly_url of page in path array
+			array_push($path,$page);
 
-// check for submenu
-			if (count($urlArray))
+
+// if parent => recursion
+			$node = $struct->$page->XPath("//*[@submenu = '$page']");
+
+			if ($node)
+				$parent = $node[0]->XPath("..");
+
+			if ($parent)
+				$parentName = $parent[0]->getName();
+
+			if ($parentName)
 			{
-				$subUrlId = (string)OLIVRoute::getUrl($urlArray[0]);
-				if ($subUrlId)
-				{
-					$subpage = $page->XPath("*[@submenu = '$subUrlId']");
-
-// goto submenu recursive
-					if ($subpage)
-					{
-						return OLIVRoute::getPath($urlArray,$path);
-					}
-				}
+				return OLIVRoute::_makePath($parentName,$path);
 			}
 		}
+
 		return $path;
 	}
 
 
+//------------------------------------------------------------------------------
+// parse the url array to get the page to load out of the url array
+// the latest entry containing a valid page id
+	public static function getPage($urlArray)
+	{
+		$urlPart = array_pop($urlArray);
+
+		$urlId = (string)OLIVRoute::getUrl($urlPart);
+
+// url found => return ID
+		if ($urlId)
+			return $urlId;
+
+// url not found => call recursion
+		else
+		{
+			if (count($urlArray))
+				return OLIVRoute::getPage($urlArray);
+
+// nothing found
+			else
+				return FALSE;
+		}
+	}
+
+	
 //------------------------------------------------------------------------------
 // return array of pages
 	public static function getPages()

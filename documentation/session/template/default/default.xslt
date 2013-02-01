@@ -55,7 +55,8 @@
 			    <div id='oliv_search'>
 					  <xsl:apply-templates select='//oliv_search'/>
 				  </div>
-				  
+
+
 				  <span id='oliv_main'>
 				  	<table width="100%"><tr>
 				  		<td class="oliv_left">
@@ -72,7 +73,12 @@
 								</div>
 								<span class="oliv_clear"/>
 							</td>
+
 							<td class='oliv_content'>
+								<div id="oliv_top">
+									<xsl:apply-templates select='//oliv_top'/>
+								</div>
+
 								<div id="oliv_content">
 								  <xsl:apply-templates select='//oliv_content'/>
 								</div>

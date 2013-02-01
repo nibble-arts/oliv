@@ -11,6 +11,8 @@
 <!--		<oliv_admin mod='admin' />-->
 		<oliv_login mod='login'/>
 
+		<oliv_top mod="path"/>
+
 		<oliv_title class='oliv_title'>title</oliv_title>
 		<oliv_footer mod="article">template:footer;content:footer;</oliv_footer>
 

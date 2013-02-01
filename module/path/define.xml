@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<module>
+  <name>path</name>
+  <version>1.0</version>
+  <author>Thomas Winkler</author>
+  <copyright>2012</copyright>
+    
+  <template>template/</template>
+  <content>content/</content>
+
+  <default_language>de</default_language>
+
+  <script>
+    <main>path.php</main>
+  </script>
+</module>
