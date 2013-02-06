@@ -3,8 +3,8 @@
 <access>
   <user>
     <gast password='d4061b1486fe2da19dd578e8d970f7eb' full='Gast'/>
-    <tom password='9b84a825a73844106a5ebe0265c62436' full='Thomas Winkler' email="thomas.winkler@iggmp.net"/>
-    <admin su='admin' password='9b84a825a73844106a5ebe0265c62436' full='Administrator' email="thomas.winkler@iggmp.net"/>
+    <tom password='$2a$08$9SgVUdjNuWTNdf5hZ/xD0ujS/HHUFU5ROzPrNAXQpfMz5rlSorBsu' full='Thomas Winkler' email="thomas.winkler@iggmp.net"/>
+    <admin su='admin' password='$2a$08$9SgVUdjNuWTNdf5hZ/xD0ujS/HHUFU5ROzPrNAXQpfMz5rlSorBsu' full='Administrator' email="thomas.winkler@iggmp.net"/>
   </user>
   
   <group>

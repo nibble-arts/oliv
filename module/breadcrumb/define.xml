@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <module>
-  <name>path</name>
+  <name>breadcrumb</name>
   <version>1.0</version>
   <author>Thomas Winkler</author>
   <copyright>2012</copyright>
@@ -12,6 +12,6 @@
   <default_language>de</default_language>
 
   <script>
-    <main>path.php</main>
+    <main>breadcrumb.php</main>
   </script>
 </module>

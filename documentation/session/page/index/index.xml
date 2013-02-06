@@ -20,7 +20,7 @@
 	<content>
 		<include>common</include>
 
-		<oliv_content mod="article">template:start;content:start</oliv_content>
+		<oliv_content mod="article">content:start</oliv_content>
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
 	</content>
 </page>

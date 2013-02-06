@@ -9,6 +9,10 @@
 		<p><xsl:apply-templates select="article_003"/></p>
 		<p><xsl:apply-templates select="article_004"/></p>
 		<p><xsl:apply-templates select="article_005"/></p>
+		
+		<ul>
+			<xsl:apply-templates select="article_006"/>
+		</ul>
 
 	</xsl:template>
 
@@ -44,4 +48,11 @@
 		</xsl:call-template>
 	</xsl:template>
 
+	<xsl:template match="article_006">
+		<li>
+			<xsl:call-template name="article_paragraph">
+				<xsl:with-param name="node" select="."/>
+			</xsl:call-template>
+		</li>
+	</xsl:template>
 </xsl:stylesheet>

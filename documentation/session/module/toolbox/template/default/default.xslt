@@ -34,7 +34,7 @@
 			<xsl:choose>
 				<xsl:when test="href">
 
-					<a href="template_edit">
+					<a>
 						<xsl:attribute name="href">
 							<xsl:value-of select="href"/>
 						</xsl:attribute>

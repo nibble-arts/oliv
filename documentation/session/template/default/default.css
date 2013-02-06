@@ -105,9 +105,11 @@ div {
   font-size:75%;
 }
 
-.oliv_error {
-  color:red;
+#oliv_error {
+  color:white;
+  background-color:red;
   font-weight:bold;
+	font-family:courier;
 }
 .oliv_field_title {
   font-size:60%;

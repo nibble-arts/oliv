@@ -41,8 +41,20 @@ class article extends OLIVModule
     global $_argv;
 
 
+
 // load content
 		$article = OLIVModule::load_content($header);
+
+// check if content exist
+// set article and content to "error_no_article" article
+		if (!$article)
+		{
+			$header->param->template = "error_no_article";
+			$article = OLIVModule::load_content($header,"error_no_article");
+			$article->articlename = (string)$header->param->content;
+		}
+		
+// set article
 		$this->content = $article;
 
 
@@ -58,6 +70,11 @@ class article extends OLIVModule
 
 			olivxml_insert($article,OLIVLang::selector($langs),"ALL");
 
+
+// if no template defined
+// use templateName = contentName
+			if (!$header->param->template)
+				$header->param->template = (string)$header->param->content;
 
 // set param in header to articleName and load template path
 			$this->template = OLIVModule::load_template($header);

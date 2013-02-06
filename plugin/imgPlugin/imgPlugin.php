@@ -56,6 +56,7 @@ class imgPlugin
 // get correct path to image
 			$imgPath = OLIVImage::_($imgName,$imgLang);
 
+
 			if($imgPath);
 			{
 //TODO include javaScript content menu

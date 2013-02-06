@@ -22,5 +22,7 @@
 		
 		<oliv_page mod="article">content:page_construct;template:page_construct;</oliv_page>
 		<oliv_page mod="page_construct">Construction information</oliv_page>
+
+	  <oliv_content mod="article">content:page_construct</oliv_content>
 	</content>
 </page>

@@ -46,6 +46,8 @@
   </system>
   
   <includes>
+    <file>passwordhash.php</file>
+
 <!-- static classes -->
     <file>error.php</file>
     <file>text.php</file>

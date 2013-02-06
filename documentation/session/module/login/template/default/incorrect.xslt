@@ -7,7 +7,7 @@
 			<form>
 				<input type="text" name="login">
 					<xsl:attribute name="value">
-						<xsl:value-of select="./user"/>
+						<xsl:value-of select="'$login'"/>
 					</xsl:attribute>
 				</input>
 

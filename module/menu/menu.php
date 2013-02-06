@@ -162,7 +162,7 @@ class menu extends OLIVModule
 
 
 //------------------------------------------------------------------------------
-//TODO look if aktive menu is in submenu
+// look if aktive menu is in submenu
 // display sub menus
 					if ($subName = (string)$entry['submenu'] and $visible or $subMenuVisible)
 					{

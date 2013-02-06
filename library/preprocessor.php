@@ -117,6 +117,7 @@ class OLIVPreProcessor extends OLIVCore
 											{
 												$tempTemplate = $module->template();
 
+
 // set path to insert module-template-link stylesheet
 // link only if template and content found
 												if ($module->template() and $module->content())
@@ -127,51 +128,17 @@ class OLIVPreProcessor extends OLIVCore
 													}
 												}
 
-// if no content -> create dummy template for empty content
-												if (!$module->content() and is_object($module->content()))
+
+//------------------------------------------------------------------------------
+// module didn't return content and template
+// clear content entry
+												if (!$module->content() and !$module->template())
 												{
-//TODO no dummy but remove node
-													$scriptName = (string)$script->name;
-													$modName = $module->content()->getName();
-
-
-// define a dummy template in the session.xml to be used
-// create dummy stylesheet for empty content
-													$tempSting = "<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>";
-													$tempSting .= "<xsl:template match='" . $modName . "'>";
-													$tempSting .= "<xsl:text></xsl:text>";
-													$tempSting .= "</xsl:template>";
-													$tempSting .= "</xsl:stylesheet>";
-
-													$tempXsl = new simpleXmlElement($tempSting);
-
-													$dummyName = "dummy_" . $scriptName . "_" . $modName;
-
-													$fileName = system::oliv_module_path() . "$scriptName/template/" . system::oliv_template() . "/";
-													$filePath = session_path($fileName) . $dummyName . ".xslt";
-
-
-// check for write permission for all
-													$filePerm = substr(sprintf('%o',fileperms($filePath)),4);
-
-													if (!($filePerm & 0x0002))
-														 OLIVError::fire("preprocessor.php - no write permissions in dir $fileName");
-
-// write file to disk
-													else
-													{
-														$fileHandle = fopen($filePath,"w");
-														if ($fileHandle)
-														{
-															fputs($fileHandle,$tempXsl->asXML());
-															fclose($fileHandle);
-														}
-
-														$templates[$entry->getName() . "::" . $dummyName] = $fileName . $dummyName;
-													}
+													$page->clear($entry->getName());
 												}
+												
 
-	// insert module content in page content
+// insert module content in page content
 												$page->insert($module->content(),$entry->getName());
 											}
 										}
@@ -281,7 +248,7 @@ class OLIVPreProcessor extends OLIVCore
 		$stylesheet->importStylesheet($tempXml);
 
 //echoall($tempXml->children('http://www.w3.org/1999/XSL/Transform')->asXML());
-status::set("debug",$page->structure());
+//status::set("debug",$page->structure());
   }
 
 

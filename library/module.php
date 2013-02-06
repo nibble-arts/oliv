@@ -216,7 +216,7 @@ class OLIVModule
 			return $xml;
 		}
 		else
-			OLIVError::fire("module.php::load_xml - $filePath$name not found");
+			OLIVError::warning("module.php::load_xml - $filePath$name not found");
 	}
 
 	

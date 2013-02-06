@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<error_no_article>
+	<lang>de</lang>
+	
+  <article_001>
+  	<text lang='de'>Artikel</text>
+		<text lang='en'>Article</text>
+	</article_001>
+
+  <article_002>
+  	<text lang='de'>nicht gefunden</text>
+		<text lang='en'>not found</text>
+	</article_002>
+
+  <article_003>
+		<text lang='de'>Dieser Artikel wurde nicht gefunden. Wollen Sie ihn anlegen?</text>
+		<text lang='en'>This article was not found. Do you want to create it?</text>
+  </article_003>
+
+</error_no_article>

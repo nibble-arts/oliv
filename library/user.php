@@ -60,7 +60,10 @@ class OLIVUser extends OLIVCore
 
     if ($userRight)
     {
-      if(md5($password) == (string)$userRight->attributes()->password)
+// phpass class for hash check
+			$hasher = new PasswordHash(8, FALSE);
+
+      if($hasher->CheckPassword($password,(string)$userRight->attributes()->password))
         return true;
     }
     else

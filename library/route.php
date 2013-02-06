@@ -83,6 +83,7 @@ class OLIVRoute
 // no site defined -> call OLIV_404_PAGE
     else
     {
+ // use 404 page or if not defined use index page
     	if (system::OLIV_404_PAGE())
 	      status::set('url',system::OLIV_404_PAGE());
 			else
@@ -396,7 +397,7 @@ class OLIVRoute
     $pages = status::pages();
     $id = "";
 
-		foreach($pages as $page)
+		foreach($pages->children() as $page)
 		{
 // check if page id is given
 			if ((string)$page->getName() == $name)

@@ -21,5 +21,7 @@
 		<include>common</include>
 
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+
+	  <oliv_content mod="article">content:extension</oliv_content>
 	</content>
 </page>

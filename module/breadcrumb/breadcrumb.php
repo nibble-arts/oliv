@@ -32,7 +32,7 @@ if (!system::OLIVTEXT()) die ("mod_login::login.php - OLIVText not present");
 if (!system::OLIVERROR()) die ("mod_login::login.php - OLIVError not present");
 
 
-class path extends OLIVModule
+class breadcrumb extends OLIVModule
 {
   function __construct($header)
   {

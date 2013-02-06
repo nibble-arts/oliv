@@ -130,16 +130,16 @@ The status defines the visibility:
 		<text lang="de">Administration</text><text lang="en">administration</text></friendly_name><title>
 			
 			
-		<text lang="de">OLIV administrieren</text><text lang="en">Administrate OLIV</text></title></administration><search><name>
+		<text lang="de">OLIV administrieren</text><text lang="en">Administrate OLIV</text></title></administration><error_404><name>
 			
 			
-		<text lang="de">Suchergebnis</text><text lang="en">Search result</text></name><friendly_name>
+		<text lang="de">Seite nicht gefunden</text><text lang="en">Page not found</text></name><friendly_name>
 			
 			
-		<text lang="de">Suchergebnis</text><text lang="en">Search_result</text></friendly_name><title>
+		<text lang="de">Seite_nicht_gefunden</text><text lang="en">page_not_found</text></friendly_name><title>
 			
 			
-		<text lang="de">Liste der Suchergebnisse</text><text lang="en">List of the search results</text></title></search><plugins><name>
+		<text lang="de">Diese Seite wurde nicht gefungen</text><text lang="en">This page was not found</text></title></error_404><plugins><name>
 			
 			
 		<text lang="de">Plugins</text><text lang="en">Plugins</text></name><friendly_name>

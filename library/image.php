@@ -38,7 +38,6 @@ class OLIVImage
 // if exist use language version
 	public static function _($image,$lang = "")
 	{
-		global $_MODULES;
 		$o = FALSE;
 
 
@@ -74,9 +73,11 @@ class OLIVImage
 
 //------------------------------------------------------------------------------
 // look in module paths
-      if (is_array($_MODULES))
+			$modules = system::modules();
+			
+      if (is_array($modules))
       {
-        foreach ($_MODULES as $entry)
+        foreach ($modules as $entry)
   			{
   				$path = OLIVModule::getImagePath((string)$entry->name);
 

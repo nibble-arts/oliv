@@ -41,8 +41,11 @@ class toolbox extends OLIVModule
 
 		$contentName = argv::toolbox();
 
-		$this->template = OLIVModule::load_template($header);
 		$this->content = OLIVModule::load_content($header,$contentName);
+
+// load template if content is loaded
+		if ($this->content)
+			$this->template = OLIVModule::load_template($header);
 	}
 }
 

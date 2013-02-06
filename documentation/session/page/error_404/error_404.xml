@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Seite nicht gefunden</text>
+			<text lang='en'>Page not found</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Seite_nicht_gefunden</text>
+			<text lang='en'>page_not_found</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Diese Seite wurde nicht gefungen</text>
+			<text lang='en'>This page was not found</text>
+		</title>
+	</define>
+
+
+	<content>
+		<include>common</include>
+
+<!--	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>-->
+
+	  <oliv_content mod="article">content:error_404</oliv_content>
+	</content>
+</page>

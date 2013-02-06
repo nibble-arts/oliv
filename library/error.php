@@ -53,8 +53,7 @@ class OLIVError
   {
     $o = "<div id='oliv_error'>";
       $o .=  $text;
-//      OLIVText::_($text);
-    $o .=  "</b></div>";
+    $o .=  "</div>";
 
     return ($o);
   }
