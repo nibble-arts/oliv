@@ -42,7 +42,7 @@
     <OLIV_CORE_TEXT>systemtext.xml</OLIV_CORE_TEXT>
 		<OLIV_NAME>OLIV-CMS</OLIV_NAME>
 		<OLIV_AUTHOR>Thomas H. Winkler</OLIV_AUTHOR>
-    <OLIV_VERSION>V0.5.0.bbcecbf4 - 2013-02-01</OLIV_VERSION>
+    <OLIV_VERSION>V0.5.1.0936bffb - 2013-02-06</OLIV_VERSION>
   </system>
   
   <includes>
