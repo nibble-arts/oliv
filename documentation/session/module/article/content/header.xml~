@@ -2,6 +2,7 @@
 
 <header>
 	<access group="author" access="774"/>
+		<a href="index" id='header_img' background-image='oliv_logo.png'/>
 	
 	<div id="header_background">
 		<div id="header_title">

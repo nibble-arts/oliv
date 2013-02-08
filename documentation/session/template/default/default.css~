@@ -135,25 +135,6 @@ div {
 	clear:both;
 }
 
-
-#article_lang_selector {
-  float:left;
-	margin-top:50px;
-	margin-left:10px;
-}
-
-#oliv_lang_flag,oliv_lang_flag_selected {
-	width:20px;
-	vertical-align:middle;
-	margin-left:0.1em;
-	margin-right:0.1em;
-}
-
-#oliv_lang_flag_selected {
-	width:30px;
-	vertical-align:middle;
-}
-
 /*----------------------------------------------------------------------------*/
 /* id definition */
 #noscript {

@@ -5,7 +5,7 @@
 
 <!-- text paragraph sequence -->
 		<h1><xsl:apply-templates select="article_001"/></h1>
-		<pre><status>debug</status></pre>
+		<pre><status>debug</status></pre>	
 
 	</xsl:template>
 

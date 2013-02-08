@@ -202,9 +202,10 @@ class OLIVModule
 // load system file
 		if (strtolower($root) == "system")
 		{
+echoall("$filePath $name"); 
 			if (olivfile_exists($filePath . $name))
 			{
-		  	return olivxml_load_file($filePath . $name);
+				echoall("load system $filePath");
 			}
 		}
 		

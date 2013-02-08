@@ -26,7 +26,7 @@
   	<text lang="en">OLIV uses XML-files for organizing all content and settings. The layout is defined in XSLT-stylesheets. OLIV is multi-session capable, whitch means, that multiple independent pages can be operated from one system installation. The data for each page is stored in one single subdirectory. So it is possible to create a page with a simple UTF-8 capable editor. For backups of all content only one directory has to be saved.</text>
   </p>
 
-  <ul>
+  <paragraph tag="ul">
 		<li>
 			<text lang="de">Listenelement 1</text>
 		</li>
@@ -34,6 +34,6 @@
 		<li>
 			<text lang="de">Listenelement 2</text>
 		</li>
-	</ul>
+	</p>
 
 </article_start>
