@@ -50,9 +50,8 @@ class article extends OLIVModule
 // set article and content to "error_no_article" article
 		if (!$article)
 		{
-			$header->param->template = "error_no_article";
 			$article = OLIVModule::load_content($header,"error_no_article");
-			$article->articlename = (string)$header->param->content;
+			$article->param->articlename = (string)$header->param->content;
 		}
 		
 // set article
@@ -62,7 +61,7 @@ class article extends OLIVModule
 // check activities
 		$this->activities($header,$this->content);
 
-
+echoall($article);
 // add source and textname attribute recursive
 		if ($article)
 		{

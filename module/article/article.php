@@ -51,7 +51,7 @@ class article extends OLIVModule
 		if (!$article)
 		{
 			$article = OLIVModule::load_content($header,"error_no_article");
-			$article->articlename = (string)$header->param->content;
+			$article->param->articlename = (string)$header->param->content;
 		}
 		
 // set article
