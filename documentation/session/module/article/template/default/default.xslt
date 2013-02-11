@@ -1,19 +1,18 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:template match="structure">
+	<xsl:template match="content">
 
-<!--<xsl:variable name="param" select="'articlename'"/>-->
-<!--<xsl:value-of select="param/*[$param]"/>-->
+		<xsl:apply-templates select="//param"/>
 
-		<xsl:for-each select="*">
-			<xsl:value-of select="name(.)"/>
-			<xsl:variable name="text" select="."/>
-			'<xsl:value-of select="$text"/>'<br/>
-		</xsl:for-each>
-
+		<xsl:copy-of select="."/>
+		
 	</xsl:template>
 
+	<xsl:template match="param">
+		<xsl:value-of select="."/>
+	</xsl:template>
 
-	<xsl:template match="content"/>
+	<xsl:template match="argv">
+	</xsl:template>
 </xsl:stylesheet>

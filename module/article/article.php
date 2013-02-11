@@ -41,7 +41,6 @@ class article extends OLIVModule
     global $_argv;
 
 
-
 // load content
 		$article = OLIVModule::load_content($header);
 
@@ -51,13 +50,14 @@ class article extends OLIVModule
 		if (!$article)
 		{
 			$article = OLIVModule::load_content($header,"error_no_article");
-			$article->param->articlename = (string)$header->param->content;
+//			$article->argv->articlename = (string)$header->param->content;
+//			$article->argv->source = "sourcePath";
 		}
 		
 // set article
 		$this->content = $article;
 
-
+//echoall($article);
 // check activities
 		$this->activities($header,$this->content);
 
@@ -71,7 +71,8 @@ class article extends OLIVModule
 			olivxml_insert($article,OLIVLang::selector($langs),"ALL");
 
 // load central article template
-			$this->template = OLIVModule::load_template($header,"default");
+//			$this->template = OLIVModule::load_template($header,"default");
+			$this->template = OLIVModule::load_template($header);
 		}
   }
 

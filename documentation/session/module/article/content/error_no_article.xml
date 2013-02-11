@@ -3,26 +3,22 @@
 <error_no_article>
 
 	<content lang="de">
-		<txt_001>
+		<h1>
 			<text lang='de'>Artikel</text>
 			<text lang='en'>Article</text>
-		</txt_001>
-		<txt_002>
+
+			<param>articlename</param>
+			
 			<text lang='de'>nicht gefunden</text>
 			<text lang='en'>not found</text>
-		</txt_002>
-		<txt_003>
+		</h1>
+
+		<param>source</param>
+
+		<p>
 			<text lang='de'>Dieser Artikel wurde nicht gefunden. Wollen Sie ihn anlegen?</text>
 			<text lang='en'>This article was not found. Do you want to create it?</text>
-		</txt_003>
+		</p>
 	</content>
-	
-	<structure>
-		<h1>
-			<span>001</span>
-			<param>articlename</param>
-			<span>002</span>
-		</h1>
-		<p>003</p>
-	</structure>
+
 </error_no_article>
