@@ -3,18 +3,16 @@
 <header>
 	<access group="author" access="774"/>
 	
-	<div id="header_background">
-		<div id="header_title">
-			<text lang="de">Das omnilinguale CMS</text>
-			<text lang="en">The omnilingual CMS</text>
-		</div>
+	<header_title>
+		<text lang="de">Das omnilinguale CMS</text>
+		<text lang="en">The omnilingual CMS</text>
+	</header_title>
 
-		<a href="index" id='header_img' background-image='oliv_logo.png'/>
+	<header_logo>oliv_logo.png</header_logo>
 
-		<back_link_title>
-			<text lang="de">Zurück an den Start</text>
-			<text lang="en">Back home</text>
-		</back_link_title>
-	</div>
+	<back_link_title>
+		<text lang="de">Zurück an den Start</text>
+		<text lang="en">Back home</text>
+	</back_link_title>
 </header>
 

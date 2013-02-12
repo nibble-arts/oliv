@@ -6,7 +6,7 @@
 	<content>
 		<oliv_toolbox mod="toolbox">content:toolbox;</oliv_toolbox>
 
-		<oliv_header mod='article'>content:header;</oliv_header>
+		<oliv_header mod='article'>template:header;content:header;</oliv_header>
 
 <!--		<oliv_admin mod='admin' />-->
 		<oliv_login mod='login'/>

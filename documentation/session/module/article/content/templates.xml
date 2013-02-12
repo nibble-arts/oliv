@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates>
+	<content>
+		<text_001>
+			<text lang="de">OLIV Templates</text>
+			<text lang="en">OLIV templates</text>
+		</text_001>
+		<text_002>
+			<text lang="de">OLIV verwendet einen XSLT-Prozessor zum Rendern der Inhalte. Die Templates der Seiten und Module sind daher XSLT 1.0-Stylesheets.</text>
+			<text lang="en">OLIV uses an XSLT-processor to render the content. The templates for pages and modules are XSLT 1.0 stylesheets.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</templates>

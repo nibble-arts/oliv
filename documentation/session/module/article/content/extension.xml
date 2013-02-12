@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<function>
+	<content>
+		<text_001>
+			<text lang="de">OLIV Erweiterungen</text>
+			<text lang="en">OLIV extensions</text>
+		</text_001>
+		<text_002>
+			<text lang="de">Das OLIV System kann durch ein Modul- und Pluginsystem leicht erweitert werden. Die Programmierung ist sehr einfach und wird durch die Modul-Klasse unterstützt. Wie das gesamte System basieren die Erweiterungen auf XML und XSLT Dateien.</text>
+			<text lang="en">The OLIV system can simply be extended with the module and plugin system. The programming is very eary and is supported by the module class.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</function>

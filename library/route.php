@@ -463,10 +463,43 @@ class OLIVRoute
 // make path from page up to root
 	static public function makePath($page,$path = array())
 	{
+		$oldpath = array();
+		$newpath = array();
+		
 		$pathArray = OLIVRoute::_makePath($page,$path);
 		array_pop($pathArray);
+		$pathArray = array_reverse($pathArray);
 
-		return array_reverse($pathArray);
+		$oldpath = $pathArray;
+
+// check if path is stored in session var
+		if (array_key_exists("path",$_SESSION))
+		{
+			if (isset($_SESSION['path']))
+				$oldpath = $_SESSION['path'];
+		}
+// init path
+		else
+			$_SESSION['path'] = $pathArray;
+
+
+// check oldpath for matches
+		for ($x = 0;$x < count($pathArray);$x++)
+		{
+			if ($x >= count($oldpath))
+			{
+				$_SESSION['path'] = $pathArray;
+				break;
+			}
+			
+			elseif ($pathArray[$x] != $oldpath[$x])
+			{
+				$_SESSION['path'] = $pathArray;
+				break;
+			}
+		}
+
+		return $pathArray;
 	}
 	
 

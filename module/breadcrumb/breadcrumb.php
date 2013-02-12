@@ -37,19 +37,39 @@ class breadcrumb extends OLIVModule
   function __construct($header)
   {
 		$this->content = OLIVModule::load_content($header);
+		$pathActive = count(status::path());
 
 // insert start page link
 		$homePage = OLIVRoute::translateFriendlyName(status::lang(),system::OLIV_INDEX_PAGE());
 		$newNode = $this->content->addChild("path_point",$homePage);
 		$newNode->addAttribute("href",system::OLIV_INDEX_PAGE());
 
+		if ($pathActive == 0)
+			$newNode->addAttribute("class","breadcrumb_active");
+		else
+			$newNode->addAttribute("class","breadcrumb");
+
+
 // insert all links in hyrarchy
-		$path = status::path();
+		if (array_key_exists("path",$_SESSION))
+			$path = $_SESSION['path'];
+		else
+			$path = array();
+
+
+		$x = 1;
 		foreach ($path as $page)
 		{
 			$pageName = OLIVRoute::translateFriendlyName(status::lang(),$page);
 			$newNode = $this->content->addChild("path_point",$pageName);
 			$newNode->addAttribute("href",$page);
+
+			if ($pathActive == $x)
+				$newNode->addAttribute("class","breadcrumb_active");
+			else
+				$newNode->addAttribute("class","breadcrumb");
+				
+			$x++;
 		}
 
 		$this->template = OLIVModule::load_template($header);

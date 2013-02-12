@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<content>
+<administration>
 	<content>
 		<text_001>
-			<text lang="de">Verwalten von Inhalten in OLIV</text>
-			<text lang="en">Organisation of the content in OLIV</text>
+			<text lang="de">OLIV administrieren</text>
+			<text lang="en">Administrate OLIV</text>
 		</text_001>
 	</content>
 	
 	<structure>
 		<h1 name="text_001"/>
 	</structure>
-</content>
-
-
-
+</administration>

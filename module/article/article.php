@@ -50,14 +50,18 @@ class article extends OLIVModule
 		if (!$article)
 		{
 			$article = OLIVModule::load_content($header,"error_no_article");
-//			$article->argv->articlename = (string)$header->param->content;
+			$article->content->articlename = (string)$header->param->content;
 //			$article->argv->source = "sourcePath";
 		}
-		
+
+
 // set article
 		$this->content = $article;
 
-//echoall($article);
+//TODO parse article
+		$this->create();
+
+		
 // check activities
 		$this->activities($header,$this->content);
 
@@ -76,6 +80,32 @@ class article extends OLIVModule
 		}
   }
 
+
+//------------------------------------------------------------------------------
+// create article
+	private function create()
+	{
+		$structure = $this->content->structure;
+		$content = $this->content->content;
+
+		if ($content)
+		{
+			foreach ($content->children() as $entry)
+			{
+				$name = $entry->getName();
+
+				$nodes = $structure->XPath("//*[@name = '$name']");
+
+				foreach ($nodes as $node)
+				{
+// insert text into node
+					olivxml_insert($node,$entry);
+				}
+			}
+		}
+//echoall($this->content->structure);
+	}
+	
 
 //------------------------------------------------------------------------------
   private function activities($header,$article)
