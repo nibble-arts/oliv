@@ -15,30 +15,46 @@
 				<xsl:value-of select="class"/>
 			</xsl:attribute>
 
-				<a>
-					<xsl:if test="./url != ''">
-						<xsl:attribute name="href">
-							<xsl:value-of select="url"/>
-						</xsl:attribute>
+			<a>
+				<xsl:if test="./url != ''">
+					<xsl:attribute name="href">
+						<xsl:value-of select="url"/>
+					</xsl:attribute>
 
-						<xsl:attribute name="target">
-							<xsl:value-of select="target"/>
-						</xsl:attribute>
+					<xsl:attribute name="target">
+						<xsl:value-of select="target"/>
+					</xsl:attribute>
 
-						<xsl:attribute name="title">
-							<xsl:value-of select="title"/>
-						</xsl:attribute>
-					</xsl:if>
+					<xsl:attribute name="title">
+						<xsl:value-of select="title"/>
+					</xsl:attribute>
+				</xsl:if>
 
-					<span>
-						<xsl:attribute name="class">
-							<xsl:value-of select="class"/>
-						</xsl:attribute>
+<!-- show arrows -->
+				<xsl:if test="submenu">
+					<xsl:choose>
+		<!-- active -->
+						<xsl:when test="status">
+							<img class="menu_arrow" src="less_arrow_bright.png"/>
+						</xsl:when>
 
-						<xsl:value-of select="name"/>
-					</span>
-				</a>
-			</div>
+		<!-- inactive -->
+						<xsl:otherwise>
+							<img class="menu_arrow" alt="[+]" src="more_arrow_dark.png"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:if>
+			
+<!-- show text -->
+				<span>
+					<xsl:attribute name="class">
+						<xsl:value-of select="class"/>
+					</xsl:attribute>
+
+					<xsl:value-of select="name"/>
+				</span>
+			</a>
+		</div>
 	</xsl:template>
 </xsl:stylesheet>
 

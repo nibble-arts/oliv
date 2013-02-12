@@ -11,6 +11,10 @@
   text-align:left;
 }
 
+#menu_submark {
+	font-size:50%;
+	vertical-align:top;
+}
 
 /* menu / submenu formats */
 .menu_side {
@@ -47,4 +51,6 @@
   font-style:normal;
 }
 
-
+.menu_arrow {
+	height:10px;
+}

@@ -4,15 +4,15 @@
 
 	<xsl:template match='footer'>
 		<div id="footer_background">
-			<a href="index">
-				<img id="footer_img" src="oliv_logo"/>
-			
+			<a href="http://github.com/nibble-arts/oliv" target="_blank">
 				<span id="footer_text">
-					<xsl:value-of select="./footer_text"/>
+					<xsl:value-of select="./content/text_001"/>
 				</span>
-			</a>
 
-			<system id="footer_text">oliv_version</system>
+				<img id="footer_img" src="oliv_logo"/>
+
+				<system id="footer_text">oliv_version</system>
+			</a>
 		</div>
 	</xsl:template>
 

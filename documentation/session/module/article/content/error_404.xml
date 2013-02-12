@@ -1,16 +1,20 @@
 <?xml version='1.0' encoding='utf8'?>
 
 <error_404>
-	<lang>de</lang>
+	<content lang="de">
+		<text_001>
+			<text lang='de'>Seite nicht gefunden</text>
+			<text lang='en'>Page not found</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Diese Seite wurde auf OLIV-Dokumentation nicht gefunden. Überprüfen Sie bitte die Adresse und versuchen Sie es erneut.</text>
+			<text lang='en'>This page was not found in the OLIV-documentation. Please check the address and try it again.</text>
+		</text_002>
+	</content>
 	
-  <article_001>
-  	<text lang='de'>Seite nicht gefunden</text>
-		<text lang='en'>Page not found</text>
-	</article_001>
-
-  <article_002>
-		<text lang='de'>Diese Seite wurde auf OLIV-Dokumentation nicht gefunden. Überprüfen Sie bitte die Adresse und versuchen Sie es erneut.</text>
-		<text lang='en'>This page was not found in the OLIV-documentation. Please check the address and try it again.</text>
-  </article_002>
-
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
 </error_404>

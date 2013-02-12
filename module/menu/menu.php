@@ -80,6 +80,7 @@ class menu extends OLIVModule
   private function parse($menus,$menuName,$templateName,$access,$url,$level = 0)
   {
 		$menu = $menus->$menuName;
+		$active = FALSE;
 		
     if ($menu)
     {
@@ -87,7 +88,7 @@ class menu extends OLIVModule
 			$menuName = $menu->getName();
 	    $menuXml = new simpleXmlElement("<menu></menu>");
 
-//TODO open path to actice menu
+// open path to actice menu
 			$this->openPath($menus,$url);
 
 //------------------------------------------------------------------------------
@@ -96,6 +97,8 @@ class menu extends OLIVModule
       {
 		  	$visible = FALSE;
 				$subMenuVisible = $entry['visible'];
+				if ($subMenuVisible)
+					$entry->visible = "visible";
 
 //------------------------------------------------------------------------------
 // display item if read permission
@@ -126,6 +129,7 @@ class menu extends OLIVModule
 			    if ($internUrl == $url)
 			    {
 			    	$visible = $url;
+			    	$entry->status = "active";
 			      $entry->class = "{$templateName} menu_{$templateName}_active";
 					}
 			    else
@@ -151,7 +155,13 @@ class menu extends OLIVModule
 						$entry->class = "menu_{$templateName}_disabled";
 					}
 
+// get submenu name
+					$subName = (string)$entry['submenu'];
 
+					if ($subName)
+						$entry->submenu = $subName;
+					
+					
 // create menu_item xml
 					$menu_item = new simpleXmlElement("<menu_item_$templateName></menu_item_$templateName>");
 					olivxml_insert($menu_item,$entry);
@@ -164,7 +174,7 @@ class menu extends OLIVModule
 //------------------------------------------------------------------------------
 // look if aktive menu is in submenu
 // display sub menus
-					if ($subName = (string)$entry['submenu'] and $visible or $subMenuVisible)
+					if ($subName and $visible or $subMenuVisible)
 					{
 		// call menu recursive
 						$subMenu = $this->parse($menus,$subName,$templateName,$access,$url,$level+1);
@@ -190,7 +200,6 @@ class menu extends OLIVModule
 		if ($node)
 		{
 			$parentName = $node[0]->getName();
-
 
 // set node to visible
 			if (!(string)$node[0]->$url->attributes()->visible)

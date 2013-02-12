@@ -58,10 +58,11 @@ class article extends OLIVModule
 // set article
 		$this->content = $article;
 
-//TODO parse article
+
+// combine article
 		$this->create();
 
-		
+
 // check activities
 		$this->activities($header,$this->content);
 

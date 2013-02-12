@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <footer>
-	<footer_text>
-		<text lang="de">OLIV - Das omnilinguale CMS</text>
-		<text lang="en">OLIV - The omnilingual CMS</text>
-	</footer_text>
+	<content>
+		<text_001>
+			<text lang="de">Das omnilinguale CMS</text>
+			<text lang="en">The omnilingual CMS</text>
+		</text_001>
+	</content>
+
+	<structure>
+		<div id="footer_background">
+			<a href="index">
+				<img id="footer_img" src="oliv_logo"/>
+			
+				<span id="footer_text" name="text_001"/>
+			</a>
+
+			<system id="footer_text">oliv_version</system>
+		</div>
+	</structure>
 </footer>
+

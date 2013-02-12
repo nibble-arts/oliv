@@ -89,7 +89,7 @@ class OLIVModule
     if (!olivfile_exists($path . $name . ".xslt"))
       $path = system::OLIV_MODULE_PATH() . $header->name . "/template/default/";
 
-    // load template and link css
+// load template and link css
     return ($path . $name);
   }
 
