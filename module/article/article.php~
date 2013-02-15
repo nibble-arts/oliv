@@ -64,7 +64,7 @@ class article extends OLIVModule
 		$this->content = $article;
 
 
-//TODO insert edit frame if toolbox = article_edit
+//TODO insert edit frame
 // set article for editing
 		if (argv::toolbox() == "article_edit")
 		{
