@@ -451,7 +451,7 @@ echoall($tempArray);
 		$path = OLIVRoute::makePath($page);
 
 // if rest, create val parameter
-		for($x = 0;$x < count($path);$x++)
+		for($x = 0;$x <= count($path);$x++)
 		{
 			array_shift($urlArray);
 		}

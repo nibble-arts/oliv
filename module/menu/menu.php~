@@ -130,6 +130,7 @@ class menu extends OLIVModule
 
 								olivxml_insert($entry->title,$contentTitle);
 								olivxml_insert($entry->name,$contentName);
+echoall($entry);
 							}
 						}
 						else

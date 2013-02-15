@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<railway>
+	<content>
+		<text_001 idx="text">
+			<text lang="de">Gartenbahn Anlage</text>
+			<text lang="en">Railway</text>
+		</text_001>
+		<text_002 idx="railway_name">
+			<text lang="de">DBC-Graz</text>
+			<text lang="en">DBC-Graz</text>
+		</text_002>
+		<text_002 idx="railway_description">
+			<text lang="de">DBC-Graz</text>
+			<text lang="en">DBC-Graz</text>
+		</text_002>
+		<text_003 idx="railway_summary">
+			<text lang="de">Der DBC-Graz ist ein Verein, der sich am 3. September 1999, aus einer losen Interessengemeinschaft mit monatlichen Stammtisch konstituiert hat und dessen Mitglieder sich mit dem Bau und Betrieb von echtdampfbetriebenen Modellen beschäftigen. Der Schwerpunkt liegt im Bau von vollkommen originalgetreuen und funktionsfähigen Nachbildungen historischer Dampflokomotiven aber auch von anderen Schienenfahrzeugen in den Maßstäben 1:16 bis 1:4. Auch das rollende Material, die passenden Waggons, kommen nicht zu kurz. Der Reiz in dieser Größe liegt darin, dass alles wie beim Original funktioniert, dass man selbst Kohlen schippt und den Regler öffnet, also man Heizer und Lokführer in einer Person ist. </text>
+		</text_003>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<h2 name="text_002"/>
+		<h2 name="text_003"/>
+	</structure>
+</railway>

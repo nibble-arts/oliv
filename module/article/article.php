@@ -40,6 +40,8 @@ class article extends OLIVModule
   {
     global $_argv;
 
+//TODO look for page parameter for link to dynamic article selection
+
 
 // load content
 		$article = OLIVModule::load_content($header);
@@ -118,6 +120,7 @@ class article extends OLIVModule
 				}
 			}
 		}
+
 //echoall($this->content->structure);
 	}
 	

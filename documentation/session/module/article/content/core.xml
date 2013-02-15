@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article_start lang="de">
+	<define>
+		<name>
+			<text lang="de">Der OLIV Kern</text>
+			<text lang="en">The OLIV Core</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Der-OLIV-Kern</text>
+			<text lang="en">The-OLIV-core</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Was ist der OLIV Kern?</text>
+			<text lang="en">What is the OLIV core?</text>
+		</title>
+	</define>
+
+	<content>
+		<text_001>
+			<text lang='de'>Der OLIV Kern</text>
+			<text lang='en'>The OLIV core</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Der OLIV Kern ist die Hauptstruktur zur Darstellung der Seite</text>
+			<text lang='en'>The OLIV core is the main structure to create a page.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</article_start>

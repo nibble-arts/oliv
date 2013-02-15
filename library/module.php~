@@ -378,15 +378,6 @@ class OLIVModule
 
 
 //------------------------------------------------------------------------------
-// get the name of the content xml
-	public static function getContentTitle($mod,$name)
-	{
-		$modDefine = OLIVModule::getContentDefine($mod,$name);
-		return $modDefine->title;
-	}
-
-
-//------------------------------------------------------------------------------
 // scan module directory and load module metadata
   private function scan($path)
   {

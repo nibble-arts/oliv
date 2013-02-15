@@ -2,11 +2,11 @@
 
 <function>
 	<content>
-		<text_001 idx="text">
+		<text_001>
 			<text lang="de">Funktion von OLIV</text>
 			<text lang="en">The function of OLIV</text>
 		</text_001>
-		<text_002 idx="text">
+		<text_002>
 			<text lang="de">Hier erfahren Sie, wie OLIV funktioniert. Für die Seitengestaltung und natürlich die Modul- und Plugin-Programmierung ist es sehr hilfreich, wenn man weiß, wie OLIV eine Seite lädt und aufbaut.</text>
 			<text lang="en">Hier you will be informed, how OLIV is working. For thr page layout and naturally the module and plugin programmind, it is very helpfull to know, how OLIV loades and creates a page.</text>
 		</text_002>

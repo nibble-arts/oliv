@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article_start lang="de">
+	<define>
+		<name>
+			<text lang="de">Funktion von OLIV</text>
+			<text lang="en">Function of OLIV</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Funktion-von-OLIV</text>
+			<text lang="en">Function-of-OLIV</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Wie funktioniert OLIV?</text>
+			<text lang="en">How does OLIV work?</text>
+		</title>
+	</define>
+
+	<content>
+		<text_001>
+			<text lang='de'>Wie funktioniert OLIV</text>
+			<text lang='en'>How dows OLIV work</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Wie funktioniert OLIV?</text>
+			<text lang='en'>How dows OLIV work.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</article_start>

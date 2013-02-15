@@ -60,12 +60,6 @@ class routePlugin
 
 				$hrefArray = explode(":",$href);
 
-// parse special route functions:
-// referer() ... insert referer address
-// current() ... insert current url and val
-// javascript(): ... convert to javascript call
-// urlName:valName ... convert to correct friendly_url/val
-
 				switch($hrefArray[0])
 				{
 					case 'referer()':

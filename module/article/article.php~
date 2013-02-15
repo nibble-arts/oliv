@@ -40,11 +40,13 @@ class article extends OLIVModule
   {
     global $_argv;
 
+//TODO look for page parameter for link to dynamic article selection
+
 
 // load content
 		$article = OLIVModule::load_content($header);
 
-
+echoall(status::val());
 // check if content exist
 // set article and content to "error_no_article" article
 		if (!$article)
@@ -64,7 +66,7 @@ class article extends OLIVModule
 		$this->content = $article;
 
 
-//TODO insert edit frame
+//TODO insert edit frame if toolbox = article_edit
 // set article for editing
 		if (argv::toolbox() == "article_edit")
 		{
@@ -118,6 +120,7 @@ class article extends OLIVModule
 				}
 			}
 		}
+
 //echoall($this->content->structure);
 	}
 	

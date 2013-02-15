@@ -38,7 +38,7 @@
 .menu3_side {
 	font-size:85%;
 	font-style:italic;
-	margin-left:15pt;
+	margin-left:50pt;
 	background-color:#acbf98;
 }
 

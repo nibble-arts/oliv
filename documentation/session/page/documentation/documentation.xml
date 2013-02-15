@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Dokumentation</text>
+			<text lang='en'>Documentation</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Dokumentation</text>
+			<text lang='en'>Documentation</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Die offizielle OLIV Dokumentation</text>
+			<text lang='en'>The official OLIV documentation</text>
+		</title>
+	</define>
+
+
+	<content>
+		<include>common</include>
+
+	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
+
+	  <oliv_content mod="article">content:val=article</oliv_content>
+	</content>
+</page>

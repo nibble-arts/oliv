@@ -29,7 +29,7 @@ The status defines the visibility:
 
 		<function group="publisher" access="740">
 			<function val="mod:article;content:function_basics"/>
-			<function val="mod:article;content:core"/>
+			<core val="mod:article;content:core"/>
 			<init/>
 			<route/>
 			<page/>

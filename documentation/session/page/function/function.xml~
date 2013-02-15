@@ -22,6 +22,6 @@
 
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
 
-	  <oliv_content mod="article">content:function</oliv_content>
+	  <oliv_content mod="article">content:argv=article</oliv_content>
 	</content>
 </page>
