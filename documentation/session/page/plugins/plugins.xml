@@ -23,6 +23,6 @@
 	  <oliv_left1 mod='menu'>menu:main;template:side;</oliv_left1>
 	  <oliv_left2 mod='menu'>menu:plugins;template:side;</oliv_left2>
 
-	  <oliv_content mod="article">content:plugins</oliv_content>
+	  <oliv_content mod="article">content:plugins;status:val</oliv_content>
 	</content>
 </page>

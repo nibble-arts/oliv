@@ -65,7 +65,7 @@ class OLIVRoute
  		status::set('val',$tempArray['val']); // add values to val-parameter
  		status::set('path',$tempArray['path']); // add values to val-parameter
 
-echoall($tempArray);
+//echoall($tempArray);
 // routable url found
     if (status::url())
     {

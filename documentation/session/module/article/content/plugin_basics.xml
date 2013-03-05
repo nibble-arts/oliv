@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article_plugin_basics lang="de">
+	<define>
+		<name>
+			<text lang="de">Plugin Gundlagen</text>
+			<text lang="en">Plugin basics</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Plugin-Grundlagen</text>
+			<text lang="en">Plugin-basics</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Die Idee der OLIV Plugins</text>
+			<text lang="en">The idea of the OLIV plugin system</text>
+		</title>
+	</define>
+
+	<content>
+		<text_001>
+			<text lang='de'>OLIV Plugins</text>
+			<text lang='en'>OLIV plugins</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Mit Plugins können OLIV Funktionen erweitert werden.</text>
+			<text lang='en'>With the OLIV plugins functions can be extended.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</article_plugin_basics>

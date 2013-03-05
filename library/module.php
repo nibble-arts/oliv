@@ -353,7 +353,9 @@ class OLIVModule
 				$header->param->content = $name;
 
 				$content = OLIVModule::load_content($header);
-				return $content->define;
+
+				if ($content)
+					return $content->define;
 			}
 		}
 	}
@@ -364,7 +366,9 @@ class OLIVModule
 	public static function getContentName($mod,$name)
 	{
 		$modDefine = OLIVModule::getContentDefine($mod,$name);
-		return $modDefine->name;
+
+		if ($modDefine)
+			return $modDefine->name;
 	}
 
 
@@ -373,7 +377,9 @@ class OLIVModule
 	public static function getContentFriendlyName($mod,$name)
 	{
 		$modDefine = OLIVModule::getContentDefine($mod,$name);
-		return $modDefine->friendly_name;
+
+		if ($modDefine)
+			return $modDefine->friendly_name;
 	}
 
 
@@ -382,7 +388,9 @@ class OLIVModule
 	public static function getContentTitle($mod,$name)
 	{
 		$modDefine = OLIVModule::getContentDefine($mod,$name);
-		return $modDefine->title;
+
+		if ($modDefine)
+			return $modDefine->title;
 	}
 
 

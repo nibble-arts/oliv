@@ -47,6 +47,12 @@ class article extends OLIVModule
 		$article = OLIVModule::load_content($header);
 
 
+// status parameter found
+		if ($status = (string)$header->param->status)
+		{
+			echoall(status::$status());
+		}
+		
 // check if content exist
 // set article and content to "error_no_article" article
 		if (!$article)

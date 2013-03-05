@@ -97,6 +97,7 @@ class menu extends OLIVModule
       {
 		  	$visible = FALSE;
 				$subMenuVisible = $entry['visible'];
+
 				if ($subMenuVisible)
 					$entry->visible = "visible";
 
@@ -112,30 +113,51 @@ class menu extends OLIVModule
 // is intern link
 					if (!$entry->url)
 					{
-	// create correct url
-						$internUrl = $entry->getName();
-						$entry->url = $internUrl;
-						$urlName = OLIVText::xml(OLIVRoute::getPageName(status::lang(),$internUrl));
+// look for module link
+						$mod = (string)$entry["mod"];
+						$page = (string)$entry["page"];
+						$name = $entry->getName();
 
-// expand url with val
-						if ($val = (string)$entry['val'])
+						if ($mod and $page)
 						{
-							$valArray = OLIVModule::parse_param_string($val);
-							
-							if (array_key_exists("mod",$valArray) and array_key_exists("content",$valArray))
-							{
-								$contentName = OLIVModule::getContentName($valArray['mod'],$valArray['content']);
-								olivxml_insert($entry->val,OLIVModule::getContentFriendlyName($valArray['mod'],$valArray['content']));
-								$contentTitle = OLIVModule::getContentTitle($valArray['mod'],$valArray['content']);
+							olivxml_insert($entry,OLIVModule::getContentFriendlyName($mod,$name),"ALL");
+							olivxml_insert($entry,OLIVModule::getContentName($mod,$name),"ALL");
+							olivxml_insert($entry,OLIVModule::getContentTitle($mod,$name),"ALL");
 
-								olivxml_insert($entry->title,$contentTitle);
-								olivxml_insert($entry->name,$contentName);
-							}
+							$internUrl = "href():" . $page;
+
+							$entry->url = $internUrl;
+//							echoall($internUrl);
 						}
+
 						else
 						{
-							olivxml_insert($entry,OLIVRoute::getTitle($internUrl),"ALL");
-						  olivxml_insert($entry,OLIVRoute::getPageName(status::lang(),$internUrl),"ALL");
+// create correct url
+							$internUrl = $name;
+
+							$entry->url = $internUrl;
+							$urlName = OLIVText::xml(OLIVRoute::getPageName(status::lang(),$internUrl));
+
+// expand url with val
+							if ($val = (string)$entry['val'])
+							{
+								$valArray = OLIVModule::parse_param_string($val);
+
+	/*							if (array_key_exists("mod",$valArray) and array_key_exists("content",$valArray))
+								{
+									$contentName = OLIVModule::getContentName($valArray['mod'],$valArray['content']);
+									olivxml_insert($entry->val,OLIVModule::getContentFriendlyName($valArray['mod'],$valArray['content']));
+									$contentTitle = OLIVModule::getContentTitle($valArray['mod'],$valArray['content']);
+
+									olivxml_insert($entry->title,$contentTitle);
+									olivxml_insert($entry->name,$contentName);
+								}*/
+							}
+							else
+							{
+								olivxml_insert($entry,OLIVRoute::getTitle($internUrl),"ALL");
+								olivxml_insert($entry,OLIVRoute::getPageName(status::lang(),$internUrl),"ALL");
+							}
 						}
 					}
 
@@ -202,7 +224,7 @@ class menu extends OLIVModule
 
 		    }
 			}
-
+//echoall($menuXml);
       return ($menuXml);
     }
 //    else

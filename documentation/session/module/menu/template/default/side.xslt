@@ -32,6 +32,14 @@
 					<xsl:attribute name="title">
 						<xsl:value-of select="title"/>
 					</xsl:attribute>
+
+					<xsl:attribute name="name">
+						<xsl:value-of select="name"/>
+					</xsl:attribute>
+
+					<xsl:attribute name="val">
+						<xsl:value-of select="friendly_name"/>
+					</xsl:attribute>
 				</xsl:if>
 
 <!-- show arrows -->

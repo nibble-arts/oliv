@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article_plugin_basics lang="de">
+	<define>
+		<name>
+			<text lang="de">Route-Plugin</text>
+			<text lang="en">Route plugin</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Route-Plugin</text>
+			<text lang="en">Route-plugin</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Hyperlink plugin</text>
+			<text lang="en">Hyperlink plugin</text>
+		</title>
+	</define>
+
+	<content>
+		<text_001>
+			<text lang='de'>OLIV Route-Plugin</text>
+			<text lang='en'>OLIV route-plugin</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Mit Plugins können OLIV Funktionen erweitert werden.</text>
+			<text lang='en'>With the OLIV plugins functions can be extended.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</article_plugin_basics>

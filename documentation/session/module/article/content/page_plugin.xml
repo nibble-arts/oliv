@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<article_plugin_basics lang="de">
+	<define>
+		<name>
+			<text lang="de">Seiten-Plugin</text>
+			<text lang="en">Page plugin</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Seiten-Plugin</text>
+			<text lang="en">Page-plugin</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Plugin für den Seitenaufruf</text>
+			<text lang="en">Plugin for page call</text>
+		</title>
+	</define>
+
+	<content>
+		<text_001>
+			<text lang='de'>OLIV Seiten-Plugin</text>
+			<text lang='en'>OLIV page-plugin</text>
+		</text_001>
+
+		<text_002>
+			<text lang='de'>Mit Plugins können OLIV Funktionen erweitert werden.</text>
+			<text lang='en'>With the OLIV plugins functions can be extended.</text>
+		</text_002>
+	</content>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+</article_plugin_basics>

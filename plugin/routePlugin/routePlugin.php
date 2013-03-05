@@ -68,6 +68,10 @@ class routePlugin
 
 				switch($hrefArray[0])
 				{
+					case 'href()':
+						$nodes[$i]['href'] = OLIVRoute::url($lang,$hrefArray[1],(string)$nodes[$i]["val"]);
+						break;
+						
 					case 'referer()':
 						$nodes[$i]['href'] = status::oliv_referer();
 						break;

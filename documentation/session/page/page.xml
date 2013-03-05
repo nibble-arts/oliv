@@ -27,15 +27,15 @@ The status defines the visibility:
 			<administration submenu="administration"/>
 		</documentation>
 
-		<function group="publisher" access="740">
-			<function val="mod:article;content:function_basics"/>
-			<function val="mod:article;content:core"/>
-			<init/>
-			<route/>
-			<page/>
-			<preprocessor/>
-			<render/>
-			<postprocessor/>
+		<function>
+			<function_basics mod="article" page="function"/>
+			<core mod="article" page="function"/>
+			<init mod="article" page="function"/>
+			<route mod="article" page="function"/>
+			<page mod="article" page="function"/>
+			<preprocessor mod="article" page="function"/>
+			<render mod="article" page="function"/>
+			<postprocessor mod="article" page="function"/>
 		</function>
 
 		<extensions>
@@ -44,10 +44,10 @@ The status defines the visibility:
 	 	</extensions>
 		
 		<plugins>
-			<plugin_basics/>
-			<search_plugin/>
-			<page_plugin/>
-			<render_plugin/>
+			<plugin_basics mod="article" page="plugins"/>
+			<search_plugin mod="article" page="plugins"/>
+			<page_plugin mod="article" page="plugins"/>
+			<route_plugin mod="article" page="plugins"/>
 		</plugins>
 		
 		<modules>
@@ -81,12 +81,6 @@ The status defines the visibility:
 	</structure>
 
 <define>
-<!--	<function_basics mod="article">
-		<friendly_name>
-			<text lang='de'>Funktion-von-OLIV</text>
-			<text lang='en'>Function-of-OLIV</text>
-		</friendly_name>
-	</function_basics>-->
 <index><name>
 			
 			
