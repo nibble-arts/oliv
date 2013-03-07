@@ -40,18 +40,19 @@ class article extends OLIVModule
   {
     global $_argv;
 
-//TODO look for page parameter for link to dynamic article selection
+// status parameter found
+		$status = (string)$header->param->status;
+		
+		if ($articleParam = status::$status())
+		{
+//TODO retranslate article name
+			$header->param->content = $articleParam;			
+		}
 
 
 // load content
 		$article = OLIVModule::load_content($header);
 
-
-// status parameter found
-		if ($status = (string)$header->param->status)
-		{
-			echoall(status::$status());
-		}
 		
 // check if content exist
 // set article and content to "error_no_article" article

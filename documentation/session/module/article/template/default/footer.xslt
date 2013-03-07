@@ -14,6 +14,7 @@
 				<system id="footer_text">oliv_version</system>
 			</a>
 		</div>
+		<pre><status>debug</status></pre>
 	</xsl:template>
 
 </xsl:stylesheet>

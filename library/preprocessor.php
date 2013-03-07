@@ -72,7 +72,6 @@ class OLIVPreProcessor extends OLIVCore
 		          $script = OLIVModule::getModuleByName($mod);
 		          $originScript = $script;
 
-
 //------------------------------------------------------------------------------
 // script found
 		          if (isset($script->script))
@@ -198,7 +197,7 @@ class OLIVPreProcessor extends OLIVCore
 		else
 			OLIVError::fire("preprocessor.php::process - no page template found");
 
-
+//		status::set("debug",$linkArray);
 //------------------------------------------------------------------------------
 // create module link templates
 		foreach ($linkArray as $entry)

@@ -350,9 +350,7 @@ class OLIVModule
 // module header found
 			if ($header)
 			{
-				$header->param->content = $name;
-
-				$content = OLIVModule::load_content($header);
+				$content = OLIVModule::load_content($header,$name);
 
 				if ($content)
 					return $content->define;
