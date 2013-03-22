@@ -37,7 +37,7 @@
 	<content>
 		<include>common</include>
 
-		<oliv_left mod="article">content:images</oliv_left>
-		<oliv_content mod='article'>content:index</oliv_content>
+		<oliv_left mod="article">content:images;template:images;</oliv_left>
+		<oliv_content mod='article'>content:index;template:index;</oliv_content>
 	</content>
 </page>

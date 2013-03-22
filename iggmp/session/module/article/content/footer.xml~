@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <article_footer>
-	
+	<access owner="admin" group="publisher" access="774"/> 
+
   <oliv_github>
 		<text lang='de'>Besuchen Sie das OLIV-Projekt auf Github</text>
 		<text lang='en'>Visit the OLIV-project on Github</text>
