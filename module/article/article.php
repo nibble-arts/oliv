@@ -118,6 +118,25 @@ class article extends OLIVModule
 			{
 				$name = $entry->getName();
 
+
+// insert translated text in attibutes
+// text tag with leading $
+				$tempName = "$" . $name;
+				$nodes = $structure->XPath("//*[@* = '{$tempName}']");
+
+				foreach ($nodes as $node)
+				{
+					$text = OLIVText::xml($entry);
+
+					foreach ($node->attributes() as $key => $value)
+					{
+						if ((string)$value == $tempName)
+							$node[$key] = $text;
+					}
+				}
+
+
+// insert content at name attribute
 				$nodes = $structure->XPath("//*[@name = '$name']");
 
 				foreach ($nodes as $node)

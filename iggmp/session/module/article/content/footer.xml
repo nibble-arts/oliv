@@ -1,15 +1,26 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<article_footer>
+<article>
+	<content>
+		<oliv_github>
+			<text lang='de'>Besuchen Sie das OLIV-Projekt auf Github</text>
+			<text lang='en'>Visit the OLIV-project on Github</text>
+			<text lang='cs'>Navštivte projekt OLIV na GitHub</text>
+			<text lang='fr'>Visitez le projet OLIV sur Github</text>
+			<text lang='it'>Visita il progetto OLIV su Github</text>
+			<text lang='es'>Visita el proyecto OLIV en Github</text>
+			<text lang='jp'>GithubにOLIVプロジェクトのページを訪れてみて</text>
+	  </oliv_github>
+	</content>
 	
-  <oliv_github>
-		<text lang='de'>Besuchen Sie das OLIV-Projekt auf Github</text>
-		<text lang='en'>Visit the OLIV-project on Github</text>
-		<text lang='cs'>Navštivte projekt OLIV na GitHub</text>
-		<text lang='fr'>Visitez le projet OLIV sur Github</text>
-		<text lang='it'>Visita il progetto OLIV su Github</text>
-		<text lang='es'>Visita el proyecto OLIV en Github</text>
-		<text lang='jp'>GithubにOLIVプロジェクトのページを訪れてみて</text>
-  </oliv_github>
+	<structure>
+		<div id='footer_background'>
+			<a href="http://github.com/nibble-arts/oliv" target="_blank" title="$oliv_github">
 
-</article_footer>
+				Powered by OLIV <img src='oliv_logo' width='70px' /> <system>oliv_version</system>
+			</a>
+		</div>
+		
+		<div align="left"><pre><status>debug</status></pre></div>
+	</structure>
+</article>

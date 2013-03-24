@@ -5,6 +5,10 @@
 	<xsl:template match='footer'>
 		<div id="footer_background">
 			<a href="http://github.com/nibble-arts/oliv" target="_blank">
+				<xsl:attribute name="title">
+					<xsl:value-of select="./content/oliv_github"/>
+				</xsl:attribute>
+				
 				<span id="footer_text">
 					<xsl:value-of select="./content/text_001"/>
 				</span>

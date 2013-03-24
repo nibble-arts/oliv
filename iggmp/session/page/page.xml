@@ -14,36 +14,10 @@ The status defines the visibility:
 -->
 <pages>
 	<structure>
-		<index>
-			<status>public</status>
-			<name>
-				<text lang="de">Die neue Seite</text>
-				<text lang="en">Relaunch</text>
-				<text lang="cs">Oživení</text>
-				<text lang="fr">Relancer</text>
-				<text lang="it">Rilancio</text>
-				<text lang="es">Relanzar</text>
-				<text lang="jp">リニューアル</text>
-			</name>
-			<friendly_name>
-				<text lang="de">Die_neue_Seite</text>
-				<text lang="en">Relaunch</text>
-				<text lang="cs">Ozivení</text>
-				<text lang="fr">Relancer</text>
-				<text lang="it">Rilancio</text>
-				<text lang="es">Relanzar</text>
-				<text lang="jp">Relaunch</text>
-			</friendly_name>
-			<title>
-				<text lang="de">Die Gartenbahn Datenbank</text>
-				<text lang="en">The Miniature Railway Database</text>
-				<text lang="cs">Miniaturní železnice databáze</text>
-				<text lang="fr">la base de données de chemin de fer miniature</text>
-				<text lang="it">Il database Miniature Railway</text>
-				<text lang="es">La Base de Datos de trenes en miniatura</text>
-				<text lang="jp">ミニチュア鉄道データベース</text>
-			</title>
-		</index>
+		<main>
+			<index/>
+			<oliv href="http://localhost/documentation"/>
+		</main>
 	</structure>
 <define><index><index>
 			

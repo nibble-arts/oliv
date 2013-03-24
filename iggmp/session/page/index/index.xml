@@ -3,7 +3,6 @@
 <page>
 	<define>
 		<index>
-			<status>public</status>
 			<name>
 				<text lang='de'>Die neue Seite</text>
 				<text lang='en'>Relaunch</text>
@@ -37,7 +36,7 @@
 	<content>
 		<include>common</include>
 
-		<oliv_left mod="article">content:images</oliv_left>
-		<oliv_content mod='article'>content:index</oliv_content>
+		<oliv_content mod='article'>content:index;template:language;</oliv_content>
+		<oliv_right mod="article">content:images;</oliv_right>
 	</content>
 </page>

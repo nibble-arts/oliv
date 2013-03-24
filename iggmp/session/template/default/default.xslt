@@ -56,14 +56,21 @@
 									<xsl:apply-templates select='//oliv_left'/>
 								</div>
 							</td>
-						
-							<td id="oliv_table_right">
+
+							<td id="oliv_table_middle">
 								<div id='oliv_center'>
 									<div id="oliv_content">
 										<xsl:apply-templates select='//oliv_content'/>
 									</div>
 								</div>
 							</td>
+
+							<td id="oliv_table_right">
+								<div id='oliv_right'>
+									<xsl:apply-templates select='//oliv_right'/>
+								</div>
+							</td>
+
 						</tr></table>
 
 				  </div>
@@ -104,5 +111,35 @@
 		<xsl:value-of select="$node"/>
 	</xsl:template>
 
+<!-- language selector template -->
+	<xsl:template match="lang_selector/selector">
+		<a>
+			<xsl:attribute name="href">
+				<xsl:value-of select="./a/@href"/>
+			</xsl:attribute>
+
+			<xsl:attribute name="title">
+				<xsl:value-of select="./a/@title"/>
+			</xsl:attribute>
+
+			<xsl:attribute name="lang">
+				<xsl:value-of select="./a/@lang"/>
+			</xsl:attribute>
+
+			<img>
+				<xsl:attribute name="src">
+					<xsl:value-of select="./img"/>
+				</xsl:attribute>
+
+				<xsl:attribute name="lang">
+					<xsl:value-of select="./img/@lang"/>
+				</xsl:attribute>
+
+				<xsl:attribute name="id">
+					<xsl:value-of select="./img/@id"/>
+				</xsl:attribute>
+			</img>
+		</a>
+	</xsl:template>
 </xsl:stylesheet>
 

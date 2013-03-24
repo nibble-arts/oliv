@@ -19,6 +19,8 @@
 			<text lang='jp'>言語を変更</text>
 		</oliv_lang_switch>
 
+		<oliv_top mod="breadcrumb"/>
 		<oliv_toolbox mod="toolbox">content:toolbox;</oliv_toolbox>
+		<oliv_left mod="menu">content:main;template:side;</oliv_left>
 	</content>
 </page>

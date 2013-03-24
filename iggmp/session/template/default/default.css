@@ -178,11 +178,17 @@ li {
 	height:100%;
 }
 
-#oliv_table_right {
+#oliv_table_left {
 	vertical-align:top;
+	padding-top:18px;
 }
 
-#oliv_table_left {
+#oliv_table_middle {
+	vertical-align:top;
+	padding-top:18px;
+}
+
+#oliv_table_right {
 	vertical-align:top;
 	padding-top:18px;
 }
@@ -238,6 +244,11 @@ li {
 #oliv_center{
   float:left;
   width:600px;
+	margin-left:1em;
+}
+
+#oliv_right {
+	float:right;
 	margin-left:1em;
 }
 

@@ -80,7 +80,7 @@ class OLIVModule
   	{
 			// look for template attribute
 		  if (!($name = $header->param->template)) // special template defined
-		    $name = system::OLIV_TEMPLATE(); // use template name
+				$name = "default";
 		}
 
     $path = system::OLIV_MODULE_PATH() . $header->name . "/template/" . system::OLIV_TEMPLATE() . "/";

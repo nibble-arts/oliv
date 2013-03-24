@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<text>
+<article_language>
 	<define>
 		<name>
 			<text lang="de">MRDB</text>
@@ -13,6 +13,20 @@
 		</title>
 	</define>
 	
+	<structure>
+		<h1 name="text_002"/>
+		<p name="text_003"/>
+		<p name="text_004"/>
+		<ul>
+			<li name="text_005"/>
+			<li name="text_006"/>
+			<li name="text_007"/>
+			<li name="text_008"/>
+			<li name="text_009"/>
+			<li name="text_010"/>
+		</ul>
+	</structure>
+
 	<content> 
 		<text_002>
 			<text lang='de'>Neustart der Gartenbahn Datenbank!</text>
@@ -96,7 +110,4 @@
 			<text lang='jp'>最後にサイトのタイトルを変更しました。 {b}'ミニチュア·鉄道 - データベース'{/b} は現在、鉄道情報とイベントの管理に焦点を当てている。</text>
 		</text_010>
 	</content>
-	
-	<structure>
-	</structure>
-</text>
+</article_language>

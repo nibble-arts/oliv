@@ -6,11 +6,21 @@
 			<text lang="de">Das omnilinguale CMS</text>
 			<text lang="en">The omnilingual CMS</text>
 		</text_001>
+
+		<oliv_github>
+			<text lang='de'>Besuchen Sie das OLIV-Projekt auf Github</text>
+			<text lang='en'>Visit the OLIV-project on Github</text>
+			<text lang='cs'>Navštivte projekt OLIV na GitHub</text>
+			<text lang='fr'>Visitez le projet OLIV sur Github</text>
+			<text lang='it'>Visita il progetto OLIV su Github</text>
+			<text lang='es'>Visita el proyecto OLIV en Github</text>
+			<text lang='jp'>GithubにOLIVプロジェクトのページを訪れてみて</text>
+	  </oliv_github>
 	</content>
 
 	<structure>
 		<div id="footer_background">
-			<a href="index">
+			<a href="index" title="$oliv_github">
 				<img id="footer_img" src="oliv_logo"/>
 			
 				<span id="footer_text" name="text_001"/>

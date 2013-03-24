@@ -1,26 +1,39 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<article_header>
-	<access owner="admin" group="publisher" access="774"/> 
+<article>
+	<content>
+		<header_title>
+			<text lang='de'>Die Gartenbahn Datenbank</text>
+			<text lang='en'>The Miniature Railway Database</text>
+			<text lang='cs'>Miniaturní železnice databáze</text>
+			<text lang='fr'>la base de données de chemin de fer miniature</text>
+			<text lang='it'>Il database Miniature Railway</text>
+			<text lang='es'>La Base de Datos de trenes en miniatura</text>
+			<text lang='jp'>ミニチュア鉄道データベース</text>
+		</header_title>
 
-	<header_title>
-		<text lang='de'>Die Gartenbahn Datenbank</text>
-		<text lang='en'>The Miniature Railway Database</text>
-		<text lang='cs'>Miniaturní železnice databáze</text>
-		<text lang='fr'>la base de données de chemin de fer miniature</text>
-		<text lang='it'>Il database Miniature Railway</text>
-		<text lang='es'>La Base de Datos de trenes en miniatura</text>
-		<text lang='jp'>ミニチュア鉄道データベース</text>
-	</header_title>
+		<get_contact>
+			<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
+			<text lang='en'>Get in contact with us</text>
+			<text lang='cs'>Dostat do kontaktu s námi</text>
+			<text lang='fr'>Prenez contact avec nous</text>
+			<text lang='it'>Mettetevi in contatto con noi</text>
+			<text lang='es'>Póngase en contacto con nosotros</text>
+			<text lang='jp'>私たちと連絡を取って</text>
+		</get_contact>
+	</content>
 
-	<get_contact>
-		<text lang='de'>Nehmen Sie mit uns Kontakt auf</text>
-		<text lang='en'>Get in contact with us</text>
-		<text lang='cs'>Dostat do kontaktu s námi</text>
-		<text lang='fr'>Prenez contact avec nous</text>
-		<text lang='it'>Mettetevi in contatto con noi</text>
-		<text lang='es'>Póngase en contacto con nosotros</text>
-		<text lang='jp'>私たちと連絡を取って</text>
-	</get_contact>
+	<structure>
+		<div id='header_background'>
+			<img src="mrdb_logo.png" id='header_img' width='200px'/>
 
-</article_header>
+			<a href='mailto:office@iggmp.net' id='header_logo' title="$get_contact">
+				<img src='iggmp_logo.png' id='header_logo_img'/>
+			</a>
+
+			<div id='header_title'>
+				<p class='header_title' name="header_title"/>
+			</div>
+		</div>
+	</structure>
+</article>

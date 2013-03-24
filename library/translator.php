@@ -52,15 +52,23 @@ class OLIVTranslator
 
 			$texts = $content->XPath("//*/*[text]");
 
-
 	// translate all texts
 			for ($i = 0;$i < count($texts);$i++)
 			{
 				$text = OLIVText::xml($texts[$i]);
 
 	// set correct language in node
-				unset($texts[$i]->text);
-				$texts[$i]->text = $text;
+				if (is_array($texts))
+				{
+					if (array_key_exists($i,$texts))
+					{
+						if ($texts[$i]->text)
+						{
+							unset($texts[$i]->text);
+							$texts[$i]->text = $text;
+						}
+					}
+				}
 			}
 		}
 

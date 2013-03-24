@@ -61,9 +61,10 @@ class OLIVText
 	{
 		if (!$lang)
 			$lang = status::lang();
-		
+
 		if ($text)
 		{
+	
 // multilingual text found
 			if ($text->text)
 			{
@@ -78,13 +79,13 @@ class OLIVText
 
 // return language test
 				if (count($tempText) > 0)
-				{
 					return (String)$tempText[0];
-				}
+
 // return default language
 				else
 				{
-					return (String)$defaultTempText[0];
+					if (count($defaultTempText))
+						return (String)$defaultTempText[0];
 				}
 			}
 			else
