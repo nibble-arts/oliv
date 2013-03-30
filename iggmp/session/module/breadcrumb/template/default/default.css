@@ -2,7 +2,6 @@
 	padding:2px;
 	margin-top:0px;
 	font-size:80%;
-	border-bottom:1px solid;
 }
 
 .breadcrumb {
@@ -10,7 +9,7 @@
 }
 
 .breadcrumb_active {
-	background-color:#4E6B31;
+	background-color:grey;
 	color:white;
 	padding:2px;
 }

@@ -52,6 +52,7 @@ class routePlugin
 // route
 			if (!link_is_extern($href = (string)$nodes[$i]['href']))
 			{
+
 // set lang for link call
 				if (!($lang = (string)$nodes[$i]['lang']))
 					$lang = status::lang();

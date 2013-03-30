@@ -1,0 +1,34 @@
+legend {
+	font-size:0.8em;
+	font-weight:bold;
+}
+
+.spring_result_error {
+	float:center;
+	background-color:lightyellow;
+	border:2px red solid;
+	text-align:center;
+	font-weight:bold;
+	font-size:1.2em;
+	color:red;
+}
+
+.spring_result {
+	float:center;
+	background-color:lightyellow;
+	border:2px darkgreen solid;
+	text-align:center;
+	font-weight:bold;
+	font-size:1.2em;
+	color:green;
+}
+
+.mand_missing {
+	background-color:red;
+	color:white;
+	font-weight:bold;
+}
+
+.mand {
+	background-color:lightgreen;
+}

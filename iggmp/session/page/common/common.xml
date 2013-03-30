@@ -4,8 +4,8 @@
 	<define />
 	
 	<content>
-		<oliv_header mod='article'>content:header;template:header</oliv_header>
-		<oliv_footer mod="article">content:footer;template:footer</oliv_footer>
+		<oliv_header mod='article'>content:header;</oliv_header>
+		<oliv_footer mod="article">content:footer</oliv_footer>
 
 		<oliv_login mod="login"/>
 
@@ -20,7 +20,8 @@
 		</oliv_lang_switch>
 
 		<oliv_top mod="breadcrumb"/>
+		<oliv_left mod="menu">menu:main;template:side;</oliv_left>
+
 		<oliv_toolbox mod="toolbox">content:toolbox;</oliv_toolbox>
-		<oliv_left mod="menu">content:main;template:side;</oliv_left>
 	</content>
 </page>

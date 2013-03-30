@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<spring>
+	<title>
+		<text lang="de">Blattfeder Rechner</text>
+		<text lang="en">Couch Spring Calculator</text>
+	</title>
+
+	<type>
+		<text lang="de">Type</text>
+		<text lang="en">Type</text>
+	</type>
+
+	<leaf>
+		<text lang="de">Federblätter</text>
+		<text lang="en">Spring Leaf</text>
+	</leaf>
+
+	<leaf_length>
+		<text lang="de">Funktionslänge</text>
+		<text lang="en">Functional length</text>
+	</leaf_length>
+
+	<leaf_width>
+		<text lang="de">Blattbreite</text>
+		<text lang="en">Leaf width</text>
+	</leaf_width>
+
+	<leaf_thickness>
+		<text lang="de">Blattdicke</text>
+		<text lang="en">Leaf thickness</text>
+	</leaf_thickness>
+
+	<leaf_lengths>
+		<text lang="de">Packet-Blattlängen</text>
+		<text lang="en">Package leaf lengths</text>
+	</leaf_lengths>
+
+	<material_length>
+		<text lang="de">Materialbedarf</text>
+		<text lang="en">Overall material length</text>
+	</material_length>
+
+	<package>
+		<text lang="de">Federpacket</text>
+		<text lang="en">Spring Package</text>
+	</package>
+
+	<leaf_count>
+		<text lang="de">Blattanzahl</text>
+		<text lang="en">Leaf count</text>
+	</leaf_count>
+
+	<leaf_add_count>
+		<text lang="de">Durchgehende Zusatzblätter</text>
+		<text lang="en">Additional end-to-end leafs </text>
+	</leaf_add_count>
+
+	<operation>
+		<text lang="de">Betriebsdaten</text>
+		<text lang="en">Operation Data</text>
+	</operation>
+
+	<operation_summary>
+		<text lang="de">Geben Sie einen der zwei Werte an. Der jeweils andere wird berechnet.</text>
+		<text lang="en">Define one of the two values. The other value will be calculated.</text>
+	</operation_summary>
+
+	<force>
+		<text lang="de">Kraft</text>
+		<text lang="en">Force</text>
+	</force>
+
+	<bending>
+		<text lang="de">Durchbiegung</text>
+		<text lang="en">Bending</text>
+	</bending>
+
+	<sigma>
+		<text lang="de">Spannung</text>
+		<text lang="en">Stress</text>
+	</sigma>
+
+	<calc>
+		<text lang="de">Berechnen</text>
+		<text lang="en">Calculate</text>
+	</calc>
+
+	<abort>
+		<text lang="de">neue Rechnung</text>
+		<text lang="en">new calculation</text>
+	</abort>
+
+	<no_value>
+		<text lang="de">Bitte Kraft oder Durchbiegung angeben.</text>
+		<text lang="en">Please define force or bending value.</text>
+	</no_value>
+</spring>
+

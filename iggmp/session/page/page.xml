@@ -16,10 +16,23 @@ The status defines the visibility:
 	<structure>
 		<main>
 			<index/>
-			<oliv href="http://localhost/documentation"/>
+			<technic submenu="technic"/>
+			<links submenu="links"/>
 		</main>
+		
+		<technic>
+			<spring/>
+		</technic>
+
+		<links>
+			<oliv href="http://localhost/documentation/index.php"/>
+		</links>
 	</structure>
-<define><index><index>
+<define>
+<oliv>
+	<name><text lang="de">OLIV Dokumentation</text></name>
+	<title><text lang="de">Die offizielle OLIV Dokumentation</text></title>
+</oliv><index>
 			
 			
 			
@@ -48,4 +61,31 @@ The status defines the visibility:
 				
 				
 				
-			<text lang="de">Die Gartenbahn Datenbank</text><text lang="en">The Miniature Railway Database</text><text lang="cs">Miniaturní železnice databáze</text><text lang="fr">la base de données de chemin de fer miniature</text><text lang="it">Il database Miniature Railway</text><text lang="es">La Base de Datos de trenes en miniatura</text><text lang="jp">ミニチュア鉄道データベース</text></title></index></index></define></pages>
+			<text lang="de">Die Gartenbahn Datenbank</text><text lang="en">The Miniature Railway Database</text><text lang="cs">Miniaturní železnice databáze</text><text lang="fr">la base de données de chemin de fer miniature</text><text lang="it">Il database Miniature Railway</text><text lang="es">La Base de Datos de trenes en miniatura</text><text lang="jp">ミニチュア鉄道データベース</text></title></index><spring><name>
+			
+			
+		<text lang="de">Blattfeder Rechner</text><text lang="en">Coach Spring Calculator</text></name><friendly_name>
+			
+			
+		<text lang="de">Blattfeder_Rechner</text><text lang="en">Coach_Spring_Calculator</text></friendly_name><title>
+			
+			
+		<text lang="de">Berechnen von geschichteten Blattfedern</text><text lang="en">Calculator for compound springs</text></title></spring><technic><name>
+			
+			
+		<text lang="de">Technisches</text><text lang="en">Technical Things</text></name><friendly_name>
+			
+			
+		<text lang="de">Technisches</text><text lang="en">Technical_Things</text></friendly_name><title>
+			
+			
+		<text lang="de">Informationen über Gartenbahntechnik</text><text lang="en">Informations about Miniature Reailway Technics</text></title></technic><links><name>
+			
+			
+		<text lang="de">Interessante Verweise</text><text lang="en">Interesting links</text></name><friendly_name>
+			
+			
+		<text lang="de">Interessante_Verweise</text><text lang="en">Interesting_links</text></friendly_name><title>
+			
+			
+		<text lang="de">Was Sie sonst noch sehen sollten</text><text lang="en">Pages you should see too</text></title></links></define></pages>

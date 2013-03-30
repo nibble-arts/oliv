@@ -39,28 +39,34 @@ class breadcrumb extends OLIVModule
 		$this->content = OLIVModule::load_content($header);
 		$pathActive = count(status::path());
 
-// insert start page link
-		$homePage = OLIVRoute::translateFriendlyName(status::lang(),system::OLIV_INDEX_PAGE());
-		$newNode = $this->content->addChild("path_point",$homePage);
-		$newNode->addAttribute("href",system::OLIV_INDEX_PAGE());
-
-		if ($pathActive == 0)
-			$newNode->addAttribute("class","breadcrumb_active");
-		else
-			$newNode->addAttribute("class","breadcrumb");
-
-
-// insert all links in hyrarchy
+// get path
 		if (array_key_exists("path",$_SESSION))
 			$path = $_SESSION['path'];
 		else
 			$path = array();
 
 
+// insert start page link if not active
+		if ($path[0] != system::OLIV_INDEX_PAGE())
+		{
+			$homePage = OLIVRoute::translateName(status::lang(),system::OLIV_INDEX_PAGE());
+
+			$newNode = $this->content->addChild("path_point",$homePage);
+			$newNode->addAttribute("href",system::OLIV_INDEX_PAGE());
+
+			if ($pathActive == 0)
+				$newNode->addAttribute("class","breadcrumb_active");
+			else
+				$newNode->addAttribute("class","breadcrumb");
+		}
+		
+		
+// insert all links in hyrarchy
 		$x = 1;
 		foreach ($path as $page)
 		{
-			$pageName = OLIVRoute::translateFriendlyName(status::lang(),$page);
+			$pageName = OLIVRoute::translateName(status::lang(),$page);
+			
 			$newNode = $this->content->addChild("path_point",$pageName);
 			$newNode->addAttribute("href",$page);
 
@@ -71,7 +77,7 @@ class breadcrumb extends OLIVModule
 				
 			$x++;
 		}
-
+//echoall($this->content);
 		$this->template = OLIVModule::load_template($header);
   }
 }

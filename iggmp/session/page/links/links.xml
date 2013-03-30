@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Interessante Verweise</text>
+			<text lang='en'>Interesting links</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Interessante_Verweise</text>
+			<text lang='en'>Interesting_links</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Was Sie sonst noch sehen sollten</text>
+			<text lang='en'>Pages you should see too</text>
+		</title>
+	</define>
+
+	<content id='index'>
+		<include>common</include>
+
+		<oliv_center mod='article'>content:links;</oliv_center>
+	</content>
+</page>

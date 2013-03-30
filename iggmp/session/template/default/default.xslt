@@ -50,25 +50,22 @@
 							<xsl:apply-templates select='//oliv_header'/>
 						</div>
 
-				  	<table><tr>
+				  	<table id="oliv_table"><tr>
+				  		<td colspan="2" id="oliv_top">
+								<xsl:apply-templates select='//oliv_top'/>
+							</td>
+						</tr>
+						
+						<tr>
 							<td id="oliv_table_left">
-								<div id='oliv_left'>
-									<xsl:apply-templates select='//oliv_left'/>
-								</div>
+								<xsl:apply-templates select='//oliv_left'/>
 							</td>
 
 							<td id="oliv_table_middle">
-								<div id='oliv_center'>
-									<div id="oliv_content">
-										<xsl:apply-templates select='//oliv_content'/>
-									</div>
-								</div>
-							</td>
-
-							<td id="oliv_table_right">
-								<div id='oliv_right'>
+								<div id="images">
 									<xsl:apply-templates select='//oliv_right'/>
 								</div>
+								<xsl:apply-templates select='//oliv_center'/>
 							</td>
 
 						</tr></table>

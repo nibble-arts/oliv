@@ -271,7 +271,6 @@ class OLIVRoute
 // use friendly name for url
 			$path = OLIVRoute::makePath($url);
 
-
 // tranlsate and combine path
 			foreach ($path as $entry)
 			{
@@ -330,6 +329,26 @@ class OLIVRoute
 				return new simpleXmlElement("<name>$url</name>");
 		}
   }
+
+
+//------------------------------------------------------------------------------
+// translate url id to pageName
+	static public function translateName($lang,$url)
+	{
+    $pages = status::pages();
+
+// return name
+		if ($name = OLIVText::xml($pages->$url->name,$lang))
+		{
+// get page path from status::pages()
+//			$name = OLIVRoute::getRootPath($url);
+			
+			return $name;
+		}
+
+		else
+			return($url);
+	}
 
 
 //------------------------------------------------------------------------------
@@ -395,6 +414,7 @@ class OLIVRoute
   static public function getUrl($name)
   {
     $pages = status::pages();
+
     $id = "";
 		foreach($pages->children() as $page)
 		{
@@ -419,16 +439,6 @@ class OLIVRoute
 // page not found
 		return FALSE;
   }
-
-
-//------------------------------------------------------------------------------
-// translate url id to pageName
-	static public function getName($id)
-	{
-		$PAGES = status::pages();
-
-		return $pages->$id->name;
-	}
 	
 
 //------------------------------------------------------------------------------
@@ -467,9 +477,11 @@ class OLIVRoute
 	{
 		$oldpath = array();
 		$newpath = array();
-		
+
+// call recursive part
 		$pathArray = OLIVRoute::_makePath($page,$path);
-		array_pop($pathArray);
+
+//		array_pop($pathArray);
 		$pathArray = array_reverse($pathArray);
 
 		$oldpath = $pathArray;
@@ -505,18 +517,18 @@ class OLIVRoute
 	}
 	
 
+//------------------------------------------------------------------------------
 // recursice part of makePath
 	static private function _makePath($page,$path)
 	{
     $struct = status::pagestructure();
 		$parent = "";
 		$parentName = "";
-		
+
 		if ($page)
 		{
 // insert friendly_url of page in path array
 			array_push($path,$page);
-
 
 // if parent => recursion
 			$node = $struct->$page->XPath("//*[@submenu = '$page']");
@@ -587,6 +599,7 @@ class OLIVRoute
 		if (sessionfile_exists($path))
 		{
 			$pageXml = sessionxml_load_file($path);
+
 			status::set("pages",$pageXml->define);
 			status::set("pagestructure",$pageXml->structure);
 

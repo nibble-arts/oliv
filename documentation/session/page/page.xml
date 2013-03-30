@@ -171,4 +171,13 @@ The status defines the visibility:
 		<text lang="de">Dokumentation</text><text lang="en">Documentation</text></friendly_name><title>
 			
 			
-		<text lang="de">Die offizielle OLIV Dokumentation</text><text lang="en">The official OLIV documentation</text></title></documentation></define></pages>
+		<text lang="de">Die offizielle OLIV Dokumentation</text><text lang="en">The official OLIV documentation</text></title></documentation><search><name>
+			
+			
+		<text lang="de">Suchergebnis</text><text lang="en">Search result</text></name><friendly_name>
+			
+			
+		<text lang="de">Suchergebnis</text><text lang="en">Search_result</text></friendly_name><title>
+			
+			
+		<text lang="de">Liste der Suchergebnisse</text><text lang="en">List of the search results</text></title></search></define></pages>

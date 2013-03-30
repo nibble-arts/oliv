@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<article_language>
+	<define>
+		<name>
+			<text lang="de">Sprachwahl</text>
+		</name>
+		<friendly_name>
+			<text lang="de">Sprachwahl</text>
+		</friendly_name>
+		<title>
+			<text lang="de">Wählen Sie Ihre Sprache</text>
+		</title>
+	</define>
+	
+	<structure>
+		<p>lang</p>
+	</structure>
+
+	<content>
+		<lang><text land="de">Wählen Sie Ihre Sprache</text></lang>
+	</content>
+</article_language>

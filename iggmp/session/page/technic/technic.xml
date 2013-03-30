@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Technik</text>
+			<text lang='en'>Technique</text>
+			<text lang='cs'>Technologie</text>
+			<text lang='fr'>Technologie</text>
+			<text lang='it'>Tecnologia</text>
+			<text lang='es'>Tecnología</text>
+			<text lang='jp'>技術</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Technisches</text>
+			<text lang='en'>Technique</text>
+			<text lang='cs'>Technologie</text>
+			<text lang='fr'>Technologie</text>
+			<text lang='it'>Tecnologia</text>
+			<text lang='es'>Tecnología</text>
+			<text lang='jp'>技術</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Informationen über Gartenbahntechnik</text>
+			<text lang='en'>Informations about Miniature Railway Technique</text>
+			<text lang='cs'>Informace o technika parkových drach</text>
+			<text lang='fr'>Informations sur la technique des chemins de fer miniature</text>
+			<text lang='it'>Informazioni su Tecnica Miniature Railway</text>
+			<text lang='es'>Información sobre Técnica de trenes en miniatura</text>
+			<text lang='jp'>ミニチュア鉄道技術に関する情報</text>
+		</title>
+	</define>
+
+	<content id='index'>
+		<include>common</include>
+
+		<oliv_center mod='article'>content:technic;template:language;</oliv_center>
+	</content>
+</page>

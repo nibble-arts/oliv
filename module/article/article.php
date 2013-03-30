@@ -59,10 +59,13 @@ class article extends OLIVModule
 		if (!$article)
 		{
 			$article = OLIVModule::load_content($header,"error_no_article");
+			
+			if (!$article)
+				die ("no article error page defined");
+				
 			$article->content->articlename = (string)$header->param->content;
 //			$article->argv->source = "sourcePath";
 		}
-
 
 // create edit frame
 		$editStruct = new simpleXmlElement("<structure><article id='article_edit'/></structure>");

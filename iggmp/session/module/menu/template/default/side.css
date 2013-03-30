@@ -3,8 +3,8 @@
   padding:2px;
   float:left;
   width:196px;
-	background-color:#ecffd8;
-	border:1px #4e6b31 solid;
+	background-color:white;
+	border:1px grey solid;
 }
 
 #menu_item_side {
@@ -25,26 +25,26 @@
 	font-size:95%;
 	font-style:italic;
 	margin-left:5pt;
-	background-color:#ccdfb8;
+	background-color:lightgrey;
 }
 
 .menu2_side {
 	font-size:90%;
 	font-style:italic;
 	margin-left:10pt;
-	background-color:#acbf98;
+	background-color:lightgrey;
 }
 
 .menu3_side {
 	font-size:85%;
 	font-style:italic;
 	margin-left:15pt;
-	background-color:#acbf98;
+	background-color:lightgrey;
 }
 
 /* activation formats */
 .menu_side_active {
-	background-color:#4e6b31;
+	background-color:grey;
 	color:white;
 }
 

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<article_language>
+	<define>
+		<name>
+			<text lang='de'>Technik</text>
+			<text lang='en'>Technique</text>
+			<text lang='cs'>Technologie</text>
+			<text lang='fr'>Technologie</text>
+			<text lang='it'>Tecnologia</text>
+			<text lang='es'>Tecnología</text>
+			<text lang='jp'>技術</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Technik</text>
+			<text lang='en'>Technique</text>
+			<text lang='cs'>Technologie</text>
+			<text lang='fr'>Technologie</text>
+			<text lang='it'>Tecnologia</text>
+			<text lang='es'>Tecnología</text>
+			<text lang='jp'>技術</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Informationen über Gartenbahntechnik</text>
+			<text lang='en'>Informations about Miniature Railway Technique</text>
+			<text lang='cs'>Informace o technika parkových drach</text>
+			<text lang='fr'>Informations sur la technique des chemins de fer miniature</text>
+			<text lang='it'>Informazioni su Tecnica Miniature Railway</text>
+			<text lang='es'>Información sobre Técnica de trenes en miniatura</text>
+			<text lang='jp'>ミニチュア鉄道技術に関する情報</text>
+		</title>
+	</define>
+	
+	<structure>
+		<h1 name="text_001"/>
+		<p name="text_002"/>
+	</structure>
+
+	<content> 
+		<text_001>
+			<text lang='de'>Technisches</text>
+			<text lang='en'>Technique</text>
+			<text lang='cs'>Technologie</text>
+			<text lang='fr'>Technologie</text>
+			<text lang='it'>Tecnologia</text>
+			<text lang='es'>Tecnología</text>
+			<text lang='jp'>技術</text>
+		</text_001>
+		<text_002>
+			<text lang='de'>Auf den Seiten der MRDB finden Sie Beiträge zu unterschiedlichen technischen Themen der großen Gartenbahnen.</text>
+			<text lang='en'>On the pages of MRDB see articles on different technical topics of the miniature railways.</text>
+			<text lang='cs'>Na stránkách MRDB vidět články o různých technických témat velkých zahradních cest.</text>
+			<text lang='fr'>Sur les pages de MRDB voir les articles sur différents sujets techniques des grandes allées du jardin.</text>
+			<text lang='it'>Sulle pagine di MRDB vedere articoli su diversi argomenti tecnici dei grandi viali del giardino.</text>
+			<text lang='es'>En las páginas de MRDB ver artículos sobre diferentes temas técnicos de los senderos del jardín grandes.</text>
+			<text lang='jp'>MRDBのページに大きな庭パスの異なる技術的なトピックについての記事を参照してください。</text>
+		</text_002>
+	</content>
+</article_language>

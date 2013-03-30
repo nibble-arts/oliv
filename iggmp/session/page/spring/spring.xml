@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<page>
+	<define>
+		<name>
+			<text lang='de'>Blattfeder Rechner</text>
+			<text lang='en'>Coach Spring Calculator</text>
+		</name>
+		<friendly_name>
+			<text lang='de'>Blattfeder_Rechner</text>
+			<text lang='en'>Coach_Spring_Calculator</text>
+		</friendly_name>
+		<title>
+			<text lang='de'>Berechnen von geschichteten Blattfedern</text>
+			<text lang='en'>Calculator for compound springs</text>
+		</title>
+	</define>
+
+	<content>
+		<include>common</include>
+
+		<oliv_center mod="spring"/>
+	</content>
+</page>
