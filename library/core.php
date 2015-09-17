@@ -42,20 +42,11 @@ class OLIVCore
   private $module; // module object
   private $plugin; // plugin object
   private $template; // template object
-  private $templatePath; // path to page template
   private $page; // page object
   private $route; // router object
-  private $preProcessor; // preprocessor object
-  private $translator; // translator object
-  private $postProcessor; // postprocessor object
+  private $processor; // registered plugins
   private $render; // renderer engine
   private $html; // html class
-
-  private $index; // index object
-  private $search; // index object
-  private $constructor; // constructor object
-
-  private $o; // ouput string
 
 
   public function __construct($corePath)
@@ -101,7 +92,6 @@ class OLIVCore
     if (!system::OLIVENV())
     	die ("Environment not set");
 
-
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -109,8 +99,10 @@ class OLIVCore
 //------------------------------------------------------------------------------
 
 // load system language
-    $systemText = OLIVCore::loadScript(system::OLIV_CORE_TEXT());
-		system::set("systemtext",$systemText);
+    if (!system::OLIVTEXT())
+    	die ("INIT: OLIVTEXT not found");
+    	
+    OLIVText::load(system::OLIV_LANGUAGE_PATH(),system::OLIV_CORE_TEXT());
 
 
 //------------------------------------------------------------------------------
@@ -119,15 +111,6 @@ class OLIVCore
 // connect to database
 //    $this->daba = new OLIVDatabase($this->coreXml->_("core.database"));
 
-// load plugin metadata
-    $this->plugin = new OLIVPlugin();
-
-// initialise indexing engine
-    $this->index = new OLIVIndex();
-//    $this->index->insertText("ich bin ein seltsames wesen");
-
-// initialise search engine
-    $this->search = new OLIVSearch();
 
 // initialise router
     $this->route = new OLIVRoute();
@@ -138,42 +121,48 @@ class OLIVCore
 // load module metadata
     $this->module = new OLIVModule();
 
+// load plugin metadata
+    $this->plugin = new OLIVPlugin();
+
 // load site template
-    $this->template = new OLIVTemplate();
+    $this->template = new OLIVTemplate(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",system::OLIV_TEMPLATE());
 
 // initialise page
     $this->page = new OLIVPage();
 
 // initialise preprocessor
-    $this->preProcessor = new OLIVPreProcessor();
-
-// initialise translator
-		$this->translator = new OLIVTranslator();
+    $this->processor = new OLIVProcessor();
 
 // initialise renderer
     $this->render = new OLIVRender();
-
-// initialise preprocessor
-    $this->postProcessor = new OLIVPostProcessor();
-
-// initialise olivscript
-    $this->olivscript = new OLIVScript();
-
-// initialise olivscript
-    $this->olivconstructor = new OLIVConstructor();
 
 
 //------------------------------------------------------------------------------
 // set core status
 //------------------------------------------------------------------------------
-//TODO check file permissions
-		$filePerm = substr(sprintf('%o',fileperms(session_path(""))),4);
+// extract command and value
+		if (status::val())
+		{
+// extract cmd and param
+			$cmdArray = explode("/",cut_slash(status::val()));
 
-// check for write permission for all
-//		if (!($filePerm & 0x0002))
-//			 die("core.php - no write permissions in session dir");
 
+//TODO define commands in system section ???
+// search for command and retranslate
+			if (count($cmdArray))
+			{
+				$cmd = OLIVText::getId($cmdArray[0]);
+				status::set('command',$cmd); // save command
+			}
 
+// if command found, extract command from val 
+			if ((count($cmdArray) > 1) and $cmd)
+			{
+				array_shift($cmdArray); // remove command from val
+
+				status::set('val',implode("/",$cmdArray)); // save val
+			}
+		}
 
 
 //------------------------------------------------------------------------------
@@ -198,72 +187,39 @@ class OLIVCore
   public function loadContent()
   {
     $this->page->load();
-		$template = $this->page->template();
-
-		$this->template->load(system::OLIV_TEMPLATE_PATH() . system::OLIV_TEMPLATE() . "/",$template);
   }
 
-
-// call search engine
-	public function search()
-	{
-		$this->search->getSearch();
-	}
-
-
-// call preprocessor
+// start preprocessor
   public function preProcessor()
   {
-    $this->preProcessor->process($this->page,$this->template->stylesheet,$this->template->filename());
+    $this->processor->process($this->page,$this->template,$this->module);
   }
-
-
-// call translator
-	public function translator()
-	{
-		$this->translator->process($this->page);
-	}
-
-	
-// call content post processor
-  public function postProcessor()
-  {
-    $this->o = $this->postProcessor->process($this->o);
-  }
-
 
 // start render engine
   public function render()
   {
-  	$this->o = $this->render->page($this->page,$this->template);
+    $this->render->page($this->template,$this->page,$this->processor);
   }
-
 
 // display render result
   public function display()
   {
-    echo $this->o;
+    echo $this->render->display();
   }
  
 
 
 //------------------------------------------------------------------------------
 // load script and execute
-// path ... path from the system root directory
-// root ... change the root directory
-  static public function loadScript($file,$path="",$root="")
+  static public function loadScript($file,$path="")
   {
-// if no root, use system root
-  	if (!$root)
-			$root = system::OLIV_CORE_PATH();
-  	
-    $path = $root . $path; // redirect to root directory
+    $path = system::OLIV_CORE_PATH() . $path; // redirect to core root directory
 
     if (file_exists($path . $file))
     {
 // check for filetype
       $fileInfo = pathInfo($file);
-
+      
 //debug
 //print_r("load script " . $path . $file . "<br>");
       switch($fileInfo['extension'])
@@ -271,9 +227,6 @@ class OLIVCore
         case 'php':
           include_once ($path . $file);
           break;
-
-				case 'xml':
-					return simplexml_load_file($path . $file);
 
         case 'js':
           echo "<script type='text/javascript' src='{$path}{$file}'></script >";
