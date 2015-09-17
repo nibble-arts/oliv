@@ -3,7 +3,7 @@
 <construct>
 	<name>$pageId</name>
 
-<!-- dir structure in the session directory -->
+	<!-- dir structure in the session directory -->
 	<structure>
 		<page> <!-- use page subdirectory -->
 			<pagename rename="$pageId"> <!-- create subdir $pageName -->
@@ -11,15 +11,16 @@
 			</pagename>
 		</page>
 
-		<file insert="pages">page.xml <!-- copy file and insert subnodes into node "pages" -->
-			<pageid rename="$pageId;unique"> <!-- rename node to pageId. must be unique-->
+		<file insert="pages">
+			page.xml <!-- copy file and insert subnodes into node "pages" -->
+			<pageid rename="$pageId;unique"> <!-- rename node to pageId. must be unique -->
 				<name>
 					<text lang="$lang">$pageName</text>
 				</name>
 				<friendly_name>
 					<text lang="$lang">$pageFriendlyName</text>
 				</friendly_name>
-				<title/>
+				<title>
 					<text lang="$lang">$pageTitle</text>
 				</title>
 			</pageid>
